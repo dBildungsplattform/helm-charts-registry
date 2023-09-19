@@ -1,2 +1,5 @@
-# helm-chart-registry
-Helm Chart registry for Helm Charts maintained in other repositories. 
+# Helm Chart Registry
+
+[Helm](https://helm.sh) registry for different charts related or used by dBildungsplattform which can be installed on [Kubernetes](https://kubernetes.io)
+
+> :warning: **The Helm Charts are not maintained here**: They are merely collected and published!
