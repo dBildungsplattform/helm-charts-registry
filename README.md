@@ -5,6 +5,6 @@
 > :warning: **The Helm Charts are not maintained here**: They are merely collected and published!
 
 ```bash
-helm repo add dbildungscloud https://dbildungsplattform.github.io/helm-chart-registry/
+helm repo add dbildungscloud https://dbildungsplattform.github.io/helm-charts-registry/
 helm repo update
 ```
