@@ -3,6 +3,16 @@ entries:
   ionos-exporter:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2023-10-12T17:38:43.356016653Z"
+    description: A Helm chart for Kubernetes
+    digest: c366ddb9f3f5bd107cbf4f4e10149dfff6a922914f9302142c4ea11ea619e8c1
+    name: ionos-exporter
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/ionos-exporter-0.0.5/ionos-exporter-0.0.5.tgz
+    version: 0.0.5
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2023-10-12T15:13:56.680470148Z"
     description: A Helm chart for Kubernetes
     digest: 15dd8b28bc84446539d793acc4234ec6942175ee08ce1e85bd730964bfb195a6
@@ -41,4 +51,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/ionos-exporter-0.0.1/ionos-exporter-0.0.1.tgz
     version: 0.0.1
-generated: "2023-10-12T15:13:56.680489049Z"
+generated: "2023-10-12T17:38:43.356037654Z"
