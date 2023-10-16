@@ -1,0 +1,10 @@
+apiVersion: v2
+dependencies:
+- condition: keycloakEnabled
+  name: dbildungs-iam-keycloak-dev
+  repository: ""
+  version: latest
+description: dBildungs-IAM
+name: dbildungs-iam
+type: application
+version: 0.1.0
