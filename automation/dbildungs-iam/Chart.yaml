@@ -3,6 +3,7 @@ dependencies:
 - condition: keycloakEnabled
   name: dbildungs-iam-keycloak-dev
   repository: ""
+  version: '*'
 description: dBildungs-IAM
 name: dbildungs-iam
 type: application
