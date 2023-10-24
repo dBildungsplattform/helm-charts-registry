@@ -30,6 +30,20 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-0.0.0-DBP-282-efd3206d/dbildungs-iam-0.0.0-DBP-282-efd3206d.tgz
     version: 0.0.0-DBP-282-efd3206d
   - apiVersion: v2
+    created: "2023-10-24T09:10:39.481883406Z"
+    dependencies:
+    - condition: keycloakEnabled
+      name: dbildungs-iam-keycloak-dev
+      repository: ""
+      version: '*'
+    description: dBildungs-IAM
+    digest: 068aec793356b07ecb81f3ba0f9a141148e41ee0790b8948ab77cff0f23d53c3
+    name: dbildungs-iam
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-0.0.0-DBP-282-4b0a6365/dbildungs-iam-0.0.0-DBP-282-4b0a6365.tgz
+    version: 0.0.0-DBP-282-4b0a6365
+  - apiVersion: v2
     created: "2023-10-24T08:09:39.445547419Z"
     dependencies:
     - condition: keycloakEnabled
@@ -154,4 +168,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/ionos-exporter-0.0.1/ionos-exporter-0.0.1.tgz
     version: 0.0.1
-generated: "2023-10-24T08:27:47.60760486Z"
+generated: "2023-10-24T09:10:39.481921306Z"
