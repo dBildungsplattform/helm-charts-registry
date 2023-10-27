@@ -44,6 +44,20 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-0.0.0-SPSH-135-afa03931/dbildungs-iam-0.0.0-SPSH-135-afa03931.tgz
     version: 0.0.0-SPSH-135-afa03931
   - apiVersion: v2
+    created: "2023-10-27T07:52:59.325657162Z"
+    dependencies:
+    - condition: keycloakEnabled
+      name: dbildungs-iam-keycloak-dev
+      repository: ""
+      version: '*'
+    description: dBildungs-IAM
+    digest: 13bbbda13087cb78e18613beb7446a0a7dbbcb15441348b9fe0ca65ce16d454c
+    name: dbildungs-iam
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-0.0.0-SPSH-111-218cfbaf/dbildungs-iam-0.0.0-SPSH-111-218cfbaf.tgz
+    version: 0.0.0-SPSH-111-218cfbaf
+  - apiVersion: v2
     created: "2023-10-26T08:52:30.943409339Z"
     dependencies:
     - condition: keycloakEnabled
@@ -314,6 +328,15 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-329-fe6332fa/spsh-client-0.0.0-DBP-329-fe6332fa.tgz
     version: 0.0.0-DBP-329-fe6332fa
   - apiVersion: v2
+    created: "2023-10-27T07:52:59.526822549Z"
+    description: Helm-Chart für den Schulportal-SH Client
+    digest: 56a7a3b2094b12e8bf3b1af2287ae6b2599f7fb27177c4103a619f98dc9480a7
+    name: spsh-client
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-329-e16a9acd/spsh-client-0.0.0-DBP-329-e16a9acd.tgz
+    version: 0.0.0-DBP-329-e16a9acd
+  - apiVersion: v2
     created: "2023-10-26T07:17:01.680460805Z"
     description: Helm-Chart für den Schulportal-SH Client
     digest: 5826d8583baa5d5a80e233e2535b3b07ed56ea4118e0020525ae98afd5ebb8d8
@@ -331,4 +354,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-329-061015bb/spsh-client-0.0.0-DBP-329-061015bb.tgz
     version: 0.0.0-DBP-329-061015bb
-generated: "2023-10-26T13:06:33.437807753Z"
+generated: "2023-10-27T07:52:59.527463461Z"
