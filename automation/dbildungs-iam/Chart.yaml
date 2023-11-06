@@ -4,11 +4,7 @@ dependencies:
   name: dbildungs-iam-keycloak-dev
   repository: ""
   version: '*'
-- condition: redisEnabled
-  name: dbildungs-iam-redis
-  repository: ""
-  version: latest
 description: dBildungs-IAM
 name: dbildungs-iam
 type: application
-version: 0.0.0-SPSH-141-ef0c6823
+version: 0.0.0-SPSH-112-b1f5b0ce
