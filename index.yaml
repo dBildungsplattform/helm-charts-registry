@@ -212,6 +212,20 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-0.0.0-EW-646-0812ae6a/dbildungs-iam-0.0.0-EW-646-0812ae6a.tgz
     version: 0.0.0-EW-646-0812ae6a
   - apiVersion: v2
+    created: "2023-11-06T14:40:26.023126496Z"
+    dependencies:
+    - condition: keycloakEnabled
+      name: dbildungs-iam-keycloak-dev
+      repository: ""
+      version: '*'
+    description: dBildungs-IAM
+    digest: 1169d57b9b81a75907266683c0c0018e5012ae93e74e7c1a033256e2573f60f1
+    name: dbildungs-iam
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-0.0.0-EW-641-acd1a6b9/dbildungs-iam-0.0.0-EW-641-acd1a6b9.tgz
+    version: 0.0.0-EW-641-acd1a6b9
+  - apiVersion: v2
     created: "2023-10-26T08:52:30.943409339Z"
     dependencies:
     - condition: keycloakEnabled
@@ -589,6 +603,15 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.1-81f66d54/spsh-client-0.0.1-81f66d54.tgz
     version: 0.0.1-81f66d54
   - apiVersion: v2
+    created: "2023-11-06T14:40:26.18271443Z"
+    description: Helm-Chart für den Schulportal-SH Client
+    digest: 6b4af45f97142a8abf66ea17efc5cec7ed3ad2cd0355c462e592a60ce0c250d2
+    name: spsh-client
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-SPSH-128-5bd66bf0/spsh-client-0.0.0-SPSH-128-5bd66bf0.tgz
+    version: 0.0.0-SPSH-128-5bd66bf0
+  - apiVersion: v2
     created: "2023-10-30T13:56:30.302925025Z"
     description: Helm-Chart für den Schulportal-SH Client
     digest: 6571b053bc5a8d37076b2396826358d7bf0badcf5025e8638da1e14494e1b17b
@@ -696,4 +719,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-000-867a8c5d/spsh-client-0.0.0-DBP-000-867a8c5d.tgz
     version: 0.0.0-DBP-000-867a8c5d
-generated: "2023-11-06T07:55:37.301314571Z"
+generated: "2023-11-06T14:40:26.183602932Z"
