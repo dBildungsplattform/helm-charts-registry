@@ -14,7 +14,7 @@ dbildungsIamReplications: 1
 environment: prod
 
 # tlsRejectUnauthorized controls whether environment variable NODE_TLS_REJECT_UNAUTHORIZED="0" should be set to disable TLS verification
-tlsRejectUnauthorized: true
+tlsRejectUnauthorized: false
 
 # backendHostname is the name of backend host
 backendHostname: helm.dev.spsh.dbildungsplattform.de
@@ -35,6 +35,6 @@ secrets:
 enableServiceMonitor: false
 
 # Both of these are disabled as to make them intentional
-keycloakEnabled: false
+keycloakEnabled: true
 dbildungs-iam-keycloak-dev:
-  keycloakPublic: false
+  keycloakPublic: true

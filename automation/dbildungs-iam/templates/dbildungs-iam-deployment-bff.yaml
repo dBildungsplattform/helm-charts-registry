@@ -30,7 +30,7 @@ spec:
               value: {{.Values.environment}}
             - name: DEPLOY_STAGE
               value: {{.Values.environment}}
-            {{- if .Values.tlsRejectUnauthorized }}
+            {{- if eq .Values.tlsRejectUnauthorized false }}
             - name: NODE_TLS_REJECT_UNAUTHORIZED
               value: '0'
             {{- end }}
