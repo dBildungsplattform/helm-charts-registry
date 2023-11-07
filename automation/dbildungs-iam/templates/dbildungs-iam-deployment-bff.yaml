@@ -30,6 +30,10 @@ spec:
               value: {{.Values.environment}}
             - name: DEPLOY_STAGE
               value: {{.Values.environment}}
+            {{- if .Values.tlsRejectUnauthorized }}
+            - name: NODE_TLS_REJECT_UNAUTHORIZED
+              value: '0'
+            {{- end }}
           volumeMounts:
             - mountPath: /app/config/
               name: config
@@ -55,4 +59,3 @@ spec:
         - name: config
           secret:
             secretName: {{.Values.secrets.name | default (print .Release.Name "-secret")}}
-      
