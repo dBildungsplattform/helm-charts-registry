@@ -1,25 +1,13 @@
-# dbildungsIamContainer is the image used for backend and BFF
-dbildungsIamContainer: "ghcr.io/dbildungsplattform/dbildungs-iam-server:SPSH-152"
+dbildungsIamContainer: "ghcr.io/dbildungsplattform/dbildungs-iam-server/feature/bff_to_helm:latest"
 
-# dbildungsIamExternalPort
 dbildungsIamExternalPort: 80
-# dbildungsIamCpuMax is resource limit regarding CPU for each, backend and BFF
 dbildungsIamCpuMax: 2
-# dbildungsIamMemMax is resource limit regarding memory for each, backend and BFF
 dbildungsIamMemMax: 4G
-# dbildungsIamReplications is the amount of replications to use for each, backend and BFF
 dbildungsIamReplications: 1
-
-# environment is the environment the chart is building on
 environment: prod
 
-# tlsRejectUnauthorized controls whether environment variable NODE_TLS_REJECT_UNAUTHORIZED="0" should be set to disable TLS verification
-tlsRejectUnauthorized: false
-
-# backendHostname is the name of backend host
 backendHostname: helm.dev.spsh.dbildungsplattform.de
 
-# configfile is the file that contains configuration regarding Redis, Keycloak, database, host, backend and frontend
 configfile:
   secrets: 'config/secrets.json'
   dev: 'config/config.dev.json'
@@ -35,6 +23,6 @@ secrets:
 enableServiceMonitor: false
 
 # Both of these are disabled as to make them intentional
-keycloakEnabled: true
+keycloakEnabled: false
 dbildungs-iam-keycloak-dev:
-  keycloakPublic: true
+  keycloakPublic: false
