@@ -32,6 +32,10 @@ spec:
               value: admin
             - name: KC_PROXY
               value: "edge"
+            {{- if .Values.rootUrl }}
+            - name: ROOT_URL
+              value: {{ .Values.rootUrl }}
+            {{- end}}
           volumeMounts:
            - mountPath: "/opt/keycloak/data/import"
              name: "realm-config"
@@ -41,4 +45,3 @@ spec:
         - name: realm-config
           secret:
             secretName: realm-config-secret
-      

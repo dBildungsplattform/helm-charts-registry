@@ -467,6 +467,20 @@
       ],
       "notBefore": 0,
       "groups": []
+    },
+    {
+      "username": "test",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Testus",
+      "lastName": "Experimentus",
+      "email": "testuser@example.com",
+      "credentials": [
+          {
+              "type": "password",
+              "value": "test"
+          }
+      ]
     }
   ],
   "scopeMappings": [
@@ -771,7 +785,7 @@
       "clientId": "spsh",
       "name": "Schulportal SH",
       "description": "",
-      "rootUrl": "",
+      "rootUrl": "${ROOT_URL}",
       "adminUrl": "",
       "baseUrl": "",
       "surrogateAuthRequired": false,
