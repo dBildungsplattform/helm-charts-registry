@@ -408,6 +408,20 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-0.0.0-DBP-354-ea780c10/dbildungs-iam-0.0.0-DBP-354-ea780c10.tgz
     version: 0.0.0-DBP-354-ea780c10
   - apiVersion: v2
+    created: "2023-11-20T16:02:41.844276738Z"
+    dependencies:
+    - condition: keycloakEnabled
+      name: dbildungs-iam-keycloak-dev
+      repository: ""
+      version: '*'
+    description: dBildungs-IAM
+    digest: db3f02f7d32ab60220babc625866ef85c466c57eca9483ce7dc4ca7e710716eb
+    name: dbildungs-iam
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-0.0.0-DBP-350-bbb1af4b/dbildungs-iam-0.0.0-DBP-350-bbb1af4b.tgz
+    version: 0.0.0-DBP-350-bbb1af4b
+  - apiVersion: v2
     created: "2023-11-09T17:17:05.523992593Z"
     dependencies:
     - condition: keycloakEnabled
@@ -766,6 +780,15 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-SPSH-134-574457f9/spsh-client-0.0.0-SPSH-134-574457f9.tgz
     version: 0.0.0-SPSH-134-574457f9
   - apiVersion: v2
+    created: "2023-11-20T16:02:41.993132048Z"
+    description: Helm-Chart für den Schulportal-SH Client
+    digest: 802af86662492c0856ccb0227c695af80ccf3a982c706e227079189426cf46e1
+    name: spsh-client
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-SPSH-134-01114493/spsh-client-0.0.0-SPSH-134-01114493.tgz
+    version: 0.0.0-SPSH-134-01114493
+  - apiVersion: v2
     created: "2023-11-06T14:40:26.18271443Z"
     description: Helm-Chart für den Schulportal-SH Client
     digest: 6b4af45f97142a8abf66ea17efc5cec7ed3ad2cd0355c462e592a60ce0c250d2
@@ -882,4 +905,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-000-867a8c5d/spsh-client-0.0.0-DBP-000-867a8c5d.tgz
     version: 0.0.0-DBP-000-867a8c5d
-generated: "2023-11-14T15:27:01.430678487Z"
+generated: "2023-11-20T16:02:41.994524839Z"
