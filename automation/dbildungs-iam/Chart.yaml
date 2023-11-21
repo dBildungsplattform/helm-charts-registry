@@ -7,8 +7,8 @@ dependencies:
 - condition: redisEnabled
   name: dbildungs-iam-redis
   repository: ""
-  version: latest
+  version: '*'
 description: dBildungs-IAM
 name: dbildungs-iam
 type: application
-version: 0.0.0-dbp-350-b327c43f
+version: 0.0.0-dbp-350-402f4a10
