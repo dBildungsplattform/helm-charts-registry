@@ -86,6 +86,24 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-0.0.0-spsh-130-f6a334d7/dbildungs-iam-0.0.0-spsh-130-f6a334d7.tgz
     version: 0.0.0-spsh-130-f6a334d7
   - apiVersion: v2
+    created: "2023-11-21T11:05:17.815117651Z"
+    dependencies:
+    - condition: keycloakEnabled
+      name: dbildungs-iam-keycloak-dev
+      repository: ""
+      version: '*'
+    - condition: redisEnabled
+      name: dbildungs-iam-redis
+      repository: ""
+      version: '*'
+    description: dBildungs-IAM
+    digest: aae584a36e0c7741f5f5d54a6ea323037c80be9fa0a46f9abbb8c65799ad7151
+    name: dbildungs-iam
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-0.0.0-dbp-350-af36cece/dbildungs-iam-0.0.0-dbp-350-af36cece.tgz
+    version: 0.0.0-dbp-350-af36cece
+  - apiVersion: v2
     created: "2023-11-21T10:15:38.359006358Z"
     dependencies:
     - condition: keycloakEnabled
@@ -951,4 +969,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-000-867a8c5d/spsh-client-0.0.0-DBP-000-867a8c5d.tgz
     version: 0.0.0-DBP-000-867a8c5d
-generated: "2023-11-21T10:15:38.359858818Z"
+generated: "2023-11-21T11:05:17.815933535Z"
