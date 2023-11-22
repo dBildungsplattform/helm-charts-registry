@@ -1,5 +1,4 @@
 apiVersion: v2
-appVersion: DBP-352
 dependencies:
 - condition: keycloakEnabled
   name: dbildungs-iam-keycloak-dev
