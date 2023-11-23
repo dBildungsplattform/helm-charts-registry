@@ -560,6 +560,24 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-0.0.0-EW-646-9a1e10e2/dbildungs-iam-0.0.0-EW-646-9a1e10e2.tgz
     version: 0.0.0-EW-646-9a1e10e2
   - apiVersion: v2
+    created: "2023-11-23T07:22:31.166864512Z"
+    dependencies:
+    - condition: keycloakEnabled
+      name: dbildungs-iam-keycloak-dev
+      repository: ""
+      version: '*'
+    - condition: redisEnabled
+      name: dbildungs-iam-redis
+      repository: ""
+      version: '*'
+    description: dBildungs-IAM
+    digest: 1ad47e9d95ce47e1f051134b1c50bf9a47c2c0d315c9c89e946288cf6d61643f
+    name: dbildungs-iam
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-0.0.0-EW-646-70f1d4c2/dbildungs-iam-0.0.0-EW-646-70f1d4c2.tgz
+    version: 0.0.0-EW-646-70f1d4c2
+  - apiVersion: v2
     created: "2023-11-02T19:09:39.641543876Z"
     dependencies:
     - condition: keycloakEnabled
@@ -1218,6 +1236,16 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-SPSH-128-5bd66bf0/spsh-client-0.0.0-SPSH-128-5bd66bf0.tgz
     version: 0.0.0-SPSH-128-5bd66bf0
   - apiVersion: v2
+    appVersion: latest
+    created: "2023-11-23T07:22:31.318247724Z"
+    description: Helm-Chart für den Schulportal-SH Client
+    digest: 17f8a9d5aabceb88e71c5f995ba640c5c4a54d81efcfcaeed54767d2cbc541ca
+    name: spsh-client
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-351-c7c3b41c/spsh-client-0.0.0-DBP-351-c7c3b41c.tgz
+    version: 0.0.0-DBP-351-c7c3b41c
+  - apiVersion: v2
     created: "2023-10-30T13:56:30.302925025Z"
     description: Helm-Chart für den Schulportal-SH Client
     digest: 6571b053bc5a8d37076b2396826358d7bf0badcf5025e8638da1e14494e1b17b
@@ -1325,4 +1353,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-000-867a8c5d/spsh-client-0.0.0-DBP-000-867a8c5d.tgz
     version: 0.0.0-DBP-000-867a8c5d
-generated: "2023-11-22T17:23:52.469079547Z"
+generated: "2023-11-23T07:22:31.318953506Z"
