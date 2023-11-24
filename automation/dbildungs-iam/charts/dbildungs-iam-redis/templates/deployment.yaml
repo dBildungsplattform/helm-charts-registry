@@ -18,8 +18,6 @@ spec:
       initContainers:
         - name: copy-tls-data
           image: alpine
-          securityContext:
-            allowPrivilegeEscalation: false
           command: ["/bin/sh","-c", "apk add --no-cache openssl bash;/bin/bash /tls/copy-tls.sh"]
           volumeMounts:
             - mountPath: "/tls"
@@ -29,8 +27,6 @@ spec:
       containers:
         - name: redis
           image: redis:7.2.2
-          securityContext:
-            allowPrivilegeEscalation: false
           volumeMounts:
             - mountPath: "/data"
               name: data
