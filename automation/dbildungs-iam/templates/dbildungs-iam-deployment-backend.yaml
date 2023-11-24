@@ -34,9 +34,6 @@ spec:
               name: config
               readOnly: true
           resources:
-            requests:
-              cpu: {{.Values.dbildungsIamCpuRequest}}
-              memory: {{.Values.dbildungsIamMemRequest}}
             limits:
               cpu: {{.Values.dbildungsIamCpuMax}}
               memory: {{.Values.dbildungsIamMemMax}}
