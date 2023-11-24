@@ -1,5 +1,7 @@
 replicaCount: 1
 frontendHostname: "helm.dev.spsh.dbildungsplattform.de"
-nameOverride: ""
+nameOverride: "spsh-client"
 image:
-  repository: ghcr.io/dbildungsplattform/schulportal-client:latest
+  repository: ghcr.io/dbildungsplattform/schulportal-client
+
+
