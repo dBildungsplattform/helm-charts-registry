@@ -1,14 +1,8 @@
 {{/*
-Full name (e.g., release name + chart name)
+Full name template
 */}}
 {{- define "dbildungs-iam.fullname" -}}
-{{- printf "%s-%s" .Release.Name (include "dbildungs-iam.name" .) | trunc 63 | trimSuffix "-" -}}
-{{- end -}}
-{{/*
-Template name
-*/}}
-{{- define "dbildungs-iam.templateName" -}}
-{{- printf "%s-template" (include "dbildungs-iam.name" .) | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-%s" .Release.Name .Chart.Name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{/* Common labels */}}
@@ -30,6 +24,19 @@ layer: dbildungs-iam-backend
 {{- define "dbildungs-iam.bffLayerLabel" -}}
 layer: dbildungs-iam-bff
 {{- end -}}
+
+{{/* Common port name */}}
+{{- define "dbildungs-iam.portName" -}}
+web
+{{- end -}}
+
+{{/*
+Template name
+*/}}
+{{- define "dbildungs-iam.templateName" -}}
+{{- printf "%s-template" (include "dbildungs-iam.name" .) | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+
 {{/*
 Service name for BFF
 */}}

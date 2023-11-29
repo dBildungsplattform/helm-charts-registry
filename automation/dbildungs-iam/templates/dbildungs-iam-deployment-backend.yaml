@@ -22,7 +22,7 @@ spec:
           securityContext:
             allowPrivilegeEscalation: false
           ports:
-            - name: {{ .Values.portName }}
+            - name: {{ include "dbildungs-iam.portName" . }}
               containerPort: 8080
           env:
             - name: NODE_ENV
