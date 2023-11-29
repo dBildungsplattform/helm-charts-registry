@@ -1,4 +1,5 @@
 apiVersion: v2
+appVersion: DBP-394
 dependencies:
 - condition: keycloakEnabled
   name: dbildungs-iam-keycloak-dev
@@ -7,4 +8,4 @@ dependencies:
 description: dBildungs-IAM
 name: dbildungs-iam
 type: application
-version: 0.0.0-EW-645-d311f53b
+version: 0.0.0-dbp-394-20231129-1149
