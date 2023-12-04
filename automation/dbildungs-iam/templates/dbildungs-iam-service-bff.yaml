@@ -13,3 +13,4 @@ spec:
       port: {{.Values.dbildungsIamExternalPort}}
       targetPort: web
   type: ClusterIP
+  
