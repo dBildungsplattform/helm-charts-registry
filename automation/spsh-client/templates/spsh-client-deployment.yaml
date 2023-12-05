@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: spsh-client
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: {{.Values.spshClientImage }}
           imagePullPolicy: Always
           securityContext:
             allowPrivilegeEscalation: false
