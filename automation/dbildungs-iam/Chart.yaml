@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: SPSH-226
+appVersion: SPSH-167
 dependencies:
 - condition: keycloakEnabled
   name: dbildungs-iam-keycloak-dev
@@ -8,4 +8,4 @@ dependencies:
 description: dBildungs-IAM
 name: dbildungs-iam
 type: application
-version: 0.0.0-spsh-226-20231205-1216
+version: 0.0.0-spsh-167-20231205-1321
