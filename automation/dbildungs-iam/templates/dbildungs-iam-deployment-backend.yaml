@@ -3,8 +3,7 @@ kind: Deployment
 metadata:
   name: dbiam-deployment-backend
   labels:
-    app.kubernetes.io/name: {{.Chart.Name}}
-    app.kubernetes.io/version: {{.Chart.Version}}
+    app.kubernetes.io/name: dbildungs-iam
 spec:
   selector:
     matchLabels:
@@ -18,7 +17,7 @@ spec:
     spec:
       containers:
         - name: dbildungs-iam-backend
-          image: {{.Values.dbildungsIamContainer}}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: Always
           securityContext:
             allowPrivilegeEscalation: false

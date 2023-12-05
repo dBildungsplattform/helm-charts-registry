@@ -3,8 +3,7 @@ kind: Deployment
 metadata:
   name: dbiam-server-redis-deployment
   labels:
-    app.kubernetes.io/name: {{.Chart.Name}}
-    app.kubernetes.io/version: {{.Chart.Version}}
+    app.kubernetes.io/name: dbildungs-iam
 spec:
   selector:
     matchLabels:
