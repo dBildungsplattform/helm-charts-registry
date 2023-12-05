@@ -2,13 +2,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: spsh-client-ingress
-  labels:
-    app.kubernetes.io/name: {{.Chart.Name}}
-    app.kubernetes.io/version: {{.Chart.Version}}
 spec:
   ingressClassName: nginx
   rules:
-    - host: {{required "A frontend hostname (frontendHostname) must be given on deployment" .Values.frontendHostname}}
+    - host: {{.Values.frontendHostname}}
       http:
         paths:
           - path: /
@@ -18,3 +15,4 @@ spec:
                 name: spsh-client-service
                 port:
                   number: 80
+                

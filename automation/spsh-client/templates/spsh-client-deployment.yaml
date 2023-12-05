@@ -4,8 +4,6 @@ metadata:
   name: spsh-client
   labels:
     app: spsh-client
-    app.kubernetes.io/name: {{.Chart.Name}}
-    app.kubernetes.io/version: {{.Chart.Version}}
 spec:
   replicas: 1
   selector:
@@ -19,7 +17,7 @@ spec:
     spec:
       containers:
         - name: spsh-client
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: {{.Values.spshClientImage }}
           imagePullPolicy: Always
           securityContext:
             allowPrivilegeEscalation: false
