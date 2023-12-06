@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: sha-8e198040
+appVersion: sha-88616333
 dependencies:
 - condition: keycloakEnabled
   name: dbildungs-iam-keycloak-dev
@@ -8,4 +8,4 @@ dependencies:
 description: dBildungs-IAM
 name: dbildungs-iam
 type: application
-version: 0.0.1-20231206-1141
+version: 0.0.1-20231206-1249
