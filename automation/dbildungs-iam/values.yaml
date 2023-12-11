@@ -15,7 +15,6 @@ configfile:
 # Name of the secrets to inject
 secrets:
   name: spsh-config
-seedingData: spsh-seeding-data
 # If we're running inside an environment with a Prometheus-Operator installed we configure a service monitor
 enableServiceMonitor: false
 # do we use a development redis?
@@ -23,4 +22,4 @@ redisEnabled: false
 # Image
 image:
   repository: ghcr.io/dbildungsplattform/dbildungs-iam-server
-  tag: "SPSH-201"
+  tag: ""
