@@ -1,6 +1,11 @@
 apiVersion: v2
-appVersion: EW-669
+appVersion: EW-629
+dependencies:
+- condition: keycloakEnabled
+  name: dbildungs-iam-keycloak-dev
+  repository: ""
+  version: '*'
 description: dBildungs-IAM
 name: dbildungs-iam
 type: application
-version: 0.0.0-ew-669-20231212-0905
+version: 0.0.0-ew-629-20231212-1050
