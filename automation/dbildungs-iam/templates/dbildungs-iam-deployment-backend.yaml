@@ -3,8 +3,7 @@ kind: Deployment
 metadata:
   name: dbiam-deployment-backend
   labels:
-    app.kubernetes.io/name: {{.Chart.Name}}
-    app.kubernetes.io/version: {{.Chart.Version}}
+    app.kubernetes.io/name: dbildungs-iam
 spec:
   selector:
     matchLabels:
@@ -16,41 +15,6 @@ spec:
       labels:
         layer: dbildungs-iam-backend
     spec:
-      initContainers:
-        - name: db-init
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          securityContext:
-            allowPrivilegeEscalation: false
-          command: [ "node", "dist/src/console/main.js", "db", "init" ]
-          env:
-            - name: NODE_ENV
-              value: {{.Values.environment}}
-            - name: DEPLOY_STAGE
-              value: {{.Values.environment}}
-          volumeMounts:
-            - mountPath: /app/config/
-              name: config
-              readOnly: true
-            - mountPath: /app/sql/{{.Values.environment}}
-              name: seeding
-              readOnly: true
-        - name: db-seeding
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          securityContext:
-            allowPrivilegeEscalation: false
-          command: [ "node", "dist/src/console/main.js", "db", "seed", "prod", "" ]
-          env:
-            - name: NODE_ENV
-              value: {{.Values.environment}}
-            - name: DEPLOY_STAGE
-              value: {{.Values.environment}}
-          volumeMounts:
-            - mountPath: /app/config/
-              name: config
-              readOnly: true
-            - mountPath: /app/sql/{{.Values.environment}}
-              name: seeding
-              readOnly: true
       containers:
         - name: dbildungs-iam-backend
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -93,6 +57,4 @@ spec:
         - name: config
           secret:
             secretName: {{.Values.secrets.name | default (print .Release.Name "-secret")}}
-        - name: seeding
-          secret:
-            secretName: {{.Values.seedingData | default (print .Release.Name "-secret")}}
+      
