@@ -4028,6 +4028,17 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungscloud-iam-server-0.0.0-dbp-352-20231201-1326/dbildungscloud-iam-server-0.0.0-dbp-352-20231201-1326.tgz
     version: 0.0.0-dbp-352-20231201-1326
+  infra-autoscaler:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2023-12-12T15:53:07.7351482Z"
+    description: Deploy the dBildunsplattform infra-autoscaler
+    digest: e2bb8601f9b88af6ca26cd1070374a92dca60f57f91484870aa47d2a43c71886
+    name: infra-autoscaler
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/infra-autoscaler-0.0.1/infra-autoscaler-0.0.1.tgz
+    version: 0.0.1
   ionos-exporter:
   - apiVersion: v2
     appVersion: 0.0.4
@@ -5059,4 +5070,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-000-867a8c5d/spsh-client-0.0.0-DBP-000-867a8c5d.tgz
     version: 0.0.0-DBP-000-867a8c5d
-generated: "2023-12-12T15:35:02.145844576Z"
+generated: "2023-12-12T15:53:07.736182946Z"
