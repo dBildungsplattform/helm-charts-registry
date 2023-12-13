@@ -3,12 +3,11 @@ kind: Ingress
 metadata:
   name: {{.Release.Name}}-backend
   labels:
-    app.kubernetes.io/name: {{.Chart.Name}}
-    app.kubernetes.io/version: {{.Chart.Version}}
+    app.kubernetes.io/name: dbildungs-iam
 spec:
   ingressClassName: nginx
   rules:
-    - host: {{ required "A backend hostname (backendHostname) must be given on deployment" .Values.backendHostname }}
+    - host: {{.Values.backendHostname}}
       http:
         paths:
           - path: /api

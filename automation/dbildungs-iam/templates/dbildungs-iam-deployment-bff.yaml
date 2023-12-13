@@ -3,8 +3,7 @@ kind: Deployment
 metadata:
   name: dbiam-deployment-bff
   labels:
-    app.kubernetes.io/name: {{.Chart.Name}}
-    app.kubernetes.io/version: {{.Chart.Version}}
+    app.kubernetes.io/name: dbildungs-iam
 spec:
   selector:
     matchLabels:
@@ -22,10 +21,10 @@ spec:
           imagePullPolicy: Always
           securityContext:
             allowPrivilegeEscalation: false
-          command: [ "node", "dist/src/backend-for-frontend/main.js" ]
+          command: ["node", "dist/src/backend-for-frontend/main.js"]
           ports:
-            - name: web
-              containerPort: 8080
+             - name: web
+               containerPort: 8080
           env:
             - name: NODE_ENV
               value: {{.Values.environment}}
@@ -43,7 +42,7 @@ spec:
               cpu: {{.Values.dbildungsIamCpuMax}}
               memory: {{.Values.dbildungsIamMemMax}}
           livenessProbe:
-            initialDelaySeconds: 120 # Redis takes a while to get ready and we'd be getting restarts otherwise
+            initialDelaySeconds: 10
             httpGet:
               port: 8080
               scheme: 'HTTP'
