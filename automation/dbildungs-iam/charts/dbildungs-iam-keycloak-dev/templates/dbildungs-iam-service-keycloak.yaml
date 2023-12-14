@@ -1,15 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: dbiam-backend
+  name: keycloak
   labels:
     app.kubernetes.io/name: dbildungs-iam
 spec:
   selector:
-    layer: dbildungs-iam-backend
+    layer: dbildungs-iam-keycloak
   ports:
     - protocol: TCP
       name: web
-      port: {{.Values.dbildungsIamExternalPort}}
+      port: 80
       targetPort: web
   type: ClusterIP
+  
