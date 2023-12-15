@@ -3,8 +3,7 @@ kind: Service
 metadata:
   name: dbiam-bff
   labels:
-    app.kubernetes.io/name: {{.Chart.Name}}
-    app.kubernetes.io/version: {{.Chart.Version}}
+    app.kubernetes.io/name: dbildungs-iam
 spec:
   selector:
     layer: dbildungs-iam-bff
