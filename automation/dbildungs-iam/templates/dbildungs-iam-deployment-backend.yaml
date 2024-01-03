@@ -31,12 +31,10 @@ spec:
             - name: DEPLOY_STAGE
               value: {{.Values.environment}}
           volumeMounts:
-            - mountPath: /app/config/config.json
-              subPath: config.json
+            - mountPath: /app/config/
               name: config-volume
               readOnly: true
-            - mountPath: /app/config/secrets.json
-              subPath: secrets.json
+            - mountPath: /app/secrets/
               name: secret-volume
               readOnly: true
           resources:
