@@ -16,51 +16,6 @@ spec:
       labels:
         layer: dbildungs-iam-backend
     spec:
-      initContainers:
-        - name: db-init
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          securityContext:
-            allowPrivilegeEscalation: false
-          command: [ "node", "dist/src/console/main.js", "db", "init" ]
-          env:
-            - name: NODE_ENV
-              value: {{.Values.environment}}
-            - name: DEPLOY_STAGE
-              value: {{.Values.environment}}
-          volumeMounts:
-            - mountPath: /app/config/config.json
-              subPath: config.json
-              name: config-volume
-              readOnly: true
-            - mountPath: /app/config/secrets.json
-              subPath: secrets.json
-              name: secret-volume
-              readOnly: true
-            - mountPath: /app/sql/{{.Values.database}}
-              name: seeding-volume
-              readOnly: true
-        - name: db-seeding
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          securityContext:
-            allowPrivilegeEscalation: false
-          command: [ "node", "dist/src/console/main.js", "db", "seed", "dev", "05_person-rollen-zuweisung.json,06_service-provider-zugriff.json" ]
-          env:
-            - name: NODE_ENV
-              value: {{.Values.environment}}
-            - name: DEPLOY_STAGE
-              value: {{.Values.environment}}
-          volumeMounts:
-            - mountPath: /app/config/config.json
-              subPath: config.json
-              name: config-volume
-              readOnly: true
-            - mountPath: /app/config/secrets.json
-              subPath: secrets.json
-              name: secret-volume
-              readOnly: true
-            - mountPath: /app/sql/{{.Values.database}}
-              name: seeding-volume
-              readOnly: true
       containers:
         - name: dbildungs-iam-backend
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -76,13 +31,8 @@ spec:
             - name: DEPLOY_STAGE
               value: {{.Values.environment}}
           volumeMounts:
-            - mountPath: /app/config/config.json
-              subPath: config.json
-              name: config-volume
-              readOnly: true
-            - mountPath: /app/config/secrets.json
-              subPath: secrets.json
-              name: secret-volume
+            - mountPath: /app/config/
+              name: config
               readOnly: true
           resources:
             requests:
@@ -105,12 +55,7 @@ spec:
               path: '/health'
       restartPolicy: Always
       volumes:
-        - name: config-volume
-          configMap:
-            name: dbildungs-iam-configmap
-        - name: secret-volume
+        - name: config
           secret:
-            secretName: dbildungs-iam-secrets
-        - name: seeding-volume
-          configMap:
-            name: {{.Values.seeding.name}}
+            secretName: {{.Values.secrets.name | default (print .Release.Name "-secret")}}
+      
