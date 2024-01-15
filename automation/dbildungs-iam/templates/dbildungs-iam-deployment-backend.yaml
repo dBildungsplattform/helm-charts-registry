@@ -26,10 +26,7 @@ spec:
              - name: web
                containerPort: 8080
           env:
-            - name: NODE_ENV
-              value: {{.Values.environment}}
-            - name: DEPLOY_STAGE
-              value: {{.Values.environment}}
+          {{- include "dbiam-backend-envs" . | indent  12}}
           volumeMounts:
             - mountPath: /app/config/
               name: config-volume
