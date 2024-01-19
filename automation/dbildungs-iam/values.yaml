@@ -5,7 +5,7 @@ dbildungsIamCpuRequest: 200m
 dbildungsIamMemRequest: 200Mi
 dbildungsIamReplications: 1
 environment: prod
-backendHostname: spsh-312.dev.spsh.dbildungsplattform.de
+backendHostname: helm.dev.spsh.dbildungsplattform.de
 # Configuration of necessary secrets
 # Name of the secrets to inject
 secrets:
@@ -19,4 +19,4 @@ redisEnabled: false
 # Image
 image:
   repository: ghcr.io/dbildungsplattform/dbildungs-iam-server
-  tag: "latest"
+  tag: ""
