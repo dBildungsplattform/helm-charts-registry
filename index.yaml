@@ -6255,6 +6255,16 @@ entries:
     version: 0.0.0-dbp-352-20231201-1326
   infra-autoscaler:
   - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2024-01-25T11:20:29.037911548Z"
+    description: Deploy the dBildunsplattform infra-autoscaler
+    digest: 0ce79c2a2ed2dd3095bc0d8c110f763c30369b39f89129102786409f4d9031a0
+    name: infra-autoscaler
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/infra-autoscaler-1.0.0/infra-autoscaler-1.0.0.tgz
+    version: 1.0.0
+  - apiVersion: v2
     appVersion: 0.0.1
     created: "2023-12-12T15:53:07.7351482Z"
     description: Deploy the dBildunsplattform infra-autoscaler
@@ -8795,4 +8805,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-000-867a8c5d/spsh-client-0.0.0-DBP-000-867a8c5d.tgz
     version: 0.0.0-DBP-000-867a8c5d
-generated: "2024-01-25T11:13:20.594430942Z"
+generated: "2024-01-25T11:20:29.039952021Z"
