@@ -24,7 +24,10 @@ spec:
             allowPrivilegeEscalation: false
           command: [ "node", "dist/src/console/main.js", "db", "init" ]
           env:
-            {{- include "dbiam-backend-envs" . | indent  12}}
+            - name: NODE_ENV
+              value: {{.Values.environment}}
+            - name: DEPLOY_STAGE
+              value: {{.Values.environment}}
           volumeMounts:
             - mountPath: /app/config/config.json
               subPath: config.json
@@ -50,7 +53,10 @@ spec:
             allowPrivilegeEscalation: false
           command: [ "node", "dist/src/console/main.js", "db", "seed", "dev", "" ]
           env:
-            {{- include "dbiam-backend-envs" . | indent  12}}
+            - name: NODE_ENV
+              value: {{.Values.environment}}
+            - name: DEPLOY_STAGE
+              value: {{.Values.environment}}
           volumeMounts:
             - mountPath: /app/config/config.json
               subPath: config.json
