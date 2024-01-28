@@ -1,11 +1,5 @@
 keycloakHostname: "keycloak.dev.spsh.dbildungsplattform.de"
-secrets:
-  name: keycloak
-configmap:
-  name: keycloak
+keycloakPublic: false
 image:
   repository: ghcr.io/dbildungsplattform/dbildungs-iam
   tag: ""
-db:
-  name: ""
-frontendHostname: ""
