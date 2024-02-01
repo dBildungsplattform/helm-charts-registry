@@ -1,18 +1,4 @@
-replicaCount: 1
+frontendHostname: "helm.dev.spsh.dbildungsplattform.de"
 image:
   repository: ghcr.io/dbildungsplattform/schulportal-client
   tag: ""
-  pullPolicy: IfNotPresent
-
-allowPrivilegeEscalation: ""
-restartPolicy: Always
-
-
-service:
-  type: NodePort
-  targetPort: 80  
-  port: 80
-
-ingress:
-  enabled: true
-frontendHostname: "helm.dev.spsh.dbildungsplattform.de"
