@@ -5,11 +5,11 @@ dbildungsIamCpuRequest: 200m
 dbildungsIamMemRequest: 200Mi
 dbildungsIamReplications: 1
 environment: prod
-backendHostname: ""
-keycloakHostname: ""
-seeding:
-  configmap: spsh-seeding-data-configmap
-  database: dev
+backendHostname: "spsh-312.dev.spsh.dbildungsplattform.de"
+keycloakHostname: "spsh-312keycloak.dev.spsh.dbildungsplattform.de"
+#seeding:
+#  configmap: spsh-seeding-data-configmap
+#  database: dev
 # Configuration of necessary secrets
 # Name of the secrets to inject
 secrets:
@@ -23,6 +23,6 @@ redisEnabled: true
 # Image
 image:
   repository: ghcr.io/dbildungsplattform/dbildungs-iam-server
-  tag: ""
+  tag: "latest"
 db:
-  name: ""
+  name: "dev"
