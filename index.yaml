@@ -8504,6 +8504,17 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/infra-autoscaler-0.0.1/infra-autoscaler-0.0.1.tgz
     version: 0.0.1
+  infra-sshd:
+  - apiVersion: v2
+    appVersion: 0.1.2
+    created: "2024-02-08T15:36:23.703816634Z"
+    description: A Helm chart for Kubernetes
+    digest: 744d29ffd289021d7769401bcef24bd98d5b5071fd51f4bec6c1da2215b70c2e
+    name: infra-sshd
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/infra-sshd-0.1.2/infra-sshd-0.1.2.tgz
+    version: 0.1.2
   ionos-exporter:
   - apiVersion: v2
     appVersion: 0.0.4
@@ -12215,4 +12226,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-000-867a8c5d/spsh-client-0.0.0-DBP-000-867a8c5d.tgz
     version: 0.0.0-DBP-000-867a8c5d
-generated: "2024-02-08T15:23:28.32821403Z"
+generated: "2024-02-08T15:36:23.707806254Z"
