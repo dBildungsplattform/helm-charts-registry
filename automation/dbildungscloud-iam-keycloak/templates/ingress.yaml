@@ -1,20 +1,23 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: keycloak-ingress
+  name: {{ include "common.names.releasename" . }}
+  namespace: {{ .Values.namespace }}
+  labels: 
+    app.kubernetes.io/name: {{ .Values.commonLabels.name }}
 spec:
   tls:
     - hosts:
-        - {{ .Values.keycloakHostname }}
-  ingressClassName: nginx
+        - {{ .Values.keycloakHostname  }}
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
   rules:
-    - host: {{ .Values.keycloakHostname }}
+    - host: {{ .Values.keycloakHostname  }}
       http:
         paths:
-          - path: /
-            pathType: Prefix
-            backend:
+          - path:  {{ .Values.ingress.httpRelativePath  }}
+            pathType: {{ .Values.ingress.pathType }}
+            backend: 
               service:
-                name: keycloak
+                name: {{ template "common.names.releasename" . }}
                 port:
-                  number: 80
+                  number: {{ .Values.ingress.portnumber }}
