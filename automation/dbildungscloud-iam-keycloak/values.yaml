@@ -1,92 +1,11 @@
-replicaCount: 1
-namespace: ""
+keycloakHostname: "keycloak.dev.spsh.dbildungsplattform.de"
+secrets:
+  name: keycloak
+configmap:
+  name: keycloak
 image:
   repository: ghcr.io/dbildungsplattform/dbildungs-iam
   tag: ""
-  pullPolicy: Always 
-
-namespace: ""
-frontendHostname: ""
-keycloakHostname: "keycloak.dev.spsh.dbildungsplattform.de"
-
-commonLabels:
-  name: dbildungs-iam-keyclok
-
-selector:
-  layer: dbildungs-iam-keyclok
-
-database:
+db:
   name: ""
-  
-containerPorts:
-  http: 8080
-
-secrets:
-  name: keycloak
-
-restartPolicy: Always
-automountServiceAccountToken: false
-
-enabledcontainerSecurityContext: true
-containerSecurityContext:
-  runAsUser: 10001
-  runAsNonRoot: true
-  privileged: false
-  readOnlyRootFilesystem: false
-  allowPrivilegeEscalation: false
-  capabilities:
-    drop: ["ALL"]
-  seccompProfile:
-    type: "RuntimeDefault"
-
-volumeConfig:
-  name: realm-config
-  mountPath: "/opt/keycloak/data/import"
-  readOnly: true
-
-volumePermissions:
-  enabled: true
-  resources:
-    limits: 
-      memory: "1Gi"
-      cpu: "500m"
-    requests: 
-      memory: "1Gi"
-      cpu: "500m"
-
-enabledStartupProbe: true
-startupProbe:
-  httpGet:
-    path: "/health/started"
-    port: web
-  periodSeconds: 10
-  failureThreshold: 30
-
-enabledlivenessProbe: true
-livenessProbe:
-  httpGet:
-    path: /health/live
-    port: web
-
-enabledreadinessProbe: true
-readinessProbe:
-  httpGet:
-    path: "/health/ready"
-    port: web
-
-ingress:
-  ingressClassName: nginx
-  pathType: Prefix
-  
-  httpRelativePath: "/"
-  portnumber: 80
-
-enabledserviceport:  true
-ports:
-  - protocol: TCP
-    name: web
-    port: 80
-    targetPort: web
-
-servicetype: ClusterIP
-serviceName: web
+frontendHostname: ""
