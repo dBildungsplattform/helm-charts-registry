@@ -24,6 +24,10 @@ enabledcontainerSecurityContext: true
 containerSecurityContext:
   allowPrivilegeEscalation: false
   readOnlyRootFilesystem: false
+  capabilities:
+    drop: ["ALL"]
+  seccompProfile:
+    type: "RuntimeDefault"
 
 
 volumePermissions:
