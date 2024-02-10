@@ -22,12 +22,13 @@ automountServiceAccountToken: false
 
 enabledcontainerSecurityContext: true
 containerSecurityContext:
-  runAsNonRoot: true
   allowPrivilegeEscalation: false
   readOnlyRootFilesystem: false
   privileged: false
   capabilities: 
     drop: ["NET_RAW"]
+  seccompProfile:
+    type: "RuntimeDefault"
 
 
 volumePermissions:
