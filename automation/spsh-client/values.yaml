@@ -5,24 +5,33 @@ image:
   pullPolicy: IfNotPresent
 
 allowPrivilegeEscalation: ""
-restartPolicy: Always
 
 
-service:
-  type: NodePort
-  targetPort: 80  
-  port: 80
 
 
+###########
 frontendHostname: "helm.dev.spsh.dbildungsplattform.de"
 commonLabels:
   name: spsh-client
 
 selector:
   layer: spsh-client
-###
+
 ingress:
   ingressClassName: nginx
   pathType: Prefix
   httpRelativePath: "/"
   portnumber: 80
+
+enabledserviceport:  true
+ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+
+servicetype: NodePort
+serviceName: http
+
+containerPorts:
+  http: 80
+restartPolicy: Always
