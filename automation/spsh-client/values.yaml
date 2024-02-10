@@ -1,15 +1,13 @@
 replicaCount: 1
+namespace: ""
 image:
   repository: ghcr.io/dbildungsplattform/schulportal-client
   tag: ""
-  pullPolicy: IfNotPresent
+  pullPolicy: IfNotPresent 
 
-allowPrivilegeEscalation: ""
+restartPolicy: Always
+automountServiceAccountToken: false
 
-
-
-
-###########
 frontendHostname: "helm.dev.spsh.dbildungsplattform.de"
 commonLabels:
   name: spsh-client
@@ -34,4 +32,3 @@ serviceName: http
 
 containerPorts:
   http: 80
-restartPolicy: Always
