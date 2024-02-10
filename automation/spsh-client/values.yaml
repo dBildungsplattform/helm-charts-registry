@@ -23,6 +23,7 @@ automountServiceAccountToken: false
 enabledcontainerSecurityContext: true
 containerSecurityContext:
   allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: false
 
 
 volumePermissions:
