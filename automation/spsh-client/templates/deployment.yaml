@@ -20,11 +20,14 @@ spec:
       containers:
         - name: {{ .Values.commonLabels.name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }} #######
-
+          imagePullPolicy: {{ .Values.image.pullPolicy }} 
+        {{- if .Values.enabledcontainerSecurityContext }}
+          securityContext: {{- toYaml .Values.containerSecurityContext | nindent 12 }}
+          {{- end }}
+        {{- if .Values.volumePermissions.resources }}
+          resources: {{- toYaml .Values.volumePermissions.resources | nindent 12 }}
+          {{- end }}
           ports:
-          - name: {{ .Values.serviceName }} 
-            containerPort:  {{ .Values.containerPorts.http }} 
-          securityContext:
-            allowPrivilegeEscalation: {{ default false .Values.allowPrivilegeEscalation }}
+            - name: {{ .Values.serviceName }} 
+              containerPort:  {{ .Values.containerPorts.http }} 
       restartPolicy: {{ default "Always" .Values.restartPolicy }}

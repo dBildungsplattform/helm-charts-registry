@@ -8,6 +8,28 @@ image:
 restartPolicy: Always
 automountServiceAccountToken: false
 
+enabledcontainerSecurityContext: true
+containerSecurityContext:
+  runAsUser: 10001
+  runAsNonRoot: true
+  privileged: false
+  readOnlyRootFilesystem: false
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop: ["ALL"]
+  seccompProfile:
+    type: "RuntimeDefault"
+
+volumePermissions:
+  enabled: true
+  resources:
+    limits: 
+      memory: "1Gi"
+      cpu: "500m"
+    requests: 
+      memory: "1Gi"
+      cpu: "500m"
+
 frontendHostname: "helm.dev.spsh.dbildungsplattform.de"
 commonLabels:
   name: spsh-client
