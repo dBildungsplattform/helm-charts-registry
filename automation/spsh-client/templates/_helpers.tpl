@@ -20,3 +20,11 @@ Create specific names based on resource kind
 {{- define "spsh-client.ingressName" -}}
 {{- printf "%s-ingress" (include "spsh-client.name" .) | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
+
+{{/*
+Create  release name
+*/}}
+{{- define "common.names.releasename" -}}
+{{- .Release.Name -}}
+{{- end -}}
+
