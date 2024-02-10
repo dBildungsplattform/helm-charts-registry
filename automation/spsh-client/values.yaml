@@ -32,7 +32,6 @@ containerSecurityContext:
 
 
 volumePermissions:
-  enabled: true
   resources:
     limits: 
       memory: "1Gi"
@@ -55,3 +54,24 @@ ports:
 
 servicetype: NodePort
 serviceName: http
+
+
+enabledreadinessProbe: true
+readinessProbe:
+  httpGet:
+    path: /
+    port: 80
+
+enabledlivenessProbe: true
+livenessProbe:
+  httpGet:
+    path: /
+    port: 80
+
+enabledStartupProbe: true
+startupProbe:
+      httpGet:
+        path: /
+        port: 80
+      failureThreshold: 30
+      periodSeconds: 10

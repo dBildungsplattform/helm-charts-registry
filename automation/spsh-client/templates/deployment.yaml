@@ -25,12 +25,25 @@ spec:
           {{- if .Values.enabledcontainerSecurityContext }}
           securityContext: {{- toYaml .Values.containerSecurityContext | nindent 12 }}
           {{- end }}
-          
           {{- if .Values.volumePermissions.resources }}
           resources: {{- toYaml .Values.volumePermissions.resources | nindent 12 }}
+          {{- end }}
+          {{- if .Values.enabledreadinessProbe }}
+          readinessProbe: {{- toYaml .Values.readinessProbe | nindent 12 }}
           {{- end }}
 
           ports:
             - name: {{ .Values.serviceName }} 
-              containerPort:  {{ .Values.containerPorts.http }} 
+              containerPort:  {{ .Values.containerPorts.http }}
+          {{- if .Values.enabledStartupProbe }}
+          startupProbe: {{- toYaml .Values.startupProbe | nindent 12 }}
+          {{- end }}
+
+          {{- if .Values.enabledlivenessProbe }}
+          livenessProbe: {{- toYaml .Values.livenessProbe | nindent 12 }}
+          {{- end }}
+
+          {{- if .Values.enabledreadinessProbe }}
+          readinessProbe: {{- toYaml .Values.readinessProbe | nindent 12 }}
+          {{- end }} 
       restartPolicy: {{ default "Always" .Values.restartPolicy }}
