@@ -25,6 +25,8 @@ containerSecurityContext:
   allowPrivilegeEscalation: false
   readOnlyRootFilesystem: false
   privileged: false
+  capabilities: #
+    drop: ["ALL"]
 
 
 volumePermissions:
