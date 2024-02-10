@@ -24,6 +24,7 @@ enabledcontainerSecurityContext: true
 containerSecurityContext:
   allowPrivilegeEscalation: false
   readOnlyRootFilesystem: false
+  privileged: false
 
 
 volumePermissions:
