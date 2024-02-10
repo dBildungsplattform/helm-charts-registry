@@ -5,15 +5,27 @@ image:
   tag: ""
   pullPolicy: IfNotPresent 
 
+frontendHostname: "helm.dev.spsh.dbildungsplattform.de"
+
+commonLabels:
+  name: spsh-client
+
+selector:
+  layer: spsh-client
+ 
+containerPorts:
+  http: 80
+
+
 restartPolicy: Always
 automountServiceAccountToken: false
 
 enabledcontainerSecurityContext: true
 containerSecurityContext:
-  runAsUser: 10001
-  runAsNonRoot: true
+  #runAsUser: 10001
+  #runAsNonRoot: true
   privileged: false
-  readOnlyRootFilesystem: false
+  #readOnlyRootFilesystem: false
   allowPrivilegeEscalation: false
   capabilities:
     drop: ["ALL"]
@@ -30,13 +42,6 @@ volumePermissions:
       memory: "1Gi"
       cpu: "500m"
 
-frontendHostname: "helm.dev.spsh.dbildungsplattform.de"
-commonLabels:
-  name: spsh-client
-
-selector:
-  layer: spsh-client
-
 ingress:
   ingressClassName: nginx
   pathType: Prefix
@@ -51,6 +56,3 @@ ports:
 
 servicetype: NodePort
 serviceName: http
-
-containerPorts:
-  http: 80
