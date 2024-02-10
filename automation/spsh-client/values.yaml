@@ -15,7 +15,11 @@ service:
 
 
 frontendHostname: "helm.dev.spsh.dbildungsplattform.de"
+commonLabels:
+  name: spsh-client
 
+selector:
+  layer: spsh-client
 ###
 ingress:
   ingressClassName: nginx
