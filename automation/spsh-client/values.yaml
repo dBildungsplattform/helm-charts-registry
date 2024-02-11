@@ -3,7 +3,7 @@ namespace: ""
 image:
   repository: ghcr.io/dbildungsplattform/schulportal-client
   tag: ""
-  pullPolicy: IfNotPresent 
+  pullPolicy: Always 
 
 frontendHostname: "helm.dev.spsh.dbildungsplattform.de"
 
@@ -16,21 +16,18 @@ selector:
 containerPorts:
   http: 80
 
-
 restartPolicy: Always
 automountServiceAccountToken: false
 
 enabledcontainerSecurityContext: true
 containerSecurityContext:
-  runAsNonRoot: true
   allowPrivilegeEscalation: false
   readOnlyRootFilesystem: false
   privileged: false
-  capabilities: 
+  capabilities:
     drop: ["NET_RAW"]
   seccompProfile:
     type: "RuntimeDefault"
-
 
 volumePermissions:
   resources:
@@ -40,22 +37,6 @@ volumePermissions:
     requests: 
       memory: "1Gi"
       cpu: "500m"
-
-ingress:
-  ingressClassName: nginx
-  pathType: Prefix
-  httpRelativePath: "/"
-  portnumber: 80
-
-enabledserviceport:  true
-ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 80
-
-servicetype: NodePort
-serviceName: http
-
 
 enabledreadinessProbe: true
 readinessProbe:
@@ -76,3 +57,18 @@ startupProbe:
         port: 80
       failureThreshold: 30
       periodSeconds: 10
+
+ingress:
+  ingressClassName: nginx
+  pathType: Prefix
+  httpRelativePath: "/"
+  portnumber: 80
+
+enabledserviceport:  true
+ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+
+servicetype: NodePort
+serviceName: http
