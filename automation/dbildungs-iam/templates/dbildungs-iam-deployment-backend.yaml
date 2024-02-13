@@ -1,69 +1,121 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "common.names.releasename" . }}-backend
-  namespace: {{ .Values.namespace }}
+  name: dbiam-deployment-backend
   labels:
-    app.kubernetes.io/name: {{ .Values.backend.commonLabels.name }}
-    app.kubernetes.io/version: {{ .Chart.Version }}
+    app.kubernetes.io/name: {{.Chart.Name}}
+    app.kubernetes.io/version: {{.Chart.Version}}
 spec:
-  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/layer: {{ .Values.backend.selector.layer }}
+      layer: dbildungs-iam-backend
+  replicas: {{.Values.dbildungsIamReplications}}
   template:
     metadata:
+      name: dbildungs-iam
       labels:
-        app.kubernetes.io/name: {{ .Values.backend.commonLabels.name }}
-        app.kubernetes.io/layer: {{ .Values.backend.selector.layer }}
+        layer: dbildungs-iam-backend
     spec:
-      {{- if .Values.seeding.enabled }}
+      {{if .Values.seeding}}
       initContainers:
-        {{- range .Values.initContainers }}
-        - name: {{ .name }}
-          image: "{{ $.Values.image.repository }}:{{ $.Values.image.tag | default $.Chart.AppVersion }}"
+        - name: db-init
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           securityContext:
             allowPrivilegeEscalation: false
-          command: {{ .command }}
+          command: [ "node", "dist/src/console/main.js", "db", "init" ]
           env:
-            {{- include "dbiam-backend-envs" $ | nindent 12 }}
+            {{- include "dbiam-backend-envs" . | indent  12}}
           volumeMounts:
-            {{- range .volumeMounts }}
-            - name: {{ .name }}
-              mountPath: {{ .mountPath }}
-              subPath: {{ .subPath | default "" }}
-              readOnly: {{ .readOnly }}
-            {{- end }}
-          resources: 
-            {{- toYaml $.Values.containerResources | nindent 12 }}
-        {{- end }}
-      {{- end }}
-      containers:
-        - name: {{ .Values.backend.commonLabels.name }}
-          image: "{{ $.Values.image.repository }}:{{ $.Values.image.tag | default $.Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          {{- if .Values.enabledcontainerSecurityContext }}
-          securityContext: {{- toYaml .Values.containerSecurityContext | nindent 12 }}
-          {{- end }}
-          ports:
-            - name: {{ (index .Values.backendcontainer.ports 0).name }}
-              containerPort: {{ (index .Values.backendcontainer.ports 0).containerPort }}
-          env:
-            {{- include "dbiam-backend-envs" . | nindent 12 }}
-          volumeMounts:
-            {{- toYaml .Values.backendcontainer.volumeMounts | nindent 12 }}
+            - mountPath: /app/config/config.json
+              subPath: config-json
+              name: config-volume
+              readOnly: true
+            - mountPath: /app/config/secrets.json
+              subPath: secrets-json
+              name: secret-volume
+              readOnly: true
+            - mountPath: /app/sql/{{.Values.seeding.database}}
+              name: seeding-volume
+              readOnly: true
           resources:
-            {{- toYaml .Values.containerResources | nindent 12 }}
+            requests:
+              cpu: {{.Values.dbildungsIamCpuRequest}}
+              memory: {{.Values.dbildungsIamMemRequest}}
+            limits:
+              cpu: {{.Values.dbildungsIamCpuMax}}
+              memory: {{.Values.dbildungsIamMemMax}}
+        - name: db-seeding
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          securityContext:
+            allowPrivilegeEscalation: false
+          command: [ "node", "dist/src/console/main.js", "db", "seed", "dev", "" ]
+          env:
+            {{- include "dbiam-backend-envs" . | indent  12}}
+          volumeMounts:
+            - mountPath: /app/config/config.json
+              subPath: config-json
+              name: config-volume
+              readOnly: true
+            - mountPath: /app/config/secrets.json
+              subPath: secrets-json
+              name: secret-volume
+              readOnly: true
+            - mountPath: /app/sql/{{.Values.seeding.database}}
+              name: seeding-volume
+              readOnly: true
+          resources:
+            requests:
+              cpu: {{.Values.dbildungsIamCpuRequest}}
+              memory: {{.Values.dbildungsIamMemRequest}}
+            limits:
+              cpu: {{.Values.dbildungsIamCpuMax}}
+              memory: {{.Values.dbildungsIamMemMax}}
+      {{end}}
+      containers:
+        - name: dbildungs-iam-backend
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: Always
+          securityContext:
+            allowPrivilegeEscalation: false
+          ports:
+            - name: web
+              containerPort: 8080
+          env:
+          {{- include "dbiam-backend-envs" . | indent  12}}
+          volumeMounts:
+            - mountPath: /app/config/config.json
+              subPath: config-json
+              name: config-volume
+              readOnly: true
+            - mountPath: /app/config/secrets.json
+              subPath: secrets-json
+              name: secret-volume
+              readOnly: true
+          resources:
+            requests:
+              cpu: {{.Values.dbildungsIamCpuRequest}}
+              memory: {{.Values.dbildungsIamMemRequest}}
+            limits:
+              cpu: {{.Values.dbildungsIamCpuMax}}
+              memory: {{.Values.dbildungsIamMemMax}}
           livenessProbe:
-            {{- toYaml .Values.backendcontainer.livenessProbe | nindent 12 }}
+            initialDelaySeconds: 10
+            httpGet:
+              port: 8080
+              scheme: 'HTTP'
+              path: '/health'
           readinessProbe:
-            {{- toYaml .Values.backendcontainer.readinessProbe | nindent 12 }}
-      restartPolicy: {{.Values.restartPolicy  }}
+            initialDelaySeconds: 10
+            httpGet:
+              port: 8080
+              scheme: 'HTTP'
+              path: '/health'
+      restartPolicy: Always
       volumes:
-        - name: {{ .Values.backendcontainer.volumeMounts.configVolume.name }}
+        - name: config-volume
           configMap:
-            name:  {{.Values.configmap.name  }}
-        - name: {{ .Values.backendcontainer.volumeMounts.secretVolume.name }}
+            name: {{.Values.configmap.name  }}
+        - name: secret-volume
           secret:
             secretName: {{.Values.secrets.name}}
         {{if .Values.seeding}}

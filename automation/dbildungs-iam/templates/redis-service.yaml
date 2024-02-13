@@ -1,15 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "common.names.releasename" . }}-redis
-  namespace: {{ .Values.namespace }}
-  labels: 
-    app.kubernetes.io/name: {{ .Values.dbiam.commonLabels.name }}
+  name: redis-service
+  labels:
+    app.kubernetes.io/name: {{.Chart.Name}}
     app.kubernetes.io/version: {{.Chart.Version}}
 spec:
+  type: ClusterIP
+  ports:
+    - port: 6379
+      targetPort: redis-port
+      protocol: TCP
+      name: redis-port
   selector:
-    app.kubernetes.io/layer: {{ .Values.dbiam.selector.layer }}
-  type: {{ .Values.redisservicetype }}
-  {{- if .Values.enabledredisserviceport }}
-  ports: {{- toYaml .Values.redisports | nindent 6 }}
-  {{- end }}
+    layer: dbildungs-iam-redis
