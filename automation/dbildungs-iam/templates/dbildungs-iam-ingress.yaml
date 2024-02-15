@@ -1,28 +1,27 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "common.names.releasename" . }}-backend
-  namespace: {{ .Values.namespace }}
-  labels: 
-    app.kubernetes.io/name: {{ .Values.dbiam.commonLabels.name }}
-    app.kubernetes.io/version: {{ .Chart.Version }}
+  name: {{.Release.Name}}-backend
+  labels:
+    app.kubernetes.io/name: {{.Chart.Name}}
+    app.kubernetes.io/version: {{.Chart.Version}}
 spec:
-  ingressClassName: {{ .Values.ingress.ingressClassName }}
+  ingressClassName: nginx
   rules:
-    - host: {{ .Values.backendHostname }}
+    - host: {{ required "A backend hostname (backendHostname) must be given on deployment" .Values.backendHostname }}
       http:
         paths:
           - path: /api
-            pathType: {{ .Values.ingress.pathType }}
-            backend: 
+            pathType: Prefix
+            backend:
               service:
-                name: {{ .Values.service.name }}
+                name: dbiam-backend
                 port:
-                  number: {{ (index .Values.backendports 0).port }}
+                  number: 80
           - path: /docs
-            pathType: {{ .Values.ingress.pathType }}
-            backend: 
+            pathType: Prefix
+            backend:
               service:
-                name: {{ .Values.service.name }}
+                name: dbiam-backend
                 port:
-                  number: {{ (index .Values.backendports 0).port }}
+                  number: 80
