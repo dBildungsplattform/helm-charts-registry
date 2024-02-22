@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   repository: ghcr.io/dbildungsplattform/schulportal-client
   tag: ""
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
 
 allowPrivilegeEscalation: ""
 restartPolicy: Always
