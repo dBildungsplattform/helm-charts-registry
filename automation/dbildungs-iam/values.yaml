@@ -9,7 +9,6 @@ dbildungsIamReplications: 1
 environment: prod
 backendHostname: ""
 keycloakHostname: ""
-imagePullPolicy: "Always"
 seeding:
   configmap: spsh-seeding-data-configmap
   database: dev
