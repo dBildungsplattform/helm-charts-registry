@@ -20,7 +20,6 @@ spec:
       initContainers:
         - name: db-init
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: Always
           securityContext:
             allowPrivilegeEscalation: false
           command: [ "node", "dist/src/console/main.js", "db", "init" ]
@@ -47,7 +46,6 @@ spec:
               memory: {{.Values.dbildungsIamMemMax}}
         - name: db-seeding
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: Always
           securityContext:
             allowPrivilegeEscalation: false
           command: [ "node", "dist/src/console/main.js", "db", "seed", "dev", "" ]
