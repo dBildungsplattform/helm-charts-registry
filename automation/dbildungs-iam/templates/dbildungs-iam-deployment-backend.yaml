@@ -119,12 +119,7 @@ spec:
             name: {{.Values.configmap.name  }}
         - name: secret-volume
           secret:
-            {{- if .Values.auth.existingSecret }}
-            name: {{ .Values.auth.existingSecret }}
-            {{- end }}
-            {{- if not .Values.auth.existingSecret }}
-            secretName: {{.Values.auth.name}}
-            {{- end }}
+            secretName: {{.Values.secrets.name}}
         {{if .Values.seeding}}
         - name: seeding-volume
           configMap:
