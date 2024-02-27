@@ -11,22 +11,12 @@
 - name: DB_SECRET
   valueFrom:
     secretKeyRef:
-        {{- if .Values.auth.existingSecret }}
-        name: {{ .Values.auth.existingSecret }}
-        {{- end }}
-        {{- if not .Values.auth.existingSecret }}
-        name: {{ .Values.auth.name }}
-        {{- end }}
+        name: {{.Values.secrets.name}}
         key: db-password
 - name: DB_HOST
   valueFrom:
     secretKeyRef:
-        {{- if .Values.auth.existingSecret }}
-        name: {{ .Values.auth.existingSecret }}
-        {{- end }}
-        {{- if not .Values.auth.existingSecret }}
-        name: {{ .Values.auth.name }}
-        {{- end }}
+        name: {{.Values.secrets.name}}
         key: db-host
 - name: DB_CLIENT_URL
   value: "postgres://$(DB_HOST)/"
@@ -53,31 +43,16 @@
 - name: KC_ADMIN_SECRET
   valueFrom:
     secretKeyRef:
-        {{- if .Values.auth.existingSecret }}
-        name: {{ .Values.auth.existingSecret }}
-        {{- end }}
-        {{- if not .Values.auth.existingSecret }}
-        name: {{ .Values.auth.name }}
-        {{- end }}
+        name: {{.Values.secrets.name}}
         key: keycloak-adminSecret
 - name: KC_CLIENT_SECRET
   valueFrom:
     secretKeyRef:
-        {{- if .Values.auth.existingSecret }}
-        name: {{ .Values.auth.existingSecret }}
-        {{- end }}
-        {{- if not .Values.auth.existingSecret }}
-        name: {{ .Values.auth.name }}
-        {{- end }}
+        name: {{.Values.secrets.name}}
         key: keycloak-clientSecret
 - name: FRONTEND_SESSION_SECRET
   valueFrom:
     secretKeyRef:
-        {{- if .Values.auth.existingSecret }}
-        name: {{ .Values.auth.existingSecret }}
-        {{- end }}
-        {{- if not .Values.auth.existingSecret }}
-        name: {{ .Values.auth.name }}
-        {{- end }}
+        name: {{.Values.secrets.name}}
         key: frontend-sessionSecret
 {{- end}}
