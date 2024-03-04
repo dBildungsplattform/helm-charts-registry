@@ -1,15 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.service.name }}
-  namespace: {{ .Values.namespace }}
-  labels: 
-    app.kubernetes.io/name: {{ .Values.dbiam.commonLabels.name }}
+  name: dbiam-backend
+  labels:
+    app.kubernetes.io/name: {{.Chart.Name}}
     app.kubernetes.io/version: {{.Chart.Version}}
 spec:
   selector:
-    app.kubernetes.io/layer: {{ .Values.backend.selector.layer }}
-  type: {{ .Values.backendservicetype }}
-  {{- if .Values.enabledbackendserviceport }}
-  ports: {{- toYaml .Values.backendports | nindent 6 }}
-  {{- end }}
+    layer: dbildungs-iam-backend
+  ports:
+    - protocol: TCP
+      name: web
+      port: {{.Values.dbildungsIamExternalPort}}
+      targetPort: web
+  type: ClusterIP
