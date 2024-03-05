@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "schulportal-client.deploymentName" . }}
+  labels:
+    app: {{ template "schulportal-client.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "schulportal-client.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "schulportal-client.name" . }}
+    spec:
+      containers:
+        - name: {{ template "schulportal-client.name" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ default "Always" .Values.image.pullPolicy | quote }}
+          ports:
+            - name: http
+              containerPort: {{ default 80 .Values.service.port }}
+              protocol: TCP 
+          securityContext:
+            allowPrivilegeEscalation: {{ default false .Values.allowPrivilegeEscalation }}
+      restartPolicy: {{ .Values.restartPolicy  }}
