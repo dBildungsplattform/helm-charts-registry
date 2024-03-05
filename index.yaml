@@ -12868,6 +12868,17 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/ionos-exporter-0.0.1/ionos-exporter-0.0.1.tgz
     version: 0.0.1
+  schulportal-client:
+  - apiVersion: v2
+    appVersion: DBP-647
+    created: "2024-03-05T17:22:43.666254063Z"
+    description: Helm-Chart für den Schulportal-SH Client
+    digest: 9486a924dbe5cb03d3042d993482bf1f1064f098be0bf3772a1c5fc5d6ac1a01
+    name: schulportal-client
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/schulportal-client-0.0.0-dbp-647-20240305-1722/schulportal-client-0.0.0-dbp-647-20240305-1722.tgz
+    version: 0.0.0-dbp-647-20240305-1722
   spsh-client:
   - apiVersion: v2
     created: "2023-11-03T11:52:16.041744752Z"
@@ -20018,4 +20029,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-000-867a8c5d/spsh-client-0.0.0-DBP-000-867a8c5d.tgz
     version: 0.0.0-DBP-000-867a8c5d
-generated: "2024-03-05T17:21:48.230598906Z"
+generated: "2024-03-05T17:22:43.670911821Z"
