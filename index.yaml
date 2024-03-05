@@ -11121,6 +11121,16 @@ entries:
     version: 0.0.1-20231205-0958
   - apiVersion: v2
     appVersion: spsh-474
+    created: "2024-03-05T15:11:49.256077036Z"
+    description: dbildungs-iam-keycloak
+    digest: d280be43bb1f6e6c80ff51bdb839c6ddaccca5891b2d140ba96ae43452b7d900
+    name: dbildungscloud-iam-keycloak
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungscloud-iam-keycloak-0.0.0-spsh-474-20240305-1511/dbildungscloud-iam-keycloak-0.0.0-spsh-474-20240305-1511.tgz
+    version: 0.0.0-spsh-474-20240305-1511
+  - apiVersion: v2
+    appVersion: spsh-474
     created: "2024-03-05T15:07:17.041995105Z"
     description: dbildungs-iam-keycloak
     digest: 8a37fa2ff100fbd68f03d9bdd8f201851fd6277a863681f24f372b031b5554d2
@@ -19906,4 +19916,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-000-867a8c5d/spsh-client-0.0.0-DBP-000-867a8c5d.tgz
     version: 0.0.0-DBP-000-867a8c5d
-generated: "2024-03-05T15:07:31.891648513Z"
+generated: "2024-03-05T15:11:49.260994863Z"
