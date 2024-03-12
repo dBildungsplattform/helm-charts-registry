@@ -1848,6 +1848,16 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-0.0.0-spsh-777-20240215-1057/dbildungs-iam-0.0.0-spsh-777-20240215-1057.tgz
     version: 0.0.0-spsh-777-20240215-1057
   - apiVersion: v2
+    appVersion: SPSH-472
+    created: "2024-03-12T08:31:46.898469579Z"
+    description: dBildungs-IAM
+    digest: 631cf49db83e2247da7f6b159723825a60deba72c1353322bc28635d4239d247
+    name: dbildungs-iam
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-0.0.0-spsh-472-20240312-0642/dbildungs-iam-0.0.0-spsh-472-20240312-0642.tgz
+    version: 0.0.0-spsh-472-20240312-0642
+  - apiVersion: v2
     appVersion: spsh-465
     created: "2024-02-29T14:15:49.354189316Z"
     description: dBildungs-IAM
@@ -11171,6 +11181,16 @@ entries:
     version: 0.0.0-DBP-282
   dbildungs-iam-keycloak:
   - apiVersion: v2
+    appVersion: 8.8.20
+    created: "2024-03-12T08:31:47.09075718Z"
+    description: dbildungs-iam-keycloak
+    digest: 39e19a73f82dcf758945a44cf30b7ba39525831764e0b4ca40438dde49b26aec
+    name: dbildungs-iam-keycloak
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-keycloak-8.8.20/dbildungs-iam-keycloak-8.8.20.tgz
+    version: 8.8.20
+  - apiVersion: v2
     appVersion: 8.8.10
     created: "2024-03-08T13:10:18.636581605Z"
     description: dbildungs-iam-keycloak
@@ -11291,6 +11311,16 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-server-0.0.1-20240307-0907/dbildungs-iam-server-0.0.1-20240307-0907.tgz
     version: 0.0.1-20240307-0907
+  - apiVersion: v2
+    appVersion: SPSH-472
+    created: "2024-03-12T08:31:47.2815253Z"
+    description: dBildungs-IAM-server
+    digest: a80c58411cf7b4bb3282a76acebff417460613f1975f6fe21ca7662b394d0d6d
+    name: dbildungs-iam-server
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-server-0.0.0-spsh-472-20240312-0738/dbildungs-iam-server-0.0.0-spsh-472-20240312-0738.tgz
+    version: 0.0.0-spsh-472-20240312-0738
   - apiVersion: v2
     appVersion: SPSH-462
     created: "2024-03-07T12:36:55.270898837Z"
@@ -13579,6 +13609,16 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/schulportal-client-0.0.0-spsh-477-20240307-1236/schulportal-client-0.0.0-spsh-477-20240307-1236.tgz
     version: 0.0.0-spsh-477-20240307-1236
+  - apiVersion: v2
+    appVersion: spsh-472
+    created: "2024-03-12T08:31:47.466638098Z"
+    description: Helm-Chart for schulportal-client
+    digest: 3c35a3c9b955ffa44915067153879c2694a4fc468740ef90df640988648dd0fa
+    name: schulportal-client
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/schulportal-client-0.0.0-spsh-472-20240312-0743/schulportal-client-0.0.0-spsh-472-20240312-0743.tgz
+    version: 0.0.0-spsh-472-20240312-0743
   - apiVersion: v2
     appVersion: SPSH-469
     created: "2024-03-07T12:27:23.322880499Z"
@@ -21289,4 +21329,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-000-867a8c5d/spsh-client-0.0.0-DBP-000-867a8c5d.tgz
     version: 0.0.0-DBP-000-867a8c5d
-generated: "2024-03-08T15:14:26.913340707Z"
+generated: "2024-03-12T08:31:47.474710405Z"
