@@ -1,10 +1,9 @@
 name: Release Charts
-on: 
+on:
   workflow_dispatch:
   push:
     branches:
       - main
-      - DBP-679-create-release-gha
 
 jobs:
   release:
@@ -29,5 +28,3 @@ jobs:
           charts_dir: automation
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-
-
