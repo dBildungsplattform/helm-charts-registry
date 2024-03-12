@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - DBP-679-create-release-gha
 
 jobs:
   release:
