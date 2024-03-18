@@ -1,4 +1,3 @@
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -21,8 +20,8 @@ spec:
           imagePullPolicy: {{ default "Always" .Values.image.pullPolicy | quote }}
           ports:
             - name: http
-              containerPort: {{ default 8080 .Values.service.port }}
-              protocol: TCP
-          securityContext: {{- toYaml .Values.containerSecurityContext | nindent 12 }}
-          resources: {{- toYaml .Values.containerResources | nindent 12 }}
+              containerPort: {{ default 80 .Values.service.port }}
+              protocol: TCP 
+          securityContext:
+            allowPrivilegeEscalation: {{ default false .Values.allowPrivilegeEscalation }}
       restartPolicy: {{ .Values.restartPolicy  }}
