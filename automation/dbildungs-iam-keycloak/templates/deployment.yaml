@@ -31,10 +31,12 @@ spec:
           command:
             {{- toYaml .command | nindent 16 }}
           {{- end }}
-          {{- with .args }}
           args:
-            {{- toYaml . | nindent 16 }}
-          {{- end }}
+              - "--cache"
+              - "local"
+              - "--hostname"
+              - "{{ tpl .Values.keycloakHostname . }}" 
+              - "--import-realm"
 
           {{- if .Values.containerSecurityContext.enabled }}
           securityContext: {{- omit .Values.containerSecurityContext "enabled" | toYaml | nindent 12 }}
