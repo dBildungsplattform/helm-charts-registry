@@ -26,16 +26,3 @@ ingress:
   enabled: true
   className: nginx
 frontendHostname: "helm.dev.spsh.dbildungsplattform.de"
-
-
-containerSecurityContext:
-  runAsUser: 101
-  fsGroup: 101
-  runAsNonRoot: true
-  allowPrivilegeEscalation: false
-  readOnlyRootFilesystem: false
-  privileged: false
-  capabilities:
-    drop: ["ALL"] 
-  seccompProfile:
-    type: "RuntimeDefault"
