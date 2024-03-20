@@ -19,23 +19,10 @@ nameOverride: ""
 
 service:
   type: NodePort
-  targetPort: 8080  
-  port: 8080
+  targetPort: 80  
+  port: 80
 
 ingress:
   enabled: true
   className: nginx
 frontendHostname: "helm.dev.spsh.dbildungsplattform.de"
-
-
-containerSecurityContext:
-  runAsUser: 101
-  fsGroup: 101
-  runAsNonRoot: true
-  allowPrivilegeEscalation: false
-  readOnlyRootFilesystem: false
-  privileged: false
-  capabilities:
-    drop: ["ALL"] 
-  seccompProfile:
-    type: "RuntimeDefault"
