@@ -2,8 +2,11 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ include "common.names.releasename" . }}-backend
+  annotations:
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "https://{{.Values.keycloakHostname}}"
   namespace: {{ .Values.namespace }}
-  labels: 
+  labels:
     app.kubernetes.io/name: {{ .Values.dbildungsIamServer.commonLabels.name }}
     app.kubernetes.io/version: {{ .Chart.Version }}
 spec:
@@ -21,7 +24,7 @@ spec:
                   number: {{ (index .Values.backendports 0).port }}
           - path: /docs
             pathType: {{ .Values.ingress.pathType }}
-            backend: 
+            backend:
               service:
                 name: {{ .Values.service.name }}
                 port:
