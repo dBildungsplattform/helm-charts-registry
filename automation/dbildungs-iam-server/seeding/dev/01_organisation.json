@@ -2,73 +2,78 @@
     "entityName": "Organisation",
     "entities": [
         {
-            "id": 0,
-            "kennung": "Land",
-            "name": "Land Schleswig Holstein",
+            "id": "d39cb7cf-2f9b-45f1-849f-973661f2f057",
+            "kennung": "Root",
+            "name": "Root Organisation",
             "kuerzel": "Root",
             "typ": "TRAEGER",
             "administriertVon": null,
             "zugehoerigZu": null
         },
         {
-            "id": 1,
-            "kennung": "0703754",
-            "name": "Amalie-Sieveking-Schule",
+            "id": "2ccb5001-defe-40c7-8cf4-89995161accf",
+            "kennung": "Organisation1",
+            "name": "Träger1",
             "namensergaenzung": "Keine",
             "kuerzel": "O1",
-            "typ": "SCHULE",
-            "administriertVon": 0,
-            "zugehoerigZu": 0
+            "typ": "TRAEGER",
+            "administriertVon": "d39cb7cf-2f9b-45f1-849f-973661f2f057",
+            "zugehoerigZu": "d39cb7cf-2f9b-45f1-849f-973661f2f057"
         },
         {
-            "id": 2,
-            "kennung": "0702948",
-            "name": "Carl-Orff-Schule",
+            "id": "fbe8bcf1-2188-4968-86ad-2dd83daec802",
+            "kennung": "Organisation2",
+            "name": "Träger2",
             "namensergaenzung": "Keine",
             "kuerzel": "O2",
-            "typ": "SCHULE",
-            "administriertVon": 0,
-            "zugehoerigZu": 0
+            "typ": "TRAEGER",
+            "administriertVon": "d39cb7cf-2f9b-45f1-849f-973661f2f057",
+            "zugehoerigZu": "d39cb7cf-2f9b-45f1-849f-973661f2f057"
         },
         {
-            "id": 3,
-            "kennung": "0705755",
-            "name": "Eric-Kandel-Gymnasium",
+            "kennung": "Organisation3",
+            "name": "Schule1",
             "namensergaenzung": "Keine",
             "kuerzel": "O3",
             "typ": "SCHULE",
-            "administriertVon": 0,
-            "zugehoerigZu": 0
+            "administriertVon": "2ccb5001-defe-40c7-8cf4-89995161accf",
+            "zugehoerigZu": "2ccb5001-defe-40c7-8cf4-89995161accf"
         },
         {
-            "id": 4,
-            "kennung": "0705751",
-            "name": "Emil-von-Behring-Gymnasium\t",
+            "kennung": "Organisation4",
+            "name": "Schule2",
             "namensergaenzung": "Keine",
             "kuerzel": "O4",
             "typ": "SCHULE",
-            "administriertVon": 0,
-            "zugehoerigZu": 0
+            "administriertVon": "fbe8bcf1-2188-4968-86ad-2dd83daec802",
+            "zugehoerigZu": "fbe8bcf1-2188-4968-86ad-2dd83daec802"
         },
         {
-            "id": 5,
-            "kennung": "0707712",
-            "name": "Friedrich-Junge-Schule, Gemeinschaftsschule des Schulverbandes Großhansdorf in Großhansdorf",
+            "kennung": "Organisation5",
+            "name": "Anbieter1",
             "namensergaenzung": "Keine",
             "kuerzel": "O5",
             "typ": "ANBIETER",
-            "administriertVon": 0,
-            "zugehoerigZu": 0
+            "administriertVon": "2ccb5001-defe-40c7-8cf4-89995161accf",
+            "zugehoerigZu": "2ccb5001-defe-40c7-8cf4-89995161accf"
         },
         {
-            "id": 6,
-            "kennung": "0702960",
-            "name": "Grundschule Hoisdorf",
+            "kennung": "Organisation6",
+            "name": "Sonstige1",
             "namensergaenzung": "Keine",
             "kuerzel": "O6",
             "typ": "SONSTIGE ORGANISATION / EINRICHTUNG",
-            "administriertVon": 0,
-            "zugehoerigZu": 0
+            "administriertVon": "fbe8bcf1-2188-4968-86ad-2dd83daec802",
+            "zugehoerigZu": "fbe8bcf1-2188-4968-86ad-2dd83daec802"
+        },
+        {
+            "kennung": "Organisation7",
+            "name": "Unbestätigt",
+            "namensergaenzung": "Keine",
+            "kuerzel": "O7",
+            "typ": "UNBESTAETIGT",
+            "administriertVon": "2ccb5001-defe-40c7-8cf4-89995161accf",
+            "zugehoerigZu": "2ccb5001-defe-40c7-8cf4-89995161accf"
         }
     ]
 }
