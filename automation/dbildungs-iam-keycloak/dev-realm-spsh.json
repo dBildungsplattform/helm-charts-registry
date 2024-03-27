@@ -488,38 +488,6 @@
         },
         "notBefore": 0,
         "groups": []
-      },
-      {
-        "id": "22207262-196f-4995-8011-6830091ebdca",
-        "createdTimestamp": 1697087666332,
-        "username": "test",
-        "enabled": true,
-        "emailVerified": true,
-        "firstName": "Testus",
-        "lastName": "Experimentus",
-        "email": "testuser@example.com",
-        "credentials": [
-          {
-            "type": "password",
-            "value": "test"
-          }
-        ]
-      },
-      {
-        "id": "e9806d01-0d4e-4523-b21d-2bfc8a802051",
-        "createdTimestamp": 1697087666332,
-        "username": "pwtest",
-        "enabled": true,
-        "emailVerified": true,
-        "firstName": "Max",
-        "lastName": "Mustermann",
-        "email": "pwtest@example.com",
-        "credentials": [
-            {
-                "type": "password",
-                "value": "pwtest"
-            }
-        ]
       }
     ],
     "scopeMappings": [
@@ -1569,7 +1537,6 @@
       "strictTransportSecurity": "max-age=31536000; includeSubDomains"
     },
     "smtpServer": {},
-    "loginTheme": "schulportal",
     "eventsEnabled": false,
     "eventsListeners": [
       "jboss-logging"
@@ -1740,11 +1707,8 @@
         }
       ]
     },
-    "internationalizationEnabled": true,
-    "supportedLocales": [
-      "de"
-    ],
-    "defaultLocale": "de",
+    "internationalizationEnabled": false,
+    "supportedLocales": [],
     "authenticationFlows": [
       {
         "id": "15b32655-f28f-4f4c-a7f4-a777de972d99",
