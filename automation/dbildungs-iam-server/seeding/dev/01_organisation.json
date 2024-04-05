@@ -3,98 +3,77 @@
     "entities": [
         {
             "id": 0,
-            "name": "Wurzel Land Schleswig Holstein",
+            "kennung": "Root",
+            "name": "Root Organisation",
             "kuerzel": "Root",
-            "typ": "ROOT",
+            "typ": "TRAEGER",
             "administriertVon": null,
             "zugehoerigZu": null
         },
         {
             "id": 1,
-            "name": "Öffentliche Schulen Land Schleswig Holstein",
-            "kuerzel": "Öffentl. Schulen",
-            "typ": "LAND",
+            "kennung": "Organisation1",
+            "name": "Träger1",
+            "namensergaenzung": "Keine",
+            "kuerzel": "O1",
+            "typ": "TRAEGER",
             "administriertVon": 0,
             "zugehoerigZu": 0
         },
         {
             "id": 2,
-            "name": "Ersatzschulen Land Schleswig Holstein",
-            "kuerzel": "Ersatzschulen",
-            "typ": "LAND",
+            "kennung": "Organisation2",
+            "name": "Träger2",
+            "namensergaenzung": "Keine",
+            "kuerzel": "O2",
+            "typ": "TRAEGER",
             "administriertVon": 0,
             "zugehoerigZu": 0
         },
         {
-            "id": 3,
-            "kennung": "0703754",
-            "name": "Amalie-Sieveking-Schule",
+            "kennung": "Organisation3",
+            "name": "Schule1",
             "namensergaenzung": "Keine",
-            "kuerzel": "A-Sieveking-",
+            "kuerzel": "O3",
             "typ": "SCHULE",
             "administriertVon": 1,
             "zugehoerigZu": 1
         },
         {
-            "id": 4,
-            "kennung": "0702948",
-            "name": "Carl-Orff-Schule",
-            "namensergaenzung": "Keine",
-            "kuerzel": "C-Orff-Schule",
-            "typ": "SCHULE",
-            "administriertVon": 1,
-            "zugehoerigZu": 1
-        },
-        {
-            "id": 5,
-            "kennung": "0705755",
-            "name": "Eric-Kandel-Gymnasium",
-            "namensergaenzung": "Keine",
-            "kuerzel": "E-Kandel-Gymn",
-            "typ": "SCHULE",
-            "administriertVon": 1,
-            "zugehoerigZu": 1
-        },
-        {
-            "id": 6,
-            "kennung": "0705751",
-            "name": "Emil-von-Behring-Gymnasium\t",
+            "kennung": "Organisation4",
+            "name": "Schule2",
             "namensergaenzung": "Keine",
             "kuerzel": "O4",
             "typ": "SCHULE",
-            "administriertVon": 1,
-            "zugehoerigZu": 1
+            "administriertVon": 2,
+            "zugehoerigZu": 2
         },
         {
-            "id": 7,
-            "kennung": "0707712",
-            "name": "Friedrich-Junge-Schule, Gemeinschaftsschule des Schulverbandes Großhansdorf in Großhansdorf",
+            "kennung": "Organisation5",
+            "name": "Anbieter1",
             "namensergaenzung": "Keine",
             "kuerzel": "O5",
-            "typ": "SCHULE",
+            "typ": "ANBIETER",
             "administriertVon": 1,
             "zugehoerigZu": 1
         },
         {
-            "id": 8,
-            "kennung": "0702960",
-            "name": "Grundschule Hoisdorf",
+            "kennung": "Organisation6",
+            "name": "Sonstige1",
             "namensergaenzung": "Keine",
             "kuerzel": "O6",
-            "typ": "SCHULE",
-            "administriertVon": 1,
-            "zugehoerigZu": 1
+            "typ": "SONSTIGE ORGANISATION / EINRICHTUNG",
+            "administriertVon": 2,
+            "zugehoerigZu": 2
         },
         {
-            "id": 9,
-            "kennung": "1111111",
-            "name": "Testschule Schulportal",
+            "kennung": "Organisation7",
+            "name": "Unbestätigt",
             "namensergaenzung": "Keine",
-            "kuerzel": "Testschule",
-            "typ": "SCHULE",
+            "kuerzel": "O7",
+            "typ": "UNBESTAETIGT",
             "administriertVon": 1,
             "zugehoerigZu": 1
         }
-
     ]
 }
