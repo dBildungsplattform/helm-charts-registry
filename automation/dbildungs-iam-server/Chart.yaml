@@ -4,3 +4,8 @@ description: dBildungs-IAM-server
 name: dbildungs-iam-server
 type: application
 version: 0.0.0-spsh-596-20240412-0843
+dependencies:
+- name: redis-cluster
+  repository: https://charts.bitnami.com/bitnami
+  version: 10.0.1
+  condition: redis.enabled
