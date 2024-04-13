@@ -51,15 +51,6 @@ backend:
     requests:
       cpu: 200m
       memory: 200Mi
-  startupProbe:
-    enabled: true
-    initialDelaySeconds: 60
-    periodSeconds: 60
-    failureThreshold: 5
-    httpGet:
-      scheme: 'HTTP'
-      port: 8080
-      path: '/health'
   livenessProbe:
     enabled: true
     initialDelaySeconds: 10
@@ -152,3 +143,8 @@ redis:
   extraEnvVars: []
   extraVolumes: []
   extraVolumeMounts: []
+# Setting Redis cluster variables
+# Reference: https://github.com/bitnami/charts/tree/main/bitnami/redis-cluster
+  enabled: true
+  architecture: standalone
+
