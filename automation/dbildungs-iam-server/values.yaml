@@ -143,8 +143,3 @@ redis:
   extraEnvVars: []
   extraVolumes: []
   extraVolumeMounts: []
-# Setting Redis cluster variables
-# Reference: https://github.com/bitnami/charts/tree/main/bitnami/redis-cluster
-  enabled: true
-  architecture: standalone
-
