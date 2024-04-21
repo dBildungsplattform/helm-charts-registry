@@ -4,8 +4,8 @@ dependencies:
 - condition: redis-cluster.enabled
   name: redis-cluster
   repository: https://charts.bitnami.com/bitnami
-  version: 10.0.1
+  version: 10.0.2
 description: dBildungs-IAM-server
 name: dbildungs-iam-server
 type: application
-version: 0.0.0-dbp-453-20240421-1715
+version: 0.0.0-dbp-453-20240421-1940
