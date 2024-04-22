@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - DBP-453-Create-Redis-DBCluster-available-for-session-storage-of-SPSH
+      - main
 
 jobs:
   release:
