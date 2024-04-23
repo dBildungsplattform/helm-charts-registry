@@ -1,11 +1,6 @@
 apiVersion: v2
-appVersion: dbp-101
-dependencies:
-- condition: redis-cluster.enabled
-  name: redis-cluster
-  repository: https://charts.bitnami.com/bitnami
-  version: 10.0.1
+appVersion: SPSH-640
 description: dBildungs-IAM-server
 name: dbildungs-iam-server
 type: application
-version: 0.0.0-dbp-101-20240423-1234
+version: 0.0.0-spsh-640-20240423-1336
