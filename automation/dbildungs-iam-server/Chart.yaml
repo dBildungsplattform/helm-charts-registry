@@ -1,6 +1,13 @@
 apiVersion: v2
-appVersion: SPSH-655
+appVersion: dbp-104
+dependencies:
+- condition: redis-cluster.enabled
+  import-values:
+  - redis-values.yaml
+  name: redis-cluster
+  repository: https://charts.bitnami.com/bitnami
+  version: 10.0.2
 description: dBildungs-IAM-server
 name: dbildungs-iam-server
 type: application
-version: 0.0.0-spsh-655-20240429-1117
+version: 0.0.0-dbp-104-20240429-1124
