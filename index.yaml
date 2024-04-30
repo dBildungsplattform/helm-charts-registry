@@ -18852,6 +18852,21 @@ entries:
     version: 0.0.0-dbp-453-20240422-0951
   - apiVersion: v2
     appVersion: dbp-104
+    created: "2024-04-30T09:58:38.996760186Z"
+    dependencies:
+    - condition: redis-cluster.enabled
+      name: redis-cluster
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.0.2
+    description: dBildungs-IAM-server
+    digest: 3c195bd758d1736a4db43ffcedf57fa7609c51e0e9afb61f9d25626750371dd5
+    name: dbildungs-iam-server
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-server-0.0.0-dbp-104-20240430-0958/dbildungs-iam-server-0.0.0-dbp-104-20240430-0958.tgz
+    version: 0.0.0-dbp-104-20240430-0958
+  - apiVersion: v2
+    appVersion: dbp-104
     created: "2024-04-30T09:13:57.871581424Z"
     dependencies:
     - condition: redis-cluster.enabled
@@ -33288,4 +33303,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-000-867a8c5d/spsh-client-0.0.0-DBP-000-867a8c5d.tgz
     version: 0.0.0-DBP-000-867a8c5d
-generated: "2024-04-30T09:33:23.472882789Z"
+generated: "2024-04-30T09:58:39.005778749Z"
