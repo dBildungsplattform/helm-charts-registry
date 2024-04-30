@@ -18942,6 +18942,16 @@ entries:
     version: 0.0.0-dbp-453-20240422-0951
   - apiVersion: v2
     appVersion: dbp-104
+    created: "2024-04-30T13:00:24.501266589Z"
+    description: dBildungs-IAM-server
+    digest: 88cf448a4d465f41b45f1189136325d90f8e9f95a53f928d26681fa4ae0e2d74
+    name: dbildungs-iam-server
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-server-0.0.0-dbp-104-20240430-1259/dbildungs-iam-server-0.0.0-dbp-104-20240430-1259.tgz
+    version: 0.0.0-dbp-104-20240430-1259
+  - apiVersion: v2
+    appVersion: dbp-104
     created: "2024-04-30T12:45:24.212586772Z"
     dependencies:
     - condition: redis-cluster.enabled
@@ -33488,4 +33498,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-000-867a8c5d/spsh-client-0.0.0-DBP-000-867a8c5d.tgz
     version: 0.0.0-DBP-000-867a8c5d
-generated: "2024-04-30T12:54:05.064118518Z"
+generated: "2024-04-30T13:00:24.51140116Z"
