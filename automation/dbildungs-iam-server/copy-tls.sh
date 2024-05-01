@@ -15,7 +15,6 @@ pushd $STAGING_DIR || exit 1
 
 chmod ugo+x gencert.sh
 ./gencert.sh
-
 # We have generated our certificates, now we put them in their right place
 cp -v tls/redis.crt tls/redis.key tls/ca.crt $CONFIG_DIR
 # Pre-Made config, correct certs and disabling of non-tls included

@@ -56,4 +56,5 @@ generate_cert server "Server-only" "-extfile tls/openssl.cnf -extensions server_
 generate_cert client "Client-only" "-extfile tls/openssl.cnf -extensions client_cert"
 generate_cert redis "Generic-cert"
 
+
 [ -f tls/redis.dh ] || openssl dhparam -out tls/redis.dh 2048
