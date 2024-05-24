@@ -1,4 +1,3 @@
-{{if .Values.ldap.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -62,4 +61,3 @@ spec:
           hostPath:
             path: "/data/ldap/certs"
       restartPolicy: {{ .Values.restartPolicy }}
-{{ end }}

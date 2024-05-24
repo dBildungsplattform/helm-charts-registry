@@ -1,4 +1,3 @@
-{{if .Values.ldap.enabled }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -10,4 +9,3 @@ data:
   spsh-ldif: |-
     {{ .Files.Get "config/ldif/spsh.ldif" | nindent 4 }}
 
-{{ end }}
