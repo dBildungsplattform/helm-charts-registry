@@ -32,7 +32,6 @@ auth:
   secretName: dbildungs-iam-server
   keycloak_adminSecret: ""
   keycloak_clientSecret: ""
-  ldap_admin_password: ""
   secrets_json: ""
   frontend_sessionSecret: ""
   itslearning_endpoint: ""
@@ -170,8 +169,8 @@ ldap:
     requests:
       cpu: 200m
       memory: 200Mi
-  url: ldap://dbildungs-iam-ldap.spsh-xxx.svc.cluster.local
-  bindDN: cn=admin,dc=schule-sh,dc=de
+  adminPassword: admin
+  configPassword: config
   service:
     type: ClusterIP
     ports:
