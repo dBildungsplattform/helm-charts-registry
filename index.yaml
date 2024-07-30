@@ -17214,6 +17214,16 @@ entries:
     version: 0.0.0-spsh-739-20240611-1134
   - apiVersion: v2
     appVersion: SPSH-738
+    created: "2024-07-30T12:28:57.351667907Z"
+    description: dBildungs-IAM-server
+    digest: b6db227f058f18e0760a922467c2dbb4ba3d4c62a99fa3d4a981b2b84afb6060
+    name: dbildungs-iam-server
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-server-0.0.0-spsh-738-20240730-1228/dbildungs-iam-server-0.0.0-spsh-738-20240730-1228.tgz
+    version: 0.0.0-spsh-738-20240730-1228
+  - apiVersion: v2
+    appVersion: SPSH-738
     created: "2024-07-30T07:29:23.870636311Z"
     description: dBildungs-IAM-server
     digest: 6d12f000ca534bb21d96ef7544af269a29075debdca392788d19382bceb878cc
@@ -52026,4 +52036,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-000-867a8c5d/spsh-client-0.0.0-DBP-000-867a8c5d.tgz
     version: 0.0.0-DBP-000-867a8c5d
-generated: "2024-07-30T12:00:02.470678495Z"
+generated: "2024-07-30T12:28:57.369262088Z"
