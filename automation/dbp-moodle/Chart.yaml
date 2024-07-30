@@ -18,12 +18,12 @@ dependencies:
   version: 15.5.7
 - alias: moodle-cronjob
   name: cronjob
-  repository: file://charts/backup-cronjob
+  repository: file://charts/cronjob
   version: 0.1.0
 - alias: backup-cronjob
   condition: backup.enabled
   name: cronjob
-  repository: file://charts/backup-cronjob
+  repository: file://charts/cronjob
   version: 0.1.0
 - alias: etherpad-postgresql
   condition: etherpadlite.enabled
@@ -38,4 +38,4 @@ dependencies:
 description: A Helm chart for dBildungsplattform Moodle including customizations
 name: dbp-moodle
 type: application
-version: 0.0.0-dbp-895-20240730-0820
+version: 0.0.0-dbp-895-20240730-0838
