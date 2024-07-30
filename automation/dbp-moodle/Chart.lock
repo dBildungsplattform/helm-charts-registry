@@ -1,0 +1,27 @@
+dependencies:
+- name: moodle
+  repository: https://charts.bitnami.com/bitnami
+  version: 22.2.7
+- name: redis
+  repository: https://charts.bitnami.com/bitnami
+  version: 19.5.3
+- name: mariadb
+  repository: https://charts.bitnami.com/bitnami
+  version: 18.2.2
+- name: postgresql
+  repository: https://charts.bitnami.com/bitnami
+  version: 15.5.7
+- name: cronjob
+  repository: file://charts/backup-cronjob
+  version: 0.1.0
+- name: cronjob
+  repository: file://charts/backup-cronjob
+  version: 0.1.0
+- name: postgresql
+  repository: https://charts.bitnami.com/bitnami
+  version: 15.5.7
+- name: etherpad
+  repository: file://charts/etherpad
+  version: 0.1.0
+digest: sha256:a0820bedf3686afeee70b4581bfcb478c149b1b4ab2b032462d91ae1907c5c01
+generated: "2024-07-23T12:04:06.580780413Z"
