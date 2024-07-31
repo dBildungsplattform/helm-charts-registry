@@ -33514,6 +33514,51 @@ entries:
   dbp-moodle:
   - apiVersion: v2
     appVersion: DBP-895
+    created: "2024-07-31T13:29:37.571862132Z"
+    dependencies:
+    - name: moodle
+      repository: https://charts.bitnami.com/bitnami
+      version: 22.2.7
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 19.5.3
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 18.2.2
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.5.7
+    - alias: moodle-cronjob
+      name: cronjob
+      repository: file://charts/cronjob
+      version: 0.1.0
+    - alias: backup-cronjob
+      condition: backup.enabled
+      name: cronjob
+      repository: file://charts/cronjob
+      version: 0.1.0
+    - alias: etherpad-postgresql
+      condition: etherpadlite.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.5.7
+    - alias: etherpadlite
+      condition: etherpadlite.enabled
+      name: etherpad
+      repository: file://charts/etherpad
+      version: 0.1.0
+    description: A Helm chart for dBildungsplattform Moodle including customizations
+    digest: 4df1a6441b87ad98b2caed0731ac8a04d85e24f343463985b22acd726f7b88f1
+    name: dbp-moodle
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbp-moodle-0.0.0-dbp-895-20240731-1328/dbp-moodle-0.0.0-dbp-895-20240731-1328.tgz
+    version: 0.0.0-dbp-895-20240731-1328
+  - apiVersion: v2
+    appVersion: DBP-895
     created: "2024-07-31T09:26:03.605414399Z"
     dependencies:
     - name: moodle
@@ -52386,4 +52431,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-000-867a8c5d/spsh-client-0.0.0-DBP-000-867a8c5d.tgz
     version: 0.0.0-DBP-000-867a8c5d
-generated: "2024-07-31T13:10:21.538989949Z"
+generated: "2024-07-31T13:29:37.586378913Z"
