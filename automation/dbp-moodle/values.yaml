@@ -349,6 +349,7 @@ etherpadlite:
       memory: "1Gi"
 
 backup:
+  enabled: false
 
   rules:
     - apiGroups: [""]
@@ -372,7 +373,7 @@ moodlecronjob:
         resources: ["pods", "pods/exec"]
         verbs: ["get", "list", "create"]
   serviceAccount:
-    name: "moodle-backup-job"
+    name: "moodle-php-job"
     create: false
   jobs:
     - name: php-script
@@ -402,7 +403,7 @@ backup-cronjob:
   clusterRole:
     create: false
   serviceAccount:
-    name: "moodle-php-job"
+    name: "moodle-backup-job"
     create: false
   env:
     - name: MARIADB_PASSWORD
