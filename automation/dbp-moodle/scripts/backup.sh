@@ -42,7 +42,7 @@ function clean_up() {
         fi
 
         echo "=== Unsuspending moodle cronjob ==="
-        kubectl patch cronjobs moodle-moodle-cronjob-php-script -n {{ .Release.Namespace }} -p '{"spec" : {"suspend" : false }}'
+        kubectl patch cronjobs moodle-moodle-cronjob-{{ include "moodle_cronjob.job_name" . }} -n {{ .Release.Namespace }} -p '{"spec" : {"suspend" : false }}'
     elif [ $exit_code -eq 0 ]; then
     echo "=== Update backup was successful with exit code $exit_code ==="
         rm -f /mountData/moodledata/UpdateBackupFailure
@@ -67,7 +67,7 @@ mv ./kubectl /usr/local/bin/kubectl
 if ! [ -a /mountData/moodledata/CliUpdate ]; then
     # Suspend the cronjob to avoid errors due to missing moodle
     echo "=== Suspending moodle cronjob ==="
-    kubectl patch cronjobs moodle-moodle-cronjob-php-script -n {{ .Release.Namespace }} -p '{"spec" : {"suspend" : true }}'
+    kubectl patch cronjobs moodle-moodle-cronjob-{{ include "moodle_cronjob.job_name" . }} -n {{ .Release.Namespace }} -p '{"spec" : {"suspend" : true }}'
 
     echo "=== Turn off liveness and readiness probe ==="
     kubectl get deployment/{{ .Release.Name }} -n {{ .Release.Namespace }} -o jsonpath="{.spec.template.spec.containers[0].readinessProbe}" > ${readiness_probe_file}
@@ -106,13 +106,7 @@ tar -zcf moodle.tar.gz /mountData/moodle/
 
 # Get moodledata folder
 echo "=== Start moodledata directory backup ==="
-if [ -a /mountData/moodledata/CliUpdate ]; then
-    # Backup during the Moodle Update Process
-    tar --exclude="/mountData/moodledata/cache" --exclude="/mountData/moodledata/sessions" --exclude="/mountData/moodledata/moodle-backup" --exclude="/mountData/moodledata/CliUpdate" -zcf moodledata.tar.gz /mountData/moodledata/
-else
-    # Regular scheduled daily Backup process
-    tar --exclude="/mountData/moodledata/cache" --exclude="/mountData/moodledata/sessions" -zcf moodledata.tar.gz /mountData/moodledata/
-fi
+tar --exclude="/mountData/moodledata/cache" --exclude="/mountData/moodledata/sessions" --exclude="/mountData/moodledata/moodle-backup" --exclude="/mountData/moodledata/CliUpdate" -zcf moodledata.tar.gz /mountData/moodledata/
 
 echo "=== Start duply process ==="
 cd /etc/duply/default
