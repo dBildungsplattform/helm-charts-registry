@@ -31,3 +31,14 @@ jobs:
           charts_dir: automation
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+      - uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@1.1.1
+        if: failure()
+        with:
+          type: ${{ job.status }} 
+          job_name: 'Helmchart Release Status: '
+          url: ${{ secrets.RC_WEBHOOK }}
+          channel: '#dbp-dev-monitoring'
+          username: Helmchart Release Failure Notificator
+        
+      
