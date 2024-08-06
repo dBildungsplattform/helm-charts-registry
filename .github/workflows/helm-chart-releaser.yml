@@ -28,7 +28,7 @@ jobs:
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@a917fd15b20e8b64b94d9158ad54cd6345335584   #v1.6.0
         with:
-          charts_dir: automation
+          charts_dir: automationTest
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
@@ -39,6 +39,6 @@ jobs:
           job_name: 'Helmchart Release Status: '
           url: ${{ secrets.RC_WEBHOOK }}
           channel: '#dbp-dev-monitoring'
-          username: Helmchart Release Failure Notificator
+          username: Helmchart Release Failure Notificator Test
         
       
