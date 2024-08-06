@@ -30,7 +30,7 @@ jobs:
         with:
           charts_dir: automationTest
         env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN2 }}"
 
       - uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@1.1.1
         if: failure()
