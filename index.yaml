@@ -35375,6 +35375,51 @@ entries:
     version: 0.0.0-dbp-895-20240730-0838
   - apiVersion: v2
     appVersion: DBP-812
+    created: "2024-08-09T08:43:51.724694165Z"
+    dependencies:
+    - name: moodle
+      repository: https://charts.bitnami.com/bitnami
+      version: 22.2.7
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 19.5.3
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 18.2.2
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.5.7
+    - alias: moodlecronjob
+      name: cronjob
+      repository: file://charts/cronjob
+      version: 0.1.0
+    - alias: backup-cronjob
+      condition: backup.enabled
+      name: cronjob
+      repository: file://charts/cronjob
+      version: 0.1.0
+    - alias: etherpad-postgresql
+      condition: etherpadlite.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.5.7
+    - alias: etherpadlite
+      condition: etherpadlite.enabled
+      name: etherpad
+      repository: file://charts/etherpad
+      version: 0.1.0
+    description: A Helm chart for dBildungsplattform Moodle including customizations
+    digest: 7ed2313b32ed3751e91ef31e8a072d7bca5c261ac40d4ed893dfccb3a707a4dc
+    name: dbp-moodle
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbp-moodle-0.0.0-dbp-812-20240809-0842/dbp-moodle-0.0.0-dbp-812-20240809-0842.tgz
+    version: 0.0.0-dbp-812-20240809-0842
+  - apiVersion: v2
+    appVersion: DBP-812
     created: "2024-08-09T08:41:05.463893755Z"
     dependencies:
     - name: moodle
@@ -55177,4 +55222,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-000-867a8c5d/spsh-client-0.0.0-DBP-000-867a8c5d.tgz
     version: 0.0.0-DBP-000-867a8c5d
-generated: "2024-08-09T08:41:05.477786565Z"
+generated: "2024-08-09T08:43:51.737285645Z"
