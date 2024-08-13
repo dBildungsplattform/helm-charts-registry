@@ -35,7 +35,11 @@ dependencies:
   name: etherpad
   repository: file://charts/etherpad
   version: 0.1.0
+- condition: sqlexporter.enabled
+  name: sql-exporter
+  repository: https://burningalchemist.github.io/sql_exporter/
+  version: 0.6.1
 description: A Helm chart for dBildungsplattform Moodle including customizations
 name: dbp-moodle
 type: application
-version: 0.0.0-dbp-000-20240812-1057
+version: 0.0.0-dbp-000-20240813-0812
