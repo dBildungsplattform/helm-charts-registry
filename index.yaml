@@ -16150,6 +16150,16 @@ entries:
     version: 0.0.0-spsh-837-20240704-0843
   - apiVersion: v2
     appVersion: spsh-830
+    created: "2024-08-13T09:19:42.739345004Z"
+    description: dBildungs-IAM-server
+    digest: 5ab4969a9a2f79a3f1e75c7a2a0372e8f608c796138541bc5a9ea7ffe2848011
+    name: dbildungs-iam-server
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-server-0.0.0-spsh-830-20240813-0841/dbildungs-iam-server-0.0.0-spsh-830-20240813-0841.tgz
+    version: 0.0.0-spsh-830-20240813-0841
+  - apiVersion: v2
+    appVersion: spsh-830
     created: "2024-08-09T13:47:11.503129187Z"
     description: dBildungs-IAM-server
     digest: 8db8c7111f5a317f5c937f89d0294faa389f2b7d0de2a0d9893e8e280eda8cfa
@@ -34929,6 +34939,51 @@ entries:
     version: 0.0.0-dbp-352-20231201-1326
   dbp-moodle:
   - apiVersion: v2
+    appVersion: DBP-944
+    created: "2024-08-13T09:19:42.995340103Z"
+    dependencies:
+    - name: moodle
+      repository: https://charts.bitnami.com/bitnami
+      version: 22.2.7
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 19.5.3
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 18.2.2
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.5.7
+    - alias: moodlecronjob
+      name: cronjob
+      repository: file://charts/cronjob
+      version: 0.1.0
+    - alias: backup-cronjob
+      condition: backup.enabled
+      name: cronjob
+      repository: file://charts/cronjob
+      version: 0.1.0
+    - alias: etherpad-postgresql
+      condition: etherpadlite.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.5.7
+    - alias: etherpadlite
+      condition: etherpadlite.enabled
+      name: etherpad
+      repository: file://charts/etherpad
+      version: 0.1.0
+    description: A Helm chart for dBildungsplattform Moodle including customizations
+    digest: 9535d5c1eabf3fef42b4b1b045d05c4f91694cef809ec114a97a4a9ea2ae2fd9
+    name: dbp-moodle
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbp-moodle-1.1.0/dbp-moodle-1.1.0.tgz
+    version: 1.1.0
+  - apiVersion: v2
     appVersion: OPS-0000
     created: "2024-08-12T10:18:09.333009959Z"
     dependencies:
@@ -41707,6 +41762,16 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/schulportal-client-0.0.0-spsh-696-20240704-1219/schulportal-client-0.0.0-spsh-696-20240704-1219.tgz
     version: 0.0.0-spsh-696-20240704-1219
+  - apiVersion: v2
+    appVersion: SPSH-692
+    created: "2024-08-13T09:19:43.168125854Z"
+    description: Helm-Chart for schulportal-client
+    digest: 1520c1ef1cf21af2cb7a5ee1fe6c04bd9090f6b4d763ddf041c16bc7870ec504
+    name: schulportal-client
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/schulportal-client-0.0.0-spsh-692-20240813-0914/schulportal-client-0.0.0-spsh-692-20240813-0914.tgz
+    version: 0.0.0-spsh-692-20240813-0914
   - apiVersion: v2
     appVersion: SPSH-692
     created: "2024-08-12T11:26:14.466431205Z"
@@ -56007,4 +56072,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-000-867a8c5d/spsh-client-0.0.0-DBP-000-867a8c5d.tgz
     version: 0.0.0-DBP-000-867a8c5d
-generated: "2024-08-13T07:25:37.261382837Z"
+generated: "2024-08-13T09:19:43.190764615Z"
