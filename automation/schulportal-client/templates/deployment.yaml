@@ -26,7 +26,6 @@ spec:
           imagePullPolicy: {{ default "Always" .Values.image.pullPolicy | quote }}
           resources: {{- toYaml .Values.resources | nindent 12 }}
           securityContext: {{- omit .Values.containerSecurityContext "enabled" | toYaml | nindent 12 }}
-          resources: {{- toYaml .Values.resources | nindent 12 }}
           ports:
             - name: {{ .Values.containerPorts.name }} 
               containerPort: {{ .Values.containerPorts.http }} 
