@@ -12995,6 +12995,29 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-ldap-0.0.0-spsh-642-20240718-0923/dbildungs-iam-ldap-0.0.0-spsh-642-20240718-0923.tgz
     version: 0.0.0-spsh-642-20240718-0923
   - apiVersion: v2
+    appVersion: DBP-9999
+    created: "2024-08-23T13:32:13.657458466Z"
+    dependencies:
+    - condition: phpldapadmin.enabled
+      name: phpldapadmin
+      repository: ""
+      version: 0.1.x
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: ~2
+    description: Helm Chart for using community developed OpenLDAP software
+    digest: 8d1ec32f666d4fb09511df3ec3cbfdd25b439f7d091e0d3317c9e576f0124c29
+    home: https://www.openldap.org
+    keywords:
+    - ldap
+    - openldap
+    name: dbildungs-iam-ldap
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-ldap-0.0.0-dbp-9999-20240823-1331/dbildungs-iam-ldap-0.0.0-dbp-9999-20240823-1331.tgz
+    version: 0.0.0-dbp-9999-20240823-1331
+  - apiVersion: v2
     appVersion: DBP-831
     created: "2024-08-06T15:07:13.721849197Z"
     dependencies:
@@ -60840,4 +60863,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-000-867a8c5d/spsh-client-0.0.0-DBP-000-867a8c5d.tgz
     version: 0.0.0-DBP-000-867a8c5d
-generated: "2024-08-23T12:39:04.400347843Z"
+generated: "2024-08-23T13:32:13.672557743Z"
