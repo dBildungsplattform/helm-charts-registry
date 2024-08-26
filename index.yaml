@@ -11932,6 +11932,16 @@ entries:
     version: 0.0.0-ops-6248-20240404-1233
   - apiVersion: v2
     appVersion: DBP-952
+    created: "2024-08-26T11:38:46.289739859Z"
+    description: A Helm Chart for the dbildungs-iam-keycloak
+    digest: d2d179bdca45f301625e11216e3be1f604073397f5c5847f8f6494b7c98c30c6
+    name: dbildungs-iam-keycloak
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-keycloak-0.0.0-dbp-952-20240826-1138/dbildungs-iam-keycloak-0.0.0-dbp-952-20240826-1138.tgz
+    version: 0.0.0-dbp-952-20240826-1138
+  - apiVersion: v2
+    appVersion: DBP-952
     created: "2024-08-23T14:46:59.470772544Z"
     description: A Helm Chart for the dbildungs-iam-keycloak
     digest: 30c2279decb2f96645f925fe18fe291c58dad537bbe1e657cb9a648d6e18dab6
@@ -61225,4 +61235,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-000-867a8c5d/spsh-client-0.0.0-DBP-000-867a8c5d.tgz
     version: 0.0.0-DBP-000-867a8c5d
-generated: "2024-08-26T11:20:21.79766585Z"
+generated: "2024-08-26T11:38:46.305630165Z"
