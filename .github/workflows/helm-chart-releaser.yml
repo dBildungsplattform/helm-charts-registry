@@ -23,8 +23,8 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
           
-      - name: Install yq
-        run: sudo apt-get install -y yq
+      # - name: Install yq
+      #   run: sudo apt-get install -y yq
 
       - name: Extract and add dependencies
         run: |
