@@ -5,6 +5,7 @@ metadata:
   name: "{{ .Release.Name }}-restore-job"
   namespace: {{ .Release.Namespace }}
 spec:
+  backoffLimit: {{ .Values.dbpMoodle.restore.backoffLimit | default "4" }}
   template:
     spec:
       volumes:
@@ -32,7 +33,7 @@ spec:
       serviceAccount: moodle-restore-job
       containers:
       - name:  moodle-restore-job
-        image: schulcloud/infra-tools:{{ .Values.infratools.image_tag }}
+        image: "{{ .Values.dbpMoodle.restore.image_repository }}/infra-tools:{{ .Values.dbpMoodle.restore.image_tag }}"
         command:
           - /bin/sh
           - -c
@@ -82,5 +83,4 @@ spec:
               name: moodle-backup-s3
               key: s3_access_secret
       restartPolicy: Never
-  backoffLimit: 4
 {{- end }}
