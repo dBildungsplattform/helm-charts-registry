@@ -36,11 +36,6 @@ jobs:
             helm repo add "$(basename "$repo")" "$repo" || echo "Failed to add \"$repo\""
           done
 
-      - name: Add Helm dependencies
-        run: |
-          helm repo add bitnami https://charts.bitnami.com/bitnami
-          helm repo add sql_exporter https://burningalchemist.github.io/sql_exporter/
-
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@a917fd15b20e8b64b94d9158ad54cd6345335584   #v1.6.0
         with:
