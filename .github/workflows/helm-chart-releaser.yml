@@ -29,7 +29,7 @@ jobs:
       - name: Extract and add dependencies
         run: |
           # Extract dependencies, filter for unique and starting with https
-          repos=$(yq eval '.dependencies[].repository' Chart.yaml | \
+          repos=$(yq eval '.dependencies[].repository' automation/dbp-moodle/Chart.yaml | \
                   sort | \
                   uniq | \
                   grep '^https')
