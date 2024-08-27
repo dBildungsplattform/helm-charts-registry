@@ -22,20 +22,19 @@ jobs:
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          
-      # - name: Install yq
-      #   run: sudo apt-get install -y yq
 
       - name: Extract and add dependencies
         run: |
           # Extract dependencies, filter for unique and starting with https
-          repos=$(yq eval '.dependencies[].repository' automation/dbp-moodle/Chart.yaml | \
-                  sort | \
-                  uniq | \
-                  grep '^https')
+          repos=()
+          for file in $(find automation -name "Chart.yaml"); do
+              # Perform your desired operation on $file
+              echo "Processing $file"
+              repos+=$(yq eval '.dependencies[].repository' "$file" | grep '^https')
+          done
 
           # Loop through repositories and add them
-          for repo in $repos; do
+          for repo in "${repos[@]}"; do
               echo "Adding repo \"$(basename "$repo")\" with source \"$repo\""
               helm repo add "$(basename "$repo")" "$repo" || echo "Failed to add \"$repo\""
           done
