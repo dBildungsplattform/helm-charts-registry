@@ -35,7 +35,8 @@ jobs:
 
           # Loop through repositories and add them
           for repo in $repos; do
-            helm repo add $(basename "$repo") "$repo" || echo "Failed to add \"$repo\""
+              echo "Adding repo \"$(basename "$repo")\" with source \"$repo\""
+              helm repo add "$(basename "$repo")" "$repo" || echo "Failed to add \"$repo\""
           done
 
       # - name: Add Helm dependencies
