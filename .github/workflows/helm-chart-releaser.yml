@@ -22,11 +22,26 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
           
+      - name: Install yq
+        run: sudo apt-get install -y yq
 
-      - name: Add Helm dependencies
+      - name: Extract and add dependencies
         run: |
-          helm repo add bitnami https://charts.bitnami.com/bitnami
-          helm repo add sql_exporter https://burningalchemist.github.io/sql_exporter/
+          # Extract dependencies, filter for unique and starting with https
+          repos=$(yq eval '.dependencies[].repository' Chart.yaml | \
+                  sort | \
+                  uniq | \
+                  grep '^https')
+
+          # Loop through repositories and add them
+          for repo in $repos; do
+            helm repo add $(basename "$repo") "$repo" || echo "Failed to add \"$repo\""
+          done
+
+      # - name: Add Helm dependencies
+      #   run: |
+      #     helm repo add bitnami https://charts.bitnami.com/bitnami
+      #     helm repo add sql_exporter https://burningalchemist.github.io/sql_exporter/
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@a917fd15b20e8b64b94d9158ad54cd6345335584   #v1.6.0
