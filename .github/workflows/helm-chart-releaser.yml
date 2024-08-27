@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - OPS-6833-Dependencies_not_possible_in_helm-chart-releaser
 
 jobs:
   release:
