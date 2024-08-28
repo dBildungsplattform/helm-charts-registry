@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: DBP-000
+appVersion: DBP-944
 dependencies:
 - name: moodle
   repository: https://charts.bitnami.com/bitnami
@@ -21,7 +21,7 @@ dependencies:
   repository: file://charts/cronjob
   version: 0.1.0
 - alias: backup-cronjob
-  condition: dbpMoodle.backup.enabled
+  condition: backup.enabled
   name: cronjob
   repository: file://charts/cronjob
   version: 0.1.0
@@ -35,11 +35,11 @@ dependencies:
   name: etherpad
   repository: file://charts/etherpad
   version: 0.1.0
-- condition: sql-exporter.enabled
+- condition: sqlexporter.enabled
   name: sql-exporter
   repository: https://burningalchemist.github.io/sql_exporter/
   version: 0.6.1
 description: A Helm chart for dBildungsplattform Moodle including customizations
 name: dbp-moodle
 type: application
-version: 0.0.0-dbp-000-20240828-0857
+version: 1.0.0
