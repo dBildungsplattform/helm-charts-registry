@@ -38075,6 +38075,55 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbp-moodle-1.1.0/dbp-moodle-1.1.0.tgz
     version: 1.1.0
   - apiVersion: v2
+    appVersion: DBP-944
+    created: "2024-08-28T09:13:03.061637609Z"
+    dependencies:
+    - name: moodle
+      repository: https://charts.bitnami.com/bitnami
+      version: 22.2.7
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 19.5.3
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 18.2.2
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.5.7
+    - alias: moodlecronjob
+      name: cronjob
+      repository: file://charts/cronjob
+      version: 0.1.0
+    - alias: backup-cronjob
+      condition: backup.enabled
+      name: cronjob
+      repository: file://charts/cronjob
+      version: 0.1.0
+    - alias: etherpad-postgresql
+      condition: etherpadlite.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.5.7
+    - alias: etherpadlite
+      condition: etherpadlite.enabled
+      name: etherpad
+      repository: file://charts/etherpad
+      version: 0.1.0
+    - condition: sqlexporter.enabled
+      name: sql-exporter
+      repository: https://burningalchemist.github.io/sql_exporter/
+      version: 0.6.1
+    description: A Helm chart for dBildungsplattform Moodle including customizations
+    digest: e5aad871c58953bbfc166978f560ca60151fb798d3f2488aefcf9918547910c7
+    name: dbp-moodle
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbp-moodle-1.0.0/dbp-moodle-1.0.0.tgz
+    version: 1.0.0
+  - apiVersion: v2
     appVersion: OPS-0000
     created: "2024-08-12T10:18:09.333009959Z"
     dependencies:
@@ -62421,4 +62470,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-000-867a8c5d/spsh-client-0.0.0-DBP-000-867a8c5d.tgz
     version: 0.0.0-DBP-000-867a8c5d
-generated: "2024-08-28T08:58:27.109605351Z"
+generated: "2024-08-28T09:13:03.075523963Z"
