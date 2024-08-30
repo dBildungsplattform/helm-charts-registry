@@ -21,21 +21,16 @@
               secretKeyRef:
                   name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
                   key: keycloak-clientSecret
-          - name: VIDIS_CLIENT_ID
-            valueFrom:
-              secretKeyRef:
-                  name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
-                  key: vidis-client-id
-          - name: VIDIS_CLIENT_SECRET
-            valueFrom:
-              secretKeyRef:
-                  name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
-                  key: vidis-client-secret
           - name: FRONTEND_SESSION_SECRET
             valueFrom:
               secretKeyRef:
                   name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
                   key: frontend-sessionSecret
+          - name: ITSLEARNING_ENABLED
+            valueFrom:
+              secretKeyRef:
+                  name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
+                  key: itslearning-enabled
           - name: ITSLEARNING_ENDPOINT
             valueFrom:
               secretKeyRef:
