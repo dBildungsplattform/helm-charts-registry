@@ -62,7 +62,7 @@ startupProbe:
   enabled: true
   httpGet:
     path: "/health/started"
-    port: mgmt
+    port: web
   periodSeconds: 10
   failureThreshold: 30
 
@@ -70,13 +70,13 @@ livenessProbe:
   enabled: true
   httpGet:
     path: /health/live
-    port: mgmt
+    port: web
 
 readinessProbe:
   enabled: true
   httpGet:
     path: "/health/ready"
-    port: mgmt
+    port: web
 
 ingress:
   ingressClassName: nginx
@@ -87,12 +87,8 @@ ingress:
     nginx.ingress.kubernetes.io/proxy-buffers-number: "4"
 
 containerPorts:
-  - name: web
-    port: 8080
-    protocol: TCP
-  - name: mgmt
-    port: 8090
-    protocol: TCP
+  name: web
+  http: 8080
 
 service:
   type: ClusterIP
