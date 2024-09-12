@@ -5,7 +5,6 @@ metadata:
   name: "{{ .Release.Name }}-restore-job"
   namespace: {{ .Release.Namespace }}
 spec:
-  backoffLimit: {{ .Values.dbpMoodle.restore.backoffLimit | default "4" }}
   template:
     spec:
       volumes:
@@ -27,13 +26,13 @@ spec:
                   - key: exclude
                     path: exclude
             - secret:
-                name: {{ .Values.dbpMoodle.restore.existingSecretGPG }}
+                name: moodle-backup-gpg-keys
           defaultMode: 0644
       serviceAccountName: moodle-restore-job
       serviceAccount: moodle-restore-job
       containers:
       - name:  moodle-restore-job
-        image: "{{ .Values.dbpMoodle.restore.image_repository }}/infra-tools:{{ .Values.dbpMoodle.restore.image_tag }}"
+        image: schulcloud/infra-tools:{{ .Values.infratools.image_tag }}
         command:
           - /bin/sh
           - -c
@@ -58,20 +57,30 @@ spec:
         - name: duply
           mountPath: /etc/duply/default/
         env:
-        - name: DATABASE_PASSWORD
+        {{- if .Values.postgresql.enabled }}
+        - name: POSTGRESQL_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: {{ .Values.dbpMoodle.restore.existingSecretDatabase }}
-              key: {{ .Values.dbpMoodle.restore.existingSecretKeyDatabase }}
+              name: moodle
+              key: PGSQL_POSTGRES_PASSWORD
+        {{- end }}
+        {{- if .Values.mariadb.enabled }}
+        - name: MARIADB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: moodle
+              key: mariadb-password
+        {{- end }}
         - name: AWS_ACCESS_KEY_ID
           valueFrom:
             secretKeyRef:
-              name: {{ .Values.dbpMoodle.restore.existingSecretS3 }}
-              key: {{ .Values.dbpMoodle.restore.existingSecretKeyS3Access }}
+              name: moodle-backup-s3
+              key: s3_access_key
         - name: AWS_SECRET_ACCESS_KEY
           valueFrom:
             secretKeyRef:
-              name: {{ .Values.dbpMoodle.restore.existingSecretS3 }}
-              key: {{ .Values.dbpMoodle.restore.existingSecretKeyS3Secret }}
+              name: moodle-backup-s3
+              key: s3_access_secret
       restartPolicy: Never
+  backoffLimit: 4
 {{- end }}
