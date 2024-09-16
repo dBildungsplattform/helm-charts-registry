@@ -49548,6 +49548,16 @@ entries:
     version: 0.0.0-spsh-856-20240904-1501
   - apiVersion: v2
     appVersion: SPSH-855
+    created: "2024-09-16T19:58:27.389172739Z"
+    description: Helm-Chart for schulportal-client
+    digest: 5538f48366d7e53d4b4d082fc3c14528d391493c9f4b8a931083f9ae08635145
+    name: schulportal-client
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/schulportal-client-0.0.0-spsh-855-20240916-1957/schulportal-client-0.0.0-spsh-855-20240916-1957.tgz
+    version: 0.0.0-spsh-855-20240916-1957
+  - apiVersion: v2
+    appVersion: SPSH-855
     created: "2024-09-16T15:14:28.914839761Z"
     description: Helm-Chart for schulportal-client
     digest: 844170571e621251fca8de88dbfec1dd0d0b62164b73c3b2a73df30206e9231f
@@ -70706,4 +70716,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-000-867a8c5d/spsh-client-0.0.0-DBP-000-867a8c5d.tgz
     version: 0.0.0-DBP-000-867a8c5d
-generated: "2024-09-16T19:58:04.296001149Z"
+generated: "2024-09-16T19:58:27.409395445Z"
