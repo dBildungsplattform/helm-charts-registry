@@ -15,7 +15,7 @@ dependencies:
 - condition: postgresql.enabled
   name: postgresql
   repository: https://charts.bitnami.com/bitnami
-  version: 12.0.0
+  version: 15.5.7
 - alias: moodlecronjob
   name: cronjob
   repository: file://charts/cronjob
@@ -42,4 +42,4 @@ dependencies:
 description: A Helm chart for dBildungsplattform Moodle including customizations
 name: dbp-moodle
 type: application
-version: 0.0.0-dbp-000-20240924-0849
+version: 0.0.0-dbp-000-20240924-1411
