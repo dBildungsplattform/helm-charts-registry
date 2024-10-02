@@ -86,6 +86,7 @@
         }
       ],
       "client": {
+        "nextcloud-bildungsablage-test": [],
         "realm-management": [
           {
             "id": "24a98f94-221b-497d-95af-9f75c232410c",
@@ -300,7 +301,6 @@
         ],
         "security-admin-console": [],
         "spsh": [],
-        "${VIDIS_CLIENT_ID}": [],
         "admin-cli": [],
         "account-console": [],
         "spsh-test": [],
@@ -417,6 +417,7 @@
     "requiredCredentials": [
       "password"
     ],
+    "passwordPolicy" : "maxAuthAge(0)",
     "otpPolicyType": "totp",
     "otpPolicyAlgorithm": "HmacSHA1",
     "otpPolicyInitialCounter": 0,
@@ -1270,9 +1271,9 @@
         }
       },
       {
-        "id": "cf591738-18c7-4962-9b3f-a1b2ef15c94a",
-        "clientId": "${VIDIS_CLIENT_ID}",
-        "name": "VIDIS-Testumgebung",
+        "id": "8d129be5-0cde-44e7-b9de-59797f650e4b",
+        "clientId": "${KC_NEXTCLOUD_CLIENT_ID}",
+        "name": "NextCloud-Dateiablage",
         "description": "",
         "rootUrl": "",
         "adminUrl": "",
@@ -1281,7 +1282,7 @@
         "enabled": true,
         "alwaysDisplayInConsole": false,
         "clientAuthenticatorType": "client-secret",
-        "secret": "${VIDIS_CLIENT_SECRET}",
+        "secret": "${KC_NEXTCLOUD_CLIENT_SECRET}",
         "redirectUris": [
           "/*"
         ],
@@ -1300,10 +1301,9 @@
         "protocol": "openid-connect",
         "attributes": {
           "oidc.ciba.grant.enabled": "false",
-          "client.secret.creation.time": "1724413577",
+          "client.secret.creation.time": "1727879436",
           "backchannel.logout.session.required": "true",
           "oauth2.device.authorization.grant.enabled": "false",
-          "display.on.consent.screen": "false",
           "backchannel.logout.revoke.offline.tokens": "false"
         },
         "authenticationFlowBindingOverrides": {},
@@ -1314,6 +1314,7 @@
           "acr",
           "roles",
           "profile",
+          "basic",
           "email"
         ],
         "optionalClientScopes": [

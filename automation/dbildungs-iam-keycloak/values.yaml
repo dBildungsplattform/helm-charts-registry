@@ -18,8 +18,8 @@ auth:
   keycloak_clientSecret: ""
   keycloak_itslearning_clientSecret: ""
   keycloak_ox_clientSecret: ""
-  keycloak_vidis_clientSecret: ""
-  keycloak_vidis_clientId: ""
+  keycloak_nextcloud_clientId: ""
+  keycloak_nextcloud_clientSecret: ""
 
 command: []
 
@@ -66,7 +66,7 @@ startupProbe:
   enabled: true
   httpGet:
     path: "/health/started"
-    port: web
+    port: mgmt
   periodSeconds: 10
   failureThreshold: 30
 
@@ -74,13 +74,13 @@ livenessProbe:
   enabled: true
   httpGet:
     path: /health/live
-    port: web
+    port: mgmt
 
 readinessProbe:
   enabled: true
   httpGet:
     path: "/health/ready"
-    port: web
+    port: mgmt
 
 ingress:
   ingressClassName: nginx
@@ -91,8 +91,12 @@ ingress:
     nginx.ingress.kubernetes.io/proxy-buffers-number: "4"
 
 containerPorts:
-  name: web
-  http: 8080
+  - name: web
+    port: 8080
+    protocol: TCP
+  - name: mgmt
+    port: 8090
+    protocol: TCP
 
 service:
   type: ClusterIP

@@ -36,8 +36,11 @@ spec:
           securityContext: {{- omit .Values.containerSecurityContext "enabled" | toYaml | nindent 12 }}
           resources: {{- toYaml .Values.resources | nindent 12 }}
           ports:
-            - name: {{ .Values.containerPorts.name }}
-              containerPort: {{ .Values.containerPorts.http }}
+            {{- range .Values.containerPorts }}
+            - name: {{ .name }}
+              containerPort: {{ .port }}
+              protocol: {{ .protocol }}
+            {{- end }}
           startupProbe: {{- omit .Values.startupProbe "enabled" | toYaml | nindent 12 }}
           livenessProbe: {{- omit .Values.livenessProbe "enabled" | toYaml | nindent 12 }}
           readinessProbe: {{- omit .Values.readinessProbe "enabled" | toYaml | nindent 12 }}
@@ -82,16 +85,16 @@ spec:
                 secretKeyRef:
                   name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
                   key: keycloak-ox-clientSecret
-            - name: VIDIS_CLIENT_SECRET
+            - name: KC_NEXTCLOUD_CLIENT_ID
               valueFrom:
                 secretKeyRef:
                   name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
-                  key: keycloak-vidis-clientSecret
-            - name: VIDIS_CLIENT_ID
+                  key: keycloak-nextcloud-clientId
+            - name: KC_NEXTCLOUD_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
                   name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
-                  key: keycloak-vidis-clientId
+                  key: keycloak-nextcloud-clientSecret
             - name: KC_DB_URL
               value: "jdbc:postgresql://$(DB_HOST)/$(DB_NAME)"
             {{- if .Values.extraEnvVars }}
