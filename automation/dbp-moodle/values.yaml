@@ -157,10 +157,11 @@ dbpMoodle:
         verbs: ["get", "list", "scale", "patch"]
 
   moodlecronjob:
+    wait_timeout: "15min"
     rules:
       - apiGroups: [""]
         resources: ["pods", "pods/exec"]
-        verbs: ["get", "list", "create"]
+        verbs: ["get", "list", "create", "watch"]
 
   # Horizontal Pod Autoscaling Values
   hpa:
