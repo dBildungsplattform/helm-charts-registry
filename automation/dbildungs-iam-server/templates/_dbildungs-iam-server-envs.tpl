@@ -4,11 +4,6 @@
               secretKeyRef:
                   name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
                   key: db-password
-          - name: DB_USERNAME
-            valueFrom:
-              secretKeyRef:
-                  name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
-                  key: db-username
           - name: DB_HOST
             valueFrom:
               secretKeyRef:
@@ -76,9 +71,4 @@
               secretKeyRef:
                   name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
                   key: pi-user-resolver
-          - name: PI_REALM
-            valueFrom:
-              secretKeyRef:
-                  name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
-                  key: pi-user-realm
 {{- end}}
