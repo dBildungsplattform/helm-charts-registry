@@ -251,7 +251,7 @@ moodle:
     port: 3306
     # -- Existing username in the external db
     user: "moodle"
-    # -- 	Password for the above username
+    # -- Password for the above username
     password: ""
     # -- Name of the existing database
     database: "moodle"
@@ -261,7 +261,7 @@ moodle:
     type: ClusterIP
   ingress:
     enabled: true
-    # -- The hostname of the moodle application.
+    # -- The hostname of the moodle application
     hostname: "example.de"
     tls: true
     annotations:
@@ -273,7 +273,7 @@ moodle:
     enabled: true
     service:
       type: ClusterIP
-    # -- Resources have to be set so that the Horizontal Pod Autoscaler for moodle can read the moodle cpu consumption correctly
+    # -- Resources have to be set so that the horizontal pod autoscaler for moodle can read the moodle cpu consumption correctly
     resources: 
       requests:
         cpu: 10m
@@ -290,7 +290,7 @@ moodle:
       secret:
         secretName: moodle-config
         items:
-          # -- The custom config.php File that is used to configure Moodle to use the Database and Redis (If activated)
+          # -- The custom config.php file that is used to configure moodle to use the database and redis (if activated)
           - key: config.php
             path: config.php
           # -- The php.ini which installs the php-redis extension to enable the use for redis
