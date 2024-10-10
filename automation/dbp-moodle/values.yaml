@@ -1,8 +1,8 @@
 global:
   kubectl_version: "1.28.7"
-  # -- default storage class, should support ReadWriteMany
+  # -- Default storage class, should support ReadWriteMany
   storageClass: "nfs-client"
-  # -- all plugins are disabled by default. if enabled, the plugin is installed on image startup
+  # -- All plugins are disabled by default. if enabled, the plugin is installed on image startup
   moodlePlugins:
     kaltura:
       enabled: false
@@ -74,7 +74,7 @@ dbpMoodle:
   update_migration:
     enabled: false
 
-  # -- configurations for the optional redis
+  # -- Configurations for the optional redis
   redis:
     host: "moodle-redis-master"
     port: 6379
@@ -89,7 +89,8 @@ dbpMoodle:
     annotations:
       "helm.sh/resource-policy": "keep"
 
-  # -- Create a secret with for all moodle relevant credentials, set useChartSecret: false to provide your own secret
+  # -- Creates a secret with all relevant credentials for moodle
+  # -- Set useChartSecret: false to provide your own secret
   # -- if you create your own secret, also set moodle.existingSecret and moodle.externalDatabase.existingSecret (if you bring your own DB)
   secrets:
     useChartSecret: false
@@ -227,7 +228,7 @@ moodle:
   # --	If this value is unset, the bitnami/moodle chart generates its own secret
   existingSecret: "moodle"
   persistence:
-    # --	If this value is unset, the bitnami/moodle chart generates its own PV & PVC
+    # -- If this value is unset, the bitnami/moodle chart generates its own PV & PVC
     existingClaim: "moodle-data"
   affinity: {}
   tolerations: []
