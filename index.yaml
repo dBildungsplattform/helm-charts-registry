@@ -53926,6 +53926,16 @@ entries:
     version: 0.1.2
   ionos-exporter:
   - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2024-10-10T12:53:53.593654482Z"
+    description: A Helm chart for Kubernetes
+    digest: 7e9e3eb3bfcddb1b30f8e3a5d96e0188bbeb93f7df11f47100f95a91bea4218b
+    name: ionos-exporter
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/ionos-exporter-0.1.0/ionos-exporter-0.1.0.tgz
+    version: 0.1.0
+  - apiVersion: v2
     appVersion: 0.0.4
     created: "2023-10-19T14:49:29.328115142Z"
     description: A Helm chart for Kubernetes
@@ -81616,4 +81626,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-000-867a8c5d/spsh-client-0.0.0-DBP-000-867a8c5d.tgz
     version: 0.0.0-DBP-000-867a8c5d
-generated: "2024-10-10T12:48:17.554993647Z"
+generated: "2024-10-10T12:53:53.614107671Z"
