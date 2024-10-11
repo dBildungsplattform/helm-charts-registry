@@ -24,7 +24,10 @@ fi
 printf 'Image change detected\n'
 
 printf 'Disabling regular cronjob to prevent failing runs\n'
-kubectl patch cronjobs "{{ .Release.Name }}"-moodlecronjob-php-script -n "{{ .Release.Namespace }}" -p '{"spec" : {"suspend" : true }}'
+kubectl patch cronjobs "{{ .Release.Name }}"-moodlecronjob-"{{ include "moodlecronjob.job_name" . }}" -n "{{ .Release.Namespace }}" -p '{"spec" : {"suspend" : true }}'
+
+printf 'Scaling deployment "{{ .Release.Name }}" to 0 replicas\n'
+kubectl patch "deploy/{{ .Release.Name }}" -n "{{ .Release.Namespace }}" -p '{"spec":{"replicas": 0}}'
 
 {{ if .Values.dbpMoodle.backup.enabled }}
 if [ "$BACKUP_ENABLED" = true ]; then
@@ -34,5 +37,3 @@ if [ "$BACKUP_ENABLED" = true ]; then
     kubectl wait --for=condition=complete --timeout=10m job/moodle-pre-update-backup-job
 fi
 {{ end }}
-printf 'Scaling deployment "{{ .Release.Name }}" to 0 replicas\n'
-kubectl patch "deploy/{{ .Release.Name }}" -n "{{ .Release.Namespace }}" -p '{"spec":{"replicas": 0}}'

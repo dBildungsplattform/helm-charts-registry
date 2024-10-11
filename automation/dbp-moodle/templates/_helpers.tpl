@@ -1,11 +1,3 @@
-{{- define "dbpMoodle.stageBackupEnabled" -}}
-{{- if and (or (eq .Values.dbpMoodle.stage "prod") (eq .Values.dbpMoodle.name "infra")) ( .Values.dbpMoodle.backup.enabled ) -}}
-true
-{{- else -}}
-false
-{{- end -}}
-{{- end -}}
-
 {{- define "dbpMoodle.moodlePvc.name" -}}
 {{- if .Values.dbpMoodle.external_pvc.enabled }}
 {{- .Values.dbpMoodle.external_pvc.name -}}
@@ -35,7 +27,7 @@ false
 {{- default (randAlphaNum 16) .Values.dbpMoodle.secrets.pgsql_admin_password }}
 {{- end -}}
 
-{{- define "dbpMoodle.secrets.mariadb_password" -}}
+{{- define "dbpMoodle.secrets.db_password" -}}
 {{- default (randAlphaNum 16) .Values.dbpMoodle.secrets.mariadb_password }}
 {{- end -}}
 
