@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: sha-2227e49
+appVersion: SPSH-1044
 dependencies:
 - condition: phpldapadmin.enabled
   name: phpldapadmin
@@ -16,4 +16,4 @@ keywords:
 - ldap
 - openldap
 name: dbildungs-iam-ldap
-version: 0.0.1-20241010-0955
+version: 0.0.0-spsh-1044-20241011-0524
