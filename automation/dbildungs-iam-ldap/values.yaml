@@ -60,7 +60,7 @@ service:
   type: LoadBalancer
   externalIp: true
   SourceRangesRestriction: false
-
+  enableLdapPort: true
 
 # Use the env variables from https://hub.docker.com/r/bitnami/openldap/
 env:
