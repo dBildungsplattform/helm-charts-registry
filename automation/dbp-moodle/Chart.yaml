@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: OPS-7040
+appVersion: DBP-1004
 dependencies:
 - name: moodle
   repository: https://charts.bitnami.com/bitnami
@@ -42,4 +42,4 @@ dependencies:
 description: A Helm chart for dBildungsplattform Moodle including customizations
 name: dbp-moodle
 type: application
-version: 0.0.0-ops-7040-20241010-1408
+version: 0.0.0-dbp-1004-20241011-0706
