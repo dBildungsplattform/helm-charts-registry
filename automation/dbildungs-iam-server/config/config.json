@@ -53,7 +53,6 @@
         "ENDPOINT": "https://itslearning.example.com",
         "USERNAME": "username",
         "PASSWORD": "password",
-        "ROOT": "sh",
         "ROOT_OEFFENTLICH": "oeffentlich",
         "ROOT_ERSATZ": "ersatz"
     },
@@ -71,5 +70,8 @@
         "PASSWORD": "admin",
         "USER_RESOLVER": "mariadb_resolver",
         "REALM": "defrealm"
+    },
+    "IMPORT": {
+        "IMPORT_FILE_MAXGROESSE_IN_MB": 10
     }
 }
