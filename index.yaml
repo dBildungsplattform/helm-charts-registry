@@ -39673,6 +39673,16 @@ entries:
     version: 0.0.0-spsh-1129-20241011-0850
   - apiVersion: v2
     appVersion: SPSH-1128
+    created: "2024-10-15T07:57:56.163749523Z"
+    description: dBildungs-IAM-server
+    digest: b0d6b84cc7883e131dff6705ec5c741915761e276377c886be27a04e1ade9853
+    name: dbildungs-iam-server
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-server-0.0.0-spsh-1128-20241015-0757/dbildungs-iam-server-0.0.0-spsh-1128-20241015-0757.tgz
+    version: 0.0.0-spsh-1128-20241015-0757
+  - apiVersion: v2
+    appVersion: SPSH-1128
     created: "2024-10-15T06:57:38.153363205Z"
     description: dBildungs-IAM-server
     digest: 80853e610054d9f77fb5b9d4a18fba5efa50742a200bf700133fa4445db9f7fa
@@ -72896,6 +72906,16 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/schulportal-client-0.0.0-spsh-1114-20240925-1300/schulportal-client-0.0.0-spsh-1114-20240925-1300.tgz
     version: 0.0.0-spsh-1114-20240925-1300
   - apiVersion: v2
+    appVersion: SPSH-1111
+    created: "2024-10-15T07:57:56.263958248Z"
+    description: Helm-Chart for schulportal-client
+    digest: 62abc39d5ef19023c2be7f557b7e3ea5d1749c71757e2af802818b0f707d1bf8
+    name: schulportal-client
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/schulportal-client-0.0.0-spsh-1111-20241015-0753/schulportal-client-0.0.0-spsh-1111-20241015-0753.tgz
+    version: 0.0.0-spsh-1111-20241015-0753
+  - apiVersion: v2
     appVersion: SPSH-1100
     created: "2024-09-27T10:51:01.248628642Z"
     description: Helm-Chart for schulportal-client
@@ -83845,4 +83865,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-000-867a8c5d/spsh-client-0.0.0-DBP-000-867a8c5d.tgz
     version: 0.0.0-DBP-000-867a8c5d
-generated: "2024-10-15T07:51:45.97583605Z"
+generated: "2024-10-15T07:57:56.285087333Z"
