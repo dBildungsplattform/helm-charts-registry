@@ -85095,4 +85095,24 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/spsh-client-0.0.0-DBP-000-867a8c5d/spsh-client-0.0.0-DBP-000-867a8c5d.tgz
     version: 0.0.0-DBP-000-867a8c5d
-generated: "2024-10-17T10:38:33.911358826Z"
+  status:
+  - apiVersion: v2
+    appVersion: v2.5.3
+    created: "2024-10-17T11:22:02.833226324Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.6.20
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 17.3.5
+    description: A Helm chart for Kubernetes
+    digest: 298b8bc3e3d3e44b72d5c4447bad5839fe864ab91804f16b854a17dc9d88faa1
+    name: status
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/status-0.0.0-dbp-1011-20241017-1121/status-0.0.0-dbp-1011-20241017-1121.tgz
+    version: 0.0.0-dbp-1011-20241017-1121
+generated: "2024-10-17T11:22:02.851420521Z"
