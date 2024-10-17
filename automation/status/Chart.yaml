@@ -1,0 +1,15 @@
+apiVersion: v2
+appVersion: v2.5.3
+dependencies:
+- condition: postgresql.enabled
+  name: postgresql
+  repository: https://charts.bitnami.com/bitnami
+  version: 11.6.20
+- condition: redis.enabled
+  name: redis
+  repository: https://charts.bitnami.com/bitnami
+  version: 17.3.5
+description: A Helm chart for Kubernetes
+name: status
+type: application
+version: 0.0.0-dbp-1011-20241017-1121
