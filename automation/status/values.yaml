@@ -26,13 +26,7 @@ podAnnotations: {}
 podSecurityContext: {}
   # fsGroup: 2000
 # -- Settings for security context of the container
-securityContext:
-  runAsUser: 1001
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
+runAsUser: 1001
 service:
   # -- Kubernetes Service type
   type: ClusterIP
