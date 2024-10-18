@@ -85338,6 +85338,25 @@ entries:
   status:
   - apiVersion: v2
     appVersion: v2.5.3
+    created: "2024-10-18T08:26:08.753080163Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.6.20
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 17.3.5
+    description: A Helm chart for Kubernetes
+    digest: a268d9dfa918fb9189b4cdea83bab2775c7b54777da7da187fdd36522874acb0
+    name: status
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/status-0.0.0-dbp-1011-20241018-0825/status-0.0.0-dbp-1011-20241018-0825.tgz
+    version: 0.0.0-dbp-1011-20241018-0825
+  - apiVersion: v2
+    appVersion: v2.5.3
     created: "2024-10-18T08:10:09.03665304Z"
     dependencies:
     - condition: postgresql.enabled
@@ -85374,4 +85393,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/status-0.0.0-dbp-1011-20241017-1121/status-0.0.0-dbp-1011-20241017-1121.tgz
     version: 0.0.0-dbp-1011-20241017-1121
-generated: "2024-10-18T08:16:57.82585341Z"
+generated: "2024-10-18T08:26:08.774061824Z"
