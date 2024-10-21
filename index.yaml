@@ -47517,6 +47517,16 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-server-0.0.0-dbp-104-20240426-1254/dbildungs-iam-server-0.0.0-dbp-104-20240426-1254.tgz
     version: 0.0.0-dbp-104-20240426-1254
   - apiVersion: v2
+    appVersion: DBP-1021
+    created: "2024-10-21T09:58:55.194782646Z"
+    description: dBildungs-IAM-server
+    digest: e458b1b453f26842a57a99a881cd9aa3a54709d0730ffd697bbe919e25124239
+    name: dbildungs-iam-server
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-server-0.0.0-dbp-1021-20241021-0958/dbildungs-iam-server-0.0.0-dbp-1021-20241021-0958.tgz
+    version: 0.0.0-dbp-1021-20241021-0958
+  - apiVersion: v2
     appVersion: dbp-101
     created: "2024-04-25T15:01:14.267998693Z"
     dependencies:
@@ -86232,4 +86242,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/status-0.0.0-dbp-1011-20241017-1121/status-0.0.0-dbp-1011-20241017-1121.tgz
     version: 0.0.0-dbp-1011-20241017-1121
-generated: "2024-10-21T09:58:25.258213477Z"
+generated: "2024-10-21T09:58:55.215743558Z"
