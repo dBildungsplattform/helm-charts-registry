@@ -50136,6 +50136,60 @@ entries:
     version: 0.0.1
   - apiVersion: v2
     appVersion: OPS-7063
+    created: "2024-10-22T09:30:21.249613127Z"
+    dependencies:
+    - name: moodle
+      repository: https://charts.bitnami.com/bitnami
+      version: 22.2.7
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 19.5.3
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 18.2.2
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.5.7
+    - alias: moodlecronjob
+      name: cronjob
+      repository: file://charts/cronjob
+      version: 0.1.0
+    - alias: backup-cronjob
+      condition: dbpMoodle.backup.enabled
+      name: cronjob
+      repository: file://charts/cronjob
+      version: 0.1.0
+    - alias: etherpad-postgresql
+      condition: etherpadlite.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.5.7
+    - alias: etherpadlite
+      condition: etherpadlite.enabled
+      name: etherpad
+      repository: file://charts/etherpad
+      version: 0.1.0
+    - condition: sql-exporter.enabled
+      name: sql-exporter
+      repository: https://burningalchemist.github.io/sql_exporter/
+      version: 0.6.1
+    description: 'This is a Helm Chart bundling some of the bitnami resources to deploy
+      Moodle for DBildungsplattform. Extending them with features such as  MariaDB
+      and PostgreSQL support, Horizontal Autoscaling capabilities, Redis Session Store,
+      Etherpad-Lite. The Chart can be deployed without any modification but it is
+      advised to set own secrets acccording to this readme. '
+    digest: c42e43b12178438c3c1a20ee091661b63e73c6859d61dffe0f38f1cc6f9f3306
+    home: https://dbildungsplattform.github.io/dbp-moodle/
+    name: dbp-moodle
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbp-moodle-0.0.0-ops-7063-20241022-0928/dbp-moodle-0.0.0-ops-7063-20241022-0928.tgz
+    version: 0.0.0-ops-7063-20241022-0928
+  - apiVersion: v2
+    appVersion: OPS-7063
     created: "2024-10-22T08:32:26.754663177Z"
     dependencies:
     - name: moodle
@@ -86665,4 +86719,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/status-0.0.0-dbp-1011-20241017-1121/status-0.0.0-dbp-1011-20241017-1121.tgz
     version: 0.0.0-dbp-1011-20241017-1121
-generated: "2024-10-22T09:20:11.300341641Z"
+generated: "2024-10-22T09:30:21.268232358Z"
