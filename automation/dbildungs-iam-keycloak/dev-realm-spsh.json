@@ -302,7 +302,6 @@
         "spsh": [],
         "admin-cli": [],
         "account-console": [],
-        "${KC_NEXTCLOUD_CLIENT_ID}": [],
         "spsh-service": [],
         "spsh-test": [],
         "broker": [
@@ -921,7 +920,7 @@
           "offline_access",
           "microprofile-jwt"
         ]
-      },
+      },     
       {
         "id": "f45add8b-ab22-4742-afb4-cefa9bc12331",
         "clientId": "spsh",
@@ -959,7 +958,7 @@
           "oauth2.device.authorization.grant.enabled": "false",
           "display.on.consent.screen": "false",
           "backchannel.logout.revoke.offline.tokens": "false",
-          "acr.loa.map": "{\"silver\":\"10\",\"gold\":\"20\"}",
+          "acr.loa.map": "{\"gold\":\"10\"}",
           "default.acr.values": "0"
         },
         "authenticationFlowBindingOverrides": {
@@ -1232,60 +1231,6 @@
           "acr",
           "roles",
           "profile",
-          "email"
-        ],
-        "optionalClientScopes": [
-          "address",
-          "phone",
-          "offline_access",
-          "microprofile-jwt"
-        ]
-      },
-      {
-        "id": "8d129be5-0cde-44e7-b9de-59797f650e4b",
-        "clientId": "${KC_NEXTCLOUD_CLIENT_ID}",
-        "name": "NextCloud-Dateiablage",
-        "description": "",
-        "rootUrl": "https://sh.lumaserv.dev",
-        "adminUrl": "",
-        "baseUrl": "",
-        "surrogateAuthRequired": false,
-        "enabled": true,
-        "alwaysDisplayInConsole": false,
-        "clientAuthenticatorType": "client-secret",
-        "secret": "${KC_NEXTCLOUD_CLIENT_SECRET}",
-        "redirectUris": [
-          "/apps/user_oidc/code"
-        ],
-        "webOrigins": [
-          "/*"
-        ],
-        "notBefore": 0,
-        "bearerOnly": false,
-        "consentRequired": false,
-        "standardFlowEnabled": true,
-        "implicitFlowEnabled": false,
-        "directAccessGrantsEnabled": false,
-        "serviceAccountsEnabled": false,
-        "publicClient": false,
-        "frontchannelLogout": true,
-        "protocol": "openid-connect",
-        "attributes": {
-          "oidc.ciba.grant.enabled": "false",
-          "client.secret.creation.time": "1729521175",
-          "backchannel.logout.session.required": "true",
-          "oauth2.device.authorization.grant.enabled": "false",
-          "backchannel.logout.revoke.offline.tokens": "false"
-        },
-        "authenticationFlowBindingOverrides": {},
-        "fullScopeAllowed": true,
-        "nodeReRegistrationTimeout": -1,
-        "defaultClientScopes": [
-          "web-origins",
-          "acr",
-          "roles",
-          "profile",
-          "basic",
           "email"
         ],
         "optionalClientScopes": [
@@ -2200,14 +2145,15 @@
             "priority": 0,
             "autheticatorFlow": false,
             "userSetupAllowed": false
-          },
+          }, 
           {
-            "authenticator": "auth-otp-form",
-            "authenticatorFlow": false,
-            "requirement": "REQUIRED",
-            "priority": 1,
-            "autheticatorFlow": false,
-            "userSetupAllowed": false
+            "authenticatorConfig" : "pi",
+            "authenticator" : "privacyidea-authenticator",
+            "authenticatorFlow" : false,
+            "requirement" : "REQUIRED",
+            "priority" : 2,
+            "autheticatorFlow" : false,
+            "userSetupAllowed" : false
           }
         ]
       },
@@ -2765,6 +2711,14 @@
         "builtIn": false,
         "authenticationExecutions": [
           {
+          "authenticator" : "auth-cookie",
+          "authenticatorFlow" : false,
+          "requirement" : "ALTERNATIVE",
+          "priority" : 0,
+          "autheticatorFlow" : false,
+          "userSetupAllowed" : false
+        },
+          {
             "authenticatorFlow": true,
             "requirement": "ALTERNATIVE",
             "priority": 0,
@@ -2796,6 +2750,23 @@
         "config": {
           "loa-condition-level": "20",
           "loa-max-age": "10000"
+        }
+      }, 
+      {
+        "id" : "a289ca13-92ef-4ac8-9544-bbff68c93147",
+        "alias" : "pi",
+        "config" : {
+          "pienrolltokentype" : "TOTP",
+          "pipollinbrowser" : "false",
+          "piservicerealm" : "${PI_REALM}",
+          "piservicepass" : "${PI_ADMIN_PASSWORD}",
+          "piserver" : "${PI_BASE_URL}",
+          "piserviceaccount" : "${PI_ADMIN_USER}",
+          "pidefaultmessage" : "Diese Aktion setzt eine Zwei-Faktor-Authentifizierung voraus. Bitte geben Sie das Einmalpasswort von Ihrem Security-Token ein.",
+          "preftokentype" : "OTP",
+          "pirealm" : "${PI_REALM}",
+          "pidolog" : "true",
+          "pienrolltoken" : "false"
         }
       },
       {
