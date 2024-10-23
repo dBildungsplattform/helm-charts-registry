@@ -11251,6 +11251,16 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-keycloak-0.7.0/dbildungs-iam-keycloak-0.7.0.tgz
     version: 0.7.0
   - apiVersion: v2
+    appVersion: 0.6.0
+    created: "2024-10-23T13:13:42.981757879Z"
+    description: A Helm Chart for the dbildungs-iam-keycloak
+    digest: 596d9bedb5d11ac83d1691c3b8c8e8c34f7e05bc757792e86b86e53fb19732ed
+    name: dbildungs-iam-keycloak
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-keycloak-0.6.0/dbildungs-iam-keycloak-0.6.0.tgz
+    version: 0.6.0
+  - apiVersion: v2
     appVersion: 0.5.0
     created: "2024-10-14T11:14:18.052820217Z"
     description: A Helm Chart for the dbildungs-iam-keycloak
@@ -87713,4 +87723,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/status-0.0.0-dbp-1011-20241017-1121/status-0.0.0-dbp-1011-20241017-1121.tgz
     version: 0.0.0-dbp-1011-20241017-1121
-generated: "2024-10-23T13:12:31.707302949Z"
+generated: "2024-10-23T13:13:43.000987041Z"
