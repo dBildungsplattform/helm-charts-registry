@@ -48,6 +48,7 @@ auth:
   pi_admin_password: ''
   pi_user_resolver: ''
   pi_user_realm: ''
+  pi_rename_waiting_time: ''
 
 backend:
   replicaCount: 1
@@ -164,14 +165,3 @@ redis:
   extraEnvVars: []
   extraVolumes: []
   extraVolumeMounts: []
-
-cronjobs:
-  trigger-xyz:
-    serviceName: trigger-xyz
-    imageTag: latest 
-    port: 5656
-    schedule: 0 8 * * *
-    endpoint-url: bla.org
-    # jobsParallelism: false
-    #keycloakHostname
-    #backendHostname
