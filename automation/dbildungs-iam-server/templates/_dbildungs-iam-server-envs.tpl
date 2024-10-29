@@ -81,9 +81,9 @@
               secretKeyRef:
                   name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
                   key: pi-user-realm
-          - name: PI_RENAME_WAITING_TIME
+          - name: REDIS_PASSWORD
             valueFrom:
               secretKeyRef:
                   name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
-                  key: pi-rename-waiting-time
+                  key: redis-password
 {{- end}}
