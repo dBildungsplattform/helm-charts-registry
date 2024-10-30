@@ -48,6 +48,7 @@ auth:
   pi_admin_password: ''
   pi_user_resolver: ''
   pi_user_realm: ''
+  pi_rename_waiting_time: ''
 
 backend:
   replicaCount: 1
@@ -164,23 +165,3 @@ redis:
   extraEnvVars: []
   extraVolumes: []
   extraVolumeMounts: []
-
-cronjobs:
-  imageTag: latest 
-  port: 5656
-  schedule: 0 8 * * *
-  keycloakTokenUrl: "{{ $.Values.keycloakHostname }}/realms/SPSH/protocol/openid-connect/token"
-  keycloakClientId: spsh-service
-  jwksFilePath: /keys/jwks.json
-  backendHostname: "{{ $.Values.frontendHostname }}"
-  #url will be attached to backend hostname, start with / 
-  jobs:
-    trigger-xyz-1:
-      endpoint: ""
-      script: "scripts/trigger_xyz.sh"
-    trigger-xyz-2:
-      endpoint: ""
-      script: "scripts/trigger_xyz.sh"
-    trigger-xyz-3:
-      endpoint: ""
-      script: "scripts/trigger_xyz.sh"
