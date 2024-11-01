@@ -416,7 +416,7 @@
     "requiredCredentials": [
       "password"
     ],
-    "passwordPolicy": "maxAuthAge(0) and passwordHistory(3) and length(8) and digits(1) and lowerCase(1) and upperCase(1) and specialChars(1)",
+    "passwordPolicy" : "maxAuthAge(0)",
     "otpPolicyType": "totp",
     "otpPolicyAlgorithm": "HmacSHA1",
     "otpPolicyInitialCounter": 0,
@@ -957,7 +957,7 @@
           "oauth2.device.authorization.grant.enabled": "false",
           "display.on.consent.screen": "false",
           "backchannel.logout.revoke.offline.tokens": "false",
-          "acr.loa.map": "{\"silver\":\"10\",\"gold\":\"20\"}",
+          "acr.loa.map": "{\"gold\":\"10\"}",
           "default.acr.values": "0"
         },
         "authenticationFlowBindingOverrides": {
