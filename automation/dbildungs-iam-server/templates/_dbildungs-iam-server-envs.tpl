@@ -91,9 +91,4 @@
               secretKeyRef:
                   name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
                   key: pi-rename-waiting-time
-          - name: PI_STEP_UP_TIMEOUT_IN_SECONDS
-            valueFrom:
-              secretKeyRef:
-                  name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
-                  key: pi-step-up-timeout-in-seconds
 {{- end}}
