@@ -20,16 +20,13 @@
         "REALM_NAME": "SPSH",
         "ADMIN_CLIENT_ID": "spsh-admin",
         "CLIENT_ID": "spsh",
-        "TEST_CLIENT_ID": "spsh-test",
-        "SERVICE_CLIENT_ID": "spsh-service"
+        "TEST_CLIENT_ID": "spsh-test"
     },
     "REDIS": {
-        "HOST": "dbildungs-iam-server-redis-cluster",
+        "HOST": "dbildungs-iam-server-redis",
         "PORT": 6379,
         "USERNAME": "default",
-        "PASSWORD": "",
-        "USE_TLS": false,
-        "CLUSTERED": true
+        "USE_TLS": false
     },
     "LDAP": {
         "URL": "ldap://spsh-xxx.svc.cluster.local",
