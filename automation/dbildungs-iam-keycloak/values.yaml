@@ -18,13 +18,6 @@ auth:
   keycloak_clientSecret: ""
   keycloak_itslearning_clientSecret: ""
   keycloak_ox_clientSecret: ""
-  keycloak_nextcloud_clientId: ""
-  keycloak_nextcloud_clientSecret: ""
-  pi_base_url: ""
-  pi_admin_user: ""
-  pi_admin_password: ""
-  pi_user_resolver: ""
-  pi_user_realm: ""
 
 command: []
 
@@ -109,3 +102,10 @@ service:
     enabled: true
   ports:
     http: 80
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
