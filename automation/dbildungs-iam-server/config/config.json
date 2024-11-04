@@ -20,8 +20,7 @@
         "REALM_NAME": "SPSH",
         "ADMIN_CLIENT_ID": "spsh-admin",
         "CLIENT_ID": "spsh",
-        "TEST_CLIENT_ID": "spsh-test",
-        "SERVICE_CLIENT_ID": "spsh-service"
+        "TEST_CLIENT_ID": "spsh-test"
     },
     "REDIS": {
         "HOST": "dbildungs-iam-server-redis",
@@ -72,8 +71,5 @@
         "PASSWORD": "admin",
         "USER_RESOLVER": "mariadb_resolver",
         "REALM": "defrealm"
-    },
-    "IMPORT": {
-        "IMPORT_FILE_MAXGROESSE_IN_MB": 10
     }
 }
