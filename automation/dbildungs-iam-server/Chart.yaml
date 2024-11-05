@@ -1,11 +1,6 @@
 apiVersion: v2
-appVersion: sha-b4007d8
-dependencies:
-- condition: redis-cluster.enabled
-  name: redis-cluster
-  repository: https://charts.bitnami.com/bitnami
-  version: 11.0.6
+appVersion: DBP-1022
 description: dBildungs-IAM-server
 name: dbildungs-iam-server
 type: application
-version: 0.0.1-20241105-1035
+version: 0.0.0-dbp-1022-20241105-1049
