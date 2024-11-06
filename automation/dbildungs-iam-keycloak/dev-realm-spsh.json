@@ -1172,7 +1172,7 @@
           "oauth2.device.authorization.grant.enabled": "false",
           "display.on.consent.screen": "false",
           "backchannel.logout.revoke.offline.tokens": "false",
-          "acr.loa.map": "{\"silver\":\"10\",\"gold\":\"20\"}",
+          "acr.loa.map": "{\"gold\":\"10\"}",
           "default.acr.values": "0"
         },
         "authenticationFlowBindingOverrides": {
@@ -2804,7 +2804,7 @@
         "alias": "gold",
         "config": {
           "loa-condition-level": "20",
-          "loa-max-age": "0"
+          "loa-max-age": "10000"
         }
       }, 
       {
@@ -2817,7 +2817,7 @@
           "piservicepass" : "${PI_ADMIN_PASSWORD}",
           "piserver" : "${PI_BASE_URL}",
           "piserviceaccount" : "${PI_ADMIN_USER}",
-          "pidefaultmessage" : "Diese Aktion setzt eine Zwei-Faktor-Authentifizierung voraus. Bitte geben Sie das Einmalpasswort von Ihrem 2FA-Token ein.",
+          "pidefaultmessage" : "Diese Aktion setzt eine Zwei-Faktor-Authentifizierung voraus. Bitte geben Sie das Einmalpasswort von Ihrem Security-Token ein.",
           "preftokentype" : "OTP",
           "pirealm" : "${PI_REALM}",
           "pidolog" : "true",
