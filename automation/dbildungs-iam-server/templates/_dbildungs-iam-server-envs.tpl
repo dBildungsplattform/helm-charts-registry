@@ -86,14 +86,14 @@
               secretKeyRef:
                   name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
                   key: pi-user-realm
-          - name: PI_RENAME_WAITING_TIME
+          - name: SYSTEM_RENAME_WAITING_TIME_IN_SECONDS
             valueFrom:
               secretKeyRef:
                   name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
-                  key: pi-rename-waiting-time
-          - name: REDIS_PASSWORD
+                  key: system-rename-waiting-time-in-seconds
+          - name: SYSTEM_STEP_UP_TIMEOUT_IN_SECONDS
             valueFrom:
               secretKeyRef:
                   name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
-                  key: redis-password
+                  key: system-step-up-timeout-in-seconds
 {{- end}}
