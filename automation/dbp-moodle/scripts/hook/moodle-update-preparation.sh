@@ -4,15 +4,11 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
-health_file="/tmp/healthy"
-
 get_current_deployment_image() {
     kubectl get "deploy/{{ .Release.Name }}" -n "{{ .Release.Namespace }}" -o jsonpath='{..image}' |\
         tr -s '[:space:]' '\n' |\
         grep '{{- .Values.moodle.image.repository -}}'
 }
-
-touch "${health_file}"
 
 printf "Checking if update preparations are needed\n"
 
