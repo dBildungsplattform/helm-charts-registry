@@ -50,6 +50,9 @@ auth:
   pi_user_realm: ''
   pi_rename_waiting_time: ''
   redis_password: ''
+  vidis_base_url: ''
+  vidis_username: ''
+  vidis_password: ''
 
 backend:
   replicaCount: 1
@@ -128,6 +131,7 @@ backend:
 redis-cluster:
   enabled: true
   persistence:
+    enabled: false
     size: 4Gi
   image:
     registry: docker.io
@@ -174,25 +178,3 @@ redis-cluster:
         memory: 64Mi
     serviceMonitor:
       enabled: true
-
-cronjobs:
-  imageTag: latest
-  port: 5656
-  keycloakTokenUrl: '/realms/SPSH/protocol/openid-connect/token'
-  keycloakClientId: spsh-service
-  jwksFilePath: /keys/jwks.json
-  backendHostname: '{{ $.Values.frontendHostname }}'
-  scriptDir: scripts
-  jobs:
-    trigger-xyz-1:
-      schedule: 0 8 * * *
-      endpoint: '/api/cron/kopers-lock'
-      script: 'trigger_xyz.sh'
-    trigger-xyz-2:
-      schedule: 0 8 * * *
-      endpoint: '/url2'
-      script: 'trigger_xyz.sh'
-    trigger-xyz-3:
-      schedule: 0 8 * * *
-      endpoint: '/url3'
-      script: 'trigger_xyz.sh'
