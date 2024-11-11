@@ -1,0 +1,70 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-deployment
+  labels:
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    app.kubernetes.io/name: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+  annotations:
+    checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+    checksum/config-additional-configmap: {{ include (print $.Template.BasePath "/additional-configmap.yaml") . | sha256sum }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+        app.kubernetes.io/name: {{ .Release.Name }}
+        app.kubernetes.io/managed-by: {{ .Release.Service }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        checksum/config-additional-configmap: {{ include (print $.Template.BasePath "/additional-configmap.yaml") . | sha256sum }}
+    spec:
+      containers:
+      - name: sshd
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 22
+        volumeMounts:
+          {{- if .Values.sshdConfig }}
+          - name: sshd-config
+            mountPath: /etc/ssh/sshd_config
+            subPath: sshd_config
+          {{- end }}
+          {{- if .Values.dockerEntrypoint }}
+          - name: docker-entrypoint
+            mountPath: /entrypoint/docker-entrypoint.sh
+            subPath: docker-entrypoint.sh
+          {{- end }}
+          {{- with .Values.additionalVolumeMounts }}
+            {{- toYaml . | nindent 10 }}
+          {{- end }}
+      volumes:
+        {{- if .Values.sshdConfig }}
+        - name: sshd-config
+          configMap:
+            name: {{ .Release.Name }}
+            items:
+              - key: sshd_config
+                path: sshd_config
+        {{- end }}
+        {{- if .Values.dockerEntrypoint }}
+        - name: docker-entrypoint
+          configMap:
+            name: {{ .Release.Name }}
+            defaultMode: 457
+            items:
+              - key: docker-entrypoint.sh
+                path: docker-entrypoint.sh
+        {{- end }}
+        {{- with .Values.additionalVolumes }}
+          {{- toYaml . | nindent 8 }}
+        {{- end }}

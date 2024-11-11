@@ -8,9 +8,12 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11  #v4.1.1
         with:
           fetch-depth: 0
 
@@ -19,9 +22,34 @@ jobs:
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
+      - name: Extract and add dependencies
+        run: |
+          # Extract dependencies, filter for unique and starting with https
+          repos=$(find automation -name "Chart.yaml" -exec yq '.dependencies[].repository' {} \; | \
+                  sort | \
+                  uniq | \
+                  grep '^https')
+
+          # Loop through repositories and add them
+          for repo in $repos; do
+            echo "Adding repo \"$(basename "$repo")\" with source \"$repo\""
+            helm repo add "$(basename "$repo")" "$repo" || echo "Failed to add \"$repo\""
+          done
+
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.4.1
+        uses: helm/chart-releaser-action@a917fd15b20e8b64b94d9158ad54cd6345335584   #v1.6.0
         with:
           charts_dir: automation
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+      - uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@1.1.1
+        if: failure()
+        with:
+          type: ${{ job.status }} 
+          job_name: 'Helmchart Release Status: '
+          url: ${{ secrets.RC_WEBHOOK }}
+          channel: '#dbp-dev-monitoring'
+          username: Helmchart Failure Notificator
+        
+      
