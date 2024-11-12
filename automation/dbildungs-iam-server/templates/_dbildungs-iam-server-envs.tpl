@@ -86,29 +86,19 @@
               secretKeyRef:
                   name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
                   key: pi-user-realm
-          - name: PI_RENAME_WAITING_TIME
+          - name: SYSTEM_RENAME_WAITING_TIME_IN_SECONDS
             valueFrom:
               secretKeyRef:
                   name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
-                  key: pi-rename-waiting-time
+                  key: system-rename-waiting-time-in-seconds
+          - name: SYSTEM_STEP_UP_TIMEOUT_IN_SECONDS
+            valueFrom:
+              secretKeyRef:
+                  name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
+                  key: system-step-up-timeout-in-seconds
           - name: REDIS_PASSWORD
             valueFrom:
               secretKeyRef:
                   name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
                   key: redis-password
-          - name: VIDIS_BASE_URL
-            valueFrom:
-              secretKeyRef:
-                  name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
-                  key: vidis-base-url
-          - name: VIDIS_USERNAME
-            valueFrom:
-              secretKeyRef:
-                  name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
-                  key: vidis-username
-          - name: VIDIS_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                  name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
-                  key: vidis-password
 {{- end}}
