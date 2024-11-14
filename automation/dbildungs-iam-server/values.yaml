@@ -48,9 +48,7 @@ auth:
   pi_admin_password: ''
   pi_user_resolver: ''
   pi_user_realm: ''
-  system_rename_waiting_time_in_seconds: ''
-  system_step_up_timeout_in_seconds: ''
-  system_step_up_timeout_enabled: ''
+  pi_rename_waiting_time: ''
   redis_password: ''
 
 backend:
@@ -169,9 +167,14 @@ redis-cluster:
       memory: 128Mi
   metrics:
     enabled: true
-
-autoscaling:
-  enabled: false
-  minReplicas: 1
-  maxReplicas: 5
-  targetCPUUtilizationPercentage: 60
+    resources:
+      limits:
+        cpu: 200m
+        memory: 256Mi
+      requests:
+        cpu: 50m
+        memory: 64Mi
+    serviceMonitor:
+        enabled: true
+        path: "/api/metrics"
+        interval: 30s
