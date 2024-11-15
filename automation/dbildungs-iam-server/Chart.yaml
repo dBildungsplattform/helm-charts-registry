@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: SPSH-1280
+appVersion: SPSH-1362
 dependencies:
 - condition: redis-cluster.enabled
   name: redis-cluster
@@ -8,4 +8,4 @@ dependencies:
 description: dBildungs-IAM-server
 name: dbildungs-iam-server
 type: application
-version: 0.0.0-spsh-1280-20241115-1205
+version: 0.0.0-spsh-1362-20241115-1229
