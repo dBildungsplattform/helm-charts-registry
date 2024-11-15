@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: sha-8d24e28
+appVersion: 0.7.4
 dependencies:
 - condition: redis-cluster.enabled
   name: redis-cluster
@@ -8,4 +8,4 @@ dependencies:
 description: dBildungs-IAM-server
 name: dbildungs-iam-server
 type: application
-version: 0.0.1-20241115-1105
+version: 0.7.4
