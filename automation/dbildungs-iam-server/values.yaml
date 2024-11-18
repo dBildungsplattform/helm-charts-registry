@@ -174,31 +174,5 @@ autoscaling:
   maxReplicas: 5
   targetCPUUtilizationPercentage: 60
 
-cronjobs:
-  enabled: true
-  image:
-    tag: latest
-    repository: alpine
-    pullPolicy: IfNotPresent
-  port: 5656
-  keycloakTokenUrl: '/realms/SPSH/protocol/openid-connect/token'
-  keycloakClientId: spsh-service
-  jwksFilePath: /keys/jwks.json
-  backendHostname: '{{ $.Values.frontendHostname }}'
-  scriptDir: scripts
-  jobs:
-    cron-trigger-1:
-      schedule: 20 0 * * *
-      endpoint: '/api/cron/kopers-lock'
-      httpMethod: 'PUT'
-      script: 'cron_trigger.sh'
-    cron-trigger-2:
-      schedule: 40 0 * * *
-      endpoint: '/api/cron/kontext-expired'
-      httpMethod: 'PUT'
-      script: 'cron_trigger.sh'
-    cron-trigger-3:
-      schedule: 50 0 * * *
-      endpoint: '/api/cron/person-without-org'
-      httpMethod: 'PUT'
-      script: 'cron_trigger.sh'
+status:
+  url: 'https://status.dev.spsh.dbildungsplattform.de/'
