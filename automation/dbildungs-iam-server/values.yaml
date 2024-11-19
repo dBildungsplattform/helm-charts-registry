@@ -29,6 +29,13 @@ database:
 ldap:
   url: ldap://dbildungs-iam-ldap.spsh-xxx.svc.cluster.local
   bindDN: cn=admin,dc=schule-sh,dc=de
+  oeffentlicheSchulenDomain: schule-sh.de
+  ersatzschulenDomain: ersatzschule-sh.de
+
+itslearning:
+  root: sh
+  rootOeffentlich: oeffentlich
+  rootErsatz: ersatz
 
 auth:
   # existingSecret: Refers to a secret already present in the cluster, which is required.
@@ -127,7 +134,7 @@ backend:
 
 # Reference: https://github.com/bitnami/charts/tree/main/bitnami/redis-cluster
 redis-cluster:
-  enabled: false
+  enabled: true
   persistence: 
     enabled: false
     size: 4Gi
@@ -147,11 +154,11 @@ redis-cluster:
       replicas: 1
   networkPolicy:
     enabled: false
-  pdb: #not in redis valuesyaml
+  pdb:
     create: false
   serviceAccount:
     create: false
-  usePassword: true #just in auth form in redis 
+  usePassword: true
   tls:
     enabled: false
   podLabels:
@@ -166,38 +173,6 @@ redis-cluster:
       cpu: 125m
       memory: 128Mi
   metrics:
-    enabled: true
-
-redis:
-  enabled: true
-  image:
-    registry: docker.io
-    repository: bitnami/redis
-    tag: 7.4.1-debian-12-r2
-  replica:
-    replicaCount: 2
-  sentinel:
-    enabled: true
-  pdb: 
-    create: false
-  networkPolicy:
-    enabled: false
-  serviceAccount:
-    create: false
-  auth:  
-    existingSecret: dbildungs-iam-server-redis
-  podLabels:
-    app.kubernetes.io/component: server-redis
-  commonLabels:
-    app.kubernetes.io/name: dbildungs-iam-server
-  resources:
-    limits:
-      cpu: 300m
-      memory: 512Mi
-    requests:
-      cpu: 125m
-      memory: 128Mi
-  metrics: #weiter einschränken (aus für dev )
     enabled: true
    
 autoscaling:
