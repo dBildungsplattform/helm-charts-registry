@@ -69,7 +69,7 @@ The Chart can be deployed without any modification but it is advised to set own 
 | backup-cronjob.extraVolumes[2].projected.sources[0].configMap.items[0].path | string | `"conf"` |  |
 | backup-cronjob.extraVolumes[2].projected.sources[0].configMap.items[1].key | string | `"exclude"` |  |
 | backup-cronjob.extraVolumes[2].projected.sources[0].configMap.items[1].path | string | `"exclude"` |  |
-| backup-cronjob.extraVolumes[2].projected.sources[0].configMap.name | string | `"moodle-backup-duply"` |  |
+| backup-cronjob.extraVolumes[2].projected.sources[0].configMap.name | string | `"moodle-duply"` |  |
 | backup-cronjob.extraVolumes[2].projected.sources[1].secret.name | string | `"moodle-backup-gpg-keys"` |  |
 | backup-cronjob.image.repository | string | `"ghcr.io/dbildungsplattform/moodle-tools"` |  |
 | backup-cronjob.image.tag | string | `"1.0.7"` |  |
@@ -193,6 +193,7 @@ The Chart can be deployed without any modification but it is advised to set own 
 | etherpadlite.volumes[0].secret.secretName | string | `"moodle"` |  |
 | global.kubectl_version | string | `"1.28.7"` |  |
 | global.moodlePlugins | object | `{"adaptable":{"enabled":false},"booking":{"enabled":false},"boost_magnific":{"enabled":false},"boost_union":{"enabled":false},"certificate":{"enabled":false},"choicegroup":{"enabled":false},"coursecertificate":{"enabled":false},"dash":{"enabled":false},"etherpadlite":{"enabled":false},"flexsections":{"enabled":false},"geogebra":{"enabled":false},"groupselect":{"enabled":false},"heartbeat":{"enabled":false},"hvp":{"enabled":false},"jitsi":{"enabled":false},"kaltura":{"enabled":false},"multitopic":{"enabled":false},"oidc":{"enabled":false},"pdfannotator":{"enabled":false},"reengagement":{"enabled":false},"remuiformat":{"enabled":false},"saml2":{"enabled":false},"sharing_cart":{"enabled":false},"skype":{"enabled":false},"snap":{"enabled":false},"staticpage":{"enabled":false},"tiles":{"enabled":false},"topcoll":{"enabled":false},"unilabel":{"enabled":false},"xp":{"enabled":false},"zoom":{"enabled":false}}` | All plugins are disabled by default. if enabled, the plugin is installed on image startup |
+| global.moodlePlugins.kaltura | object | `{"enabled":false}` | installs [Kaltura Video Package](https://moodle.org/plugins/view.php?id=447) |
 | global.storageClass | string | `"nfs-client"` | Default storage class, should support ReadWriteMany |
 | mariadb.auth.database | string | `"moodle"` |  |
 | mariadb.auth.existingSecret | string | `"moodle"` |  |

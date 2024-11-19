@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: moodle-{{ include "moodlecronjob.job_name" . }}
+  name: {{ .Release.Name }}-{{ include "moodlecronjob.job_name" . }}
   namespace: {{ .Release.Namespace }}
 data:
   cronjob-script: |-

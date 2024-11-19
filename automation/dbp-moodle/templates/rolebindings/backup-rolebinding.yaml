@@ -2,13 +2,13 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: "moodle-backup-job"
+  name: "{{ .Release.Name }}-backup-job"
 subjects:
   - kind: ServiceAccount
-    name: "moodle-backup-job"
+    name: "{{ .Release.Name }}-backup-job"
     namespace: "{{ .Release.Namespace }}"
 roleRef:
   kind: Role
-  name: "moodle-backup-job"
+  name: "{{ .Release.Name }}-backup-job"
   apiGroup: rbac.authorization.k8s.io
 {{- end -}}
