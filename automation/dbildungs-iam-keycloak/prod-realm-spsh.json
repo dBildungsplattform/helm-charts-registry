@@ -927,7 +927,7 @@
         "description": "",
         "rootUrl": "${KC_ROOT_URL}",
         "adminUrl": "",
-        "baseUrl": "${KC_ROOT_URL}",
+        "baseUrl": "",
         "surrogateAuthRequired": false,
         "enabled": true,
         "alwaysDisplayInConsole": false,
@@ -1820,6 +1820,7 @@
     "loginTheme": "schulportal",
     "eventsEnabled": false,
     "eventsListeners": [
+      "metrics-listener",
       "jboss-logging"
     ],
     "enabledEventTypes": [],
