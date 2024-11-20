@@ -29,8 +29,6 @@ database:
 ldap:
   url: ldap://dbildungs-iam-ldap.spsh-xxx.svc.cluster.local
   bindDN: cn=admin,dc=schule-sh,dc=de
-  oeffentlicheSchulenDomain: schule-sh.de
-  ersatzschulenDomain: ersatzschule-sh.de
 
 auth:
   # existingSecret: Refers to a secret already present in the cluster, which is required.
@@ -50,9 +48,7 @@ auth:
   pi_admin_password: ''
   pi_user_resolver: ''
   pi_user_realm: ''
-  system_rename_waiting_time_in_seconds: ''
-  system_step_up_timeout_in_seconds: ''
-  system_step_up_timeout_enabled: ''
+  pi_rename_waiting_time: ''
   redis_password: ''
 
 backend:
@@ -177,3 +173,9 @@ autoscaling:
   minReplicas: 1
   maxReplicas: 5
   targetCPUUtilizationPercentage: 60
+
+serviceMonitor:
+  enabled: true
+  path: "/api/metrics"
+  interval: 30s
+  bearerToken: "test"
