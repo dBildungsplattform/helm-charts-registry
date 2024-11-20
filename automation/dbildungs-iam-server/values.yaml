@@ -50,9 +50,7 @@ auth:
   pi_admin_password: ''
   pi_user_resolver: ''
   pi_user_realm: ''
-  system_rename_waiting_time_in_seconds: ''
-  system_step_up_timeout_in_seconds: ''
-  system_step_up_timeout_enabled: ''
+  pi_rename_waiting_time: ''
   redis_password: ''
 
 backend:
@@ -132,7 +130,7 @@ backend:
 # Reference: https://github.com/bitnami/charts/tree/main/bitnami/redis-cluster
 redis-cluster:
   enabled: true
-  persistence:
+  persistence: 
     enabled: false
     size: 4Gi
   image:
@@ -161,7 +159,7 @@ redis-cluster:
   podLabels:
       app.kubernetes.io/component: server-redis
   commonLabels:
-    app.kubernetes.io/name: dbildungs-iam-server
+    app.kubernetes.io/name: dbildungs-iam-server 
   resources:
     limits:
       cpu: 300m
@@ -171,9 +169,12 @@ redis-cluster:
       memory: 128Mi
   metrics:
     enabled: true
-
+   
 autoscaling:
   enabled: false
   minReplicas: 1
   maxReplicas: 5
   targetCPUUtilizationPercentage: 60
+
+status:
+  url: 'https://status.dev.spsh.dbildungsplattform.de/'
