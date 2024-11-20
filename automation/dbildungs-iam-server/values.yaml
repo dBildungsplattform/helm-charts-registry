@@ -29,6 +29,8 @@ database:
 ldap:
   url: ldap://dbildungs-iam-ldap.spsh-xxx.svc.cluster.local
   bindDN: cn=admin,dc=schule-sh,dc=de
+  oeffentlicheSchulenDomain: schule-sh.de
+  ersatzschulenDomain: ersatzschule-sh.de
 
 auth:
   # existingSecret: Refers to a secret already present in the cluster, which is required.
@@ -124,28 +126,40 @@ backend:
       name: secret-volume
   extraVolumeMounts: []
 
-redis:
+
+# Reference: https://github.com/bitnami/charts/tree/main/bitnami/redis-cluster
+redis-cluster:
   enabled: true
+  persistence: 
+    enabled: false
+    size: 4Gi
   image:
     registry: docker.io
-    repository: bitnami/redis
-    tag: 7.4.1-debian-12-r2
-  replica:
-    replicaCount: 2
-  sentinel:
-    enabled: true
-  pdb: 
-    create: false
+    repository: bitnami/redis-cluster
+    tag: 7.4
+  existingSecret: dbildungs-iam-server-redis
+  cluster:
+      ## This is total number of nodes including the replicas. Meaning there will be 3 master and 3 replica
+      ## nodes (as replica count is set to 1 by default, there will be 1 replica per master node).
+      ## Hence, nodes = numberOfMasterNodes + numberOfMasterNodes * replicas
+      ## The number of master nodes should always be >= 3, otherwise cluster creation will fail
+      nodes: 6
+      # for staging and prod this could get increased
+      ## @param cluster.replicas Number of replicas for every master in the cluster
+      replicas: 1
   networkPolicy:
     enabled: false
+  pdb:
+    create: false
   serviceAccount:
     create: false
-  auth:  
-    existingSecret: dbildungs-iam-server-redis
+  usePassword: true
+  tls:
+    enabled: false
   podLabels:
-    app.kubernetes.io/component: server-redis
+      app.kubernetes.io/component: server-redis
   commonLabels:
-    app.kubernetes.io/name: dbildungs-iam-server
+    app.kubernetes.io/name: dbildungs-iam-server 
   resources:
     limits:
       cpu: 300m
@@ -153,7 +167,7 @@ redis:
     requests:
       cpu: 125m
       memory: 128Mi
-  metrics: #weiter einschränken (aus für dev )
+  metrics:
     enabled: true
    
 autoscaling:
