@@ -29,19 +29,6 @@ database:
 ldap:
   url: ldap://dbildungs-iam-ldap.spsh-xxx.svc.cluster.local
   bindDN: cn=admin,dc=schule-sh,dc=de
-  oeffentlicheSchulenDomain: schule-sh.de
-  ersatzschulenDomain: ersatzschule-sh.de
-
-itslearning:
-  enabled: false
-  endpoint: https://enterprise.itslintegrations.com/WCFServiceLibrary/ImsEnterpriseServicesPort.svc
-
-privacyidea:
-  url: https://privacyidea.dev.spsh.dbildungsplattform.de
-  renameWaitingTime: 5
-  realm: ucs_users
-  userResolver: ucs_users
-
 
 auth:
   # existingSecret: Refers to a secret already present in the cluster, which is required.
@@ -49,14 +36,19 @@ auth:
   secretName: dbildungs-iam-server
   keycloak_adminSecret: ''
   keycloak_clientSecret: ''
-  ldap_bind_dn: ''
   ldap_admin_password: ''
   secrets_json: ''
   frontend_sessionSecret: ''
+  itslearning_enabled: ''
+  itslearning_endpoint: ''
   itslearning_username: ''
   itslearning_password: ''
+  pi_base_url: ''
   pi_admin_user: ''
   pi_admin_password: ''
+  pi_user_resolver: ''
+  pi_user_realm: ''
+  pi_rename_waiting_time: ''
   redis_password: ''
 
 backend:
@@ -99,13 +91,7 @@ backend:
       path: '/health'
   dbseeding:
     enabled: true
-    command: [ "node", "dist/src/console/main.js", "db", "seed", "dev" ]
-  dbmigration:
-    enabled: true
-    command: [ "node", "dist/src/console/main.js", "db", "migration-apply" ]
-  keycloakdatamigration: 
-    enabled: true
-    command: [ "node", "dist/src/console/main.js", "keycloak", "update-clients", "dev" ]
+    command: ['node', 'dist/src/console/main.js', 'db', 'seed', 'dev', '']
   ingress:
     enabled: true
     ingressClassName: nginx
@@ -187,3 +173,32 @@ autoscaling:
   minReplicas: 1
   maxReplicas: 5
   targetCPUUtilizationPercentage: 60
+
+cronjobs:
+  enabled: true
+  image:
+    tag: latest
+    repository: ghcr.io/hpi-schul-cloud/cron-tools
+    pullPolicy: IfNotPresent
+  port: 5656
+  keycloakTokenUrl: '/realms/SPSH/protocol/openid-connect/token'
+  keycloakClientId: spsh-service
+  jwksFilePath: /keys/jwks.json
+  backendHostname: '{{ $.Values.frontendHostname }}'
+  scriptDir: scripts
+  jobs:
+    cron-trigger-1:
+      schedule: 20 0 * * *
+      endpoint: '/api/cron/kopers-lock'
+      httpMethod: 'PUT'
+      script: 'cron_trigger.sh'
+    cron-trigger-2:
+      schedule: 40 0 * * *
+      endpoint: '/api/cron/kontext-expired'
+      httpMethod: 'PUT'
+      script: 'cron_trigger.sh'
+    cron-trigger-3:
+      schedule: 50 0 * * *
+      endpoint: '/api/cron/person-without-org'
+      httpMethod: 'PUT'
+      script: 'cron_trigger.sh'
