@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: DBP-0000
+appVersion: sha-fc52f38
 dependencies:
 - condition: redis.enabled
   name: redis
@@ -8,4 +8,4 @@ dependencies:
 description: dBildungs-IAM-server
 name: dbildungs-iam-server
 type: application
-version: 0.0.0-dbp-0000-20241121-0922
+version: 0.0.1-20241121-0941
