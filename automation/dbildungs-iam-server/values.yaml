@@ -32,28 +32,32 @@ ldap:
   oeffentlicheSchulenDomain: schule-sh.de
   ersatzschulenDomain: ersatzschule-sh.de
 
+itslearning:
+  enabled: false
+  endpoint: https://enterprise.itslintegrations.com/WCFServiceLibrary/ImsEnterpriseServicesPort.svc
+
+privacyidea:
+  url: https://privacyidea.dev.spsh.dbildungsplattform.de
+  renameWaitingTime: 5
+  realm: ucs_users
+  userResolver: ucs_users
+
+
 auth:
   # existingSecret: Refers to a secret already present in the cluster, which is required.
   existingSecret: ''
   secretName: dbildungs-iam-server
   keycloak_adminSecret: ''
   keycloak_clientSecret: ''
+  ldap_bind_dn: ''
   ldap_admin_password: ''
   secrets_json: ''
   frontend_sessionSecret: ''
-  itslearning_enabled: ''
-  itslearning_endpoint: ''
   itslearning_username: ''
   itslearning_password: ''
-  pi_base_url: ''
   pi_admin_user: ''
   pi_admin_password: ''
-  pi_user_resolver: ''
-  pi_user_realm: ''
-  pi_rename_waiting_time: ''
   redis_password: ''
-  metrics_username: ''
-  metrics_password: ''
 
 backend:
   replicaCount: 1
@@ -72,8 +76,8 @@ backend:
       memory: 200Mi
   startupProbe:
     enabled: true
-    initialDelaySeconds: 10
-    periodSeconds: 10
+    initialDelaySeconds: 60
+    periodSeconds: 60
     failureThreshold: 5
     httpGet:
       scheme: 'HTTP'
@@ -95,7 +99,13 @@ backend:
       path: '/health'
   dbseeding:
     enabled: true
-    command: ['node', 'dist/src/console/main.js', 'db', 'seed', 'dev', '']
+    command: [ "node", "dist/src/console/main.js", "db", "seed", "dev" ]
+  dbmigration:
+    enabled: true
+    command: [ "node", "dist/src/console/main.js", "db", "migration-apply" ]
+  keycloakdatamigration: 
+    enabled: true
+    command: [ "node", "dist/src/console/main.js", "keycloak", "update-clients", "dev" ]
   ingress:
     enabled: true
     ingressClassName: nginx
@@ -132,7 +142,7 @@ backend:
 # Reference: https://github.com/bitnami/charts/tree/main/bitnami/redis-cluster
 redis-cluster:
   enabled: true
-  persistence:
+  persistence: 
     enabled: false
     size: 4Gi
   image:
@@ -161,7 +171,7 @@ redis-cluster:
   podLabels:
       app.kubernetes.io/component: server-redis
   commonLabels:
-    app.kubernetes.io/name: dbildungs-iam-server
+    app.kubernetes.io/name: dbildungs-iam-server 
   resources:
     limits:
       cpu: 300m
@@ -171,14 +181,9 @@ redis-cluster:
       memory: 128Mi
   metrics:
     enabled: true
-
+   
 autoscaling:
   enabled: false
   minReplicas: 1
   maxReplicas: 5
   targetCPUUtilizationPercentage: 60
-
-serviceMonitor:
-  enabled: true
-  path: "/api/metrics"
-  interval: 30s
