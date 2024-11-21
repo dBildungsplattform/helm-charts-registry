@@ -50,7 +50,9 @@ auth:
   pi_admin_password: ''
   pi_user_resolver: ''
   pi_user_realm: ''
-  pi_rename_waiting_time: ''
+  system_rename_waiting_time_in_seconds: ''
+  system_step_up_timeout_in_seconds: ''
+  system_step_up_timeout_enabled: ''
   redis_password: ''
 
 backend:
@@ -175,8 +177,3 @@ autoscaling:
   minReplicas: 1
   maxReplicas: 5
   targetCPUUtilizationPercentage: 60
-
-serviceMonitor:
-  enabled: true
-  path: "/api/metrics"
-  interval: 30s
