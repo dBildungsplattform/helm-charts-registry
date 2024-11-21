@@ -50,7 +50,9 @@ auth:
   pi_admin_password: ''
   pi_user_resolver: ''
   pi_user_realm: ''
-  pi_rename_waiting_time: ''
+  system_rename_waiting_time_in_seconds: ''
+  system_step_up_timeout_in_seconds: ''
+  system_step_up_timeout_enabled: ''
   redis_password: ''
 
 backend:
@@ -130,14 +132,14 @@ backend:
 # Reference: https://github.com/bitnami/charts/tree/main/bitnami/redis-cluster
 redis-cluster:
   enabled: true
-  persistence: 
+  persistence:
     enabled: false
     size: 4Gi
   image:
     registry: docker.io
     repository: bitnami/redis-cluster
     tag: 7.4
-  existingSecret: dbildungs-iam-server-redis
+  existingSecret: ''
   cluster:
       ## This is total number of nodes including the replicas. Meaning there will be 3 master and 3 replica
       ## nodes (as replica count is set to 1 by default, there will be 1 replica per master node).
@@ -159,7 +161,7 @@ redis-cluster:
   podLabels:
       app.kubernetes.io/component: server-redis
   commonLabels:
-    app.kubernetes.io/name: dbildungs-iam-server 
+    app.kubernetes.io/name: dbildungs-iam-server
   resources:
     limits:
       cpu: 300m
@@ -169,7 +171,7 @@ redis-cluster:
       memory: 128Mi
   metrics:
     enabled: true
-   
+
 autoscaling:
   enabled: false
   minReplicas: 1
