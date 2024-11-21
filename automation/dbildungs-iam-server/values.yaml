@@ -52,6 +52,8 @@ auth:
   pi_user_realm: ''
   pi_rename_waiting_time: ''
   redis_password: ''
+  metrics_username: ''
+  metrics_password: ''
 
 backend:
   replicaCount: 1
@@ -112,6 +114,8 @@ backend:
       http: 80
   serviceMonitor:
     enabled: true
+    path: "/metrics"
+    interval: 30s
     endpoints:
       - port: 'web'
   extraEnvVars: []
@@ -136,14 +140,14 @@ redis:
     replicaCount: 1
   sentinel:
     enabled: true
-  pdb: 
+  pdb:
     create: false
   networkPolicy:
     enabled: false
   serviceAccount:
     create: false
-  auth:  
-    existingSecret: '' 
+  auth:
+    existingSecret: ''
   podLabels:
     app.kubernetes.io/component: server-redis
   commonLabels:
@@ -157,7 +161,7 @@ redis:
       memory: 128Mi
   metrics:
     enabled: true
-   
+
 autoscaling:
   enabled: false
   minReplicas: 1
