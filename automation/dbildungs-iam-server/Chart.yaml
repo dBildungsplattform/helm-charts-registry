@@ -1,11 +1,11 @@
 apiVersion: v2
-appVersion: SPSH-941
+appVersion: spsh-1396
 dependencies:
-- condition: redis-cluster.enabled
-  name: redis-cluster
+- condition: redis.enabled
+  name: redis
   repository: https://charts.bitnami.com/bitnami
-  version: 11.0.6
+  version: 20.3.0
 description: dBildungs-IAM-server
 name: dbildungs-iam-server
 type: application
-version: 0.0.0-spsh-941-20241121-0851
+version: 0.0.0-spsh-1396-20241121-0852
