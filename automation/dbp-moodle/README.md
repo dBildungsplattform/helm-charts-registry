@@ -104,13 +104,10 @@ The Chart can be deployed without any modification but it is advised to set own 
 | dbpMoodle.backup.s3_certificate_secret.key | string | `"certificate.crt"` | Path where the certificate is mounted |
 | dbpMoodle.backup.secrets | object | `{"existingSecret":"","s3_access_key":"","s3_access_secret":"","s3_endpoint_url":""}` | Either provide an existing secret, or set each secret value here. If both are set the existingSecret is used |
 | dbpMoodle.backup.secrets.existingSecret | string | `""` | Existing secret for s3 endpoint |
-| dbpMoodle.external_pvc.accessModes[0] | string | `"ReadWriteMany"` |  |
-| dbpMoodle.external_pvc.annotations."helm.sh/resource-policy" | string | `"keep"` |  |
-| dbpMoodle.external_pvc.enabled | bool | `true` |  |
-| dbpMoodle.external_pvc.name | string | `"moodle-data"` |  |
-| dbpMoodle.external_pvc.size | string | `"8Gi"` |  |
-| dbpMoodle.external_pvc.storage_class | string | `"nfs-client"` |  |
-| dbpMoodle.hpa | object | `{"average_cpu_utilization":50,"deployment_name_ref":"moodle","enabled":false,"max_replicas":4,"min_replicas":1,"scaledown_cooldown":60,"scaledown_value":25,"scaleup_cooldown":15,"scaleup_value":50}` | Horizontal pod autoscaling values |
+| dbpMoodle.hpa | object | `{"deployment_name_ref":"moodle","enabled":false,"max_replicas":4,"min_replicas":1,"scale_down_stabilization_window_seconds":0,"scale_up_stabilization_window_seconds":0,"scaledown_cooldown":60,"scaledown_value":25,"scaleup_cooldown":15,"scaleup_value":50,"target_average_cpu_utilization":50}` | Horizontal pod autoscaling values |
+| dbpMoodle.hpa.deployment_name_ref | string | `"moodle"` | The deployment to scale |
+| dbpMoodle.hpa.max_replicas | int | `4` | Maximum replicas of deployment |
+| dbpMoodle.hpa.min_replicas | int | `1` | Minimum replicas of deployment |
 | dbpMoodle.hpa.scaledown_cooldown | int | `60` | How many seconds to wait between downscaling adjustments |
 | dbpMoodle.hpa.scaledown_value | int | `25` | The max amount in percent to scale down in one step per cooldown period |
 | dbpMoodle.hpa.scaleup_cooldown | int | `15` | How many seconds to wait between upscaling adjustments |
@@ -130,7 +127,7 @@ The Chart can be deployed without any modification but it is advised to set own 
 | dbpMoodle.moodleUpdatePreparationJob | object | `{"affinity":{},"enabled":false,"image":"moodle-tools","repository":"ghcr.io/dbildungsplattform","resources":{},"tag":"1.0.8","tolerations":[]}` | A preperation job which disables the php-cronjob, scales down the deployment and creates a backup if dbpMoodle.backup.enabled=true |
 | dbpMoodle.moodleUpdatePreparationJob.repository | string | `"ghcr.io/dbildungsplattform"` | Which kubectl image to use |
 | dbpMoodle.moodlecronjob | object | `{"rules":[{"apiGroups":[""],"resources":["pods","pods/exec"],"verbs":["get","list","create","watch"]}],"wait_timeout":"15m"}` | Configuration for the moodle-cronjob which runs moodles cron.php. This is required since moodle does not run as root |
-| dbpMoodle.name | string | `"infra"` |  |
+| dbpMoodle.phpConfig | object | `{"additional":"","debug":false,"existingConfig":"","extendedLogging":false}` | These settings affect the config.php of the moodle container |
 | dbpMoodle.phpConfig.additional | string | `""` | Any additional text to be included into the config.php |
 | dbpMoodle.phpConfig.debug | bool | `false` | Moodle debugging is not safe for production |
 | dbpMoodle.phpConfig.existingConfig | string | `""` | Provide an existing secret containing the config.php instead of generating it from chart -- Remember to adjust moodle.extraVolumes & moodle.extraVolumeMounts when setting this. -- Secret key is by default expected to be config.php |
@@ -192,8 +189,37 @@ The Chart can be deployed without any modification but it is advised to set own 
 | etherpadlite.volumes[0].secret.items[0].key | string | `"etherpad-api-key"` |  |
 | etherpadlite.volumes[0].secret.items[0].path | string | `"APIKEY.txt"` |  |
 | etherpadlite.volumes[0].secret.secretName | string | `"moodle"` |  |
-| global.kubectl_version | string | `"1.28.7"` |  |
-| global.moodlePlugins | object | `{"adaptable":{"enabled":false},"booking":{"enabled":false},"boost_magnific":{"enabled":false},"boost_union":{"enabled":false},"certificate":{"enabled":false},"choicegroup":{"enabled":false},"coursecertificate":{"enabled":false},"dash":{"enabled":false},"etherpadlite":{"enabled":false},"flexsections":{"enabled":false},"geogebra":{"enabled":false},"groupselect":{"enabled":false},"heartbeat":{"enabled":false},"hvp":{"enabled":false},"jitsi":{"enabled":false},"kaltura":{"enabled":false},"multitopic":{"enabled":false},"oidc":{"enabled":false},"pdfannotator":{"enabled":false},"reengagement":{"enabled":false},"remuiformat":{"enabled":false},"saml2":{"enabled":false},"sharing_cart":{"enabled":false},"skype":{"enabled":false},"snap":{"enabled":false},"staticpage":{"enabled":false},"tiles":{"enabled":false},"topcoll":{"enabled":false},"unilabel":{"enabled":false},"xp":{"enabled":false},"zoom":{"enabled":false}}` | All plugins are disabled by default. if enabled, the plugin is installed on image startup |
+| global.moodlePlugins | object | `{"adaptable":{"enabled":false},"booking":{"enabled":false},"boost_magnific":{"enabled":false},"boost_union":{"enabled":false},"choicegroup":{"enabled":false},"coursecertificate":{"enabled":false},"dash":{"enabled":false},"etherpadlite":{"enabled":false},"flexsections":{"enabled":false},"geogebra":{"enabled":false},"groupselect":{"enabled":false},"heartbeat":{"enabled":false},"hvp":{"enabled":false},"jitsi":{"enabled":false},"kaltura":{"enabled":false},"multitopic":{"enabled":false},"oidc":{"enabled":false},"pdfannotator":{"enabled":false},"reengagement":{"enabled":false},"remuiformat":{"enabled":false},"saml2":{"enabled":false},"sharing_cart":{"enabled":false},"skype":{"enabled":false},"snap":{"enabled":false},"staticpage":{"enabled":false},"tiles":{"enabled":false},"topcoll":{"enabled":false},"unilabel":{"enabled":false},"xp":{"enabled":false},"zoom":{"enabled":false}}` | Moodle Plugins that are enabled will be installed on container startup -- If a plugin is changed from enabled to disabled, or vice versa, with an upgrade, the plugin will be installed/ uninstalled to match the new state |
+| global.moodlePlugins.adaptable | object | `{"enabled":false}` | [Adaptable](https://moodle.org/plugins/theme_adaptable) |
+| global.moodlePlugins.booking | object | `{"enabled":false}` | [Booking](https://moodle.org/plugins/mod_booking) |
+| global.moodlePlugins.boost_magnific | object | `{"enabled":false}` | [Boost Magnific](https://moodle.org/plugins/theme_boost_magnific) |
+| global.moodlePlugins.boost_union | object | `{"enabled":false}` | [Boost Union](https://moodle.org/plugins/theme_boost_union) |
+| global.moodlePlugins.choicegroup | object | `{"enabled":false}` | [Group choice](https://moodle.org/plugins/mod_choicegroup) |
+| global.moodlePlugins.coursecertificate | object | `{"enabled":false}` | [Workplace course certificate](https://moodle.org/plugins/mod_coursecertificate) |
+| global.moodlePlugins.dash | object | `{"enabled":false}` | [Dash](https://moodle.org/plugins/block_dash) |
+| global.moodlePlugins.etherpadlite | object | `{"enabled":false}` | [Etherpad Lite](https://moodle.org/plugins/mod_etherpadlite) |
+| global.moodlePlugins.flexsections | object | `{"enabled":false}` | [Flexible sections format](https://moodle.org/plugins/format_flexsections) |
+| global.moodlePlugins.geogebra | object | `{"enabled":false}` | [GeoGebra](https://moodle.org/plugins/mod_geogebra) |
+| global.moodlePlugins.groupselect | object | `{"enabled":false}` | [Group self-selection](https://moodle.org/plugins/mod_groupselect) |
+| global.moodlePlugins.heartbeat | object | `{"enabled":false}` | [Heartbeat check](https://moodle.org/plugins/tool_heartbeat) |
+| global.moodlePlugins.hvp | object | `{"enabled":false}` | [Interactive Content – H5P](https://moodle.org/plugins/mod_hvp) |
+| global.moodlePlugins.jitsi | object | `{"enabled":false}` | [Jitsi](https://moodle.org/plugins/mod_jitsi) |
+| global.moodlePlugins.kaltura | object | `{"enabled":false}` | [Kaltura Video Package](https://moodle.org/plugins/view.php?id=447) |
+| global.moodlePlugins.multitopic | object | `{"enabled":false}` | [Multitopic format](https://moodle.org/plugins/format_multitopic) |
+| global.moodlePlugins.oidc | object | `{"enabled":false}` | [OpenID Connect](https://moodle.org/plugins/auth_oidc) |
+| global.moodlePlugins.pdfannotator | object | `{"enabled":false}` | [PDF Annotation](https://moodle.org/plugins/mod_pdfannotator) |
+| global.moodlePlugins.reengagement | object | `{"enabled":false}` | [Reengagement](https://moodle.org/plugins/mod_reengagement) |
+| global.moodlePlugins.remuiformat | object | `{"enabled":false}` | [Edwiser Course Formats](https://moodle.org/plugins/format_remuiformat) |
+| global.moodlePlugins.saml2 | object | `{"enabled":false}` | [SAML2 Single sign on](https://moodle.org/plugins/auth_saml2) |
+| global.moodlePlugins.sharing_cart | object | `{"enabled":false}` | [Sharing Cart](https://moodle.org/plugins/block_sharing_cart) |
+| global.moodlePlugins.skype | object | `{"enabled":false}` | [Skype](https://moodle.org/plugins/mod_skype) |
+| global.moodlePlugins.snap | object | `{"enabled":false}` | [Snap](https://moodle.org/plugins/theme_snap) |
+| global.moodlePlugins.staticpage | object | `{"enabled":false}` | [Static Pages](https://moodle.org/plugins/local_staticpage) |
+| global.moodlePlugins.tiles | object | `{"enabled":false}` | [Tiles format](https://moodle.org/plugins/format_tiles) |
+| global.moodlePlugins.topcoll | object | `{"enabled":false}` | [Collapsed Topics](https://moodle.org/plugins/format_topcoll) |
+| global.moodlePlugins.unilabel | object | `{"enabled":false}` | [Unilabel](https://moodle.org/plugins/mod_unilabel) |
+| global.moodlePlugins.xp | object | `{"enabled":false}` | [Level Up XP - Gamification](https://moodle.org/plugins/block_xp) |
+| global.moodlePlugins.zoom | object | `{"enabled":false}` | [Zoom meeting](https://moodle.org/plugins/mod_zoom) |
 | global.storageClass | string | `"nfs-client"` | Default storage class, should support ReadWriteMany |
 | mariadb.auth.database | string | `"moodle"` |  |
 | mariadb.auth.existingSecret | string | `"moodle"` |  |
