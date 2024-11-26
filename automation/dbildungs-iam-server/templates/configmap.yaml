@@ -18,3 +18,9 @@ data:
   BACKEND_HOSTNAME: "{{ .Values.backendHostname }}"
   LDAP_URL: '{{ .Values.ldap.url | replace "spsh-xxx" .Release.Namespace }}'
   LDAP_BIND_DN: "{{ .Values.ldap.bindDN }}"
+  LDAP_OEFFENTLICHE_SCHULEN_DOMAIN: "{{ .Values.ldap.oeffentlicheSchulenDomain }}"
+  LDAP_ERSATZSCHULEN_DOMAIN: "{{ .Values.ldap.ersatzschulenDomain }}"
+  STATUS_REDIRECT_URL: "{{ .Values.status.url }}"
+  SYSTEM_RENAME_WAITING_TIME_IN_SECONDS: "{{ .Values.backend.env.renameWaitingTimeInSeconds }}"
+  SYSTEM_STEP_UP_TIMEOUT_ENABLED: "{{ .Values.backend.env.stepUpTimeoutEnabled }}"
+  SYSTEM_STEP_UP_TIMEOUT_IN_SECONDS: "{{ .Values.backend.env.stepUpTimeoutInSeconds }}"
