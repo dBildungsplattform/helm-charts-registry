@@ -61,10 +61,11 @@ containerSecurityContext:
 
 resources:
   limits:
-    memory: "2Gi"
+    memory: "1Gi"
+    cpu: "500m"
   requests:
     memory: "1Gi"
-    cpu: "2"
+    cpu: "150m"
 
 startupProbe:
   enabled: true
@@ -110,10 +111,10 @@ service:
     http: 80
 
 autoscaling:
-  enabled: true
-  minReplicas: 2
+  enabled: false
+  minReplicas: 1
   maxReplicas: 5
-  targetCPUUtilizationPercentage: 80
+  targetCPUUtilizationPercentage: 60
 
 status:
   url: "https://status.dev.spsh.dbildungsplattform.de/"
