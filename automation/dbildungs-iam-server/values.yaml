@@ -32,27 +32,31 @@ ldap:
   oeffentlicheSchulenDomain: schule-sh.de
   ersatzschulenDomain: ersatzschule-sh.de
 
+itslearning:
+  enabled: false
+  endpoint: https://enterprise.itslintegrations.com/WCFServiceLibrary/ImsEnterpriseServicesPort.svc
+
+privacyidea:
+  url: https://privacyidea.dev.spsh.dbildungsplattform.de
+  renameWaitingTime: 5
+  realm: ucs_users
+  userResolver: ucs_users
+
+
 auth:
   # existingSecret: Refers to a secret already present in the cluster, which is required.
   existingSecret: ''
   secretName: dbildungs-iam-server
   keycloak_adminSecret: ''
   keycloak_clientSecret: ''
+  ldap_bind_dn: ''
   ldap_admin_password: ''
   secrets_json: ''
   frontend_sessionSecret: ''
-  itslearning_enabled: ''
-  itslearning_endpoint: ''
   itslearning_username: ''
   itslearning_password: ''
-  pi_base_url: ''
   pi_admin_user: ''
   pi_admin_password: ''
-  pi_user_resolver: ''
-  pi_user_realm: ''
-  system_rename_waiting_time_in_seconds: ''
-  system_step_up_timeout_in_seconds: ''
-  system_step_up_timeout_enabled: ''
   redis_password: ''
 
 backend:
@@ -72,8 +76,8 @@ backend:
       memory: 200Mi
   startupProbe:
     enabled: true
-    initialDelaySeconds: 10
-    periodSeconds: 10
+    initialDelaySeconds: 60
+    periodSeconds: 60
     failureThreshold: 5
     httpGet:
       scheme: 'HTTP'
@@ -95,7 +99,13 @@ backend:
       path: '/health'
   dbseeding:
     enabled: true
-    command: ['node', 'dist/src/console/main.js', 'db', 'seed', 'dev', '']
+    command: [ "node", "dist/src/console/main.js", "db", "seed", "dev" ]
+  dbmigration:
+    enabled: true
+    command: [ "node", "dist/src/console/main.js", "db", "migration-apply" ]
+  keycloakdatamigration: 
+    enabled: true
+    command: [ "node", "dist/src/console/main.js", "keycloak", "update-clients", "dev" ]
   ingress:
     enabled: true
     ingressClassName: nginx
@@ -128,28 +138,40 @@ backend:
       name: secret-volume
   extraVolumeMounts: []
 
-redis:
+
+# Reference: https://github.com/bitnami/charts/tree/main/bitnami/redis-cluster
+redis-cluster:
   enabled: true
+  persistence: 
+    enabled: false
+    size: 4Gi
   image:
     registry: docker.io
-    repository: bitnami/redis
-    tag: 7.4.1-debian-12-r2
-  replica:
-    replicaCount: 1
-  sentinel:
-    enabled: true
-  pdb:
-    create: false
+    repository: bitnami/redis-cluster
+    tag: 7.4
+  existingSecret: dbildungs-iam-server-redis
+  cluster:
+      ## This is total number of nodes including the replicas. Meaning there will be 3 master and 3 replica
+      ## nodes (as replica count is set to 1 by default, there will be 1 replica per master node).
+      ## Hence, nodes = numberOfMasterNodes + numberOfMasterNodes * replicas
+      ## The number of master nodes should always be >= 3, otherwise cluster creation will fail
+      nodes: 6
+      # for staging and prod this could get increased
+      ## @param cluster.replicas Number of replicas for every master in the cluster
+      replicas: 1
   networkPolicy:
     enabled: false
+  pdb:
+    create: false
   serviceAccount:
     create: false
-  auth:
-    existingSecret: ''
+  usePassword: true
+  tls:
+    enabled: false
   podLabels:
-    app.kubernetes.io/component: server-redis
+      app.kubernetes.io/component: server-redis
   commonLabels:
-    app.kubernetes.io/name: dbildungs-iam-server
+    app.kubernetes.io/name: dbildungs-iam-server 
   resources:
     limits:
       cpu: 300m
@@ -159,46 +181,9 @@ redis:
       memory: 128Mi
   metrics:
     enabled: true
-
+   
 autoscaling:
   enabled: false
   minReplicas: 1
   maxReplicas: 5
   targetCPUUtilizationPercentage: 60
-
-status:
-  url: 'https://status.dev.spsh.dbildungsplattform.de/'
-
-cronjobs:
-  enabled: true
-  image:
-    tag: DBP-1083-latest
-    repository: ghcr.io/hpi-schul-cloud/cron-tools
-    pullPolicy: IfNotPresent
-  port: 5656
-  keycloakTokenUrl: '/realms/SPSH/protocol/openid-connect/token'
-  keycloakClientId: spsh-service
-  jwksFilePath: /keys/jwks.json
-  backendHostname: '{{ $.Values.frontendHostname }}'
-  scriptDir: scripts
-  jobs:
-    cron-trigger-1:
-      schedule: 20 0 * * *
-      endpoint: '/api/cron/kopers-lock'
-      httpMethod: 'PUT'
-      script: 'cron_trigger.sh'
-    cron-trigger-2:
-      schedule: 40 0 * * *
-      endpoint: '/api/cron/kontext-expired'
-      httpMethod: 'PUT'
-      script: 'cron_trigger.sh'
-    cron-trigger-3:
-      schedule: 50 0 * * *
-      endpoint: '/api/cron/person-without-org'
-      httpMethod: 'PUT'
-      script: 'cron_trigger.sh'
-    cron-trigger-4:
-      schedule: 10 0 * * *
-      endpoint: '/api/cron/unlock'
-      httpMethod: 'PUT'
-      script: 'cron_trigger.sh'

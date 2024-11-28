@@ -1,11 +1,11 @@
 apiVersion: v2
-appVersion: 1.0.1
+appVersion: DBP-1066
 dependencies:
-- condition: redis.enabled
-  name: redis
+- condition: redis-cluster.enabled
+  name: redis-cluster
   repository: https://charts.bitnami.com/bitnami
-  version: 20.3.0
+  version: 11.0.6
 description: dBildungs-IAM-server
 name: dbildungs-iam-server
 type: application
-version: 1.0.1
+version: 0.0.0-dbp-1066-20241128-1600
