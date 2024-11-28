@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: SPSH-1327
+appVersion: SPSH-1520
 dependencies:
 - condition: redis.enabled
   name: redis
@@ -8,4 +8,4 @@ dependencies:
 description: dBildungs-IAM-server
 name: dbildungs-iam-server
 type: application
-version: 0.0.0-spsh-1327-20241128-1354
+version: 0.0.0-spsh-1520-20241128-1356
