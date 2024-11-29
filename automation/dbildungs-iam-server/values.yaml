@@ -32,11 +32,6 @@ ldap:
   oeffentlicheSchulenDomain: schule-sh.de
   ersatzschulenDomain: ersatzschule-sh.de
 
-itslearning:
-  root: sh
-  rootOeffentlich: oeffentlich
-  rootErsatz: ersatz
-
 auth:
   # existingSecret: Refers to a secret already present in the cluster, which is required.
   existingSecret: ''
@@ -55,7 +50,16 @@ auth:
   pi_admin_password: ''
   pi_user_resolver: ''
   pi_user_realm: ''
+  system_rename_waiting_time_in_seconds: ''
+  system_step_up_timeout_in_seconds: ''
+  system_step_up_timeout_enabled: ''
   redis_password: ''
+  vidis_base_url: ''
+  vidis_username: ''
+  vidis_password: ''
+  vidis_region_name: ''
+  vidis_keycloak_group: ''
+  vidis_keycloak_role: ''
 
 backend:
   replicaCount: 1
@@ -116,8 +120,6 @@ backend:
       http: 80
   serviceMonitor:
     enabled: true
-    path: "/metrics"
-    interval: 30m
     endpoints:
       - port: 'web'
   extraEnvVars: []
@@ -131,10 +133,6 @@ backend:
       subPath: secrets-json
       name: secret-volume
   extraVolumeMounts: []
-  env:
-    renameWaitingTimeInSeconds: 3
-    stepUpTimeoutInSeconds: 900
-    stepUpTimeoutEnabled: 'false'
 
 redis:
   enabled: true
