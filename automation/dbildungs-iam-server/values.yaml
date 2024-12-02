@@ -32,11 +32,6 @@ ldap:
   oeffentlicheSchulenDomain: schule-sh.de
   ersatzschulenDomain: ersatzschule-sh.de
 
-itslearning:
-  root: sh
-  rootOeffentlich: oeffentlich
-  rootErsatz: ersatz
-
 auth:
   # existingSecret: Refers to a secret already present in the cluster, which is required.
   existingSecret: ''
@@ -59,6 +54,12 @@ auth:
   system_step_up_timeout_in_seconds: ''
   system_step_up_timeout_enabled: ''
   redis_password: ''
+  vidis_base_url: ''
+  vidis_username: ''
+  vidis_password: ''
+  vidis_region_name: ''
+  vidis_keycloak_group: ''
+  vidis_keycloak_role: ''
 
 backend:
   replicaCount: 1
@@ -140,9 +141,12 @@ redis:
     repository: bitnami/redis
     tag: 7.4.1-debian-12-r2
   replica:
-    replicaCount: 1
+  # turn back
+    replicaCount: 3
   sentinel:
     enabled: true
+    masterService:
+      enabled: true
   pdb:
     create: false
   networkPolicy:
