@@ -33,3 +33,4 @@ spec:
             - name: {{ .Values.containerPorts.name }} 
               containerPort: {{ .Values.containerPorts.http }} 
               protocol: TCP
+      
