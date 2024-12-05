@@ -79,6 +79,9 @@ resources:
     memory: "1Gi"
     cpu: "150m"
 
+# should be about 4 times the cpu count
+threadPool: 16
+
 startupProbe:
   enabled: true
   httpGet:
@@ -128,7 +131,8 @@ keycloak:
   serviceMonitor:
     enabled: true
     path: "/metrics"
-    port: 'mgmt'
+    endpoints:
+      - port: 'mgmt'
 
 autoscaling:
   enabled: false
