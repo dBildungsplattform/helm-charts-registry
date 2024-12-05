@@ -11,7 +11,6 @@ image:
 restartPolicy: Always
 
 frontendHostname: ""
-frontend2ndHostname: "dbp.mcpovel.de"
 
 containerSecurityContext:
   enabled: true
@@ -34,8 +33,6 @@ resources:
     memory: 200Mi
 
 ingress:
-  # Only enable if 2nd host name is defined 
-  enabled2nd: true
   enabled: true
   ingressClassName: nginx
   path: /
