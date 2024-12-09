@@ -1,6 +1,11 @@
 apiVersion: v2
-appVersion: SPSH-1544
+appVersion: SPSH-1327
+dependencies:
+- condition: redis.enabled
+  name: redis
+  repository: https://charts.bitnami.com/bitnami
+  version: 20.3.0
 description: dBildungs-IAM-server
 name: dbildungs-iam-server
 type: application
-version: 0.0.0-spsh-1544-20241209-1350
+version: 0.0.0-spsh-1327-20241209-1357
