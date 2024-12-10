@@ -50,7 +50,7 @@ database:
   username: "dbildungs_iam_keycloak"
 
 realm:
-  name: dbildungs-iam-keycloak-realm
+  name: dbilduns-iam-keycloak-realm
   filepath: "dev-realm-spsh.json"
 
 restartPolicy: Always
@@ -78,6 +78,9 @@ resources:
   requests:
     memory: "1Gi"
     cpu: "150m"
+
+# should be about 4 times the cpu count
+threadPool: 16
 
 startupProbe:
   enabled: true
