@@ -86,9 +86,19 @@
               secretKeyRef:
                   name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
                   key: pi-user-realm
+          - name: PI_RENAME_WAITING_TIME
+            valueFrom:
+              secretKeyRef:
+                  name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
+                  key: pi-rename-waiting-time
           - name: REDIS_PASSWORD
             valueFrom:
               secretKeyRef:
                   name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
                   key: redis-password
+           - name: OX_PASSWORD
+             valueFrom:
+               secretKeyRef:
+                   name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
+                   key: ox-password
 {{- end}}
