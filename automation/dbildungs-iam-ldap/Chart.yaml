@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: DBP-1084
+appVersion: testbranch-1234
 dependencies:
 - condition: phpldapadmin.enabled
   name: phpldapadmin
@@ -16,4 +16,4 @@ keywords:
 - ldap
 - openldap
 name: dbildungs-iam-ldap
-version: 0.0.0-dbp-1084-20241210-0913
+version: 0.0.0-testbranch-1234-20241210-1458
