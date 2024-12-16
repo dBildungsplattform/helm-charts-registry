@@ -5,9 +5,9 @@ on:
     branches:
       # - main
  
-concurrency: 
-  group: release-helm-chart
-  cancel-in-progress: false
+# concurrency: 
+#   group: release-helm-chart
+#   cancel-in-progress: false
 
 jobs:
   release:
@@ -44,6 +44,7 @@ jobs:
         uses: helm/chart-releaser-action@a917fd15b20e8b64b94d9158ad54cd6345335584   #v1.6.0
         with:
           charts_dir: automation
+          skip_existing: true
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
