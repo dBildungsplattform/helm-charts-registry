@@ -33,6 +33,7 @@ ldap:
   bindDN: cn=admin,dc=schule-sh,dc=de
   oeffentlicheSchulenDomain: schule-sh.de
   ersatzschulenDomain: ersatzschule-sh.de
+  base_dn: dc=schule-sh,dc=de
 
 itslearning:
   root: sh
@@ -77,8 +78,6 @@ ox:
 
 backend:
   replicaCount: 1
-  maxUnavailable: '50%'
-  maxSurge: '50%'
   image:
     repository: ghcr.io/dbildungsplattform/dbildungs-iam-server
     tag: ''
@@ -167,7 +166,7 @@ autoscaling:
 
 podDisruptionBudget:
   enabled: true
-  minAvailable: "60%"
+  minAvailable: "80%"
 
 status:
   url: 'https://status.dev.spsh.dbildungsplattform.de/'
@@ -203,6 +202,11 @@ cronjobs:
     cron-trigger-4:
       schedule: 10 0 * * *
       endpoint: '/api/cron/unlock'
+      httpMethod: 'PUT'
+      script: 'cron_trigger.sh'
+    cron-trigger-5:
+      schedule: 30 0 * * *
+      endpoint: '/api/cron/vidis-angebote'
       httpMethod: 'PUT'
       script: 'cron_trigger.sh'
 
