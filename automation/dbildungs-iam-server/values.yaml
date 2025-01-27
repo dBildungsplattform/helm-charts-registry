@@ -3,8 +3,9 @@ fullnameOverride: ''
 namespaceOverride: ''
 
 backendHostname: ''
-keycloakHostname: ''
+keycloakHostname: 'http://dbildungs-iam-keycloak'
 keycloak2ndHostname: ""
+keycloakExternalHostname: 'spsh-xxx-keycloak.dev.spsh.dbildungsplattform.de'
 backend2ndHostname: ""
 
 containerSecurityContext:
@@ -30,14 +31,27 @@ database:
 
 ldap:
   url: ldap://dbildungs-iam-ldap.spsh-xxx.svc.cluster.local
-  bindDN: cn=admin,dc=schule-sh,dc=de
   oeffentlicheSchulenDomain: schule-sh.de
   ersatzschulenDomain: ersatzschule-sh.de
+  base_dn: dc=schule-sh,dc=de
 
 itslearning:
+  enabled: false
+  endpoint: https://enterprise.itslintegrations.com/WCFServiceLibrary/ImsEnterpriseServicesPort.svc
   root: sh
   rootOeffentlich: oeffentlich
   rootErsatz: ersatz
+
+privacyidea:
+  url: https://privacyidea.dev.spsh.dbildungsplattform.de
+  renameWaitingTime: 5
+  realm: ucs_users
+  userResolver: ucs_users
+
+system:
+  rename_waiting_time_in_seconds: 2
+  step_up_timeout_in_seconds: 900
+  step_up_timeout_enabled: false
 
 auth:
   # existingSecret: Refers to a secret already present in the cluster, which is required.
@@ -45,19 +59,37 @@ auth:
   secretName: dbildungs-iam-server
   keycloak_adminSecret: ''
   keycloak_clientSecret: ''
+  service_account_private_jwks: ''
+  frontend_sessionSecret: ''
+  ldap_bind_dn: ''
   ldap_admin_password: ''
   secrets_json: ''
   frontend_sessionSecret: ''
-  itslearning_enabled: ''
-  itslearning_endpoint: ''
   itslearning_username: ''
   itslearning_password: ''
-  pi_base_url: ''
   pi_admin_user: ''
   pi_admin_password: ''
-  pi_user_resolver: ''
-  pi_user_realm: ''
   redis_password: ''
+  vidis_username: ''
+  vidis_password: ''
+  import_passphrase_secret: ''
+  import_passphrase_salt: ''
+  ox_password: ''
+  basic_auth_password: ''
+  redis_password: ''
+
+ox:
+  enabled: false
+  username: 'oxadmin'
+  endpoint: 'https://webmail.example.com'
+  contextId: '10'
+  contextName: '10'
+
+vidis: 
+  url: 'https://service-stage.vidis.schule'
+  regionName: 'test-region'
+  keycloakGroup: 'VIDIS-service'
+  keycloakRole: 'VIDIS-user'
 
 backend:
   replicaCount: 1
@@ -99,11 +131,18 @@ backend:
       path: '/health'
   dbseeding:
     enabled: true
-    command: ['node', 'dist/src/console/main.js', 'db', 'seed', 'dev', '']
+    command: [ "node", "dist/src/console/main.js", "db", "seed", "dev" ]
+  dbmigration:
+    enabled: true
+    command: [ "node", "dist/src/console/main.js", "db", "migration-apply" ]
+  keycloakdatamigration: 
+    enabled: true
+    command: [ "node", "dist/src/console/main.js", "keycloak", "update-clients", "dev" ]
   ingress:
     # Only enable if 2nd host name is defined
     enabled2nd: false
     enabled: true
+    healthenabled: true
     ingressClassName: nginx
     pathType: Prefix
     portnumber: 80
@@ -139,6 +178,7 @@ backend:
     renameWaitingTimeInSeconds: 3
     stepUpTimeoutInSeconds: 900
     stepUpTimeoutEnabled: 'false'
+    maxOldSpaceSize: 3584
 
 autoscaling:
   enabled: false
@@ -156,8 +196,8 @@ status:
 cronjobs:
   enabled: true
   image:
-    tag: DBP-1083-latest
-    repository: ghcr.io/hpi-schul-cloud/cron-tools
+    tag: '1.1.0'
+    repository: docker.io/schulcloud/cron-tools
     pullPolicy: IfNotPresent
   port: 5656
   keycloakTokenUrl: '/realms/SPSH/protocol/openid-connect/token'
@@ -186,3 +226,12 @@ cronjobs:
       endpoint: '/api/cron/unlock'
       httpMethod: 'PUT'
       script: 'cron_trigger.sh'
+    cron-trigger-5:
+      schedule: 30 0 * * *
+      endpoint: '/api/cron/vidis-angebote'
+      httpMethod: 'PUT'
+      script: 'cron_trigger.sh'
+
+import:
+  csvFileMaxSizeInMB: 10
+  csvMaxNumberOfUsers: 2000
