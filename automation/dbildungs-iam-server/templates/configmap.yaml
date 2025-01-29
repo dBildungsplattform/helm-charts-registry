@@ -43,4 +43,3 @@ data:
   VIDIS_REGION_NAME: '{{ .Values.vidis.regionName }}'
   VIDIS_KEYCLOAK_GROUP: '{{ .Values.vidis.keycloakGroup }}'
   VIDIS_KEYCLOAK_ROLE: '{{ .Values.vidis.keycloakRole }}'
-  FEATURE_FLAG_BEFRISTUNG_BEARBEITEN: '{{ .Values.featureFlags.befristungBearbeiten }}'
