@@ -2,19 +2,19 @@ annotations:
   category: E-Learning
   images: |
     - name: apache-exporter
-      image: docker.io/bitnami/apache-exporter:1.0.7-debian-12-r9
+      image: docker.io/bitnami/apache-exporter:1.0.9-debian-12-r16
     - name: moodle
-      image: docker.io/bitnami/moodle:4.4.1-debian-12-r1
+      image: docker.io/bitnami/moodle:4.5.2-debian-12-r4
     - name: os-shell
-      image: docker.io/bitnami/os-shell:12-debian-12-r22
+      image: docker.io/bitnami/os-shell:12-debian-12-r39
   licenses: Apache-2.0
 apiVersion: v2
-appVersion: 4.4.1
+appVersion: 4.5.2
 dependencies:
 - condition: mariadb.enabled
   name: mariadb
   repository: oci://registry-1.docker.io/bitnamicharts
-  version: 18.x.x
+  version: 20.x.x
 - name: common
   repository: oci://registry-1.docker.io/bitnamicharts
   tags:
@@ -24,7 +24,7 @@ description: Moodle(TM) LMS is an open source online Learning Management System 
   used at universities, schools, and corporations. It is modular and highly adaptable
   to any type of online learning.
 home: https://bitnami.com
-icon: https://bitnami.com/assets/stacks/moodle/img/moodle-stack-220x234.png
+icon: https://dyltqmyl993wv.cloudfront.net/assets/stacks/moodle/img/moodle-stack-220x234.png
 keywords:
 - moodle
 - learning
@@ -35,4 +35,4 @@ maintainers:
 name: moodle
 sources:
 - https://github.com/bitnami/charts/tree/main/bitnami/moodle
-version: 22.2.7
+version: 25.1.4
