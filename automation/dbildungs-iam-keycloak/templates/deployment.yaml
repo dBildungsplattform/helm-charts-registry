@@ -38,6 +38,8 @@ spec:
             - "--hostname-backchannel-dynamic"
             - "true"
             - "--import-realm"
+            - "--http-enabled"
+            - "{{ default .Values.service.http.enabled false }}"
           securityContext: {{- omit .Values.containerSecurityContext "enabled" | toYaml | nindent 12 }}
           resources: {{- toYaml .Values.resources | nindent 12 }}
           ports:
