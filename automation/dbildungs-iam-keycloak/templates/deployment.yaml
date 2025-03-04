@@ -36,7 +36,7 @@ spec:
             - "--hostname"
             - "https://{{ tpl .Values.keycloakHostname . }}"
             - "--hostname-backchannel-dynamic"
-            - "false"
+            - "true"
             - "--import-realm"
           securityContext: {{- omit .Values.containerSecurityContext "enabled" | toYaml | nindent 12 }}
           resources: {{- toYaml .Values.resources | nindent 12 }}
@@ -52,8 +52,6 @@ spec:
           env:
             - name: JAVA_OPTS_APPEND
               value: "-Djgroups.dns.query={{ template "common.names.name" . }}-headless.{{ template "common.names.namespace" . }}.svc.cluster.local"
-            - name: KC_HTTP_ENABLED
-              value: "{{ default .Values.service.http.enabled false }}"
             - name: KC_HTTP_POOL_MAX_THREADS
               value: "{{ .Values.threadPool }}"
             - name: KEYCLOAK_ADMIN_PASSWORD
