@@ -46,6 +46,8 @@ dashboard:
   # when accessing via ambassador external url
   enable_ssl: false
 
+  apiURL: https://wazuh-api
+
   service:
     annotations: {}
     httpPort: 5601
@@ -208,9 +210,9 @@ wazuh:
       port: 55000
 
     registrationService:
-      type: loadBalancer
+      type: ClusterIP
       annotations: {}
-      port: 55000
+      port: 1515
 
     resources:
       limits:
