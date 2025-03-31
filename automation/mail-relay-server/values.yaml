@@ -12,7 +12,7 @@ exporterImage:
 service:
   type: ClusterIP
   port: 587
-  targetPort: 587
+  postfixPort: 587
   exporterPort: 9154
 
 env:

@@ -5,7 +5,7 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
+    - port: {{ .Values.service.postfixPort }}
       targetPort: {{ .Values.service.targetPort }}
       protocol: TCP
   selector:
