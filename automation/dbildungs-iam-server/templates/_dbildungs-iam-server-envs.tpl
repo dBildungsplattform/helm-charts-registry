@@ -30,17 +30,7 @@
   valueFrom:
     secretKeyRef:
         name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
-        key: service-account-private-jwks^
-- name: VIDIS_CLIENT_ID
-valueFrom:
-    secretKeyRef:
-        name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
-        key: vidis-client-id
-- name: VIDIS_CLIENT_SECRET
-valueFrom:
-    secretKeyRef:
-        name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
-        key: vidis-client-secret
+        key: service-account-private-jwks
 - name: FRONTEND_SESSION_SECRET
   valueFrom:
     secretKeyRef:
