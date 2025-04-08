@@ -177,6 +177,10 @@ dbpMoodle:
       - apiGroups: ["batch"]
         resources: ["cronjobs", "jobs"]
         verbs: ["get", "patch"]
+  ip:
+    # -- If allowed contains any values, it will block all other IPs
+    allowed: ''
+    blocked: ''
 
   # -- This restores moodle to the latest snapshot. Requires an existing s3 backup. ONLY USE FOR ROLLBACK
   restore:
@@ -204,7 +208,7 @@ dbpMoodle:
     rules:
       - apiGroups: ["apps"]
         resources: ["deployments/scale", "deployments"]
-        verbs: ["get", "list", "patch"]
+        verbs: ["get", "list", "scale", "patch"]
 
   # -- Configuration for the moodle-cronjob which runs moodles cron.php. This is required since moodle does not run as root
   moodlecronjob:
@@ -237,7 +241,7 @@ moodle:
     registry: ghcr.io
     repository: dbildungsplattform/moodle
     # -- The dbp-moodle image which is build for this helm chart
-    tag: "4.5.3-debian-12-r1-dbp2"
+    tag: "4.5.3-debian-12-r1-dbp1"
     pullPolicy: Always
     # -- Debug mode for more detailed moodle installation and log output
     debug: false
@@ -310,6 +314,8 @@ moodle:
       nginx.ingress.kubernetes.io/proxy-connect-timeout: "30s"
       nginx.ingress.kubernetes.io/proxy-read-timeout: "20s"
       nginx.ingress.kubernetes.io/proxy-body-size: "200M"
+      nginx.ingress.kubernetes.io/use-forwarded-headers: true
+      nginx.ingress.kubernetes.io/whitelist-source-range: "0.0.0.0/0"
   metrics:
     enabled: true
     service:
