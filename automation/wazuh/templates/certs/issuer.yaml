@@ -14,13 +14,6 @@ spec:
   isCA: true
   secretName: root-secret
   commonName: root-ca
-  subject:
-    organizations:
-      - Company
-    countries:
-      - US
-    localities:
-      - California
   privateKey:
     algorithm: RSA
     size: 2048

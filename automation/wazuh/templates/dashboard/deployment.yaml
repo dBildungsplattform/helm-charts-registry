@@ -70,18 +70,6 @@ spec:
             {{- toYaml .Values.dashboard.readinessProbe | nindent 12 }}
           */}}
           env:
-            - name: INDEXER_URL
-              value: "https://indexer:{{ .Values.indexer.service.httpPort }}"
-            - name: INDEXER_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  key: username
-                  name: {{ .Values.indexer.cred.existingSecret | default "indexer-cred" }}
-            - name: INDEXER_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  key: password
-                  name: {{ .Values.indexer.cred.existingSecret | default "indexer-cred" }}
             - name: DASHBOARD_USERNAME
               valueFrom:
                 secretKeyRef:
