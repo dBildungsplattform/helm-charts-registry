@@ -16,6 +16,13 @@ spec:
   isCA: false
 
   commonName: admin
+  subject:
+    organizations:
+      - Company
+    countries:
+      - DE
+    localities:
+      - Berlin
 
   issuerRef:
     name: {{ include "wazuh.fullname" . }}-ca-issuer
@@ -38,6 +45,13 @@ spec:
   isCA: false
 
   commonName: dashboard
+  subject:
+    organizations:
+      - Company
+    countries:
+      - DE
+    localities:
+      - Berlin
 
   issuerRef:
     name: {{ include "wazuh.fullname" . }}-ca-issuer
@@ -60,6 +74,13 @@ spec:
   isCA: false
 
   commonName: indexer
+  subject:
+    organizations:
+      - Company
+    countries:
+      - DE
+    localities:
+      - Berlin
 
   issuerRef:
     name: {{ include "wazuh.fullname" . }}-ca-issuer
@@ -82,6 +103,13 @@ spec:
   isCA: false
 
   commonName: filebeat
+  subject:
+    organizations:
+      - Company
+    countries:
+      - DE
+    localities:
+      - Berlin
 
   issuerRef:
     name: {{ include "wazuh.fullname" . }}-ca-issuer

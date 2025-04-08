@@ -14,6 +14,13 @@ spec:
   isCA: true
   secretName: root-secret
   commonName: root-ca
+  subject:
+    organizations:
+      - Company
+    countries:
+      - DE
+    localities:
+      - Berlin
   privateKey:
     algorithm: RSA
     size: 2048
