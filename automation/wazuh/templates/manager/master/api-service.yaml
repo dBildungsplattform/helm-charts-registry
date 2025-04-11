@@ -1,7 +1,6 @@
 apiVersion: v1
 kind: Service
 metadata:
-  # Name is only "wazuh" because of Certicates commonName
   name: wazuh-api
   labels:
     app: {{ include "wazuh.fullname" . }}-manager
@@ -12,7 +11,7 @@ spec:
   ports:
     - name: api
       port: {{ .Values.wazuh.master.apiService.port }}
-      targetPort: {{ .Values.wazuh.master.apiService.port }}
+      targetPort: {{ .Values.wazuh.master.apiService.targetPort }}
   selector:
     app: {{ include "wazuh.fullname" . }}-manager
     node-type: master

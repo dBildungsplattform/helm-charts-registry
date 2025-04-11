@@ -210,11 +210,13 @@ wazuh:
       type: ClusterIP
       annotations: {}
       port: 55000
+      targetPort: 55000
 
     registrationService:
       type: ClusterIP
       annotations: {}
       port: 1515
+      targetPort: 1515
 
     resources:
       limits:
