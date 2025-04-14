@@ -141,7 +141,6 @@ indexer:
           memory: 128Mi
       securityContext:
         privileged: true
-        allowPrivilegeEscalation: false
 
   config:
     opensearch: |-
