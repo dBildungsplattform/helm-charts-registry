@@ -62,6 +62,9 @@ spec:
             - 'sh'
             - '-c'
             - '/script.sh'
+          securityContext:
+            capabilities:
+              allowPrivilegeEscalation: false
           resources:
             {{- toYaml .Values.wazuh.initContainer.resources | nindent 12 }}
           volumeMounts:
@@ -83,6 +86,7 @@ spec:
           securityContext:
             capabilities:
               add: ["SYS_CHROOT"]
+              allowPrivilegeEscalation: false
           volumeMounts:
             # Wazuh config
             - mountPath: /wazuh-config-mount/etc/

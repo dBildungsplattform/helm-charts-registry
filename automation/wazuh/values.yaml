@@ -32,7 +32,9 @@ dashboard:
   # Will be implemented on Wazuh v5.0.0
   # readinessProbe: {}
 
-  securityContext: {}
+  securityContext:
+    capabilities:
+      allowPrivilegeEscalation: false
 
   networkPolicy:
     enabled: true
@@ -110,7 +112,9 @@ indexer:
   # Will be implemented on Wazuh v5.0.0
   # readinessProbe: {}
 
-  securityContext: {}
+  securityContext:
+    capabilities:
+      allowPrivilegeEscalation: false
 
   networkPolicy:
     enabled: true
@@ -126,7 +130,9 @@ indexer:
         requests:
           cpu: 50m
           memory: 128Mi
-      securityContext: {}
+      securityContext:
+        capabilities:
+          allowPrivilegeEscalation: false
     increaseTheVmMaxMapCount:
       resources:
         limits:
