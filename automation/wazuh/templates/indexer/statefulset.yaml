@@ -55,6 +55,7 @@ spec:
             - mountPath: /var/lib/wazuh-indexer
               name: wazuh-indexer
         # https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks-max-map-count.html
+        {{- if .Values.indexer.initContainers.increaseTheVmMaxMapCount.enabled }}
         - name: increase-the-vm-max-map-count
           image: busybox:stable
           command:
@@ -65,6 +66,7 @@ spec:
             {{- toYaml .Values.indexer.initContainers.increaseTheVmMaxMapCount.securityContext | nindent 12 }}
           resources:
             {{- toYaml .Values.indexer.initContainers.increaseTheVmMaxMapCount.resources | nindent 12 }}
+          {{- end }}
       containers:
         - name: wazuh-indexer
           image: "{{ .Values.indexer.images.repository }}:{{ .Values.indexer.images.tag }}"

@@ -131,6 +131,8 @@ indexer:
       securityContext:
         allowPrivilegeEscalation: false
     increaseTheVmMaxMapCount:
+      # Enable init-container to adjust the nodes itself, if not already done beforehand
+      enabled: false
       resources:
         limits:
           memory: 256Mi
@@ -138,7 +140,7 @@ indexer:
           cpu: 50m
           memory: 128Mi
       securityContext:
-        privileged: false
+        privileged: true
         allowPrivilegeEscalation: false
 
   config:
