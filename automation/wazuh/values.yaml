@@ -129,7 +129,6 @@ indexer:
           cpu: 50m
           memory: 128Mi
       securityContext:
-        privileged: false
         allowPrivilegeEscalation: false
     increaseTheVmMaxMapCount:
       resources:
@@ -139,7 +138,7 @@ indexer:
           cpu: 50m
           memory: 128Mi
       securityContext:
-        privileged: true
+        privileged: false
         allowPrivilegeEscalation: false
 
   config:
