@@ -59,7 +59,6 @@ spec:
             - '-c'
             - '/script.sh'
           securityContext:
-            capabilities:
               allowPrivilegeEscalation: false
           resources:
             {{- toYaml .Values.wazuh.initContainer.resources | nindent 12 }}
@@ -80,8 +79,8 @@ spec:
           resources:
             {{- toYaml .Values.wazuh.master.resources | nindent 12 }}
           securityContext:
+            allowPrivilegeEscalation: false
             capabilities:
-              allowPrivilegeEscalation: false
               add: ["SYS_CHROOT"]
           volumeMounts:
             # Wazuh Config

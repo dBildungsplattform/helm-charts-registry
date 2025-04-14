@@ -33,8 +33,7 @@ dashboard:
   # readinessProbe: {}
 
   securityContext:
-    capabilities:
-      allowPrivilegeEscalation: false
+    allowPrivilegeEscalation: false
 
   networkPolicy:
     enabled: true
@@ -113,8 +112,7 @@ indexer:
   # readinessProbe: {}
 
   securityContext:
-    capabilities:
-      allowPrivilegeEscalation: false
+    allowPrivilegeEscalation: false
 
   networkPolicy:
     enabled: true
@@ -131,8 +129,7 @@ indexer:
           cpu: 50m
           memory: 128Mi
       securityContext:
-        capabilities:
-          allowPrivilegeEscalation: false
+        allowPrivilegeEscalation: false
     increaseTheVmMaxMapCount:
       resources:
         limits:
@@ -142,6 +139,7 @@ indexer:
           memory: 128Mi
       securityContext:
         privileged: true
+        allowPrivilegeEscalation: false
 
   config:
     opensearch: |-
