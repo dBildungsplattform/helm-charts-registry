@@ -183,7 +183,7 @@ dbpMoodle:
     enabled: false
     repository: ghcr.io/dbildungsplattform
     image: moodle-tools
-    tag: 1.1.2
+    tag: 1.1.0
     resources:
       limits:
         cpu: 2000m
@@ -191,15 +191,6 @@ dbpMoodle:
       requests:
         cpu: 1000m
         memory: 8Gi
-    podSecurityContext:
-      fsGroup: 1001
-    securityContext:
-      privileged: false
-      allowPrivilegeEscalation: false
-      runAsGroup: 1001
-      capabilities:
-        drop:
-          - ALL
     existingSecretGPG: ""
     existingSecretDatabaseConfig: "moodle-database"
     existingSecretDatabasePassword: "moodle"
@@ -213,7 +204,7 @@ dbpMoodle:
     rules:
       - apiGroups: ["apps"]
         resources: ["deployments/scale", "deployments"]
-        verbs: ["get", "list", "patch"]
+        verbs: ["get", "list", "scale", "patch"]
 
   # -- Configuration for the moodle-cronjob which runs moodles cron.php. This is required since moodle does not run as root
   moodlecronjob:
@@ -246,7 +237,7 @@ moodle:
     registry: ghcr.io
     repository: dbildungsplattform/moodle
     # -- The dbp-moodle image which is build for this helm chart
-    tag: "4.5.3-debian-12-r1-dbp2"
+    tag: "4.5.3-debian-12-r1-dbp1"
     pullPolicy: Always
     # -- Debug mode for more detailed moodle installation and log output
     debug: false
@@ -581,7 +572,7 @@ moodlecronjob:
 backup-cronjob:
   image:
     repository: "ghcr.io/dbildungsplattform/moodle-tools"
-    tag: "1.1.9"
+    tag: "1.1.0"
   clusterRole:
     create: false
   serviceAccount:
@@ -656,8 +647,6 @@ backup-cronjob:
           - secret:
               name: moodle-backup-gpg-keys
         defaultMode: 0644
-  podSecurityContext:
-    fsGroup: 1001
   securityContext:
     privileged: false
     allowPrivilegeEscalation: false

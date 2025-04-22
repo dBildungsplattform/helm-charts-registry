@@ -38,12 +38,10 @@ if [ -z "$replicas" ] || [ "$replicas" -eq 0 ]; then
     replicas=1
 fi
 echo "=== Scale moodle deployment to 0 replicas for restore operation ==="
-kubectl patch "deployment/${deployment_name}" -n "{{ .Release.Namespace }}" -p '{"spec":{"replicas": 0}}'
+kubectl scale "deployment/${deployment_name}" --replicas=0 -n {{ .Release.Namespace }}
 echo "=== After restore operation is completed will scale back to: $replicas replicas ==="
 
 # Restore
-
-echo "=== Start duply process ==="
 cd /etc/duply/default
 for cert in *.asc; do
     echo "=== Import key $cert ==="
@@ -54,27 +52,25 @@ for fpr in $(gpg --batch --no-tty --command-fd 0 --list-keys --with-colons  | aw
     echo -e "5\ny\n" |  gpg --batch --no-tty --command-fd 0 --expert --edit-key $fpr trust;
 done
 
-cd /tmp/
+cd /bitnami/
 echo "=== Download backup ==="
-ln -s /etc/duply /home/nonrootuser/.duply
-export DUPLY_HOME="/etc/duply"
-/usr/bin/duply default restore Full
+duply default restore Full
 echo "=== Clear PVC ==="
 rm -rf /bitnami/moodle/*
 rm -rf /bitnami/moodle/.[!.]*
 rm -rf /bitnami/moodledata/*
 rm -rf /bitnami/moodle/.[!.]*
 echo "=== Extract backup files ==="
-tar -xzf /tmp/Full/tmp/backup/moodle.tar.gz -C /tmp/ --no-same-owner
-tar -xzf /tmp/Full/tmp/backup/moodledata.tar.gz -C /tmp/ --no-same-owner
+tar -xzf ./Full/tmp/backup/moodle.tar.gz -C /bitnami/
+tar -xzf ./Full/tmp/backup/moodledata.tar.gz -C /bitnami/
 echo "=== Move backup files ==="
-mv /tmp/mountData/moodle/* /bitnami/moodle/
-mv /tmp/mountData/moodle/.[!.]* /bitnami/moodle/
-mv /tmp/mountData/moodledata/* /bitnami/moodledata/
-mv /tmp/mountData/moodledata/.[!.]* /bitnami/moodledata/
+mv /bitnami/mountData/moodle/* /bitnami/moodle/
+mv /bitnami/mountData/moodle/.[!.]* /bitnami/moodle/
+mv /bitnami/mountData/moodledata/* /bitnami/moodledata/
+mv /bitnami/mountData/moodledata/.[!.]* /bitnami/moodledata/
 # Set moodle user 1001
-# chown -R 1001 /bitnami/moodle
-# chown -R 1001 /bitnami/moodledata
+chown -R 1001 /bitnami/moodle
+chown -R 1001 /bitnami/moodledata
 
 cd /bitnami/
 echo "=== Clear DB ==="
@@ -90,11 +86,11 @@ PGPASSWORD="$DATABASE_PASSWORD" psql -h "$DATABASE_HOST" -p "$DATABASE_PORT" -U 
 
 echo "=== Copy dump to DB ==="
 {{ if .Values.mariadb.enabled -}}
-gunzip /tmp/Full/tmp/backup/moodle_mariadb_dump_*
-mv /tmp/Full/tmp/backup/moodle_mariadb_dump_* moodledb_dump.sql
+gunzip ./Full/tmp/backup/moodle_mariadb_dump_*
+mv ./Full/tmp/backup/moodle_mariadb_dump_* moodledb_dump.sql
 {{- else -}}
-gunzip /tmp/Full/tmp/backup/moodle_postgresqldb_dump_*
-mv /tmp/Full/tmp/backup/moodle_postgresqldb_dump_* moodledb_dump.sql
+gunzip ./Full/tmp/backup/moodle_postgresqldb_dump_*
+mv ./Full/tmp/backup/moodle_postgresqldb_dump_* moodledb_dump.sql
 {{- end }}
 
 {{ if .Values.mariadb.enabled -}}
@@ -104,8 +100,8 @@ PGPASSWORD="$DATABASE_PASSWORD" psql -h "$DATABASE_HOST" -p "$DATABASE_PORT" -U 
 {{- end }}
 echo "=== Finished DB restore ==="
 
-echo "=== Scaling deployment replicas to 1 ==="
-kubectl patch "deployment/${deployment_name}" -n "{{ .Release.Namespace }}" -p '{"spec":{"replicas": 1}}'
+echo "=== Scaling deployment replicas to $replicas ==="
+kubectl scale "deployment/${deployment_name}" --replicas=$replicas -n {{ .Release.Namespace }}
 sleep 2
 scaledTo=$(kubectl get "deployment/${deployment_name}" -n {{ .Release.Namespace }} -o=jsonpath='{.status.replicas}')
 echo "=== Deployment scaled to: $scaledTo ==="
