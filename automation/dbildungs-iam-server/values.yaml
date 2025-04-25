@@ -86,9 +86,6 @@ ox:
   contextId: '10'
   contextName: '10'
 
-email:
-  nonEnabledEmailAddressesDeadlineInDays: 180
-
 vidis:
   url: 'https://service-stage.vidis.schule'
   regionName: 'test-region'
@@ -236,11 +233,6 @@ cronjobs:
       schedule: 30 0 * * *
       endpoint: '/api/cron/vidis-angebote'
       httpMethod: 'PUT'
-      script: 'cron_trigger.sh'
-    cron-trigger-6:
-      schedule: 0 0 * * *
-      endpoint: '/api/cron/email-addresses-delete'
-      httpMethod: 'DELETE'
       script: 'cron_trigger.sh'
 
 import:
