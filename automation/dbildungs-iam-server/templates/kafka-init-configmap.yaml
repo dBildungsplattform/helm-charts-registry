@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "common.names.name" . }}-kafka-init-configmap
+  namespace: {{ template "common.names.namespace" . }}
+  labels: {{- include "common.labels" . | nindent 4 }}
+data:
+  create_topics.sh: |-
+    {{ .Files.Get "kafka/scripts/create_topics.sh" | nindent 4 }}
+  topics.txt: |-
+    {{ .Files.Get "config/kafka-topics.txt" | nindent 4 }}
+  client.config: |-
+    sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="{{ (lookup "v1" "Secret" .Release.Namespace .Values.auth.existingSecret ).data.kafka-username | b64dec }}" password="{{ (lookup "v1" "Secret" .Release.Namespace .Values.auth.existingSecret ).data.kafka-password | b64dec }}"";
+    security.protocol=SASL_PLAINTEXT
+    sasl.mechanism=PLAIN
