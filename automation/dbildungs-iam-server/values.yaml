@@ -78,6 +78,8 @@ auth:
   ox_password: ''
   basic_auth_password: ''
   redis_password: ''
+  kafka_username: ''
+  kafka_password: ''
 
 ox:
   enabled: false
@@ -85,9 +87,6 @@ ox:
   endpoint: 'https://webmail.example.com'
   contextId: '10'
   contextName: '10'
-
-email:
-  nonEnabledEmailAddressesDeadlineInDays: 180
 
 vidis:
   url: 'https://service-stage.vidis.schule'
@@ -186,6 +185,17 @@ backend:
     stepUpTimeoutEnabled: 'false'
     maxOldSpaceSize: 3584
 
+kafka:
+  url: "dbildungs-iam-kafka.spsh.svc.cluster.local:9092"
+  init:
+    enabled: true
+    prefix: "{{ .Release.Namespace  }}"
+    command: [ "create_topics.sh", "topics.txt" ]
+    image:
+      repository: docker.io/bitnami/kafka
+      tag: '3.9.0'
+      pullPolicy: Always
+
 autoscaling:
   enabled: false
   minReplicas: 1
@@ -237,11 +247,6 @@ cronjobs:
       endpoint: '/api/cron/vidis-angebote'
       httpMethod: 'PUT'
       script: 'cron_trigger.sh'
-    cron-trigger-6:
-      schedule: 0 0 * * *
-      endpoint: '/api/cron/email-addresses-delete'
-      httpMethod: 'DELETE'
-      script: 'cron_trigger.sh'
 
 import:
   csvFileMaxSizeInMB: 10
@@ -249,6 +254,3 @@ import:
 
 featureFlags:
   befristungBearbeiten: true
-
-kafka:
-  enabled: false
