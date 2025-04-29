@@ -78,6 +78,8 @@ auth:
   ox_password: ''
   basic_auth_password: ''
   redis_password: ''
+  kafka_username: ''
+  kafka_password: ''
 
 ox:
   enabled: false
@@ -185,6 +187,17 @@ backend:
     stepUpTimeoutInSeconds: 900
     stepUpTimeoutEnabled: 'false'
     maxOldSpaceSize: 3584
+
+kafka:
+  url: "dbildungs-iam-kafka.spsh.svc.cluster.local:9092"
+  prefix: "{{ .Release.Namespace  }}-"
+  init:
+    enabled: true
+    command: [ "create_topics.sh", "topics.txt" ]
+    image:
+      repository: docker.io/bitnami/kafka
+      tag: '3.9.0'
+      pullPolicy: Always
 
 autoscaling:
   enabled: false
