@@ -8,7 +8,7 @@ image:
   repository: schulcloud/infra-sshd
   # Overrides the image tag whose default is the chart appVersion.
   tag: "stable"
-
+imagePullSecrets: []
 service:
   # standalone: false
   type: NodePort
