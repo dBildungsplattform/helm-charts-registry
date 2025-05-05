@@ -1,0 +1,28 @@
+annotations:
+  artifacthub.io/category: security
+  artifacthub.io/containsSecurityUpdates: "true"
+  artifacthub.io/license: Apache-2.0
+  artifacthub.io/prerelease: "false"
+apiVersion: v2
+appVersion: 1.0.0
+dependencies:
+- name: common
+  repository: https://charts.bitnami.com/bitnami
+  version: 2.27.0
+description: A Helm chart for clamav
+home: https://gitlab.com/xrow-public/helm-clamav
+icon: https://raw.githubusercontent.com/Cisco-Talos/clamav/c81968d3a7c16be0be4cb4f79a7dedfd90d8ae1d/logo.png
+keywords:
+- virus
+- virus database
+- scanner
+- virus scanner
+- security
+maintainers:
+- email: bjoern+whitelist@xrow.de
+  name: Björn Dieding
+name: clamav
+sources:
+- https://gitlab.com/xrow-public/helm-clamav
+type: application
+version: 1.4.12

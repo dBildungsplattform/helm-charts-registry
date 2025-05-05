@@ -1,0 +1,32 @@
+---
+apiVersion: {{ include "common.capabilities.cronjob.apiVersion" . }}
+kind: CronJob
+metadata:
+  name: {{ include "common.names.fullname" . }}
+  labels: {{ include "common.labels.standard" . | nindent 4 }}
+spec:
+  schedule: "1{{ randNumeric 1 }} 2 * * *"
+  concurrencyPolicy: Forbid
+  suspend: false
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      parallelism: 1
+      completions: 1
+      ttlSecondsAfterFinished: 600
+      template:
+        metadata:
+          labels: {{ include "common.labels.standard" . | nindent 12}}
+            app.kubernetes.io/component: cron
+        spec:
+          nodeSelector:
+            kubernetes.io/os: linux
+          restartPolicy: Never
+          terminationGracePeriodSeconds: 5
+          containers:
+          - name: {{ .Chart.Name }}-cron
+            image: {{ include "common.images.image" ( dict "imageRoot" .Values.kubectl.image "global" .Values.global ) }}
+            imagePullPolicy: {{ .Values.kubectl.image.pullPolicy }}
+            command: ["kubectl"]
+            args: [ "rollout", "restart", "deployment/{{ include "common.names.fullname" . }}" ]

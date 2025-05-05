@@ -1,0 +1,6 @@
+---
+
+image:
+  repository: registry.gitlab.com/xrow-public/helm-clamav/clamav
+  pullPolicy: Always
+  tag: ${CI_CONTAINER_RELEASE_TAG}

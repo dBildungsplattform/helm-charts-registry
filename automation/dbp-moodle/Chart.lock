@@ -26,5 +26,8 @@ dependencies:
 - name: sql-exporter
   repository: https://burningalchemist.github.io/sql_exporter/
   version: 0.6.1
-digest: sha256:d7037ad9e856ef097cd101238735cf31cd6d594b5700f50ffea2ecdcdfc8f6ff
-generated: "2025-04-30T13:24:53.658250253Z"
+- name: clamav
+  repository: oci://registry.gitlab.com/xrow-public/helm-clamav/charts
+  version: 1.4.12
+digest: sha256:3dfc637fa695221b047efa7311bdb0037478f56733eda027d34f0e75c15effe5
+generated: "2025-05-05T08:44:25.635228152Z"

@@ -128,7 +128,6 @@ if ! [ -e /mountData/moodledata/CliUpdate ]; then
     echo '<h1>Sorry, maintenance in progress</h1>' > /mountData/moodledata/climaintenance.html
 fi
 
-# Test comment for debugging
 echo "=== Start backup ==="
 date +%Y%m%d_%H%M%S%Z
 
@@ -164,7 +163,6 @@ tar \
     -zcf moodledata.tar.gz /mountData/moodledata/
 
 echo "=== Start duply process ==="
-ln -s /etc/duply /home/nonrootuser/.duply
 cd /etc/duply/default
 for cert in *.asc; do
     echo "=== Import key $cert ==="
