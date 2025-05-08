@@ -30,10 +30,10 @@ spec:
       containers:
       - name: sshd
         image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
-        {{- with .Values.imagePullSecrets }}
-        imagePullSecrets:
-          {{- toYaml . | nindent 10 }}
-        {{- end }}
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 10 }}
+      {{- end }}
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 22
