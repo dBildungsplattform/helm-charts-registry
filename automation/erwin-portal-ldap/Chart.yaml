@@ -1,0 +1,19 @@
+apiVersion: v2
+appVersion: dbp-1438
+dependencies:
+- condition: phpldapadmin.enabled
+  name: phpldapadmin
+  repository: ""
+  version: 0.1.x
+- name: common
+  repository: https://charts.bitnami.com/bitnami
+  tags:
+  - bitnami-common
+  version: ~2
+description: Helm Chart for using community developed OpenLDAP software
+home: https://www.openldap.org
+keywords:
+- ldap
+- openldap
+name: erwin-portal-ldap
+version: 0.0.0-dbp-1438-20250508-1616
