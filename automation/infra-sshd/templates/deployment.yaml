@@ -27,6 +27,10 @@ spec:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
         checksum/config-additional-configmap: {{ include (print $.Template.BasePath "/additional-configmap.yaml") . | sha256sum }}
     spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
       - name: sshd
         image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
