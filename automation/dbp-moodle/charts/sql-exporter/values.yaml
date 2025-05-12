@@ -24,6 +24,30 @@ service:
     # example of prometheus usage
     # prometheus.io/scrape: "true"
     # prometheus.io/path: "/metrics"
+ingress:
+  enabled: false
+  # -- Ingress labels
+  labels: {}
+  # -- Ingress annotations
+  annotations: {}
+  # -- Ingress class name
+  ingressClassName: ""
+  # -- Ingress host
+  host: ""
+  # -- Ingress path
+  path: "/"
+  # -- Ingress TLS, can be defined by cert secret, or by key and cert.
+  tls:
+    enabled: false
+    # -- Ingress tls secret if already exists.
+    secretName: ""
+    # -- Ingress tls.crt, required if you don't have secret name.
+    crt: ""
+    # crt: "{{- .Files.Get \"tls.crt\" -}}"
+    # -- Ingress tls.key, required if you don't have secret name.
+    key: ""
+    # key: "{{- .Files.Get \"tls.key\" -}}"
+
 # -- Arbitrary sidecar containers list
 extraContainers: {}
 #   - name: your_sidecar
@@ -31,6 +55,10 @@ extraContainers: {}
 #     args:
 #     resources:
 #       requests:{}
+
+# -- Arbitrary sidecar containers list for 1.29+ kubernetes
+initContainers: {}
+
 serviceAccount:
   # -- Specifies whether a Service Account should be created, creates "sql-exporter" service account if true, unless
   # overriden. Otherwise, set to `default` if false, and custom service account name is not provided. Check all the
@@ -45,6 +73,14 @@ serviceAccount:
   #   iam.gke.io/gcp-service-account: my-service-account@gke.url
   # -- Defines if token is automatically mounted to the pod after it has been created
   # automountServiceAccountToken: false
+# Liveness and readiness probes for the application controller pods
+livenessProbe:
+  initialDelaySeconds: 5
+  timeoutSeconds: 30
+
+readinessProbe:
+  initialDelaySeconds: 5
+  timeoutSeconds: 30
 # -- Resource limits and requests for the application controller pods
 resources: {}
   # limits:
@@ -79,6 +115,8 @@ serviceMonitor:
   # scrapeTimeout: 10s
   # -- ServiceMonitor metric relabelings
   metricRelabelings: {}
+  # -- ServiceMonitor relabelings
+  relabelings: {}
   # -- ServiceMonitor namespace override (default is .Release.Namespace)
   namespace: ~
 # Additional env variables
@@ -107,8 +145,15 @@ serviceMonitor:
 #     mount:
 #       readOnly: true
 #       mountPath: /etc/config
-# Set to true to create a config as a part of the helm chart
+# -- Set to true to create a config as a part of the helm chart
 createConfig: true
+# -- Set log level (info if unset)
+logLevel: debug
+# -- Set log format (logfmt if unset)
+logFormat: logfmt
+# -- Enable reload collector data handler (endpoint /reload)
+reloadEnabled: false
+# -- SQL Exporter configuration, can be a dictionary, or a template yaml string.
 config:
   global:
     # -- Scrape timeout
@@ -154,6 +199,7 @@ config:
 #    - "*.collector.yml"
 # ---------------------------------------------------------------------
 # -- Collector Files
+# (can be dictionaries or yaml string templates)
 # ---------------------------------------------------------------------
 # -- Collector files are mounted to /etc/sql_exporter/collectors dir
 # ---------------------------------------------------------------------

@@ -1,13 +1,13 @@
 apiVersion: v2
-appVersion: DBP-1454
+appVersion: DBP-1456
 dependencies:
 - name: moodle
   repository: https://charts.bitnami.com/bitnami
-  version: 25.2.2
+  version: 26.0.2
 - condition: redis.enabled
   name: redis
   repository: https://charts.bitnami.com/bitnami
-  version: 19.5.3
+  version: 21.0.2
 - condition: mariadb.enabled
   name: mariadb
   repository: https://charts.bitnami.com/bitnami
@@ -15,7 +15,7 @@ dependencies:
 - condition: postgresql.enabled
   name: postgresql
   repository: https://charts.bitnami.com/bitnami
-  version: 15.5.7
+  version: 16.7.2
 - alias: moodlecronjob
   name: cronjob
   repository: file://charts/cronjob
@@ -29,7 +29,7 @@ dependencies:
   condition: etherpad-postgresql.enabled
   name: postgresql
   repository: https://charts.bitnami.com/bitnami
-  version: 15.5.7
+  version: 16.7.2
 - alias: etherpadlite
   condition: etherpadlite.enabled
   name: etherpad
@@ -38,7 +38,7 @@ dependencies:
 - condition: sql-exporter.enabled
   name: sql-exporter
   repository: https://burningalchemist.github.io/sql_exporter/
-  version: 0.6.1
+  version: 0.12.3
 description: 'This is a Helm Chart bundling some of the bitnami resources to deploy
   Moodle for DBildungsplattform. Extending them with features such as  MariaDB and
   PostgreSQL support, Horizontal Autoscaling capabilities, Redis Session Store, Etherpad-Lite.
@@ -47,4 +47,4 @@ description: 'This is a Helm Chart bundling some of the bitnami resources to dep
 home: https://dbildungsplattform.github.io/dbp-moodle/
 name: dbp-moodle
 type: application
-version: 0.0.0-dbp-1454-20250509-1237
+version: 0.0.0-dbp-1456-20250512-1117

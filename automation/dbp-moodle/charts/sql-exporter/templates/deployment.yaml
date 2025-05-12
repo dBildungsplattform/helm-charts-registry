@@ -47,13 +47,23 @@ spec:
         - name: {{ $v.name }}
           {{- toYaml $v.volume | nindent 10 }}
       {{- end }}
+{{- if .Values.initContainers }}
+      initContainers:
+{{ toYaml .Values.initContainers | nindent 8 }}
+{{- end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          args: ["-config.file=/etc/sql_exporter/sql_exporter.yml"]
+          args:
+            - "-config.file=/etc/sql_exporter/sql_exporter.yml"
+            - "-log.level={{ .Values.logLevel | default "info"  }}"
+            - "-log.format={{ .Values.logFormat | default "logfmt" }}"
+            {{- if .Values.reloadEnabled }}
+            - "-web.enable-reload"
+            {{- end }}
           {{- if eq (include "sql-exporter.volumes" .) "\"true\"" }}
           volumeMounts:
           {{- if .Values.createConfig }}
@@ -96,10 +106,14 @@ spec:
             {{- end }}
             {{- end }}
           livenessProbe:
+            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
             httpGet:
               path: /healthz
               port: 9399
           readinessProbe:
+            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
             httpGet:
               path: /healthz
               port: 9399
