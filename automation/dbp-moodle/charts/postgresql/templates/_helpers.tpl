@@ -10,8 +10,11 @@ Create a default fully qualified app name for PostgreSQL Primary objects
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}
 {{- define "postgresql.v1.primary.fullname" -}}
-{{- $fullname := default (include "common.names.fullname" .) .Values.global.postgresql.fullnameOverride -}}
-{{- ternary (printf "%s-%s" $fullname .Values.primary.name | trunc 63 | trimSuffix "-") $fullname (eq .Values.architecture "replication") -}}
+{{- if eq .Values.architecture "replication" -}}
+    {{- printf "%s-%s" (include "common.names.fullname" .) .Values.primary.name | trunc 63 | trimSuffix "-" -}}
+{{- else -}}
+    {{- include "common.names.fullname" . -}}
+{{- end -}}
 {{- end -}}
 
 {{/*
@@ -161,44 +164,6 @@ Return true if a secret object should be created
 {{- if and (not (or .Values.global.postgresql.auth.existingSecret .Values.auth.existingSecret)) (or $postgresPassword .Values.auth.enablePostgresUser (and (not (empty $customUser)) (ne $customUser "postgres")) (eq .Values.architecture "replication") (and .Values.ldap.enabled (or .Values.ldap.bind_password .Values.ldap.bindpw))) -}}
     {{- true -}}
 {{- end -}}
-{{- end -}}
-
-{{/*
-Return true if a secret object should be created for PostgreSQL
-*/}}
-{{- define "postgresql.v1.createPreviousSecret" -}}
-{{- if and .Values.passwordUpdateJob.previousPasswords.postgresPassword (not .Values.passwordUpdateJob.previousPasswords.existingSecret) }}
-    {{- true -}}
-{{- end -}}
-{{- end -}}
-
-{{/*
-Return the secret with previous PostgreSQL credentials
-*/}}
-{{- define "postgresql.v1.update-job.previousSecretName" -}}
-    {{- if .Values.passwordUpdateJob.previousPasswords.existingSecret -}}
-        {{- /* The secret with the new password is managed externally */ -}}
-        {{- tpl .Values.passwordUpdateJob.previousPasswords.existingSecret $ -}}
-    {{- else if .Values.passwordUpdateJob.previousPasswords.postgresPassword -}}
-        {{- /* The secret with the new password is managed externally */ -}}
-        {{- printf "%s-previous-secret" (include "common.names.fullname" .) | trunc 63 | trimSuffix "-" -}}
-    {{- else -}}
-        {{- /* The secret with the new password is managed by the helm chart. We use the current secret name as it has the old password */ -}}
-        {{- include "common.names.fullname" . -}}
-    {{- end -}}
-{{- end -}}
-
-{{/*
-Return the secret with new PostgreSQL credentials
-*/}}
-{{- define "postgresql.v1.update-job.newSecretName" -}}
-    {{- if and (not .Values.passwordUpdateJob.previousPasswords.existingSecret) (not .Values.passwordUpdateJob.previousPasswords.postgresPassword) -}}
-        {{- /* The secret with the new password is managed by the helm chart. We create a new secret as the current one has the old password */ -}}
-        {{- printf "%s-new-secret" (include "common.names.fullname" .) | trunc 63 | trimSuffix "-" -}}
-    {{- else -}}
-        {{- /* The secret with the new password is managed externally */ -}}
-        {{- include "postgresql.v1.secretName" . -}}
-    {{- end -}}
 {{- end -}}
 
 {{/*
