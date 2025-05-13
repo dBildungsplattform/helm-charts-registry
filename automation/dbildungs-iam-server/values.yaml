@@ -65,6 +65,7 @@ auth:
   ldap_bind_dn: ''
   ldap_admin_password: ''
   secrets_json: ''
+  frontend_sessionSecret: ''
   itslearning_username: ''
   itslearning_password: ''
   pi_admin_user: ''
@@ -76,10 +77,7 @@ auth:
   import_passphrase_salt: ''
   ox_password: ''
   basic_auth_password: ''
-  vidis_client_id: ''
-  vidis_client_secret: ''
-  kafka_username: ''
-  kafka_password: ''
+  redis_password: ''
 
 ox:
   enabled: false
@@ -87,6 +85,7 @@ ox:
   endpoint: 'https://webmail.example.com'
   contextId: '10'
   contextName: '10'
+  numberOfRetries: 3
 
 email:
   nonEnabledEmailAddressesDeadlineInDays: 180
@@ -188,15 +187,6 @@ backend:
     stepUpTimeoutEnabled: 'false'
     maxOldSpaceSize: 3584
 
-kafka:
-  url: "dbildungs-iam-kafka.spsh.svc.cluster.local:9092"
-  enabled: false
-  initEnabled: true
-  initImage:
-    repository: docker.io/bitnami/kafka
-    tag: '3.9.0'
-    pullPolicy: Always
-
 autoscaling:
   enabled: false
   minReplicas: 1
@@ -255,3 +245,6 @@ import:
 
 featureFlags:
   befristungBearbeiten: true
+
+kafka:
+  enabled: false
