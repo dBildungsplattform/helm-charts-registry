@@ -1,8 +1,7 @@
-{{- $conf := include "sql_exporter.config.yaml" . | fromYaml -}}
 ------------------------------
 Hello there! 
 
-{{- if and (not $conf.target ) (not $conf.jobs)}}
+{{- if and (not .Values.config.target ) (not .Values.config.jobs)}}
 ------------------------------
 
 It seems like you haven't configured the target, please check the example here:
@@ -15,7 +14,7 @@ In case you need to have multiple targets, you can confiure jobs instead, have a
 
 {{- end}}
 
-{{- if and (not $conf.collectors) (not $conf.collectorFiles)}}
+{{- if and (not .Values.config.collectors) (not .Values.config.collectorFiles)}}
 
 ------------------------------
 You need to configure either collectors or collectorFiles (or both), please have a look at the example here:

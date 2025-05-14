@@ -1,7 +1,7 @@
 annotations:
-  git/commit-sha: 0e1b0e86498dc9d9e633312990faea54db839cdb
+  git/commit-sha: 8ce8744999acae483d96786420b82e439c0f431e
 apiVersion: v2
-appVersion: 0.17.3
+appVersion: 0.15.0
 description: Database-agnostic SQL exporter for Prometheus
 home: https://github.com/burningalchemist/sql_exporter
 keywords:
@@ -17,4 +17,4 @@ name: sql-exporter
 sources:
 - https://github.com/burningalchemist/sql_exporter
 type: application
-version: 0.12.3
+version: 0.6.1
