@@ -10,7 +10,7 @@ dependencies:
   version: 18.2.2
 - name: postgresql
   repository: https://charts.bitnami.com/bitnami
-  version: 15.5.38
+  version: 15.5.7
 - name: cronjob
   repository: file://charts/cronjob
   version: 0.1.0
@@ -19,12 +19,15 @@ dependencies:
   version: 0.1.0
 - name: postgresql
   repository: https://charts.bitnami.com/bitnami
-  version: 15.5.38
+  version: 15.5.7
 - name: etherpad
   repository: file://charts/etherpad
   version: 0.1.0
 - name: sql-exporter
   repository: https://burningalchemist.github.io/sql_exporter/
   version: 0.6.1
-digest: sha256:95e1d76806d047f58695b7b800b2640772b66dddcbdfeabcbc25cdf20cef1bd9
-generated: "2025-05-20T14:07:16.701146888Z"
+- name: clamav
+  repository: https://wiremind.github.io/wiremind-helm-charts
+  version: 3.5.0
+digest: sha256:3e1d8fd5f2fa6ba11e92299a6c7529a4b7ce56786ce522896eab91c948ece8f9
+generated: "2025-05-21T09:54:13.224302222Z"

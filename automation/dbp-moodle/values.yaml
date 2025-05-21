@@ -131,7 +131,7 @@ dbpMoodle:
     # -- Which kubectl image to use
     repository: "ghcr.io/dbildungsplattform"
     image: moodle-tools
-    tag: "1.1.12"
+    tag: "1.1.0"
 
   moodleUpdatePreparationHook:
     rules:
@@ -186,7 +186,7 @@ dbpMoodle:
     enabled: false
     repository: ghcr.io/dbildungsplattform
     image: moodle-tools
-    tag: 1.1.12
+    tag: 1.1.0
     resources:
       limits:
         cpu: 2000m
@@ -194,15 +194,6 @@ dbpMoodle:
       requests:
         cpu: 1000m
         memory: 8Gi
-    podSecurityContext:
-      fsGroup: 1001
-    securityContext:
-      privileged: false
-      allowPrivilegeEscalation: false
-      runAsGroup: 1001
-      capabilities:
-        drop:
-          - ALL
     existingSecretGPG: ""
     existingSecretDatabaseConfig: "moodle-database"
     existingSecretDatabasePassword: "moodle"
@@ -216,7 +207,7 @@ dbpMoodle:
     rules:
       - apiGroups: ["apps"]
         resources: ["deployments/scale", "deployments"]
-        verbs: ["get", "list", "patch"]
+        verbs: ["get", "list", "scale", "patch"]
 
   # -- Configuration for the moodle-cronjob which runs moodles cron.php. This is required since moodle does not run as root
   moodlecronjob:
@@ -249,7 +240,7 @@ moodle:
     registry: ghcr.io
     repository: dbildungsplattform/moodle
     # -- The dbp-moodle image which is build for this helm chart
-    tag: "4.5.4-debian-12-r0-dbp2"
+    tag: "4.5.4-debian-12-r0-dbp1"
     pullPolicy: Always
     # -- Debug mode for more detailed moodle installation and log output
     debug: false
@@ -406,9 +397,8 @@ mariadb:
 
 postgresql:
   enabled: false
-  # usePasswordFiles: false required if we increase the helm chart version
   image:
-    tag: "14.18.0-debian-12-r0"
+    tag: "14.8.0-debian-11-r84"
   auth:
     username: "moodle"
     database: "moodle"
@@ -511,9 +501,6 @@ etherpadlite:
 
 etherpad-postgresql:
   enabled: false
-  # usePasswordFiles: false
-  image:
-    tag: "14.18.0-debian-12-r0"
   auth:
     enablePostgresUser: false
     username: etherpad
@@ -539,7 +526,7 @@ etherpad-postgresql:
 moodlecronjob:
   image:
     repository: "ghcr.io/dbildungsplattform/moodle-tools"
-    tag: "1.1.12"
+    tag: "1.1.0"
   clusterRole:
     create: false
   serviceAccount:
@@ -591,7 +578,7 @@ moodlecronjob:
 backup-cronjob:
   image:
     repository: "ghcr.io/dbildungsplattform/moodle-tools"
-    tag: "1.1.12"
+    tag: "1.1.0"
   clusterRole:
     create: false
   serviceAccount:
@@ -666,8 +653,6 @@ backup-cronjob:
           - secret:
               name: moodle-backup-gpg-keys
         defaultMode: 0644
-  podSecurityContext:
-    fsGroup: 1001
   securityContext:
     privileged: false
     allowPrivilegeEscalation: false
@@ -728,3 +713,27 @@ sql-exporter:
     target:
       data_source_name: ""
       collectors: [sql_exporter_moodle]
+
+clamav:
+  enabled: true
+  # privateMirrorEnabled: true
+  # privateMirror: test.com
+  image:
+    tag: latest
+  service:
+    type: ClusterIP
+    port: 3310
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+  # volumes:
+  #   - name: clamav-freshclam-conf
+  #     configMap:
+  #       name: clamav-freshclam-conf
+  #       defaultMode: 0644
+  # volumeMounts:
+  #   - name: clamav-freshclam-conf
+  #     readOnly: true
+  #     mountPath: /etc/
+  #     subPath: freshclam.conf
