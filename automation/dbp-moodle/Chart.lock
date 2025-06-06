@@ -23,11 +23,11 @@ dependencies:
 - name: etherpad
   repository: file://charts/etherpad
   version: 0.1.0
-- name: sql-exporter
-  repository: https://burningalchemist.github.io/sql_exporter/
-  version: 0.6.1
 - name: clamav
   repository: https://wiremind.github.io/wiremind-helm-charts
   version: 3.5.0
-digest: sha256:f7a3dfbc03439433422ab97fd86fb141b0fd5fe4dbb7b54885aa156c9083e489
-generated: "2025-06-05T10:40:42.435145169Z"
+- name: sql-exporter
+  repository: https://burningalchemist.github.io/sql_exporter/
+  version: 0.6.1
+digest: sha256:81811febc9e6a86eb046302d3ae57479bd3a285d30ebaf43eea83b06b15a5b23
+generated: "2025-06-06T09:40:54.363077676Z"

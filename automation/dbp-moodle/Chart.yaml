@@ -35,15 +35,15 @@ dependencies:
   name: etherpad
   repository: file://charts/etherpad
   version: 0.1.0
-- condition: sql-exporter.enabled
-  name: sql-exporter
-  repository: https://burningalchemist.github.io/sql_exporter/
-  version: 0.6.1
 - alias: clamav
   condition: clamAV.enabled
   name: clamav
   repository: https://wiremind.github.io/wiremind-helm-charts
   version: 3.5.0
+- condition: sql-exporter.enabled
+  name: sql-exporter
+  repository: https://burningalchemist.github.io/sql_exporter/
+  version: 0.6.1
 description: 'This is a Helm Chart bundling some of the bitnami resources to deploy
   Moodle for DBildungsplattform. Extending them with features such as  MariaDB and
   PostgreSQL support, Horizontal Autoscaling capabilities, Redis Session Store, Etherpad-Lite.
@@ -52,4 +52,4 @@ description: 'This is a Helm Chart bundling some of the bitnami resources to dep
 home: https://dbildungsplattform.github.io/dbp-moodle/
 name: dbp-moodle
 type: application
-version: 0.0.0-ops-7420-20250605-1040
+version: 0.0.0-ops-7420-20250606-0940
