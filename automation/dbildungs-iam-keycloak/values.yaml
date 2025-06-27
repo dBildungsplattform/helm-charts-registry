@@ -143,5 +143,5 @@ status:
   url: "https://status.dev.spsh.dbildungsplattform.de/"
 
 podDisruptionBudget:
-  enabled: false
+  enabled: true
   minAvailable: "60%"
