@@ -1,6 +1,6 @@
 {
     "id": "17bbe7b0-1ce8-44c3-b326-dafea397e270",
-    "realm": "erwin",
+    "realm": "SPSH",
     "notBefore": 0,
     "defaultSignatureAlgorithm": "RS256",
     "revokeRefreshToken": false,
@@ -47,7 +47,7 @@
       "realm": [
         {
           "id": "7d5d4088-2341-4350-84b5-189f173d48a8",
-          "name": "default-roles-erwin",
+          "name": "default-roles-spsh",
           "description": "${role_default-roles}",
           "composite": true,
           "composites": {
@@ -299,10 +299,10 @@
           }
         ],
         "security-admin-console": [],
-        "erwin": [],
+        "spsh": [],
         "admin-cli": [],
         "account-console": [],
-        "erwin-service": [],
+        "spsh-service": [],
         "broker": [
           {
             "id": "e3b83cee-0556-4164-b94b-723f60f85a8c",
@@ -407,7 +407,7 @@
     "groups": [],
     "defaultRole": {
       "id": "7d5d4088-2341-4350-84b5-189f173d48a8",
-      "name": "default-roles-erwin",
+      "name": "default-roles-spsh",
       "description": "${role_default-roles}",
       "composite": true,
       "clientRole": false,
@@ -457,11 +457,11 @@
       {
         "id": "7baf74aa-565f-4cfc-9d5a-8f1a3f374dc9",
         "createdTimestamp": 1727357679883,
-        "username": "service-account-erwin-service",
+        "username": "service-account-spsh-service",
         "enabled": true,
         "totp": false,
         "emailVerified": false,
-        "serviceAccountClientId": "erwin-service",
+        "serviceAccountClientId": "spsh-service",
         "disableableCredentialTypes": [],
         "requiredActions": [],
         "clientRoles": {
@@ -475,15 +475,15 @@
       {
         "id": "9e30e22d-2f7b-47cf-a82a-a6e82cf8c5de",
         "createdTimestamp": 1697087666332,
-        "username": "service-account-erwin",
+        "username": "service-account-spsh",
         "enabled": true,
         "totp": false,
         "emailVerified": false,
-        "serviceAccountClientId": "erwin",
+        "serviceAccountClientId": "spsh",
         "disableableCredentialTypes": [],
         "requiredActions": [],
         "realmRoles": [
-          "default-roles-erwin"
+          "default-roles-spsh"
         ],
         "notBefore": 0,
         "groups": []
@@ -491,15 +491,15 @@
       {
         "id": "5442b7dc-432c-41d6-8721-fb8ec8cdb8c4",
         "createdTimestamp": 1706711934348,
-        "username": "service-account-erwin-admin",
+        "username": "service-account-spsh-admin",
         "enabled": true,
         "totp": false,
         "emailVerified": false,
-        "serviceAccountClientId": "erwin-admin",
+        "serviceAccountClientId": "spsh-admin",
         "disableableCredentialTypes": [],
         "requiredActions": [],
         "realmRoles": [
-          "default-roles-erwin"
+          "default-roles-spsh"
         ],
         "clientRoles": {
           "realm-management": [
@@ -536,13 +536,13 @@
         "clientId": "account",
         "name": "${client_account}",
         "rootUrl": "${authBaseUrl}",
-        "baseUrl": "/realms/erwin/account/",
+        "baseUrl": "/realms/SPSH/account/",
         "surrogateAuthRequired": false,
         "enabled": true,
         "alwaysDisplayInConsole": false,
         "clientAuthenticatorType": "client-secret",
         "redirectUris": [
-          "/realms/erwin/account/*"
+          "/realms/SPSH/account/*"
         ],
         "webOrigins": [],
         "notBefore": 0,
@@ -580,13 +580,13 @@
         "clientId": "account-console",
         "name": "${client_account-console}",
         "rootUrl": "${authBaseUrl}",
-        "baseUrl": "/realms/erwin/account/",
+        "baseUrl": "/realms/SPSH/account/",
         "surrogateAuthRequired": false,
         "enabled": true,
         "alwaysDisplayInConsole": false,
         "clientAuthenticatorType": "client-secret",
         "redirectUris": [
-          "/realms/erwin/account/*"
+          "/realms/SPSH/account/*"
         ],
         "webOrigins": [],
         "notBefore": 0,
@@ -758,13 +758,13 @@
         "clientId": "security-admin-console",
         "name": "${client_security-admin-console}",
         "rootUrl": "${authAdminUrl}",
-        "baseUrl": "/admin/erwin/console/",
+        "baseUrl": "/admin/SPSH/console/",
         "surrogateAuthRequired": false,
         "enabled": true,
         "alwaysDisplayInConsole": false,
         "clientAuthenticatorType": "client-secret",
         "redirectUris": [
-          "/admin/erwin/console/*"
+          "/admin/SPSH/console/*"
         ],
         "webOrigins": [
           "+"
@@ -819,8 +819,8 @@
       },
       {
         "id": "1dcfa102-dad9-4cf4-b0ff-dcc945e4a2ca",
-        "clientId": "erwin-service",
-        "name": "erwin Service Client",
+        "clientId": "spsh-service",
+        "name": "SPSH Service Client",
         "description": "",
         "rootUrl": "",
         "adminUrl": "",
@@ -829,7 +829,7 @@
         "enabled": true,
         "alwaysDisplayInConsole": false,
         "clientAuthenticatorType": "client-jwt",
-        "secret": "erwin-service-client-secret",
+        "secret": "spsh-service-client-secret",
         "redirectUris": [
           "/*"
         ],
@@ -922,7 +922,7 @@
       },      
       {
         "id": "f45add8b-ab22-4742-afb4-cefa9bc12331",
-        "clientId": "erwin",
+        "clientId": "spsh",
         "name": "Schulportal SH",
         "description": "",
         "rootUrl": "${KC_ROOT_URL}",
@@ -1027,8 +1027,8 @@
         ]
       },
       {
-        "clientId": "erwin-admin",
-        "name": "erwin-Admin",
+        "clientId": "spsh-admin",
+        "name": "SPSH-Admin",
         "description": "",
         "rootUrl": "",
         "adminUrl": "",
@@ -1213,8 +1213,8 @@
         "clientId": "ox",
         "name": "OX-Client",
         "description": "",
-        "rootUrl": "http://ox.dev.erwin.dbildungsplattform.de",
-        "adminUrl": "http://ox.dev.erwin.dbildungsplattform.de/appsuite/",
+        "rootUrl": "http://ox.dev.spsh.dbildungsplattform.de",
+        "adminUrl": "http://ox.dev.spsh.dbildungsplattform.de/appsuite/",
         "baseUrl": "${KC_ROOT_URL}",
         "surrogateAuthRequired": false,
         "enabled": true,
@@ -1239,7 +1239,7 @@
           "oidc.ciba.grant.enabled": "false",
           "client.secret.creation.time": "1723199067",
           "backchannel.logout.session.required": "true",
-          "post.logout.redirect.uris": "https://erwin.staging.erwin.dbildungsplattform.de/",
+          "post.logout.redirect.uris": "https://spsh.staging.spsh.dbildungsplattform.de/",
           "oauth2.device.authorization.grant.enabled": "false",
           "display.on.consent.screen": "false",
           "backchannel.logout.revoke.offline.tokens": "false"
@@ -1883,7 +1883,7 @@
       "strictTransportSecurity": "max-age=31536000; includeSubDomains"
     },
     "smtpServer": {},
-    "loginTheme": "portal",
+    "loginTheme": "schulportal",
     "eventsEnabled": false,
     "eventsListeners": [
       "jboss-logging"
