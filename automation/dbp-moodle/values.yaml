@@ -260,6 +260,7 @@ moodle:
   moodleUsername: admin
   moodleEmail: ""
   allowEmptyPassword: false
+  hostAliases: []
   extraEnvVars:
     - name: PHP_POST_MAX_SIZE
       value: "200M"
@@ -440,8 +441,6 @@ postgresql:
 redis:
   enabled: false
   architecture: "standalone"
-  image:
-    tag: 7.4.3-debian-12-r0
   auth:
     enabled: true
     existingSecret: "moodle"
