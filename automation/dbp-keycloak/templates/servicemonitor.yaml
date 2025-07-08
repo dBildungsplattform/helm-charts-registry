@@ -1,0 +1,20 @@
+{{- if .Values.keycloak.serviceMonitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ template "common.names.fullname" . }}
+  namespace: {{ template "common.names.namespace" . }}
+  labels:
+    {{- include "common.labels" . | nindent 4 }}
+spec:
+  namespaceSelector:
+    matchNames:
+      - {{ include "common.names.namespace" . | quote }}
+  selector:
+    matchLabels:
+      {{- include "common.selectorLabels" . | nindent 6 }}
+  endpoints:
+    - port: {{ .Values.keycloak.serviceMonitor.port }}
+      path: {{ .Values.keycloak.serviceMonitor.path }}
+      interval: {{ .Values.keycloak.serviceMonitor.interval | default "30s" }}
+{{- end }}
