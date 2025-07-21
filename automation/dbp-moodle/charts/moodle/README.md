@@ -1,12 +1,12 @@
 <!--- app-name: Bitnami LMS powered by Moodle&trade; LMS -->
 
-# Bitnami LMS powered by Moodle&trade; LMS
+# Bitnami LMS powered by Moodle(TM) LMS
 
-Moodle&trade; LMS is an open source online Learning Management System widely used at universities, schools, and corporations. It is modular and highly adaptable to any type of online learning.
+Moodle(TM) LMS is an open source online Learning Management System widely used at universities, schools, and corporations. It is modular and highly adaptable to any type of online learning.
 
 [Overview of Bitnami LMS powered by Moodle&trade; LMS](http://moodle.org/)
 
-Disclaimer: The respective trademarks mentioned in the offering are owned by the respective companies. We do not provide commercial license of any of these products. This listing has an open source license. Moodle&trade; LMS is run and maintained by Moodle HQ, that is a completely and separate project from Bitnami.
+Disclaimer: The respective trademarks mentioned in the offering are owned by the respective companies. We do not provide commercial license of any of these products. This listing has an open source license. Moodle(TM) LMS is run and maintained by Moodle HQ, that is a completely and separate project from Bitnami.
 
 ## TL;DR
 
@@ -21,6 +21,8 @@ Looking to use Bitnami LMS powered by Moodle&trade; LMS in production? Try [VMwa
 This chart bootstraps a [Moodle&trade;](https://github.com/bitnami/containers/tree/main/bitnami/moodle) deployment on a [Kubernetes](https://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager.
 
 It also packages the [Bitnami MariaDB chart](https://github.com/bitnami/charts/tree/main/bitnami/mariadb) which is required for bootstrapping a MariaDB deployment for the database requirements of the Moodle&trade; application.
+
+Bitnami charts can be used with [Kubeapps](https://kubeapps.dev/) for deployment and management of Helm Charts in clusters.
 
 ## Prerequisites
 
@@ -439,10 +441,6 @@ helm install my-release -f values.yaml oci://REGISTRY_NAME/REPOSITORY_NAME/moodl
 Find more information about how to deal with common errors related to Bitnami's Helm charts in [this troubleshooting guide](https://docs.bitnami.com/general/how-to/troubleshoot-helm-chart-issues).
 
 ## Upgrading
-
-### To 27.0.0
-
-This major release bumps the MariaDB version to 11.8. Follow the [upstream instructions](https://mariadb.com/kb/en/upgrading-from-mariadb-11-4-to-mariadb-11-8/) for upgrading from MariaDB 11.4 to 11.8. No major issues are expected during the upgrade.
 
 ### To 25.1.0
 

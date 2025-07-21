@@ -1,9 +1,9 @@
 apiVersion: v2
-appVersion: DBP-1544
+appVersion: DBP-1188
 dependencies:
 - name: moodle
   repository: https://charts.bitnami.com/bitnami
-  version: 27.0.2
+  version: 25.2.2
 - condition: redis.enabled
   name: redis
   repository: https://charts.bitnami.com/bitnami
@@ -52,4 +52,4 @@ description: 'This is a Helm Chart bundling some of the bitnami resources to dep
 home: https://dbildungsplattform.github.io/dbp-moodle/
 name: dbp-moodle
 type: application
-version: 0.0.0-dbp-1544-20250717-0752
+version: 0.0.0-dbp-1188-20250721-0959
