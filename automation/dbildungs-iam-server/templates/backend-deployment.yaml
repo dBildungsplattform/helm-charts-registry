@@ -179,12 +179,12 @@ spec:
             defaultMode: 420
         - name: jks
           emptyDir: {}
-        #- name: keystore-password
-        #  secret:
-        #    secretName: kafka-tls
-        #    items:
-        #      - key: keystore-password
-        #        path: keystore-password
+        - name: keystore-password
+          secret:
+            secretName: kafka-tls
+            items:
+              - key: keystore-password
+                path: keystore-password
         {{- end }}
         - name: migration-volume
           configMap:
