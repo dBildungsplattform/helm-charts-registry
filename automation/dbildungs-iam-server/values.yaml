@@ -191,7 +191,7 @@ redis:
   host: dbildungs-iam-redis-master.spsh.svc.cluster.local
 
 kafka:
-  url: '10.7.250.102:9093'
+  url: 'dbildungs-iam-kafka.spsh.svc.cluster.local:9092'
   enabled: true
   saslEnabled: true
   initEnabled: true
@@ -246,11 +246,11 @@ cronjobs:
       endpoint: '/api/cron/unlock'
       httpMethod: 'PUT'
       script: 'cron_trigger.sh'
-    cron-trigger-5:
-      schedule: 30 0 * * *
-      endpoint: '/api/cron/vidis-angebote'
-      httpMethod: 'PUT'
-      script: 'cron_trigger.sh'
+#    cron-trigger-5:
+#      schedule: 30 0 * * *
+#      endpoint: '/api/cron/vidis-angebote'
+#      httpMethod: 'PUT'
+#      script: 'cron_trigger.sh'
 
 import:
   csvFileMaxSizeInMB: 10
