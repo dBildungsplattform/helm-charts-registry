@@ -65,7 +65,6 @@ spec:
               readOnly: true
               mountPath: /keystore-password.txt
               subPath: keystore-password
-            
           resources: {{- toYaml .Values.backend.resources | nindent 12 }}
         {{ end }}
         {{- if .Values.backend.dbmigration.enabled }}
@@ -79,6 +78,15 @@ spec:
               {{- if .Values.backend.extraEnvVars }}
               {{ toYaml .Values.backend.extraEnvVars | nindent 12 }}
               {{- end }}
+            - name: TLS_KEYSTORE
+              value: /jks/client.keystore.jks
+            - name: TLS_TRUSTSTORE
+              value: /jks/client.truststore.jks
+            - name: TLS_KEYSTORE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: dbildungs-iam-kafka-tls
+                  key: keystore-password
           envFrom:
             - configMapRef:
                 name: {{ template "common.names.name" . }}
@@ -132,17 +140,6 @@ spec:
             {{- if .Values.backend.extraEnvVars }}
             {{ toYaml .Values.backend.extraEnvVars | nindent 12 }}
             {{- end }}
-            
-            - name: TLS_KEYSTORE
-              value: /jks/client.keystore.jks
-            - name: TLS_TRUSTSTORE
-              value: /jks/client.truststore.jks
-            - name: TLS_KEYSTORE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: dbildungs-iam-kafka-tls
-                  key: keystore-password
-          
           envFrom:
             - configMapRef:
                 name: {{ template "common.names.name" . }}
@@ -157,7 +154,6 @@ spec:
             - name: jks
               mountPath: /jks
               readOnly: true
-
           resources: {{- toYaml .Values.backend.resources | nindent 12 }}
           startupProbe: {{- omit .Values.backend.startupProbe "enabled" | toYaml | nindent 12 }}
           livenessProbe: {{- omit .Values.backend.livenessProbe "enabled" | toYaml | nindent 12 }}

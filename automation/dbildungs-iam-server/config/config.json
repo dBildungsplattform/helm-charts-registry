@@ -95,8 +95,7 @@
         "FEATURE_FLAG_BEFRISTUNG_BEARBEITEN": true
     },
     "KAFKA": {
-        "BROKER": "10.7.250.102:9093", // dies ist terraform output (broker adress) ich muss noch wie kann ich terraform output hier setzen
-        "TOPIC_PREFIX": "dev.",
+        "BROKER": "10.7.250.102:9093",
         "USER_TOPIC": "spsh-user-topic",
         "USER_DLQ_TOPIC": "spsh-user-dlq-topic",
         "GROUP_ID": "nestjs-kafka",
