@@ -8,4 +8,3 @@ metadata:
 data:
   KAFKA_URL: "{{ $.Values.kafka.url }}"
   KAFKA_TOPIC_PREFIX: '{{ .Release.Namespace }}-'
-  KAFKA_TOPIC_PARTITIONS: '{{ .Values.kafka.topicPartitions }}'
