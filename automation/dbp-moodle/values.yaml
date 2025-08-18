@@ -70,8 +70,6 @@ global:
       enabled: false
     usersuspension:
       enabled: false
-    dynamic_cohorts:
-      enabled: false
 
 dbpMoodle:
   name: infra
@@ -327,17 +325,8 @@ moodle:
       nginx.ingress.kubernetes.io/proxy-body-size: "200M"
       nginx.ingress.kubernetes.io/use-forwarded-headers: "true"
       nginx.ingress.kubernetes.io/whitelist-source-range: "0.0.0.0/0"
-  # Switch to bitnamilegacy, see https://github.com/bitnami/charts/issues/35164
-  certificates:
-    image:
-      repository: bitnamilegacy/os-shell
-  volumePermisions:
-    image:
-      repository: bitnamilegacy/os-shell
   metrics:
     enabled: true
-    image:
-      repository: bitnamilegacy/apache-exporter
     service:
       type: ClusterIP
     # -- Resources have to be set so that the horizontal pod autoscaler for moodle can read the moodle cpu consumption correctly
@@ -390,25 +379,18 @@ moodle:
 
 mariadb:
   enabled: true
-  # Switch to bitnamilegacy, see https://github.com/bitnami/charts/issues/35164
+  global:
+    storageClass: "nfs-client"
   image:
     tag: "11.3.2-debian-12-r5"
-    repository: bitnamilegacy/mariadb
-  volumePermisions:
-    image:
-      repository: bitnamilegacy/os-shell
-  metrics:
-    enabled: true
-    image:
-      repository: bitnamilegacy/mysqld-exporter
-    serviceMonitor:
-      enabled: true
-  global:
-    storageClass: "nfs-client"    
   auth:
     username: "moodle"
     database: "moodle"
     existingSecret: "moodle"
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
   primary:
     containerSecurityContext:
       privileged: false
@@ -425,19 +407,8 @@ mariadb:
 postgresql:
   enabled: false
   # usePasswordFiles: false required if we increase the helm chart version
-  # Switch to bitnamilegacy, see https://github.com/bitnami/charts/issues/35164
   image:
-    repository: bitnamilegacy/postgresql
     tag: "14.18.0-debian-12-r0"
-  volumePermisions:
-    image:
-      repository: bitnamilegacy/os-shell
-  metrics:
-    enabled: true
-    image:
-      repository: bitnamilegacy/postgres-exporter
-    serviceMonitor:
-      enabled: true
   auth:
     username: "moodle"
     database: "moodle"
@@ -446,6 +417,10 @@ postgresql:
       adminPasswordKey: "pgsql-admin-password"
       # -- Moodle expects its db password key to be mariadb-password
       userPasswordKey: "mariadb-password"
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
   primary:
     extendedConfiguration: |
       max_connections = 800
@@ -464,24 +439,6 @@ postgresql:
 # redis helm chart values
 redis:
   enabled: false
-  # Switch to bitnamilegacy, see https://github.com/bitnami/charts/issues/35164
-  image:
-      repository: bitnamilegacy/redis
-  sentinel:
-    image:
-      repository: bitnamilegacy/redis-sentinel
-  metrics:
-    image:
-      repository: bitnamilegacy/redis-exporter
-  volumePermisions:
-    image:
-      repository: bitnamilegacy/os-shell
-  sysctl:
-    image:
-      repository: bitnamilegacy/os-shell
-  kubectl:
-    image:
-      repository: bitnamilegacy/kubectl
   architecture: "standalone"
   auth:
     enabled: true
@@ -555,16 +512,8 @@ etherpadlite:
 etherpad-postgresql:
   enabled: false
   # usePasswordFiles: false
-  # Switch to bitnamilegacy, see https://github.com/bitnami/charts/issues/35164
   image:
-    repository: bitnamilegacy/postgresql
     tag: "14.18.0-debian-12-r0"
-  volumePermisions:
-    image:
-      repository: bitnamilegacy/os-shell
-  metrics:
-    image:
-      repository: bitnamilegacy/postgres-exporter
   auth:
     enablePostgresUser: false
     username: etherpad
