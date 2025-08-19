@@ -191,10 +191,12 @@ redis:
   host: dbildungs-iam-redis-master.spsh.svc.cluster.local
 
 kafka:
-  url: 'dbildungs-iam-kafka.spsh.svc.cluster.local:9092'
+  broker: '10.7.250.100:9093,10.7.250.101:9093,10.7.250.102:9093'
   enabled: true
-  saslEnabled: true
+  sslEnabled: true
   initEnabled: true
+  sessionTimeout: 300000
+  heartbeatInterval: 10000
   initImage:
     repository: docker.io/bitnami/kafka
     tag: '3.9.0'
