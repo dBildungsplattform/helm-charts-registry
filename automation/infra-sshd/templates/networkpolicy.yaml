@@ -15,7 +15,10 @@ spec:
   policyTypes:
     - Ingress
     - Egress
-  ingress: [] # Deny all ingress
+  ingress:
+    - from:
+      - ipBlock:
+         cidr: 0.0.0.0/0 # Allow ingress from outside the cluster only
   egress:
     - {} # Allow all egress
 {{ end }}
