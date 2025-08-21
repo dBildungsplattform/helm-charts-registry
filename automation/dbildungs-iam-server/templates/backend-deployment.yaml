@@ -33,20 +33,24 @@ spec:
           imagePullPolicy: {{ .Values.kafka.initImage.pullPolicy | default "Always" }}
           securityContext: {{- omit .Values.containerSecurityContext "enabled" | toYaml | nindent 12 }}
           command: [ "sh", "/init/create_topics.sh", "/init/topics.txt" ]
-          env: 
-            - name: TLS_KEYSTORE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: dbildungs-iam-kafka-tls
-                  key: keystore-password
           envFrom:
             - configMapRef:
                 name:  {{ template "common.names.name" $ }}-kafka-envs-configmap
-          volumeMounts: 
-            {{- toYaml .Values.kafka.volumeMounts | nindent 12 }}
-            {{- if .Values.kafka.enabled }}
-            {{- toYaml .Values.kafka.volumeMounts | nindent 12 }}
-            {{- end }}
+          env:
+            - name: KAFKA_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: dbildungs-iam-server
+                  key: kafka-username
+            - name: KAFKA_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: dbildungs-iam-server
+                  key: kafka-password
+          volumeMounts:
+          - name: kafka-init-volume
+            mountPath: /init
+            readOnly: true
           resources: {{- toYaml .Values.backend.resources | nindent 12 }}
         {{ end }}
         {{- if .Values.backend.dbmigration.enabled }}
@@ -65,9 +69,6 @@ spec:
                 name: {{ template "common.names.name" . }}
           volumeMounts:
             {{- toYaml .Values.backend.volumeMounts | nindent 12 }}
-            {{- if .Values.kafka.enabled }}
-            {{- toYaml .Values.kafka.volumeMounts | nindent 12 }}
-            {{- end }}
           resources: {{- toYaml .Values.backend.resources | nindent 12 }}
         {{ end }}
         {{- if .Values.backend.keycloakdatamigration.enabled }}
@@ -86,9 +87,6 @@ spec:
                 name: {{ template "common.names.name" . }}
           volumeMounts:
             {{- toYaml .Values.backend.volumeMounts | nindent 12 }}
-            {{- if .Values.kafka.enabled }}
-            {{- toYaml .Values.kafka.volumeMounts | nindent 12 }}
-            {{- end }}
           resources: {{- toYaml .Values.backend.resources | nindent 12 }}
         {{ end }}
         {{- if .Values.backend.dbseeding.enabled }}
@@ -103,9 +101,6 @@ spec:
           env: {{- include "dbildungs-iam-server-backend-envs" . | indent  12}}
           volumeMounts:
             {{- toYaml .Values.backend.volumeMounts | nindent 12 }}
-            {{- if .Values.kafka.enabled }}
-            {{- toYaml .Values.kafka.volumeMounts | nindent 12 }}
-            {{- end }}
           resources: {{- toYaml .Values.backend.resources | nindent 12 }}
         {{ end }}
       containers:
@@ -122,23 +117,11 @@ spec:
             {{- if .Values.backend.extraEnvVars }}
             {{ toYaml .Values.backend.extraEnvVars | nindent 12 }}
             {{- end }}
-            - name: TLS_KEYSTORE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: dbildungs-iam-kafka-tls
-                  key: keystore-password
           envFrom:
             - configMapRef:
                 name: {{ template "common.names.name" . }}
-            {{- if .Values.kafka.enabled }}
-            - configMapRef:
-                name:  {{ template "common.names.name" $ }}-kafka-envs-configmap
-            {{- end }}
           volumeMounts:
             {{- toYaml .Values.backend.volumeMounts | nindent 12 }}
-            {{- if .Values.kafka.enabled }}
-            {{- toYaml .Values.kafka.volumeMounts | nindent 12 }}
-            {{- end }}
             {{- with .Values.backend.extraVolumeMounts }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
@@ -154,8 +137,11 @@ spec:
         - name: secret-volume
           secret:
             secretName: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
-        {{if .Values.kafka.enabled }}
-        {{- toYaml .Values.kafka.volumes | nindent 8 }}
+        {{if .Values.kafka.initEnabled }}
+        - name: kafka-init-volume
+          configMap:
+            name: {{ template "common.names.name" $ }}-kafka-init-configmap
+            defaultMode: 0555
         {{- end }}
         - name: migration-volume
           configMap:

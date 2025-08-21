@@ -76,6 +76,8 @@ auth:
   import_passphrase_salt: ''
   ox_password: ''
   basic_auth_password: ''
+  kafka_username: ''
+  kafka_password: ''
 
 ox:
   enabled: false
@@ -189,50 +191,14 @@ redis:
   host: dbildungs-iam-redis-master.spsh.svc.cluster.local
 
 kafka:
-  url: '10.7.250.100:9093'
+  url: 'dbildungs-iam-kafka.spsh.svc.cluster.local:9092'
   enabled: true
-  sslEnabled: true
-  ssl: 
-    caPath:  /tls/ca.pem
-    certPath: /tls/client-cert.pem
-    keyPath: /tls/client-key.pem
+  saslEnabled: true
   initEnabled: true
   initImage:
     repository: docker.io/bitnami/kafka
     tag: '3.9.0'
     pullPolicy: Always
-  # sessionTimeout: 
-  # heartbeatInterval:
-  volumeMounts:
-    - name: kafka-init-volume
-      readOnly: true
-      mountPath: /init
-    - name: dbildungs-iam-kafka-tls
-      readOnly: true
-      mountPath: /tls
-    - name: jks
-      mountPath: /jks
-    - name: keystore-password
-      readOnly: true
-      mountPath: /keystore-password.txt
-      subPath: keystore-password
-  volumes: 
-    - name: kafka-init-volume
-      configMap:
-        name: dbildungs-iam-server-kafka-init-configmap
-        defaultMode: 0555
-    - name: dbildungs-iam-kafka-tls
-      secret:
-        secretName: dbildungs-iam-kafka-tls
-        defaultMode: 420
-    - name: jks
-      emptyDir: {}
-    - name: keystore-password
-      secret:
-        secretName: dbildungs-iam-kafka-tls
-        items:
-          - key: keystore-password
-            path: keystore-password
 
 autoscaling:
   enabled: false
