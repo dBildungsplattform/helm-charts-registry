@@ -2118,6 +2118,15 @@
             "priority": 0,
             "autheticatorFlow": false,
             "userSetupAllowed": false
+          }, 
+          {
+            "authenticatorConfig" : "pi",
+            "authenticator" : "privacyidea-authenticator",
+            "authenticatorFlow" : false,
+            "requirement" : "REQUIRED",
+            "priority" : 2,
+            "autheticatorFlow" : false,
+            "userSetupAllowed" : false
           }
         ]
       },
