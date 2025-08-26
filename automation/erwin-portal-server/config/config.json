@@ -58,6 +58,13 @@
         "ROOT_OEFFENTLICH": "oeffentlich",
         "ROOT_ERSATZ": "ersatz"
     },
+    "PRIVACYIDEA": {
+        "ENDPOINT": "http://localhost:5000",
+        "USERNAME": "admin",
+        "PASSWORD": "admin",
+        "USER_RESOLVER": "mariadb_resolver",
+        "REALM": "defrealm"
+    },
     "IMPORT": {
         "CSV_FILE_MAX_SIZE_IN_MB": 5,
         "CSV_MAX_NUMBER_OF_USERS": 2001
