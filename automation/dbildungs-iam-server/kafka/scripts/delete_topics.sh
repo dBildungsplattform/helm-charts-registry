@@ -1,63 +1,56 @@
 #!/bin/sh
+set -e
 
-# Usage:
-#   delete_topics.sh <prefix>
-#
-# Environment variables:
-#   KAFKA_URL                - (required) The server to send the requests to
-#   KAFKA_USERNAME           - (optional) The username to authenicate with
-#   KAFKA_PASSWORD           - (optional) The password to authenicate with
-#   KAFKA_JAAS_FILE          - (optional) The JAAS file to use for authentication (does nothing, when username and password are set)
-#
-# This script will delete all topics with the specified prefix
+# === Input aus Umgebungsvariablen ===
+KAFKA_BROKER="${KAFKA_BROKER:?Missing KAFKA_BROKER}"
+KAFKA_SSL_CA_PATH="${KAFKA_SSL_CA_PATH:?Missing CA file}"
+KAFKA_SSL_CERT_PATH="${KAFKA_SSL_CERT_PATH:?Missing client cert}"
+KAFKA_SSL_KEY_PATH="${KAFKA_SSL_KEY_PATH:?Missing client key}"
 
-# Check for prefix argument
-if [ -z "$1" ]; then
-    echo "Usage: ./delete_topics.sh <prefix>" && exit 1
-fi
+CONFIG_DIR=$(mktemp -d)
 
-# Check for KAFKA_URL environment variable (required)
-if [ -z "${KAFKA_URL}" ]; then
-    echo "Environment-variable KAFKA_URL should point to the Kafka server! (e.g. localhost:9094)" && exit 1
-fi
+CONFIG="${CONFIG_DIR}/client.properties"
 
-if [ ! -z "${KAFKA_USERNAME}" ] && [ ! -z "${KAFKA_PASSWORD}" ]; then
-    KAFKA_JAAS_FILE="/tmp/client.info"
-    cat <<EOF > ${KAFKA_JAAS_FILE}
-sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="${KAFKA_USERNAME}" password="${KAFKA_PASSWORD}";
-security.protocol=SASL_PLAINTEXT
-sasl.mechanism=PLAIN
+KEYSTORE_FILE="${CONFIG_DIR}/keystore.pem"
+TRUSTSTORE_FILE="${CONFIG_DIR}/truststore.pem"
+
+# === Argument prüfen ===
+TOPIC_PREFIX="$1"
+[ -z "$TOPIC_PREFIX" ] && { echo "Usage: $0 <topic-prefix>"; exit 1; }
+
+# === Client Properties Datei schreiben ===
+cat > "${CONFIG}" <<EOF
+security.protocol=SSL
+ssl.keystore.type=PEM
+ssl.keystore.location=${KEYSTORE_FILE}
+ssl.truststore.type=PEM
+ssl.truststore.location=${TRUSTSTORE_FILE}
+ssl.enabled.protocols=TLSv1.2,TLSv1.1
 EOF
-else
-    echo "The envs KAFKA_USERNAME and KAFKA_PASSWORD not set. Authentication may fail."
+
+echo "🔧 TLS-Konfiguration geschrieben in ${CONFIG}"
+
+# === Alle Topics mit PREFIX abrufen ===
+echo "🔍 Suche nach Topics mit Prefix '${TOPIC_PREFIX}'..."
+
+TOPICS=$(kafka-topics.sh \
+    --bootstrap-server "${KAFKA_BROKER}" \
+    --list --command-config "${CONFIG}" | grep "^${TOPIC_PREFIX}")
+
+if [ -z "$TOPICS" ]; then
+    echo "⚠️ Keine Topics gefunden mit Prefix '${TOPIC_PREFIX}'"
+    exit 0
 fi
 
-# When KAFKA_USERNAME and KAFKA_PASSWORD are set create JAAS file
-if [ ! -z "${KAFKA_USERNAME}" ] && [ ! -z "${KAFKA_PASSWORD}" ]; then
-    KAFKA_JAAS_FILE="/tmp/client.info"
-    cat <<EOF > ${KAFKA_JAAS_FILE}
-sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="${KAFKA_USERNAME}" password="${KAFKA_PASSWORD}";
-security.protocol=SASL_PLAINTEXT
-sasl.mechanism=PLAIN
-EOF
-else
-    echo "The envs KAFKA_USERNAME and KAFKA_PASSWORD not set. Authentication may fail."
-fi
-
-# Check for KAFKA_TOPIC_PREFIX (optional)
-if [ -z "${KAFKA_JAAS_FILE}" ]; then
-    echo "Environment-variable KAFKA_JAAS_FILE was not set, connecting without authentication."
-else
-    CONFIG_FLAG="--command-config ${KAFKA_JAAS_FILE}"
-fi
-
-echo "Deleting topics..."
-
-# Run the topic-deletion for every line in the file
-kafka-topics.sh \
-    --bootstrap-server "${KAFKA_URL}" \
+# === Topics löschen ===
+echo "🗑️ Lösche Topics..."
+for topic in $TOPICS; do
+  echo "❌ Lösche Topic: $topic"
+  kafka-topics.sh \
+    --bootstrap-server "${KAFKA_BROKER}" \
     --delete \
-    --topic "${KAFKA_TOPIC_PREFIX}.*" \
-    ${CONFIG_FLAG}
+    --topic "$topic" \
+    --command-config "${CONFIG}"
+done
 
-echo "Deleted all topics with prefix!"
+echo "✅ Alle Topics mit Prefix '${TOPIC_PREFIX}' gelöscht."
