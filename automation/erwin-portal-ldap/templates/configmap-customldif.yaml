@@ -19,6 +19,6 @@ metadata:
 data:
 {{- range $key, $val := .Values.customLdifFiles }}
   {{ $key }}: |-
-{{ $.Files.Get $val | indent 4}}
+{{ $val | indent 4}}
 {{- end }}
 {{- end }}
