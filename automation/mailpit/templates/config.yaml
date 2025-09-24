@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "mailpit.fullname" . }}
+  namespace: {{ include "mailpit.namespace" . }}
+  labels:
+    {{- include "mailpit.labels" . | nindent 4 }}
+data:
+  MP_MAX_MESSAGES: {{ .Values.mailpit.maxMessages | quote }}
+  
+  MP_MAX_AGE: {{ .Values.mailpit.maxAge | quote }}
+  MP_DATABASE: "/data/mailpit.db"
+  MP_SMTP_AUTH_ACCEPT_ANY: "{{ .Values.auth.smtpAuthAcceptAny }}"
+  MP_SMTP_AUTH_ALLOW_INSECURE: "{{ .Values.auth.smtpAuthAllowInsecure }}"
+  MP_DISABLE_WAL: "{{ .Values.mailpit.disableWAL }}"
+  MP_DISABLE_VERSION_CHECK: "{{ .Values.mailpit.disableVersionCheck }}"
+  
+  {{- if or .Values.auth.existingSecret .Values.auth.ui }}
+  MP_UI_AUTH_FILE: "/etc/mailpit/auth/ui.htpasswd"
+  {{- end}}
+  {{- if and (or .Values.auth.existingSecret .Values.auth.smtp) (not .Values.auth.smtpAuthAcceptAny) }}
+  MP_SMTP_AUTH_FILE: "/etc/mailpit/auth/smtp.htpasswd"
+  {{- end}}
+  {{- if or .Values.auth.existingSecret .Values.auth.pop3 }}
+  MP_POP3_AUTH_FILE: "/etc/mailpit/auth/pop3.htpasswd"
+  {{- end}}
+  {{- if or .Values.auth.existingSecret .Values.auth.api }}
+  MP_SEND_API_AUTH_FILE: "/etc/mailpit/auth/api.htpasswd"
+  {{- end}}
+

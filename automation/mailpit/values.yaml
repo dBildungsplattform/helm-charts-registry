@@ -1,0 +1,151 @@
+image:
+  # repository is used to set the image repository for the container
+  repository: axllent/mailpit
+  # pullPolicy defines the image pull policy
+  pullPolicy: Always
+  # tag overrides the image tag, defaulting to the chart appVersion
+  tag: "latest"
+
+# imagePullSecrets specifies secrets for pulling images from private repositories
+imagePullSecrets: []
+# nameOverride overrides the chart name
+nameOverride: ""
+# fullnameOverride overrides the full chart name
+fullnameOverride: ""
+# namespaceOverride allows overriding the namespace for the deployment
+namespaceOverride: ""
+
+auth:
+  # ui defines the UI authentication configuration
+  # Each entry in the list represents a user with username and password
+  ui: []
+    # - username: ""
+    #   password: ""
+  # api defines the API authentication configuration
+  # Each entry in the list represents a user with username and password
+  api: []
+  # smtp defines the SMTP authentication configuration
+  # Each entry in the list represents a user with username and password
+  smtp: []
+  # pop3 defines the POP3 authentication configuration
+  # Each entry in the list represents a user with username and password
+  pop3: []
+  # existingSecret allows using an existing secret for authentication
+  # If set, the chart will not create a new secret.
+  # The secret must contain the following keys:
+  # - ui.htpasswd
+  # - smtp.htpasswd
+  # - pop3.htpasswd
+  # - api.htpasswd
+  existingSecret: ""
+  smtpAuthAcceptAny: true
+  smtpAuthAllowInsecure: true
+
+mailpit:
+  maxMessages: 5000
+  # maxAge sets the maximum age of messages to store in either (h)ours or (d)ays.
+  # Mailpit will periodically delete the oldest messages if greater than this.
+  # The value must be either in hours (eg: --max-age 36h) or days (eg: --max-age 14d) (see docs).
+  maxAge: "30d"
+  # disableWAL disables Write-Ahead Logging (WAL) support for local database.
+  # WAL (enabled by default) provides better performance,
+  # however is not compatible with network file systems such as NFS or Samba.
+  # Set this option if you intend to use persistent storage on a network volume.
+  disableWAL: false
+  disableVersionCheck: true
+
+
+# serviceAccount defines the service account configuration
+serviceAccount:
+  # create specifies whether a service account should be created
+  create: true
+  # automount determines if the ServiceAccount's API credentials are automatically mounted
+  automount: false
+  # annotations adds annotations to the service account
+  annotations: {}
+  # name specifies the name of the service account to use
+  # If not set, the chart will create a default service account
+  name: ""
+
+# podAnnotations adds Kubernetes annotations to the Pod
+podAnnotations: {}
+# podLabels adds Kubernetes labels to the Pod
+podLabels: {}
+
+# podSecurityContext defines the security context for the Pod
+podSecurityContext:
+  fsGroup: 1001
+
+# securityContext defines the security context for the container
+securityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  runAsUser: 1001
+  runAsGroup: 1001
+  runAsNonRoot: true
+  readOnlyRootFilesystem: true
+  seccompProfile:
+    type: RuntimeDefault
+
+# ingress defines the ingress configuration
+ingress:
+  # enabled specifies whether ingress is enabled
+  enabled: true
+  # className specifies the ingress class name
+  className: "nginx"
+  # host is the hostname for the ingress
+  host: ""
+  # annotations adds annotations to the ingress
+  annotations: {}
+  # tls defines the TLS configuration for the ingress
+  tls:
+    # enabled specifies whether TLS is enabled
+    enabled: true
+    # secretName specifies the secret name for TLS
+    secretName: "mailpit-tls"
+
+# resources defines resource requests and limits for the container
+resources:
+  # requests specifies the resource requests for the container
+  requests:
+    cpu: 200m
+    memory: 256Mi
+  # limits specifies the resource limits for the container
+  limits:
+    cpu: 2000m
+    memory: 2Gi
+
+# livenessProbe configures the liveness probe
+livenessProbe:
+  # httpGet defines the HTTP GET configuration for the liveness probe
+  httpGet:
+    path: /livez
+    port: http
+  initialDelaySeconds: 5
+  periodSeconds: 5
+  timeoutSeconds: 3
+  failureThreshold: 7
+
+# readinessProbe configures the readiness probe
+readinessProbe:
+  # httpGet defines the HTTP GET configuration for the readiness probe
+  httpGet:
+    path: /readyz
+    port: http
+  initialDelaySeconds: 5
+  periodSeconds: 5
+  timeoutSeconds: 1
+  failureThreshold: 3
+
+# storage configures persistent storage
+storage:
+  enabled: false
+  # className specifies the storage class name for the persistent volume claim
+  className: ""
+  # accessMode specifies the access mode for the persistent volume claim
+  accessModes:
+    - "ReadWriteOnce"
+  # size specifies the size of the persistent volume claim
+  size: 1Gi

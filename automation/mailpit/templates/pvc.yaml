@@ -1,0 +1,16 @@
+{{- if .Values.storage.enabled -}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "mailpit.fullname" . }}
+  namespace: {{ include "mailpit.namespace" . }}
+  labels:
+    {{- include "mailpit.labels" . | nindent 4 }}
+spec:
+  storageClassName: {{ .Values.storage.className | quote }}
+  accessModes:
+    {{- .Values.storage.accessModes | toYaml | nindent 4 }}
+  resources:
+    requests:
+      storage: {{ .Values.storage.size | quote }}
+{{- end }}
