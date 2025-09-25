@@ -105,6 +105,7 @@ ingress:
     enabled: true
     # secretName specifies the secret name for TLS
     secretName: "mailpit-tls"
+  path: "/"
 
 # resources defines resource requests and limits for the container
 resources:
