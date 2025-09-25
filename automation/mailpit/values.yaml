@@ -53,6 +53,7 @@ mailpit:
   # Set this option if you intend to use persistent storage on a network volume.
   disableWAL: false
   disableVersionCheck: true
+  httpRootPath: ""
 
 
 # serviceAccount defines the service account configuration
