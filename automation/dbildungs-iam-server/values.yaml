@@ -85,7 +85,6 @@ ox:
   contextName: "10"
   numberOfRetries: 3
   userPasswordDefault: "placeholder"
-  emailAddressDeletedEventDelay: 0
 
 email:
   nonEnabledEmailAddressesDeadlineInDays: 180
@@ -337,4 +336,3 @@ featureFlags:
 
 cron:
   personWithoutOrgLimit: 30
-  emailAddressesDeleteLimit: 10
