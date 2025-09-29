@@ -22,7 +22,7 @@ data:
     # no sure why this sleep is needed again - but it is
     sleep 10
 
-    # Loading Schemas
+    Loading Schemas
     ucsmail_search_output=$(ldapsearch -Y EXTERNAL -H ldapi:/// -b "cn=schema,cn=config" "(cn=*ucsMail)")
     if (echo "$ucsmail_search_output" | grep -q "numEntries: 1"); then
       echo "Entry for ucsMail Schema already exists. If you need to modify it, delete it and readd it."
