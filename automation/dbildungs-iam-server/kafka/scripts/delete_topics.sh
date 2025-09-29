@@ -75,7 +75,7 @@ fi
 echo "Deleting topics..."
 
 # Run the topic-deletion for every line in the file
-/opt/kafka/bin/kafka-topics.sh \
+kafka-topics.sh \
     --bootstrap-server "${KAFKA_BROKER}" \
     --delete \
     --topic "${KAFKA_TOPIC_PREFIX}.*" \
