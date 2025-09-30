@@ -270,10 +270,15 @@ kafka:
   topicPartitions: 3
   topicReplications: 3
   initImage:
-    repository: docker.io/bitnami/kafka
+    repository: docker.io/apache/kafka
     tag: "3.9.0"
     pullPolicy: Always
   existingSecret: dbildungs-iam-kafka-tls
+  kafka-topic-cleaner-enabled: true
+  jobs:
+    cron-topic-cleaner:
+      schedule: "0 2 * * *"
+      script: "delete_topics.sh"
 
 autoscaling:
   enabled: false
