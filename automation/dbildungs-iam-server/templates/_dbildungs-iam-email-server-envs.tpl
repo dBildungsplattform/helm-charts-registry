@@ -16,9 +16,4 @@
         key: db-host
 - name: DB_CLIENT_URL
   value: "postgres://$(DB_HOST)/"
-- name: KC_ADMIN_SECRET
-  valueFrom:
-    secretKeyRef:
-        name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
-        key: keycloak-adminSecret
 {{- end}}
