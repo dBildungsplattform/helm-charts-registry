@@ -8,10 +8,6 @@ image:
   repository: schulcloud/infra-sshd
   # Overrides the image tag whose default is the chart appVersion.
   tag: "stable"
-
-networkPolicy:
-  enabled: true
-
 service:
   # standalone: false
   type: NodePort
@@ -43,3 +39,17 @@ additionalVolumes: []
 additionalVolumeMounts: []
 
 imagePullSecrets: []
+livenessProbe:
+# -- Whether to apply the livenessProbe check to pod.
+   enabled: false
+   tcpSocket:
+      port: 22
+   # -- Time to wait before starting the first probe
+   initialDelaySeconds: 60
+   # -- How often (in seconds) the SSHD container liveness probe will run
+   periodSeconds: 5
+   # -- Number of seconds after which the probe times out
+   timeoutSeconds: 1
+   # -- The number of consecutive failures of the SSHD container liveness probe
+   # before the pod fails liveness checks.
+   failureThreshold: 12
