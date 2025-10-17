@@ -53,13 +53,7 @@ spec:
           {{- end }}
           
         {{- if .Values.livenessProbe.enabled }}
-        livenessProbe:
-          tcpSocket:
-            port: {{ .Values.livenessProbe.tcpSocket.port }}
-          initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
-          periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
-          timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
-          failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
+        livenessProbe: "{{ livenessProbe_values }}"
         {{- end }}
 
       volumes:
