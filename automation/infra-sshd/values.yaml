@@ -39,16 +39,15 @@ additionalVolumes: []
 additionalVolumeMounts: []
 
 imagePullSecrets: []
-livenessProbe_values:
-  livenessProbe:
-    # -- Whether to apply the livenessProbe check to pod.
-    enabled: true
-    # Check to confirm liveness
-    tcpSocket:
-      port: 22
-    # Time to wait before starting the first probe
-    initialDelaySeconds: 30
-    # How often (in seconds) the SSHD container liveness probe will run
-    periodSeconds: 10
-    # The number of consecutive failures of the SSHD container liveness probe before the pod fails liveness checks.
-    failureThreshold: 3
+livenessProbe:
+  # -- Whether to apply the livenessProbe check to pod.
+  enabled: true
+  # Check to confirm liveness
+  tcpSocket:
+    port: 22
+  # Time to wait before starting the first probe
+  initialDelaySeconds: 30
+  # How often (in seconds) the SSHD container liveness probe will run
+  periodSeconds: 10
+  # The number of consecutive failures of the SSHD container liveness probe before the pod fails liveness checks.
+  failureThreshold: 3
