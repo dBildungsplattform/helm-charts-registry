@@ -1,13 +1,15 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "common.names.fullname" . }}
+  name: {{ include "common.names.fullname" . }}-wn
   namespace: {{ include "common.names.namespace" . }}
   labels:
     {{- include "common.labels" . | nindent 4 }}
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /.well-known/$2
   {{- end }}
 spec:
   {{- if .Values.ingress.tls.enabled }}
@@ -24,7 +26,7 @@ spec:
       http:
         paths:
           {{- range $path := .Values.keycloak.exposedPaths }}
-          - path: "{{ $.Values.keycloak.httpRelativePath }}{{ $path }}"
+          - path: /auth/.well-known(/|$)(.*)
             pathType: "Prefix"
             backend:
               service:
