@@ -77,4 +77,3 @@ helm install chart_name ./status -f values.yaml
 | test.enabled | bool | `true` |  |
 | tolerations | list | `[]` |  |
 
-testing the workflow
