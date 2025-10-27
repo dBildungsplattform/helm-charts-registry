@@ -4,6 +4,14 @@ SPDX-License-Identifier: APACHE-2.0
 */}}
 
 {{/*
+Create a default fully qualified app name.
+We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
+*/}}
+{{- define "moodle.mariadb.fullname" -}}
+{{- printf "%s-%s" .Release.Name "mariadb" | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+
+{{/*
 Return the proper certificate image name
 */}}
 {{- define "certificates.image" -}}
@@ -42,16 +50,8 @@ Return the proper Docker Image Registry Secret Names
 Return  the proper Storage Class
 */}}
 {{- define "moodle.storageClass" -}}
-{{- $storageClass := .Values.global.storageClass | default .Values.persistence.storageClass | default .Values.global.defaultStorageClass | default "" -}}
-{{- if $storageClass -}}
-  {{- if eq $storageClass "-" -}}
-    {{- printf "storageClassName: \"\"" -}}
-  {{- else -}}
-    {{- printf "storageClassName: %s" $storageClass -}}
-  {{- end -}}
+{{- include "common.storage.class" (dict "persistence" .Values.persistence "global" .Values.global) -}}
 {{- end -}}
-{{- end -}}
-
 
 {{/*
  Create the name of the service account to use
@@ -75,42 +75,68 @@ Moodle&trade; credential secret name
 Return the Database type
 */}}
 {{- define "moodle.databaseType" -}}
+{{- if .Values.mariadb.enabled }}
+    {{- printf "mariadb" -}}
+{{- else -}}
     {{- printf "%s" .Values.externalDatabase.type -}}
 {{- end -}}
+{{- end -}}
 
 {{/*
-Return the DB Hostname
+Return the MariaDB Hostname
 */}}
 {{- define "moodle.databaseHost" -}}
+{{- if .Values.mariadb.enabled }}
+    {{- if eq .Values.mariadb.architecture "replication" }}
+        {{- printf "%s-%s" (include "moodle.mariadb.fullname" .) "primary" | trunc 63 | trimSuffix "-" -}}
+    {{- else -}}
+        {{- printf "%s" (include "moodle.mariadb.fullname" .) -}}
+    {{- end -}}
+{{- else -}}
     {{- printf "%s" .Values.externalDatabase.host -}}
 {{- end -}}
+{{- end -}}
 
 {{/*
-Return the DB Port
+Return the MariaDB Port
 */}}
 {{- define "moodle.databasePort" -}}
+{{- if .Values.mariadb.enabled }}
+    {{- printf "3306" -}}
+{{- else -}}
     {{- printf "%d" (.Values.externalDatabase.port | int ) -}}
 {{- end -}}
+{{- end -}}
 
 {{/*
-Return the Database Name
+Return the MariaDB Database Name
 */}}
 {{- define "moodle.databaseName" -}}
+{{- if .Values.mariadb.enabled }}
+    {{- printf "%s" .Values.mariadb.auth.database -}}
+{{- else -}}
     {{- printf "%s" .Values.externalDatabase.database -}}
 {{- end -}}
-
-{{/*
-Return the DB User
-*/}}
-{{- define "moodle.databaseUser" -}}
-    {{- printf "%s" .Values.externalDatabase.user -}}
 {{- end -}}
 
 {{/*
-Return the DB Secret Name
+Return the MariaDB User
+*/}}
+{{- define "moodle.databaseUser" -}}
+{{- if .Values.mariadb.enabled }}
+    {{- printf "%s" .Values.mariadb.auth.username -}}
+{{- else -}}
+    {{- printf "%s" .Values.externalDatabase.user -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
+Return the MariaDB Secret Name
 */}}
 {{- define "moodle.databaseSecretName" -}}
-{{- if .Values.externalDatabase.existingSecret -}}
+{{- if .Values.mariadb.enabled }}
+    {{- printf "%s" (include "moodle.mariadb.fullname" .) -}}
+{{- else if .Values.externalDatabase.existingSecret -}}
     {{- printf "%s" .Values.externalDatabase.existingSecret -}}
 {{- else -}}
     {{- printf "%s-%s" (include "common.names.fullname" .) "externaldb" -}}
