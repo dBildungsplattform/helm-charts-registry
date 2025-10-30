@@ -72,17 +72,13 @@ else
     CONFIG_FLAG="--command-config ${KAFKA_JAAS_FILE}"
 fi
 
-# echo "Deleting topics..."
+echo "Deleting topics..."
 
-# # Run the topic-deletion for every line in the file
-# /opt/kafka/bin/kafka-topics.sh \
-#     --bootstrap-server "${KAFKA_BROKER}" \
-#     --delete \
-#     --topic "${KAFKA_TOPIC_PREFIX}.*" \
-#     ${CONFIG_FLAG}
+# Run the topic-deletion for every line in the file
+/opt/kafka/bin/kafka-topics.sh \
+    --bootstrap-server "${KAFKA_BROKER}" \
+    --delete \
+    --topic "${KAFKA_TOPIC_PREFIX}.*" \
+    ${CONFIG_FLAG}
 
-# echo "Deleted all topics with prefix!"
-
-# Output all topics and metadata
-echo "Running kafka-topics.sh --describe"
-/opt/kafka/bin/kafka-topics.sh --bootstrap-server "${KAFKA_BROKER}" ${CONFIG_FLAG} --describe
+echo "Deleted all topics with prefix!"
