@@ -1,24 +1,22 @@
 #!/bin/sh
 
 # Usage:
-#   create_topics.sh <file>
+#   delete_topics.sh <prefix>
 #
 # Environment variables:
 #   KAFKA_BROKER             - (required) The server to send the requests to
+#   KAFKA_TOPIC_PREFIX       - (optional) A prefix that will determine all topics to be deleted
 #   KAFKA_SSL_ENABLED        - (optional) Wether SSL should be used
 #   KAFKA_SSL_CA_PATH        - (required if SSL enabled) CA file in PEM format
 #   KAFKA_SSL_CERT_PATH      - (required if SSL enabled) Certificate file in PEM format
 #   KAFKA_SSL_KEY_PATH       - (required if SSL enabled) Key file in PEM format
-#   KAFKA_TOPIC_PREFIX       - (optional) A prefix that will be prepended to every created topic
-#   KAFKA_TOPIC_PARTITIONS   - (optional) The number of partitions to use
-#   KAFKA_TOPIC_REPLICATIONS - (optional) The replication factor to use
 #   KAFKA_JAAS_FILE          - (optional) The JAAS file to use for authentication (does nothing, when SSL_ENABLED is set)
 #
-# This script will create a topic for every line in the input file (if it does not already exist)
+# This script will delete all topics with the specified prefix
 
-# Check for file argument
+# Check for prefix argument
 if [ -z "$1" ]; then
-    echo "Usage: ./create_topics.sh <topics-file>" && exit 1
+    echo "Usage: ./delete_topics.sh <prefix>" && exit 1
 fi
 
 # Check for KAFKA_BROKER environment variable (required)
@@ -28,26 +26,11 @@ fi
 
 # Check for KAFKA_TOPIC_PREFIX (optional)
 if [ -z "${KAFKA_TOPIC_PREFIX}" ]; then
-    echo "Environment-variable KAFKA_TOPIC_PREFIX was not set, creating topics without a prefix."
-fi
-
-# Check for KAFKA_TOPIC_PARTITIONS (optional)
-# Set to "1" as a default
-if [ -z "${KAFKA_TOPIC_PARTITIONS}" ]; then
-    KAFKA_TOPIC_PARTITIONS="3"
-    echo "Environment-variable KAFKA_TOPIC_PARTITIONS was not set, using the default (= 3)."
-fi
-
-# Check for KAFKA_TOPIC_REPLICATIONS (optional)
-# If not set, omit it from the create-topics command (uses cluster default)
-if [ -z "${KAFKA_TOPIC_REPLICATIONS}" ]; then
-    echo "Environment-variable KAFKA_TOPIC_REPLICATIONS was not set, using the cluster default."
-else
-    REPLICATION_FLAG="--replication-factor ${KAFKA_TOPIC_REPLICATIONS}"
+    echo "Environment-variable KAFKA_TOPIC_PREFIX was not set, ALL topics will be deleted!"
 fi
 
 # When KAFKA_SSL_ENABLED is set create JAAS file
-KAFKA_SSL_ENABLED=$(echo "$KAFKA_SSL_ENABLED" | tr '[:upper:]' '[:lower:]')
+KAFKA_SSL_ENABLED=$(tr '[:upper:]' '[:lower:]' <<< "$KAFKA_SSL_ENABLED" )
 if [ "$KAFKA_SSL_ENABLED" = "true" ]; then
     if [ ! -e "$KAFKA_SSL_CA_PATH" ]; then
         echo "KAFKA_SSL_CA_PATH file does not exist!" && exit 1
@@ -82,28 +65,20 @@ else
     echo "The env KAFKA_SSL_ENABLED is not set. Not creating JAAS file."
 fi
 
-# Check for KAFKA_JAAS_FILE
+# Check for KAFKA_TOPIC_PREFIX (optional)
 if [ -z "${KAFKA_JAAS_FILE}" ]; then
     echo "Environment-variable KAFKA_JAAS_FILE was not set, connecting without authentication."
 else
     CONFIG_FLAG="--command-config ${KAFKA_JAAS_FILE}"
 fi
 
-echo "Creating all topics..."
+echo "Deleting topics..."
 
-# Run the topic-creation for every line in the file
-<"$1" xargs -I % \
-    /opt/kafka/bin/kafka-topics.sh \
+# Run the topic-deletion for every line in the file
+/opt/kafka/bin/kafka-topics.sh \
     --bootstrap-server "${KAFKA_BROKER}" \
-    --create \
-    --if-not-exists \
-    --topic "${KAFKA_TOPIC_PREFIX}%" \
-    --partitions "${KAFKA_TOPIC_PARTITIONS}" \
-    ${REPLICATION_FLAG} \
+    --delete \
+    --topic "${KAFKA_TOPIC_PREFIX}.*" \
     ${CONFIG_FLAG}
 
-echo "Created all topics!"
-
-# Output all topics and metadata
-echo "Running kafka-topics.sh --describe"
-/opt/kafka/bin/kafka-topics.sh --bootstrap-server "${KAFKA_BROKER}" ${CONFIG_FLAG} --describe
+echo "Deleted all topics with prefix!"
