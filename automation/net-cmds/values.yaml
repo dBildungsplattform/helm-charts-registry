@@ -1,0 +1,21 @@
+image:
+  repository: busybox
+  pullPolicy: IfNotPresent
+  tag: latest
+
+securityContext:
+  capabilities:
+    add:
+      [ NET_ADMIN ]
+
+resources:
+  limits:
+    cpu: 10m
+    memory: 16Mi
+  requests:
+    cpu: 10m
+    memory: 16Mi
+
+commands: []
+
+tolerations: []

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "net-cmds.fullname" . }}-configmap
+  namespace: kube-system
+data:
+  cmds: |-
+    #!/bin/sh
+    {{- range $.Values.commands }}
+    {{ . }}
+    {{- end }}

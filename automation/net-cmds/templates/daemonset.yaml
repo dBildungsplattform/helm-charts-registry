@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: {{ include "net-cmds.fullname" . }}
+  namespace: kube-system
+  labels:
+    {{- include "net-cmds.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "net-cmds.selectorLabels" . | nindent 6 }}
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 100%
+  template:
+    metadata:
+      labels:
+        {{- include "net-cmds.selectorLabels" . | nindent 8 }}
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}        
+    spec:
+      terminationGracePeriodSeconds: 30
+      hostNetwork: true
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: [ 'sh' ]
+          args: [ '-c', '/bin/sh /opt/scripts/cmds; exec tail -f /dev/null' ]
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: script-volume
+              mountPath: /opt/scripts
+      volumes:
+        - name: script-volume
+          configMap:
+            name: {{ template "net-cmds.fullname" . }}-configmap
+    {{- if .Values.controller.tolerations }}
+      tolerations:
+{{ toYaml .Values.tolerations | indent 8 }}
+    {{- end }}
