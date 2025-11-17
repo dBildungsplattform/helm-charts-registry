@@ -36,9 +36,6 @@ Common labels
 {{- define "cronjob.labels" -}}
 helm.sh/chart: {{ include "cronjob.chart" . }}
 {{ include "cronjob.selectorLabels" . }}
-{{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
-{{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 

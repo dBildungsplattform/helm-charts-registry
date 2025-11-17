@@ -2,7 +2,7 @@
 {{- $chart_labels := include "cronjob.labels" . }}
 {{- $chart_selector_labels := include "cronjob.selectorLabels" . }}
 {{- $service_account_name := include "cronjob.serviceAccountName" . }}
-{{- $tag := .Values.image.tag | default .Chart.AppVersion }}
+{{- $tag := .Values.image.tag }}
 {{- $image_pull_secrets := .Values.imagePullSecrets }}
 
 {{- range $job := .Values.jobs }}
