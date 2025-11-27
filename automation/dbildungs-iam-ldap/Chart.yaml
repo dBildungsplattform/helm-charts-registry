@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: 1.16.0
+appVersion: 100.100.100
 dependencies:
 - condition: phpldapadmin.enabled
   name: phpldapadmin
@@ -16,4 +16,4 @@ keywords:
 - ldap
 - openldap
 name: dbildungs-iam-ldap
-version: 1.16.0
+version: 100.100.100
