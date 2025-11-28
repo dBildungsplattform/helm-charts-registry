@@ -64,10 +64,10 @@ spec:
           {{- .Values.dbpMoodle.restore.resources | toYaml | nindent 10 }}
         volumeMounts:
         - name: moodle-data
-          mountPath: /dbp-moodle/moodle
+          mountPath: /bitnami/moodle
           subPath: moodle
         - name: moodle-data
-          mountPath: /dbp-moodle/moodledata
+          mountPath: /bitnami/moodledata
           subPath: moodledata
         - name: moodle-restore-script
           mountPath: /scripts/
