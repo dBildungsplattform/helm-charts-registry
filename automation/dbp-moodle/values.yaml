@@ -4,10 +4,9 @@ global:
   storageClass: "nfs-client"
   security:
     allowInsecureImages: true
-  # dummy comment
   # -- All plugins are disabled by default. if enabled, the plugin is installed on image startup
   moodlePlugins:
-    kaltura: #TODO remove
+    kaltura:
       enabled: false
     etherpadlite:
       enabled: false
@@ -101,11 +100,6 @@ dbpMoodle:
     # -- Remember to adjust moodle.extraVolumes & moodle.extraVolumeMounts when setting this.
     # -- Secret key is by default expected to be config.php
     existingConfig: ""
-    # -- A string filled with additional php.ini configuration that overwrites the default one
-    additionalPhpIni: |
-      memory_limit = 513M
-      upload_max_filesize = 201M
-      post_max_size = 150M
 
   # -- Configurations for the optional redis
   redis:
@@ -358,20 +352,20 @@ moodle:
         cpu: 200m
         memory: 256Mi
   extraVolumeMounts:
-    - name: moodle-additional-php-ini-file
+    - name: moodle-php-ini
       readOnly: true
-      mountPath: /moodleconfig/
+      mountPath: /moodleconfig/php-ini
     - name: moodle-php-config
       readOnly: true
       mountPath: /moodleconfig/config-php
   extraVolumes:
-    # -- The additional php.ini which gets filled with custom values
-    - name: moodle-additional-php-ini-file
+    # -- The php.ini which installs the php-redis extension to enable the use for redis
+    - name: moodle-php-ini
       configMap:
-        name: moodle-additional-php-ini-file
+        name: moodle-php-ini
         items:
-          - key: moodle-php.ini
-            path: 01-dbp-php.ini
+          - key: php.ini
+            path: php.ini
         defaultMode: 0644
     # -- The custom config.php file that is used to configure moodle to use the database and redis (if activated)
     - name: moodle-php-config
@@ -481,14 +475,20 @@ etherpadlite:
     - name: DB_PORT
       value: "5432"
     - name: DB_NAME
-      value: "etherpad"
+      valueFrom:
+        secretKeyRef:
+          name: "moodle"
+          key: "db-name-etherpad"
     - name: DB_USER
-      value: "etherpad"
+      valueFrom:
+        secretKeyRef:
+          name: "moodle"
+          key: "db-user-etherpad"
     - name: DB_PASS
       valueFrom:
         secretKeyRef:
           name: "moodle"
-          key: "etherpad-postgresql-password"
+          key: "db-password-etherpad"
     - name: REQUIRE_SESSION
       value: "true"
   volumes:
