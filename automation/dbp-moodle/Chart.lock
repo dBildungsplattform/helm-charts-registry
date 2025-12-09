@@ -5,18 +5,12 @@ dependencies:
 - name: redis
   repository: https://charts.bitnami.com/bitnami
   version: 19.5.3
-- name: postgresql
-  repository: https://charts.bitnami.com/bitnami
-  version: 15.5.38
 - name: cronjob
   repository: file://charts/cronjob
   version: 0.1.0
 - name: cronjob
   repository: file://charts/cronjob
   version: 0.1.0
-- name: postgresql
-  repository: https://charts.bitnami.com/bitnami
-  version: 15.5.38
 - name: etherpad
   repository: file://charts/etherpad
   version: 0.1.0
@@ -26,5 +20,5 @@ dependencies:
 - name: sql-exporter
   repository: https://burningalchemist.github.io/sql_exporter/
   version: 0.6.1
-digest: sha256:20cd1e02cd9d292a3bcc3bdf7aed1db50c0af3b1c2bbab7b94a997654239e6c9
-generated: "2025-12-09T08:16:37.584792037Z"
+digest: sha256:744ea0b0395284b3636391d76ded476399b482bc97ef1bfd64ac4482380e5f93
+generated: "2025-12-09T11:03:13.723602488Z"
