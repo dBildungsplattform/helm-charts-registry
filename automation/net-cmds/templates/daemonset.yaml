@@ -39,7 +39,7 @@ spec:
         - name: script-volume
           configMap:
             name: {{ template "net-cmds.fullname" . }}-configmap
-    {{- if .Values.controller.tolerations }}
+    {{- if .Values.tolerations }}
       tolerations:
 {{ toYaml .Values.tolerations | indent 8 }}
     {{- end }}
