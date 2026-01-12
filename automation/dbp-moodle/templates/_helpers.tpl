@@ -59,7 +59,6 @@
 {{- end -}}
 
 {{- define "dbpMoodle.pluginConfigMap.content" -}}
-kaltura:kaltura:: {{- .Values.global.moodlePlugins.kaltura.enabled }}{{"\n"}}
 wunderbyte_table:local_wunderbyte_table:local/wunderbyte_table: {{- .Values.global.moodlePlugins.booking.enabled}}{{"\n"}}
 certificate:tool_certificate:admin/tool/certificate:            {{- or .Values.global.moodlePlugins.certificate.enabled .Values.global.moodlePlugins.coursecertificate.enabled }}{{"\n"}}
 etherpadlite:mod_etherpadlite:mod/etherpadlite:                 {{- .Values.global.moodlePlugins.etherpadlite.enabled }}{{"\n"}}
@@ -98,4 +97,25 @@ filtercodes:filter_filtercodes:filter/filtercodes:              {{- .Values.glob
 dynamic:customfield_dynamic:customfield/field/dynamic:          {{- .Values.global.moodlePlugins.customfield_dynamic.enabled }}{{"\n"}}
 cohort:availability_cohort:availability/condition/cohort:       {{- .Values.global.moodlePlugins.availability_cohort.enabled }}{{"\n"}}
 board:mod_board:mod/board:                                      {{- .Values.global.moodlePlugins.board.enabled }}{{"\n"}}
+{{- end -}}
+
+{{- define "dbpMoodle.pluginConfigMap.sys.uninstall.content" -}}
+{{- if .Values.dbpMoodle.uninstallSystemPlugins }}
+dropbox:repository_dropbox:repository/dropbox:                      {{- "true" }}{{"\n"}}
+equella:repository_equella:repository/equella:                      {{- "true" }}{{"\n"}}
+filesystem:repository_filesystem:repository/filesystem:             {{- "true" }}{{"\n"}}
+flickr:repository_flickr:repository/flickr:                         {{- "true" }}{{"\n"}}
+flickr_public:repository_flickr_public:repository/flickr_public:    {{- "true" }}{{"\n"}}
+googledocs:repository_googledocs:repository/googledocs:             {{- "true" }}{{"\n"}}
+merlot:repository_merlot:repository/merlot:                         {{- "true" }}{{"\n"}}
+onedrive:repository_onedrive:repository/onedrive:                   {{- "true" }}{{"\n"}}
+s3:repository_s3:repository/s3:                                     {{- "true" }}{{"\n"}}
+webdav:repository_webdav:repository/webdav:                         {{- "true" }}{{"\n"}}
+youtube:repository_youtube:repository/youtube:                      {{- "true" }}{{"\n"}}
+flickr:portfolio_flickr:portfolio/flickr:                           {{- "true" }}{{"\n"}}
+mahara:portfolio_mahara:portfolio/mahara:                           {{- "true" }}{{"\n"}}
+smsgateway_aws:smsgateway_aws:smsgateway/aws:                       {{- "true" }}{{"\n"}}
+enrol_paypal:enrol_paypal:enrol/paypal:                             {{- "true" }}{{"\n"}}
+unoconv:fileconverter_unoconv:fileconverter/unoconv:                {{- "true" }}{{"\n"}}
+{{- end -}}
 {{- end -}}
