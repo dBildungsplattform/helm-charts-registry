@@ -4,11 +4,20 @@
 {{- $service_account_name := include "cronjob.serviceAccountName" . }}
 {{- $image_pull_secrets := .Values.imagePullSecrets }}
 
+{{- $globalRepository := (and $.Values.image $.Values.image.repository) }}
+{{- $globalTag := (and $.Values.image $.Values.image.tag) }}
+{{- $globalPullPolicy := (and $.Values.image $.Values.image.pullPolicy) }}
+
 {{- range $job := .Values.jobs }}
 
-{{- $tag := required (printf "Tag is required for job %q! Set either jobs[].image.tag or global image.tag" .name) (coalesce (and .image .image.tag) $.Values.image.tag) }}
-{{- $repo := required (printf "Repository is required for job %q! Set jobs[].image.repository or global image.repository" .name) (coalesce (and .image .image.repository) $.Values.image.repository) }}
+{{- $jobRepository := (and $job.image $job.image.repository) }}
+{{- $jobTag := (and $job.image $job.image.tag) }}
+{{- $jobPullPolicy := (and $job.image $job.image.pullPolicy) }}
+
+{{- $repo := required (printf "Repository is required for job %q! Set jobs[].image.repository or global image.repository" $job.name) (coalesce $jobRepository $globalRepository) }}
+{{- $tag := required (printf "Tag is required for job %q! Set either jobs[].image.tag or global image.tag" $job.name) (coalesce $jobTag $globalTag) }}
 {{- $image := printf "%s:%s" $repo $tag }}
+{{- $image_pull_policy := coalesce $jobPullPolicy $globalPullPolicy }}
 
 {{- $env := $.Values.env }}
 {{- if .env }}
@@ -101,9 +110,7 @@ spec:
               securityContext:
                 {{- toYaml $.Values.securityContext | nindent 16 }}
               image: {{ $image }}
-              {{- with (coalesce (and $job.image $job.image.pullPolicy) $.Values.image.pullPolicy) }}
-              imagePullPolicy: {{ . }}
-              {{- end }}
+              imagePullPolicy: {{ $image_pull_policy }}
               {{- if .command }}
               command:
                 {{- toYaml .command | nindent 16 }}
