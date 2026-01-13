@@ -1,6 +1,12 @@
 nameOverride: ""
 fullnameOverride: ""
 
+# image:
+#   # -- Specifies a default image for all jobs without image definition
+#   repository: docker.io/schulcloud/cron-tools
+#   tag: latest
+#   pullPolicy: IfNotPresent
+
 serviceAccount:
   # -- Specifies whether a service account should be created
   create: true
@@ -120,5 +126,3 @@ jobs: []
   #   extraVolumeMounts: []
   #   # -- Additional job specific volumes
   #   extraVolumes: []
-
-
