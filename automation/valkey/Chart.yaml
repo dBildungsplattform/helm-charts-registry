@@ -1,0 +1,13 @@
+apiVersion: v2
+appVersion: DBP-1825
+description: A Helm chart for Valkey on Kubernetes
+icon: https://valkey.io/img/Valkey-logo.svg
+keywords:
+- cache
+- valkey
+maintainers:
+- name: groundhog2k
+  url: https://github.com/groundhog2k/helm-charts
+name: valkey
+type: application
+version: 0.0.0-dbp-1825-20260115-2108
