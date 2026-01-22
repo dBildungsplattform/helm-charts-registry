@@ -1,0 +1,11 @@
+{{- if .Values.extendedBootstrap.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "389ds.fullname" . }}-bootstrap
+  labels:
+    {{- include "389ds.labels" . | nindent 4 }}
+data:
+  bootstrap.sh: |
+    {{- tpl ($.Files.Get "files/bootstrap.sh") . | nindent 4 }}
+{{ end }}

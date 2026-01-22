@@ -1,0 +1,11 @@
+{{- if .Values.metrics.enabled -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "389ds.fullname" . }}-telegraf
+  labels:
+    {{- include "389ds.labels" . | nindent 4 }}
+data:
+  telegraf.conf: |
+    {{- tpl ($.Files.Get "files/telegraf.conf") . | nindent 4 }}
+{{ end }}

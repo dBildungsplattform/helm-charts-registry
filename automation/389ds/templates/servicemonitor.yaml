@@ -1,0 +1,16 @@
+{{- if .Values.metrics.enabled -}}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "389ds.fullname" . }}
+  labels:
+    {{- include "389ds.labels" . | nindent 4 }}
+spec:
+  endpoints:
+  - interval: 30s
+    path: /metrics
+    port: metrics
+  selector:
+    matchLabels:
+      {{- include "389ds.selectorLabels" . | nindent 6 }}
+{{ end }}

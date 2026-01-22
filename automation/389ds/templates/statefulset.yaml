@@ -1,0 +1,139 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: {{ include "389ds.fullname" . }}
+  labels:
+    {{- include "389ds.labels" . | nindent 4 }}
+spec:
+  serviceName: {{ include "389ds.fullname" . }}-headless
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "389ds.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "389ds.labels" . | nindent 8 }}
+          {{- with .Values.podLabels }}
+          {{- toYaml . | nindent 8 }}
+          {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "389ds.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+      - name: dirsrv-container
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        securityContext:
+          readOnlyRootFilesystem: true
+        {{- with .Values.resources }}
+        resources:
+          {{- toYaml . | nindent 12 }}
+        {{- end }}
+        {{- with .Values.livenessProbe }}
+        livenessProbe:
+          {{- toYaml . | nindent 12 }}
+        {{- end }}
+        {{- with .Values.readinessProbe }}
+        readinessProbe:
+          {{- toYaml . | nindent 12 }}
+        {{- end }}
+        env:
+        - name: DS_DM_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.dsDmPassword.secretName | quote }}
+              key: {{ .Values.dsDmPassword.secretKey | quote }}
+        - name: DS_SUFFIX_NAME
+          value: {{ .Values.dsSuffixName }}
+        - name: DS_ERRORLOG_LEVEL
+          value: "8192"
+        volumeMounts:
+        - name: data
+          mountPath: "/data"
+        {{- if .Values.tls.existingSecret }}
+        - name: dirsrv-tls
+          mountPath: '/data/tls/'
+          readOnly: true
+        {{- end }}
+        - name: dirsrv-tls-ca
+          mountPath: '/data/tls/ca'
+          readOnly: true
+      {{- if .Values.metrics.enabled }}
+      - name: telegraf
+        image: "{{ .Values.metrics.image.repository }}:{{ .Values.metrics.image.tag }}"
+        imagePullPolicy: {{ .Values.metrics.image.pullPolicy }}
+        securityContext:
+          readOnlyRootFilesystem: true
+        {{- with .Values.resources }}
+        resources:
+          {{- toYaml . | nindent 12 }}
+        {{- end }}
+        env:
+        - name: METRICS_BIND_DN
+          value: "{{ .Values.metrics.bind.dn }}"
+      {{- if .Values.metrics.bind.secretName }}
+        - name: METRICS_BIND_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.metrics.bind.secretName | quote }}
+              key: {{ .Values.metrics.bind.secretKey | quote }}
+      {{- end }}
+        volumeMounts:
+        - name: telegraf-config
+          mountPath: /etc/telegraf/telegraf.conf
+          subPath: telegraf.conf
+          readOnly: true
+      {{- end }}
+      volumes:
+      - name: telegraf-config
+        configMap:
+          name: {{ include "389ds.fullname" . }}-telegraf
+      {{- if .Values.tls.existingSecret }}
+      - name: dirsrv-tls
+        secret:
+          secretName: {{ .Values.tls.existingSecret | quote }}
+          items:
+          - key: {{ .Values.tls.certKey | quote }}
+            path: server.crt
+          - key: {{ .Values.tls.keyKey | quote }}
+            path: server.key
+      {{- end }}
+      # dirsrv needs any root ca to set tls up
+      - name: dirsrv-tls-ca
+        configMap:
+          name: kube-root-ca.crt
+          items:
+          - key: ca.crt
+            path: ca.crt
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: {{ .Values.persistence.size }}
