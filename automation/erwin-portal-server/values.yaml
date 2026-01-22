@@ -29,12 +29,12 @@ database:
   password: ''
   username: 'erwin_portal_server'
 
-itslearning:
-  enabled: false
-  endpoint: https://enterprise.itslintegrations.com/WCFServiceLibrary/ImsEnterpriseServicesPort.svc
-  root: sh
-  rootOeffentlich: oeffentlich
-  rootErsatz: ersatz
+ldap:
+  url: ldap://erwin-portal-ldap.spsh-xxx.svc.cluster.local
+  oeffentlicheSchulenDomain: schule-sh.de
+  ersatzschulenDomain: ersatzschule-sh.de
+  base_dn: dc=schule-sh,dc=de
+  retryWrapperDefaultRetries: 3
 
 privacyidea:
   url: https://privacyidea.dev.spsh.dbildungsplattform.de
