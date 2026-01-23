@@ -28,15 +28,15 @@ spec:
               key: {{ .Values.dsDmPassword.secretKey | quote }}
         - name: DS_SUFFIX_NAME
           value: {{ .Values.dsSuffixName }}
-        - name: INIT_HA_PEER_HOSTS
+        - name: BOOTSTRAP_HA_PEER_HOSTS
           value: {{ .Values.extendedBootstrap.peers }}
-        - name: INIT_BACKEND_NAME
+        - name: BOOTSTRAP_BACKEND_NAME
           value: {{ .Values.extendedBootstrap.backendName }}
-        - name: INIT_RM_PASSWORD
+        - name: BOOTSTRAP_RM_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: {{ .Values.initRmPassword.secretName | quote }}
-              key: {{ .Values.initRmPassword.secretKey | quote }}
+              name: {{ .Values.extendedBootstrap.rmPassword.secretName | quote }}
+              key: {{ .Values.extendedBootstrap.rmPassword.secretKey | quote }}
       volumes:
         - name: bootstrap-scripts
           configMap:

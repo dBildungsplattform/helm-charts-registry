@@ -14,10 +14,6 @@ dsDmPassword:
   secretName: ""
   secretKey: ""
 
-initRmPassword:
-  secretName: ""
-  secretKey: ""
-
 persistence:
   size: 10Gi
 
@@ -42,6 +38,9 @@ extendedBootstrap:
   peers: "port389ds-0.port389ds-headless"
   #peers: "port389ds-0.port389ds-headless port389ds-1.port389ds-headless port389ds-2.port389ds-headless" # Example for replicaCount: 3: + fullnameOverride: "port389ds"
   backendName: "userroot"
+  rmPassword:
+    secretName: ""
+    secretKey: ""
 
 image:
   repository: registry.suse.com/suse/389-ds

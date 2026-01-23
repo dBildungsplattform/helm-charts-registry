@@ -37,6 +37,7 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         securityContext:
           readOnlyRootFilesystem: true
+          allowPrivilegeEscalation: false
         {{- with .Values.resources }}
         resources:
           {{- toYaml . | nindent 12 }}
@@ -76,6 +77,7 @@ spec:
         imagePullPolicy: {{ .Values.metrics.image.pullPolicy }}
         securityContext:
           readOnlyRootFilesystem: true
+          allowPrivilegeEscalation: false
         {{- with .Values.resources }}
         resources:
           {{- toYaml . | nindent 12 }}

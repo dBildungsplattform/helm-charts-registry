@@ -5,18 +5,18 @@
 set -euof pipefail
 
 # constants
-INIT_RM_NAME="rmanager"
+BOOTSTRAP_RM_NAME="rmanager"
 LDAP_PORT=3389
 BIND_DN="cn=Directory Manager"
 
 replica_id=0
-for ha_peer_host_outer in ${INIT_HA_PEER_HOSTS}; do
+for ha_peer_host_outer in ${BOOTSTRAP_HA_PEER_HOSTS}; do
   replica_id=$((replica_id+1))
 
   echo "== Directory Server bootstrap =="
   echo "HA Peer       : ${ha_peer_host_outer}"
   echo "Replica ID    : ${replica_id}"
-  echo "Backend         ${INIT_BACKEND_NAME}"
+  echo "Backend         ${BOOTSTRAP_BACKEND_NAME}"
 
   DSCONF_PARAMS=(
     "ldap://${ha_peer_host_outer}:${LDAP_PORT}"
@@ -39,7 +39,7 @@ for ha_peer_host_outer in ${INIT_HA_PEER_HOSTS}; do
   if ! dsconf "${DSCONF_PARAMS[@]}" backend suffix get "${DS_SUFFIX_NAME}" >/dev/null 2>&1; then
     dsconf "${DSCONF_PARAMS[@]}" backend create \
       --suffix "${DS_SUFFIX_NAME}" \
-      --be-name "${INIT_BACKEND_NAME}" \
+      --be-name "${BOOTSTRAP_BACKEND_NAME}" \
       --create-suffix
   else
     echo "Backend already exists."
@@ -57,13 +57,13 @@ for ha_peer_host_outer in ${INIT_HA_PEER_HOSTS}; do
 
   echo "Ensuring replication manager exists..."
   dsconf "${DSCONF_PARAMS[@]}" replication create-manager \
-    --name "${INIT_RM_NAME}" \
-    --passwd "${INIT_RM_PASSWORD}" \
+    --name "${BOOTSTRAP_RM_NAME}" \
+    --passwd "${BOOTSTRAP_RM_PASSWORD}" \
     --suffix "${DS_SUFFIX_NAME}"
 
   echo "Ensuring replication agreements exist..."
 
-  for ha_peer_host_inner in ${INIT_HA_PEER_HOSTS}; do
+  for ha_peer_host_inner in ${BOOTSTRAP_HA_PEER_HOSTS}; do
 
     if [[ "${ha_peer_host_inner}" == "${ha_peer_host_outer}" ]]; then
       echo "Skipping self: ${ha_peer_host_inner}"
@@ -75,7 +75,7 @@ for ha_peer_host_outer in ${INIT_HA_PEER_HOSTS}; do
       dsconf "${DSCONF_PARAMS[@]}" repl-agmt create \
         --suffix "${DS_SUFFIX_NAME}" \
         --bind-dn cn=rmanager,cn=config \
-        --bind-passwd "${INIT_RM_PASSWORD}" \
+        --bind-passwd "${BOOTSTRAP_RM_PASSWORD}" \
         --bind-method SIMPLE \
         --conn-protocol LDAP \
         --host "${ha_peer_host_inner}" \
