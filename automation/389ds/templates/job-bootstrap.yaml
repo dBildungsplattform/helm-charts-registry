@@ -1,0 +1,47 @@
+{{- if .Values.extendedBootstrap.enabled -}}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "389ds.fullname" . }}-bootstrap
+  labels:
+    {{- include "389ds.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": post-install
+spec:
+  template:
+    spec:
+      containers:
+      - name: dirsrv-bootstrap
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        securityContext:
+          readOnlyRootFilesystem: true
+        volumeMounts:
+        - name: bootstrap-scripts
+          mountPath: /scripts
+        command: ["/scripts/bootstrap.sh"]
+        env:
+        - name: DS_DM_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.dsDmPassword.secretName | quote }}
+              key: {{ .Values.dsDmPassword.secretKey | quote }}
+        - name: DS_SUFFIX_NAME
+          value: {{ .Values.dsSuffixName }}
+        - name: INIT_HA_PEER_HOSTS
+          value: {{ .Values.extendedBootstrap.peers }}
+        - name: INIT_BACKEND_NAME
+          value: {{ .Values.extendedBootstrap.backendName }}
+        - name: INIT_RM_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ .Values.initRmPassword.secretName | quote }}
+              key: {{ .Values.initRmPassword.secretKey | quote }}
+      volumes:
+        - name: bootstrap-scripts
+          configMap:
+            name: {{ include "389ds.fullname" . }}-bootstrap
+            defaultMode: 0555
+      restartPolicy: OnFailure
+  backoffLimit: 4
+{{ end }}

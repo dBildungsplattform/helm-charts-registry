@@ -1,0 +1,108 @@
+# Default values for 389ds.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# This is to override the chart name.
+nameOverride: ""
+fullnameOverride: "port389ds"
+
+replicaCount: 1
+
+dsSuffixName: "dc=example,dc=com"
+
+dsDmPassword:
+  secretName: ""
+  secretKey: ""
+
+initRmPassword:
+  secretName: ""
+  secretKey: ""
+
+persistence:
+  size: 10Gi
+
+service:
+  securePort: 3389
+  insecurePort: 3636
+
+externalService:
+  enabled: false
+  securePort: 3389
+
+tls:
+  existingSecret: ""
+  certKey: "tls.crt"
+  keyKey: "tls.key"
+
+# Runs once on helm install and does extended bootstrap (disable anonymous bind, create additional backends, set up replication)
+extendedBootstrap:
+  # If you want to use extended bootstrap, define the peers below according to the number of replicas and their service names
+  # Note that downsizing the replica count or disabling HA after enabling HA replication is not supported! Always check if the cluster is healthy and the config fits when downsizing!
+  enabled: false
+  peers: "port389ds-0.port389ds-headless"
+  #peers: "port389ds-0.port389ds-headless port389ds-1.port389ds-headless port389ds-2.port389ds-headless" # Example for replicaCount: 3: + fullnameOverride: "port389ds"
+  backendName: "userroot"
+
+image:
+  repository: registry.suse.com/suse/389-ds
+  pullPolicy: IfNotPresent
+  tag: "2.5"
+
+imagePullSecrets: []
+
+dirsrvContainer:
+  resources:
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+    requests:
+      memory: "256Mi"
+      cpu: "250m"
+  livenessProbe:
+    exec:
+      command:
+      - /usr/lib/dirsrv/dscontainer
+      - -H
+  readinessProbe:
+    exec:
+      command:
+      - /usr/lib/dirsrv/dscontainer
+      - -H
+
+metrics:
+  enabled: false
+  image:
+    repository: telegraf
+    tag: "1.37.1"
+    pullPolicy: IfNotPresent
+  bind:
+    secretName: ""
+    secretKey: ""
+    dn: ""
+  resources:
+    limits:
+      memory: "128Mi"
+      cpu: "100m"
+    requests:
+      memory: "64Mi"
+      cpu: "50m"
+
+serviceAccount:
+  create: true
+  automount: false
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+
+podLabels: {}
+
+podSecurityContext: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+extraObjects: []

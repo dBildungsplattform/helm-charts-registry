@@ -1,0 +1,17 @@
+{{- if .Values.externalService.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "389ds.fullname" . }}-external
+  labels:
+    {{- include "389ds.labels" . | nindent 4 }}
+spec:
+  type: "LoadBalancer"
+  ports:
+    - name: dirsrv-secure
+      port: {{ .Values.externalService.securePort }}
+      protocol: TCP
+      targetPort: 3636
+  selector:
+    {{- include "389ds.selectorLabels" . | nindent 4 }}
+{{- end }}

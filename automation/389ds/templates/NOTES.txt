@@ -1,0 +1,5 @@
+Check if the 389 Directory Server is set up properly after installation:
+1. By default, 389 Directory Server has anonymous read access enabled - extendedBootstrap disables this. You can verify this by running the following command:
+   $ ldapsearch -x -H ldap://<service-name>.<namespace>.svc.cluster.local
+2. Check if replication agreements have been set up properly on each node (should return "Replica acquired successfully" for each agreement):
+   $ dsconf localhost repl-agmt list --suffix $DS_SUFFIX_NAME
