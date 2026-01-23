@@ -46,7 +46,7 @@ extendedBootstrap:
 image:
   repository: registry.suse.com/suse/389-ds
   pullPolicy: IfNotPresent
-  tag: "2.5"
+  tag: ""
 
 imagePullSecrets: []
 
