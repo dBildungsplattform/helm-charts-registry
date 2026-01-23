@@ -12,7 +12,7 @@ spec:
   selector:
     app.kubernetes.io/name: {{ .Release.Name }}
   type: {{ .Values.service.type}}
-  {{- if and (eq .Values.service.type "LoadBalancer") .Values.service.externalIPs }}
+  {{- if .Values.service.externalIPs }}
   externalIPs:
     {{- toYaml .Values.service.externalIPs | nindent 4 }}
   {{- end }}
