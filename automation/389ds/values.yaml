@@ -24,6 +24,7 @@ service:
 externalService:
   enabled: false
   securePort: 3389
+  loadBalancerIP: ""
 
 tls:
   existingSecret: ""
