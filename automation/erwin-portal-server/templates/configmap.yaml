@@ -16,6 +16,7 @@ data:
   FRONTEND_OIDC_CALLBACK_URL: "https://{{ .Values.backendHostname }}/api/auth/login"
   FRONTEND_DEFAULT_LOGIN_REDIRECT: "https://{{ .Values.backendHostname }}/"
   FRONTEND_LOGOUT_REDIRECT: "https://{{ .Values.backendHostname }}/"
+  STATUS_REDIRECT_URL: "{{ .Values.status.url }}"
   BACKEND_HOSTNAME: "{{ .Values.backendHostname }}"
   ERROR_PAGE_REDIRECT: "https://{{ .Values.backendHostname }}/login-error"
   SYSTEM_RENAME_WAITING_TIME_IN_SECONDS: "{{ .Values.backend.env.renameWaitingTimeInSeconds }}"
