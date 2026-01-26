@@ -22,7 +22,7 @@ A Helm chart for Kubernetes
 | dsSuffixName | string | `"dc=example,dc=com"` |  |
 | extendedBootstrap.backendName | string | `"userroot"` |  |
 | extendedBootstrap.enabled | bool | `false` |  |
-| extendedBootstrap.helmHook | string | `"pre-install"` |  |
+| extendedBootstrap.helmHook | string | `"post-install"` |  |
 | extendedBootstrap.peers | string | `"port389ds-0.port389ds-headless"` |  |
 | extendedBootstrap.rmPassword.secretKey | string | `""` |  |
 | extendedBootstrap.rmPassword.secretName | string | `""` |  |
