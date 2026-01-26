@@ -45,11 +45,6 @@
     secretKeyRef:
         name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
         key: redis-password
-- name: OX_PASSWORD
-  valueFrom:
-    secretKeyRef:
-        name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
-        key: ox-password
 - name: METRICS_BASIC_AUTH
   valueFrom:
     secretKeyRef:
