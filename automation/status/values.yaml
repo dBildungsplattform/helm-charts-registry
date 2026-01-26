@@ -76,8 +76,8 @@ postgresql:
   enabled: true
   auth:
     username: "status"
-    postgresPassword: "status"
-    password: "status"
+    postgresPassword: ""
+    password: ""
     database: "status"
     existingSecret: ""
     secretKeys:
@@ -139,4 +139,3 @@ tolerations: []
 affinity: {}
 
 seedData: {}
-#trigger
