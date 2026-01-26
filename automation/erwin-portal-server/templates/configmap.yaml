@@ -18,7 +18,6 @@ data:
   FRONTEND_LOGOUT_REDIRECT: "https://{{ .Values.backendHostname }}/"
   BACKEND_HOSTNAME: "{{ .Values.backendHostname }}"
   ERROR_PAGE_REDIRECT: "https://{{ .Values.backendHostname }}/login-error"
-  STATUS_REDIRECT_URL: "{{ .Values.status.url }}"
   SYSTEM_RENAME_WAITING_TIME_IN_SECONDS: "{{ .Values.backend.env.renameWaitingTimeInSeconds }}"
   SYSTEM_STEP_UP_TIMEOUT_ENABLED: "{{ .Values.backend.env.stepUpTimeoutEnabled }}"
   SYSTEM_STEP_UP_TIMEOUT_IN_SECONDS: "{{ .Values.backend.env.stepUpTimeoutInSeconds }}"
