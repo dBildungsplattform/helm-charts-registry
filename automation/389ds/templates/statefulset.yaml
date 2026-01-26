@@ -57,7 +57,7 @@ spec:
               name: {{ .Values.dsDmPassword.secretName | quote }}
               key: {{ .Values.dsDmPassword.secretKey | quote }}
         - name: DS_SUFFIX_NAME
-          value: {{ .Values.dsSuffixName }}
+          value: {{ .Values.dsSuffixName | quote }}
         - name: DS_ERRORLOG_LEVEL
           value: "8192"
         volumeMounts:
@@ -84,7 +84,7 @@ spec:
         {{- end }}
         env:
         - name: METRICS_BIND_DN
-          value: "{{ .Values.metrics.bind.dn }}"
+          value: {{ .Values.metrics.bind.dn | quote }}
       {{- if .Values.metrics.bind.secretName }}
         - name: METRICS_BIND_PASSWORD
           valueFrom:

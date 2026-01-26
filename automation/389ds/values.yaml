@@ -41,6 +41,7 @@ extendedBootstrap:
   rmPassword:
     secretName: ""
     secretKey: ""
+  helmHook: "pre-install"
 
 image:
   repository: registry.suse.com/suse/389-ds

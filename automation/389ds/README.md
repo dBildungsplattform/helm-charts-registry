@@ -23,6 +23,8 @@ A Helm chart for Kubernetes
 | extendedBootstrap.backendName | string | `"userroot"` |  |
 | extendedBootstrap.enabled | bool | `false` |  |
 | extendedBootstrap.peers | string | `"port389ds-0.port389ds-headless"` |  |
+| extendedBootstrap.rmPassword.secretKey | string | `""` |  |
+| extendedBootstrap.rmPassword.secretName | string | `""` |  |
 | externalService.enabled | bool | `false` |  |
 | externalService.securePort | int | `3389` |  |
 | extraObjects | list | `[]` |  |
@@ -31,8 +33,6 @@ A Helm chart for Kubernetes
 | image.repository | string | `"registry.suse.com/suse/389-ds"` |  |
 | image.tag | string | `""` |  |
 | imagePullSecrets | list | `[]` |  |
-| initRmPassword.secretKey | string | `""` |  |
-| initRmPassword.secretName | string | `""` |  |
 | metrics.bind.dn | string | `""` |  |
 | metrics.bind.secretKey | string | `""` |  |
 | metrics.bind.secretName | string | `""` |  |

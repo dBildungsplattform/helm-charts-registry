@@ -6,7 +6,7 @@ metadata:
   labels:
     {{- include "389ds.labels" . | nindent 4 }}
   annotations:
-    "helm.sh/hook": post-install
+    "helm.sh/hook": {{ .Values.extendedBootstrap.helmHook | quote }}
 spec:
   template:
     spec:
@@ -27,11 +27,11 @@ spec:
               name: {{ .Values.dsDmPassword.secretName | quote }}
               key: {{ .Values.dsDmPassword.secretKey | quote }}
         - name: DS_SUFFIX_NAME
-          value: {{ .Values.dsSuffixName }}
+          value: {{ .Values.dsSuffixName | quote }}
         - name: BOOTSTRAP_HA_PEER_HOSTS
-          value: {{ .Values.extendedBootstrap.peers }}
+          value: {{ .Values.extendedBootstrap.peers | quote}}
         - name: BOOTSTRAP_BACKEND_NAME
-          value: {{ .Values.extendedBootstrap.backendName }}
+          value: {{ .Values.extendedBootstrap.backendName | quote }}
         - name: BOOTSTRAP_RM_PASSWORD
           valueFrom:
             secretKeyRef:
