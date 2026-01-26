@@ -36,10 +36,6 @@
     secretKeyRef:
         name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
         key: frontend-sessionSecret
-  valueFrom:
-    secretKeyRef:
-        name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
-        key: pi-admin-password
 - name: REDIS_PASSWORD
   valueFrom:
     secretKeyRef:
