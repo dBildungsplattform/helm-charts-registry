@@ -36,6 +36,16 @@
     secretKeyRef:
         name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
         key: frontend-sessionSecret
+- name: LDAP_BIND_DN
+  valueFrom:
+    secretKeyRef:
+        name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
+        key: ldap-bind-dn
+- name: LDAP_ADMIN_PASSWORD
+  valueFrom:
+    secretKeyRef:
+        name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
+        key: ldap-admin-password
 - name: REDIS_PASSWORD
   valueFrom:
     secretKeyRef:

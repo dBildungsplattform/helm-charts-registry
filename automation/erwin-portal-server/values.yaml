@@ -29,6 +29,13 @@ database:
   password: ''
   username: 'erwin_portal_server'
 
+ldap:
+  url: ldap://erwin-portal-ldap.spsh-xxx.svc.cluster.local
+  oeffentlicheSchulenDomain: schule-sh.de
+  ersatzschulenDomain: ersatzschule-sh.de
+  base_dn: dc=schule-sh,dc=de
+  retryWrapperDefaultRetries: 3
+
 system:
   rename_waiting_time_in_seconds: 2
   step_up_timeout_in_seconds: 900 # prüfen
@@ -41,6 +48,8 @@ auth:
   keycloak_clientSecret: ''
   service_account_private_jwks: ''
   frontend_sessionSecret: ''
+  ldap_bind_dn: ''
+  ldap_admin_password: ''
   secrets_json: ''
   frontend_sessionSecret: ''
   redis_password: ''
