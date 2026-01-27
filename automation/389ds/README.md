@@ -27,6 +27,7 @@ A Helm chart for Kubernetes
 | extendedBootstrap.rmPassword.secretKey | string | `""` |  |
 | extendedBootstrap.rmPassword.secretName | string | `""` |  |
 | externalService.enabled | bool | `false` |  |
+| externalService.loadBalancerIP | string | `""` |  |
 | externalService.securePort | int | `3389` |  |
 | extraObjects | list | `[]` |  |
 | fullnameOverride | string | `"port389ds"` |  |
