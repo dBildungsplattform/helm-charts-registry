@@ -36,12 +36,26 @@ ldap:
   base_dn: dc=schule-sh,dc=de
   retryWrapperDefaultRetries: 3
 
+itslearning:
+  enabled: false
+  endpoint: https://enterprise.itslintegrations.com/WCFServiceLibrary/ImsEnterpriseServicesPort.svc
+  root: sh
+  rootOeffentlich: oeffentlich
+  rootErsatz: ersatz
+
+privacyidea:
+  url: https://privacyidea.dev.spsh.dbildungsplattform.de
+  renameWaitingTime: 5
+  realm: ucs_users
+  userResolver: ucs_users
+
 system:
   rename_waiting_time_in_seconds: 2
-  step_up_timeout_in_seconds: 900 # prüfen
-  step_up_timeout_enabled: false # prüfen
+  step_up_timeout_in_seconds: 900
+  step_up_timeout_enabled: false
 
 auth:
+  # existingSecret: Refers to a secret already present in the cluster, which is required.
   existingSecret: ''
   secretName: erwin-portal-server
   keycloak_adminSecret: ''
@@ -52,11 +66,36 @@ auth:
   ldap_admin_password: ''
   secrets_json: ''
   frontend_sessionSecret: ''
+  itslearning_username: ''
+  itslearning_password: ''
+  pi_admin_user: ''
+  pi_admin_password: ''
   redis_password: ''
+  vidis_username: ''
+  vidis_password: ''
   import_passphrase_secret: ''
   import_passphrase_salt: ''
+  ox_password: ''
   basic_auth_password: ''
   redis_password: ''
+  kafka_username: ''
+  kafka_password: ''
+
+ox:
+  enabled: false
+  username: 'oxadmin'
+  endpoint: 'https://webmail.example.com'
+  contextId: '10'
+  contextName: '10'
+
+email:
+  nonEnabledEmailAddressesDeadlineInDays: 180
+
+vidis:
+  url: 'https://service-stage.vidis.schule'
+  regionName: 'test-region'
+  keycloakGroup: 'VIDIS-service'
+  keycloakRole: 'VIDIS-user'
 
 backend:
   replicaCount: 1
@@ -149,6 +188,15 @@ backend:
     stepUpTimeoutEnabled: 'false'
     maxOldSpaceSize: 3584
 
+# kafka:
+#   url: "erwin-portal-kafka.spsh.svc.cluster.local:9092"
+#   enabled: false
+#   initEnabled: true
+#   initImage:
+#     repository: docker.io/bitnami/kafka
+#     tag: '3.9.0'
+#     pullPolicy: Always
+
 autoscaling:
   enabled: false
   minReplicas: 1
@@ -159,9 +207,8 @@ podDisruptionBudget:
   enabled: false
   minAvailable: "60%"
 
-# später Statusseite ErWIn
 status:
- url: 'https://status.dev.spsh.dbildungsplattform.de/'
+  url: 'https://status.dev.spsh.dbildungsplattform.de/'
 
 cronjobs:
   enabled: true
@@ -196,10 +243,15 @@ cronjobs:
       endpoint: '/api/cron/unlock'
       httpMethod: 'PUT'
       script: 'cron_trigger.sh'
+    cron-trigger-5:
+      schedule: 30 0 * * *
+      endpoint: '/api/cron/vidis-angebote'
+      httpMethod: 'PUT'
+      script: 'cron_trigger.sh'
 
 import:
   csvFileMaxSizeInMB: 10
   csvMaxNumberOfUsers: 2001
 
 featureFlags:
-  befristungBearbeiten: true # prüfen
+  befristungBearbeiten: true
