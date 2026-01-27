@@ -6,6 +6,12 @@ Additional functionality:
 - Additional service for haMode that always points to the master pod to ensure compatibility with application that doesn't support sentinel
 - Easier configuration of password protection in valkey, sentinel, metrics and labeling based on a single existing secret
 
+### Releases
+
+During development both valkey-tools and the chart are automatically triggered on push to a branch.
+
+A release can be triggered by creating/pushing a tag. Format: X.X.X for the chart and valkey-tools-X.X.X for the valkey-tools image.
+
 ### Basic setup without high availability
 
 `haMode.enabled: false`
