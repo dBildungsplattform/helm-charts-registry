@@ -454,7 +454,7 @@ spec:
                 fieldRef:
                   fieldPath: metadata.namespace
           {{- if and .Values.auth.existingSecret.name .Values.auth.existingSecret.key }}
-            - name: VALKEYCLI_AUTH
+            - name: REDISCLI_AUTH
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.auth.existingSecret.name }}
@@ -463,6 +463,14 @@ spec:
           volumeMounts:
             - name: scripts
               mountPath: /scripts
+            - name: tmp
+              mountPath: /tmp
+          livenessProbe:
+            exec:
+              command:
+                - "sh"
+                - "-c"
+                - "[ -s /tmp/valkey-role ] && [ $(($(date +%s) - $(stat -c %Y /tmp/valkey-role))) -le 5 ]"
         {{- end }}      
       {{- with .Values.extraContainers }}
       {{- toYaml . | nindent 8 }}
@@ -488,6 +496,10 @@ spec:
           configMap:
             name: {{ $fullname }}-scripts
             defaultMode: 0555
+        {{- if and .Values.haMode.enabled .Values.haMode.masterService.enabled }}
+        - name: tmp
+          emptyDir: {}
+        {{- end }}
         {{- if or (.Values.valkeyConfig) (.Values.sentinelConfig) }}
         - name: config
           configMap:

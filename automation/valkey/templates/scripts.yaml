@@ -232,7 +232,9 @@ data:
       if [ "$LAST_ROLE" != "$CURRENT_ROLE" ]; then
         echo "Role change! $LAST_ROLE -> $CURRENT_ROLE"
         LAST_ROLE=$CURRENT_ROLE
-        kubectl label pod $POD_NAME -n $POD_NAMESPACE --overwrite valkey-role=$CURRENT_ROLE || exit 1
+        kubectl label pod $POD_NAME -n $POD_NAMESPACE --overwrite valkey-role="$CURRENT_ROLE" || exit 1
       fi
+      # Used for livenessProbe
+      echo -n "$CURRENT_ROLE" > /tmp/valkey-role
       sleep 1
     done
