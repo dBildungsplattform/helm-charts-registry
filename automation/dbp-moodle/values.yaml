@@ -494,24 +494,18 @@ etherpadlite:
     - name: DB_TYPE
       value: "postgres"
     - name: DB_HOST
-      value: "" # Must be set dynamically
+      value: "moodle-etherpad-postgresql"
     - name: DB_PORT
       value: "5432"
     - name: DB_NAME
-      valueFrom:
-        secretKeyRef:
-          name: "moodle"
-          key: "db-name-etherpad"
+      value: "etherpad"
     - name: DB_USER
-      valueFrom:
-        secretKeyRef:
-          name: "moodle"
-          key: "db-user-etherpad"
+      value: "etherpad"
     - name: DB_PASS
       valueFrom:
         secretKeyRef:
           name: "moodle"
-          key: "db-password-etherpad"
+          key: "etherpad-postgresql-password"
     - name: REQUIRE_SESSION
       value: "true"
   volumes:
@@ -521,16 +515,10 @@ etherpadlite:
         items:
           - key: "etherpad-api-key"
             path: "APIKEY.txt"
-    - name: "etherpad-settings"
-      configMap:
-        name: "etherpad-settings"
   volumeMounts:
     - name: "api-key"
       mountPath: "/opt/etherpad-lite/APIKEY.txt"
       subPath: "APIKEY.txt"
-    - name: "etherpad-settings"
-      mountPath: "/opt/etherpad-lite/settings.json"
-      subPath: settings
   ingress:
     enabled: true
     annotations:
