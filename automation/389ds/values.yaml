@@ -17,7 +17,7 @@ dsDmPassword:
 persistence:
   size: 10Gi
 
-# this only has an effect if configured before helm install, otherwise cp /etc/dirsrv/schema/99user.ldif /data/config/schema/99user.ldif is needed
+# -- this only has an effect if configured before helm install, otherwise cp /etc/dirsrv/schema/99user.ldif /data/config/schema/99user.ldif is needed
 customSchema: ""
 
 service:
