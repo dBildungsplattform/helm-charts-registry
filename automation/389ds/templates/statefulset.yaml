@@ -73,7 +73,7 @@ spec:
           readOnly: true
         {{- if .Values.customSchema }}
         - name: custom-schema
-          mountPath: '/data/config/schema/98custom.ldif'
+          mountPath: '/etc/dirsrv/schema/98custom.ldif'
           subPath: 98custom.ldif
         {{- end }}
       {{- if .Values.metrics.enabled }}

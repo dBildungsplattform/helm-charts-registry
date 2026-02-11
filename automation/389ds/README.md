@@ -9,6 +9,7 @@ A Helm chart for Kubernetes
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
+| customSchema | string | `""` |  |
 | dirsrvContainer.livenessProbe.exec.command[0] | string | `"/usr/lib/dirsrv/dscontainer"` |  |
 | dirsrvContainer.livenessProbe.exec.command[1] | string | `"-H"` |  |
 | dirsrvContainer.readinessProbe.exec.command[0] | string | `"/usr/lib/dirsrv/dscontainer"` |  |
