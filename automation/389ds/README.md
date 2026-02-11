@@ -9,7 +9,7 @@ A Helm chart for Kubernetes
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
-| customSchema | string | `""` |  |
+| customSchema | string | `""` | this only has an effect if configured before helm install, otherwise cp /etc/dirsrv/schema/99user.ldif /data/config/schema/99user.ldif is needed |
 | dirsrvContainer.livenessProbe.exec.command[0] | string | `"/usr/lib/dirsrv/dscontainer"` |  |
 | dirsrvContainer.livenessProbe.exec.command[1] | string | `"-H"` |  |
 | dirsrvContainer.readinessProbe.exec.command[0] | string | `"/usr/lib/dirsrv/dscontainer"` |  |
