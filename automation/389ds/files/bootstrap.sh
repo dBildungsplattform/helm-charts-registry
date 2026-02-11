@@ -86,7 +86,7 @@ for ha_peer_host_outer in ${BOOTSTRAP_HA_PEER_HOSTS}; do
     fi
 
     # Initialize replication agreement only from non-primary replicas
-    if [[ "${replica_id}" != 1 ]]; then
+    if [[ "${replica_id}" == 1 ]]; then
       echo "Initializing replication agreement to ${ha_peer_host_inner}..."
       dsconf "${DSCONF_PARAMS[@]}" repl-agmt init "${ha_peer_host_inner}" --suffix "${DS_SUFFIX_NAME}"
     fi

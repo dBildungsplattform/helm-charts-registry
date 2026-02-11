@@ -17,6 +17,8 @@ dsDmPassword:
 persistence:
   size: 10Gi
 
+customSchema: ""
+
 service:
   securePort: 3389
   insecurePort: 3636

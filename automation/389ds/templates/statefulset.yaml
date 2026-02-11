@@ -71,6 +71,11 @@ spec:
         - name: dirsrv-tls-ca
           mountPath: '/data/tls/ca'
           readOnly: true
+        {{- if .Values.customSchema }}
+        - name: custom-schema
+          mountPath: '/data/config/schema/98custom.ldif'
+          subPath: 98custom.ldif
+        {{- end }}
       {{- if .Values.metrics.enabled }}
       - name: telegraf
         image: "{{ .Values.metrics.image.repository }}:{{ .Values.metrics.image.tag }}"
@@ -99,9 +104,16 @@ spec:
           readOnly: true
       {{- end }}
       volumes:
+      {{- if .Values.metrics.enabled }}
       - name: telegraf-config
         configMap:
           name: {{ include "389ds.fullname" . }}-telegraf
+      {{- end }}
+      {{- if .Values.customSchema }}
+      - name: custom-schema
+        configMap:
+          name: {{ include "389ds.fullname" . }}-custom-schema
+      {{- end }}
       {{- if .Values.tls.existingSecret }}
       - name: dirsrv-tls
         secret:

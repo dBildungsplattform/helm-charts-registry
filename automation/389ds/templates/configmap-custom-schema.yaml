@@ -1,0 +1,11 @@
+{{- if .Values.customSchema -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "389ds.fullname" . }}-custom-schema
+  labels:
+    {{- include "389ds.labels" . | nindent 4 }}
+data:
+  98custom.ldif: |
+    {{- .Values.customSchema | nindent 4 }}
+{{ end }}
