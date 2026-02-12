@@ -9,6 +9,7 @@ BOOTSTRAP_RM_NAME="rmanager"
 LDAP_PORT=3389
 BIND_DN="cn=Directory Manager"
 
+replica_sum=$(echo "$BOOTSTRAP_HA_PEER_HOSTS" | wc -w)
 replica_id=0
 for ha_peer_host_outer in ${BOOTSTRAP_HA_PEER_HOSTS}; do
   replica_id=$((replica_id+1))
@@ -85,8 +86,8 @@ for ha_peer_host_outer in ${BOOTSTRAP_HA_PEER_HOSTS}; do
       echo "Replication agreement already exists."
     fi
 
-    # Initialize replication agreement only from non-primary replicas
-    if [[ "${replica_id}" == 1 ]]; then
+    # Lastly, initialize replication agreements once
+    if [[ "${replica_id}" == "${replica_sum}" ]]; then
       echo "Initializing replication agreement to ${ha_peer_host_inner}..."
       dsconf "${DSCONF_PARAMS[@]}" repl-agmt init "${ha_peer_host_inner}" --suffix "${DS_SUFFIX_NAME}"
     fi
