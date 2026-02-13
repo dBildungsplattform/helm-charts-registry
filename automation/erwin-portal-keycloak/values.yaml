@@ -57,7 +57,6 @@ restartPolicy: Always
 
 keycloakHostname: ""
 frontendHostname: ""
-keycloak2ndHostname: ""
 
 containerSecurityContext:
   enabled: true
