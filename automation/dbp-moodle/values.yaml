@@ -128,6 +128,7 @@ dbpMoodle:
   redis:
     host: "moodle-redis-master"
     port: 6379
+    password: ""
 
   external_pvc:
     enabled: true
@@ -144,15 +145,10 @@ dbpMoodle:
   secrets:
     useChartSecret: true
     moodle_password: ""
-    moodle_user: ""
-    database_admin_password: ""
     database_password: ""
-    database_user: ""
-    database_name: ""
     database_root_password: ""
     etherpad_postgresql_password: ""
     etherpad_api_key: ""
-    redis_password: ""
 
   # -- A preperation job which disables the php-cronjob, scales down the deployment and creates a backup if dbpMoodle.backup.enabled=true
   moodleUpdatePreparationJob:
@@ -216,7 +212,6 @@ dbpMoodle:
   # -- This restores moodle to the latest snapshot. Requires an existing s3 backup. ONLY USE FOR ROLLBACK
   restore:
     enabled: false
-    restoreDate: ""
     repository: "ghcr.io/dbildungsplattform"
     image: "moodle-tools"
     tag: "1.1.13"
@@ -276,8 +271,6 @@ dbpMoodle:
     scaleup_cooldown: 15
 
 moodle:
-  redis:
-    enabled: '{{- include "moodle.redis.enabled" . -}}'
   updateStrategy:
     type: RollingUpdate
   image:
@@ -371,6 +364,7 @@ moodle:
     enabled: true
     image:
       repository: lusotycoon/apache-exporter
+      tag: v1.0.12
     service:
       type: ClusterIP
     # -- Resources have to be set so that the horizontal pod autoscaler for moodle can read the moodle cpu consumption correctly
@@ -755,7 +749,7 @@ backup-cronjob:
 clamav:
   enabled: true
   image:
-    tag: "1.4.2-41"
+    tag: "sha256:e4f5060e4ef3f066a4c1234fbe45d8d876635f03b13e41aa679f89792968bc6c"  # 1.5.1
     pullPolicy: "IfNotPresent"
   kind: StatefulSet
   service:
