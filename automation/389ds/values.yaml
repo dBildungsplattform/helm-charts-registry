@@ -21,12 +21,12 @@ persistence:
 customSchema: ""
 
 service:
-  securePort: 3389
-  insecurePort: 3636
+  securePort: 3636
+  insecurePort: 3389
 
 externalService:
   enabled: false
-  securePort: 3389
+  securePort: 3636
   loadBalancerIP: ""
 
 tls:
