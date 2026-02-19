@@ -15,7 +15,7 @@ The Chart can be deployed without any modification but it is advised to set own 
 | file://charts/cronjob | cronjob | 0.1.0 |
 | file://charts/cronjob | cronjob | 0.1.0 |
 | file://charts/etherpad | etherpad | 0.1.0 |
-| file://charts/moodle | moodle | 27.0.4 |
+| file://charts/moodle | moodle | 27.0.3 |
 | https://burningalchemist.github.io/sql_exporter/ | sql-exporter | 0.6.1 |
 | https://charts.bitnami.com/bitnami | postgresql | 15.5.38 |
 | https://charts.bitnami.com/bitnami | postgresql | 15.5.38 |
@@ -101,7 +101,7 @@ The Chart can be deployed without any modification but it is advised to set own 
 | clamav.freshclamConfig | string | `"Bytecode yes\nDatabaseDirectory /data\nDatabaseMirror database.clamav.net\nDatabaseOwner 1001\nLogTime yes\nNotifyClamd /etc/clamav/clamd.conf\nPidFile /tmp/freshclam.pid\nScriptedUpdates yes\n"` |  |
 | clamav.hpa.enabled | bool | `false` |  |
 | clamav.image.pullPolicy | string | `"IfNotPresent"` |  |
-| clamav.image.tag | string | `"1.5.1"` |  |
+| clamav.image.tag | string | `"1.4.2-41"` |  |
 | clamav.kind | string | `"StatefulSet"` |  |
 | clamav.podSecurityContext.fsGroup | int | `1001` |  |
 | clamav.podSecurityContext.runAsGroup | int | `1001` |  |
@@ -283,7 +283,6 @@ The Chart can be deployed without any modification but it is advised to set own 
 | moodle.ingress.tls | bool | `true` |  |
 | moodle.metrics.enabled | bool | `true` |  |
 | moodle.metrics.image.repository | string | `"lusotycoon/apache-exporter"` |  |
-| moodle.metrics.image.tag | string | `"v1.0.12"` |  |
 | moodle.metrics.resources | object | `{"limits":{"cpu":"200m","memory":"256Mi"},"requests":{"cpu":"10m","memory":"16Mi"}}` | Resources have to be set so that the horizontal pod autoscaler for moodle can read the moodle cpu consumption correctly |
 | moodle.metrics.service.type | string | `"ClusterIP"` |  |
 | moodle.moodleEmail | string | `""` |  |
