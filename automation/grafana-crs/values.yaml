@@ -3,14 +3,15 @@
 nameOverride: ""
 fullnameOverride: ""
 
-grafana_version: 12.1.0
-grafana_log_mode: "console"
-grafana_storage_size: 10Gi
-grafana_ingress_class_name: nginx
-grafana_keycloak_config:
-  enabled: false
-grafana_oauth_envs: []
-grafana_domain: ""
+grafana:
+  version: 12.1.0
+  log_mode: "console"
+  storage_size: 10Gi
+  ingress_class_name: nginx
+  keycloak_config:
+    enabled: false
+  oauth_envs: []
+  domain: ""
 
 notification_policies: []
   # Example:
