@@ -8,9 +8,9 @@ spec:
   instanceSelector:
     matchLabels:
       {{- include "grafana-crs.labels" $ | nindent 8 }}
-  title: {{ .titel }}
-{{- if .permissions }}
+  title: {{ .title }}
+  {{- if .permissions }}
   permissions: |
-    {{- .permissions | nindent 4 }}
-{{ end }}
+    {{- toJson .permissions | nindent 4 }}
+  {{ end }}
 {{- end }}

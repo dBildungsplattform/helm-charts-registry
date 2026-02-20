@@ -4,16 +4,17 @@ nameOverride: ""
 fullnameOverride: ""
 
 grafana:
-  version: 12.1.0
-  log_mode: "console"
-  storage_size: 10Gi
-  ingress_class_name: nginx
-  keycloak_config:
+  grafanaVersion: 12.1.0
+  logMode: "console"
+  storageSize: 10Gi
+  ingressClass: nginx
+  keycloakConfig:
     enabled: false
-  oauth_envs: []
+  oauthEnvs: []
+  envs: []
   domain: ""
 
-notification_policies: []
+notificationPolicies: []
   # Example:
   # - name: default-np
   #   contact_point: teamchat-infra-dev
@@ -24,9 +25,9 @@ notification_policies: []
   #         label: rc-target
   #         match: "="
   #         value: "dev"
-#       contact_point: teamchat-infra-dev
+  #       contact_point: teamchat-infra-dev
 
-mute_timings: []
+muteTimings: []
   # Example:
   # - name: weekend
   #   times:
@@ -45,12 +46,12 @@ dashboards: []
   #   folder: Monitoring
   #   json: "{}"
 
-contact_points: []
+contactPoints: []
   # Example:
   # - name: teamchat-infra-dev
   #   type: "Webhook"
   #   settings:
-#     url: "https://rocketchat/hooks/room/token"
+  #     url: "https://rocketchat/hooks/room/token"
 
 folders: []
   # Example:
@@ -68,7 +69,7 @@ folders: []
   #           "permission": 2
   #         }
   #       ]
-#     }
+  #     }
 
 datasources: []
   # Example:

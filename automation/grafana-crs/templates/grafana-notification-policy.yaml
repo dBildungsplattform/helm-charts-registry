@@ -1,4 +1,4 @@
-{{- range .Values.notification_policies }}
+{{- range .Values.notificationPolicies }}
 ---
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaNotificationPolicy
@@ -16,9 +16,7 @@ spec:
     {{- range $item_inner := .routes }}
     - receiver: {{ .contact_point }}
       object_matchers:
-        - label: {{ $item_inner.matcher.label }}
-          match: {{ $item_inner.matcher.match }}
-          value: {{ $item_inner.matcher.value }}
+      {{- $item_inner.matcher | nindent 8 -}}
       {{- if $item_inner.group_wait }}
       group_wait: {{ $item_inner.group_wait }}
       {{- end }}

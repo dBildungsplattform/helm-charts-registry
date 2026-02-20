@@ -5,34 +5,34 @@ metadata:
   name: {{ include "grafana-crs.fullname" . }}
   labels: {{- include "grafana-crs.labels" . | nindent 4 }}
 spec:
-  version: {{ .Values.grafana.version }}
+  version: {{ .Values.grafana.grafanaVersion }}
   persistentVolumeClaim:
     spec:
       accessModes:
         - ReadWriteOnce
       resources:
         requests:
-          storage: {{ .Values.grafana.storage_size }}
+          storage: {{ .Values.grafana.storageSize }}
   config:
     log:
-      mode: {{ .Values.grafana.log_mode }}
+      mode: {{ .Values.grafana.logMode }}
     auth.generic_oauth:
-      {{- if .Values.grafana.keycloak_config.enabled }}
-      {{- toYaml .Values.grafana.keycloak_config | nindent 6 }}
+      {{- if .Values.grafana.keycloakConfig.enabled }}
+      {{- toYaml .Values.grafana.keycloakConfig | nindent 6 }}
       {{- end }}
   ingress:
     metadata:
       annotations:
         cert-manager.io/cluster-issuer: sc-cert-manager-clusterissuer-letsencrypt
     spec:
-      ingressClassName: {{ .Values.grafana.ingress_class_name }}
+      ingressClassName: {{ .Values.grafana.ingressClass }}
       rules:
         - host: {{ .Values.grafana.domain }}
           http:
             paths:
               - backend:
                   service:
-                    name: {{ .Values.grafana.resource_name }}-service
+                    name: {{ include "grafana-crs.fullname" . }}-service
                     port:
                       number: 3000
                 path: /
@@ -40,7 +40,7 @@ spec:
       tls:
         - hosts:
             - {{ .Values.grafana.domain }}
-          secretName: {{ .Values.grafana.resource_name }}-ingress-cert
+          secretName: {{ include "grafana-crs.fullname" . }}-ingress-cert
   disableDefaultAdminSecret: true
   deployment:
     spec:
@@ -49,9 +49,9 @@ spec:
           containers:
             - name: grafana
               env:
-               {{- toYaml .Values.grafana.combined_envs | nindent 16 }}
-               {{- if .Values.grafana.keycloak_config.enabled }}
-               {{- toYaml .Values.grafana.oauth_envs | nindent 16 }}
+               {{- toYaml .Values.grafana.envs | nindent 16 }}
+               {{- if .Values.grafana.keycloakConfig.enabled }}
+               {{- toYaml .Values.grafana.oauthEnvs | nindent 16 }}
                {{- end }}
               # https://github.com/grafana/grafana-operator/issues/1439#issuecomment-2677822604
               securityContext:
@@ -67,6 +67,6 @@ spec:
           volumes:
             - name: grafana-data
               persistentVolumeClaim:
-                claimName: {{ .Values.grafana.resource_name }}-pvc
+                claimName: {{ include "grafana-crs.fullname" . }}-pvc
       strategy:
         type: Recreate
