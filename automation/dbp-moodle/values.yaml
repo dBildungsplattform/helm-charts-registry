@@ -90,6 +90,12 @@ global:
       enabled: false
     coursearchiver:
       enabled: false
+    mod_subcourse:
+      enabled: false
+    mod_videotime:
+      enabled: false
+    local_intelliboard:
+      enabled: false
 
 dbpMoodle:
   name: infra
@@ -173,8 +179,6 @@ dbpMoodle:
   # -- Backup configuration. Set enabled=true to enable the backup-cronjob. Also set s3 location credentials
   backup:
     enabled: false
-    dump_kind: "full" # Possible values: full, custom
-    run_pre_upgrade: true
     # -- Defines the maximum age of a backup before it is deleted
     retention_time: "6M"
     # -- Defines the maximum age of a full backup before a new full backup is created. The backups in between are incremental
@@ -214,9 +218,6 @@ dbpMoodle:
   # -- This restores moodle to the latest snapshot. Requires an existing s3 backup. ONLY USE FOR ROLLBACK
   restore:
     enabled: false
-    # replace_db_user_during_restore is only added for the migration from local to managed postgres as the restore script needs to be adjusted dynamically
-    replace_db_user_during_restore: false
-    dump_kind: "full" # Possible values: full, custom
     repository: "ghcr.io/dbildungsplattform"
     image: "moodle-tools"
     tag: "1.1.13"
@@ -282,7 +283,7 @@ moodle:
     registry: "ghcr.io"
     repository: "dbildungsplattform/moodle"
     # -- The dbp-moodle image which is build for this helm chart
-    tag: "4.5.8-fpm-bookworm-8.1.34-dbp3"
+    tag: "4.5.8-fpm-bookworm-8.2.30-dbp1"   # TODO update image tag when rebuilt
     pullPolicy: Always
     # -- Debug mode for more detailed moodle installation and log output
     debug: false
@@ -369,6 +370,7 @@ moodle:
     enabled: true
     image:
       repository: lusotycoon/apache-exporter
+      tag: v1.0.12
     service:
       type: ClusterIP
     # -- Resources have to be set so that the horizontal pod autoscaler for moodle can read the moodle cpu consumption correctly
@@ -495,26 +497,6 @@ etherpadlite:
   image:
     repository: "ghcr.io/dbildungsplattform/etherpad"
     tag: "2.2.7.0"
-  # Currently this data is doubled with the env vars because we need the fields for backup and retore jobs
-  externalDatabase:
-    # -- Type of DB to provision, possible values are "postgres"
-    type: "postgres"
-    # -- Host of the existing database
-    host: "moodle-etherpad-postgresql"
-    # -- Port of the existing database
-    port: 5432
-    # -- Existing username in the external db
-    user: "etherpad"
-    # -- Password for the above username
-    password: ""
-    # -- Name of the existing database
-    database: "etherpad"
-    # -- Name of an existing secret resource containing the DB password
-    existingSecret: "moodle"
-    # -- Name of the key holding the DB password in the existing Secret
-    existingSecretKey: "etherpad-postgresql-password"
-    # -- -- Use ssl to communicate with the database
-    ssl: false
   env:
     - name: DB_TYPE
       value: "postgres"
@@ -540,16 +522,10 @@ etherpadlite:
         items:
           - key: "etherpad-api-key"
             path: "APIKEY.txt"
-    - name: "etherpad-settings"
-      configMap:
-        name: "etherpad-settings"
   volumeMounts:
     - name: "api-key"
       mountPath: "/opt/etherpad-lite/APIKEY.txt"
       subPath: "APIKEY.txt"
-    - name: "etherpad-settings"
-      mountPath: "/opt/etherpad-lite/settings.json"
-      subPath: settings
   ingress:
     enabled: true
     annotations:
@@ -779,7 +755,7 @@ backup-cronjob:
 clamav:
   enabled: true
   image:
-    tag: "1.4.2-41"
+    tag: "1.5.1"
     pullPolicy: "IfNotPresent"
   kind: StatefulSet
   service:

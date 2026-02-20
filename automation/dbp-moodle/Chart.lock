@@ -1,7 +1,7 @@
 dependencies:
 - name: moodle
   repository: file://charts/moodle
-  version: 27.0.3
+  version: 27.0.4
 - name: redis
   repository: https://charts.bitnami.com/bitnami
   version: 19.5.3
@@ -26,5 +26,5 @@ dependencies:
 - name: sql-exporter
   repository: https://burningalchemist.github.io/sql_exporter/
   version: 0.6.1
-digest: sha256:135b8d99d2d92f2e49aa14a01e24ac4b90e9296034c493490a473becf6e0a3e9
-generated: "2026-02-20T11:02:11.750884216Z"
+digest: sha256:06dfae2ccebf0ec2f0ac55710dfdbfc7a098e247d0de7f55555fba13af78a734
+generated: "2026-02-20T14:07:42.760304461Z"
