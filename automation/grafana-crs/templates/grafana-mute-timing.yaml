@@ -1,0 +1,18 @@
+{{- range .Values.mute_timings }}
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaMuteTiming
+metadata:
+  name: {{ include "grafana-crs.fullname" $ }}-{{ .name }}
+spec:
+  instanceSelector:
+    matchLabels:
+      {{- include "grafana-crs.labels" $ | nindent 8 }}
+  name: {{ .name }}
+  editable: false
+  time_intervals:
+  - times:
+    - start_time: {{ .times.start }}
+      end_time: {{ .times.end }}
+    weekdays: {{ .weekdays }}
+{{- end }}

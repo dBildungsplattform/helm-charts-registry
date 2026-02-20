@@ -1,0 +1,72 @@
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: Grafana
+metadata:
+  name: {{ include "grafana-crs.fullname" . }}
+  labels: {{- include "grafana-crs.labels" . | nindent 4 }}
+spec:
+  version: {{ .Values.grafana_version }}
+  persistentVolumeClaim:
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: {{ .Values.grafana_storage_size }}
+  config:
+    log:
+      mode: {{ .Values.grafana_log_mode }}
+    auth.generic_oauth:
+      {{- if .Values.grafana_keycloak_config.enabled }}
+      {{- toYaml .Values.grafana_keycloak_config | nindent 6 }}
+      {{- end }}
+  ingress:
+    metadata:
+      annotations:
+        cert-manager.io/cluster-issuer: sc-cert-manager-clusterissuer-letsencrypt
+    spec:
+      ingressClassName: {{ .Values.grafana_ingress_class_name }}
+      rules:
+        - host: {{ .Values.grafana_domain }}
+          http:
+            paths:
+              - backend:
+                  service:
+                    name: {{ .Values.grafana_resource_name }}-service
+                    port:
+                      number: 3000
+                path: /
+                pathType: Prefix
+      tls:
+        - hosts:
+            - {{ .Values.grafana_domain }}
+          secretName: {{ .Values.grafana_resource_name }}-ingress-cert
+  disableDefaultAdminSecret: true
+  deployment:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: grafana
+              env:
+               {{- toYaml .Values.grafana_combined_envs | nindent 16 }}
+               {{- if .Values.grafana_keycloak_config.enabled }}
+               {{- toYaml .Values.grafana_oauth_envs | nindent 16 }}
+               {{- end }}
+              # https://github.com/grafana/grafana-operator/issues/1439#issuecomment-2677822604
+              securityContext:
+                allowPrivilegeEscalation: false
+                capabilities:
+                  drop:
+                  - ALL
+          securityContext:
+            fsGroup: 1001
+            runAsGroup: 1001
+            runAsNonRoot: true
+            runAsUser: 1001
+          volumes:
+            - name: grafana-data
+              persistentVolumeClaim:
+                claimName: {{ .Values.grafana_resource_name }}-pvc
+      strategy:
+        type: Recreate

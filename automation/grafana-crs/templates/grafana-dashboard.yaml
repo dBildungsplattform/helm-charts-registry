@@ -1,0 +1,14 @@
+{{- range .Values.dashboards }}
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: {{ include "grafana-crs.fullname" $ }}-{{ .name }}
+spec:
+  instanceSelector:
+    matchLabels:
+      {{- include "grafana-crs.labels" $ | nindent 8 }}
+  folder: {{ .folder }}
+  json: | 
+    {{- .json | nindent 4 }}
+{{- end }}

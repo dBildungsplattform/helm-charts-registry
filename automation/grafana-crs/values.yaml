@@ -1,0 +1,76 @@
+---
+# This is to override the chart name.
+nameOverride: ""
+fullnameOverride: ""
+
+grafana_version: 12.1.0
+grafana_log_mode: "console"
+grafana_storage_size: 10Gi
+grafana_ingress_class_name: nginx
+grafana_keycloak_config:
+  enabled: false
+grafana_oauth_envs: []
+grafana_domain: ""
+
+notification_policies: []
+  # Example:
+  # - name: default-np
+  #   contact_point: teamchat-infra-dev
+  #   group_by: ["alertname"]
+  #   routes:
+  #     - name: teamchat-dev
+  #       matcher:
+  #         label: rc-target
+  #         match: "="
+  #         value: "dev"
+#       contact_point: teamchat-infra-dev
+
+mute_timings: []
+  # Example:
+  # - name: weekend
+  #   times:
+  #     start: "00:00"
+  #     end: "23:59"
+  #   weekdays: ["saturday", "sunday"]
+  # - name: weekday
+  #   times:
+  #     start: "00:00"
+  #     end: "23:59"
+  #   weekdays: ["monday:friday"]
+
+dashboards: []
+  # Example:
+  # - name: events
+  #   folder: Monitoring
+  #   json: "{}"
+
+contact_points: []
+  # Example:
+  # - name: teamchat-infra-dev
+  #   type: "Webhook"
+  #   settings:
+#     url: "https://rocketchat/hooks/room/token"
+
+folders: []
+  # Example:
+  # - name: playground
+  #   titel: Playground
+  #   permissions: |
+  #     {
+  #       "items": [
+  #         {
+  #           "role": "Admin",
+  #           "permission": 4
+  #         },
+  #         {
+  #           "role": "Editor",
+  #           "permission": 2
+  #         }
+  #       ]
+#     }
+
+datasources: []
+  # Example:
+  # - name: Loki
+  #   type: loki
+  #   url: http://loki:80
