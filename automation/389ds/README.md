@@ -29,7 +29,7 @@ A Helm chart for Kubernetes
 | extendedBootstrap.rmPassword.secretName | string | `""` |  |
 | externalService.enabled | bool | `false` |  |
 | externalService.loadBalancerIP | string | `""` |  |
-| externalService.securePort | int | `3389` |  |
+| externalService.securePort | int | `3636` |  |
 | extraObjects | list | `[]` |  |
 | fullnameOverride | string | `"port389ds"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
@@ -54,8 +54,8 @@ A Helm chart for Kubernetes
 | podLabels | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | replicaCount | int | `1` |  |
-| service.insecurePort | int | `3636` |  |
-| service.securePort | int | `3389` |  |
+| service.insecurePort | int | `3389` |  |
+| service.securePort | int | `3636` |  |
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.automount | bool | `false` |  |
 | serviceAccount.create | bool | `true` |  |
