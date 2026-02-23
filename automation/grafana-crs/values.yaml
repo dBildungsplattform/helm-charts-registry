@@ -21,24 +21,13 @@ notificationPolicies: []
   #   group_by: ["alertname"]
   #   routes:
   #     - name: teamchat-dev
-  #       matcher:
-  #         label: rc-target
-  #         match: "="
-  #         value: "dev"
+  #       matcher: |
+  #         - rc-target
+  #         - =
+  #         - dev
   #       contact_point: teamchat-infra-dev
 
 muteTimings: []
-  # Example:
-  # - name: weekend
-  #   times:
-  #     start: "00:00"
-  #     end: "23:59"
-  #   weekdays: ["saturday", "sunday"]
-  # - name: weekday
-  #   times:
-  #     start: "00:00"
-  #     end: "23:59"
-  #   weekdays: ["monday:friday"]
 
 dashboards: []
   # Example:

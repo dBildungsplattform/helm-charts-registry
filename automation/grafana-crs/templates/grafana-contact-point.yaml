@@ -11,5 +11,5 @@ spec:
     matchLabels:
       {{- include "grafana-crs.labels" $ | nindent 6 }}
   settings:
-    {{- toYaml . | nindent 4 }}
+    {{- toYaml .settings | nindent 4 }}
 {{- end }}

@@ -11,8 +11,5 @@ spec:
   name: {{ .name }}
   editable: false
   time_intervals:
-  - times:
-    - start_time: {{ .times.start }}
-      end_time: {{ .times.end }}
-    weekdays: {{ .weekdays }}
+    {{- toJson .time_intervals | nindent 4 }}
 {{- end }}

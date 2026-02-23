@@ -13,18 +13,5 @@ spec:
     group_by:
       {{ .group_by }}
     routes:
-    {{- range $item_inner := .routes }}
-    - receiver: {{ .contact_point }}
-      object_matchers:
-      {{- $item_inner.matcher | nindent 8 -}}
-      {{- if $item_inner.group_wait }}
-      group_wait: {{ $item_inner.group_wait }}
-      {{- end }}
-      {{- if $item_inner.group_interval }}
-      group_interval: {{ $item_inner.group_interval }}
-      {{- end }}
-      {{- if $item_inner.repeat_interval }}
-      repeat_interval: {{ $item_inner.repeat_interval }}
-      {{- end }}
-    {{- end }}
+      {{- toJson .routes | nindent 6 }}
 {{- end }}

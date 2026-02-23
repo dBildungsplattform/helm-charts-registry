@@ -9,9 +9,5 @@ spec:
     matchLabels:
       {{- include "grafana-crs.labels" $ | nindent 8 }}
   datasource:
-    access: proxy
-    name: {{ .name }}
-    type: {{ .type }}
-    url: {{ .url }}
-    isDefault: {{ .default | default false }}
+    {{- toYaml . | nindent 4 }}
 {{- end }}
