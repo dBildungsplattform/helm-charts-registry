@@ -16,7 +16,6 @@ function clean_up() {
 trap "clean_up" EXIT
 
 health_file="/tmp/healthy"
-RESTORE_DATE="{{ .Values.dbpMoodle.restore.restoreDate }}"
 
 # Create liveness probe file
 touch "${health_file}"
@@ -58,14 +57,7 @@ cd /tmp/
 echo "=== Download backup ==="
 ln -s /etc/duply /home/nonrootuser/.duply
 export DUPLY_HOME="/etc/duply"
-
-# Duply restore logic
-if [ "$RESTORE_DATE" != "" ]; then
-    /usr/bin/duply default restore Full "$RESTORE_DATE"
-else
-    /usr/bin/duply default restore Full
-fi
-
+/usr/bin/duply default restore Full
 echo "=== Clear PVC ==="
 rm -rf /dbp-moodle/moodle/*
 rm -rf /dbp-moodle/moodle/.[!.]*
