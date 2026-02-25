@@ -18,10 +18,10 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   {{- if .Values.service.externalIp }}
-  loadBalancerIP: {{ (lookup "v1" "Secret" .Release.Namespace .Values.global.existingSecret ).data.LOADBALANCER_IP | b64dec }}
+  loadBalancerIP: {{ (lookup "v1" "Secret" .Release.Namespace .Values.existingSecret.name ).data.LOADBALANCER_IP | b64dec }}
   {{- end }}
   {{- if  .Values.service.SourceRangesRestriction }}
-  loadBalancerSourceRanges: {{ (lookup "v1" "Secret" .Release.Namespace .Values.global.existingSecret ).data.LOADBALANCER_SOURCERANGES | b64dec }}
+  loadBalancerSourceRanges: {{ (lookup "v1" "Secret" .Release.Namespace .Values.existingSecret.name ).data.LOADBALANCER_SOURCERANGES | b64dec }}
   {{- end }}
   ports:
     {{- if .Values.service.enableLdapPort }}
