@@ -5,9 +5,6 @@ global:
   ldapDomain: "schule-sh.de"                  # translates to LDAP_ROOT
   # Specifies an existing secret to be used for admin and config user passwords. The expected key are LDAP_ADMIN_PASSWORD and LDAP_CONFIG_ADMIN_PASSWORD.
   existingSecret: ""
-  # If you do not set the credentials via this secret but via the ENV the Helm Chart will fail (permission issue)
-  adminUser: "admin"                          # LDAP_ADMIN_USERNAME
-  # adminPassword: ""                         # LDAP_CONFIG_ADMIN_PASSWORD
   configUserEnabled: true                     # LDAP_CONFIG_ADMIN_ENABLED (default: no)
   configUser: "config"                        # LDAP_CONFIG_ADMIN_USERNAME
   # configPassword: ""                        # LDAP_CONFIG_ADMIN_USERNAME
@@ -17,12 +14,6 @@ global:
 nameOverride: ""
 fullnameOverride: ""
 
-
-# this is not so clean -can this get deleted? 
-# used extra secret var since you can not reference the global one
-existingSecret:
-  enabled: true
-  name: erwin-portal-ldap
 
 image:
   repository: bitnamilegacy/openldap
