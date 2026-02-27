@@ -301,20 +301,17 @@ spec:
 {{- end }}
         - name: init-scripts
           configMap:
-            name: entrypoint-script
+            name: {{ template "openldap.fullname" . }}-entrypoint-script
         - name: writable-init-scripts
           emptyDir: {}
         - name: ldap-configuration-apply
           secret:
-            # could make the secret name variable
-            secretName: erwin-portal-ldap-config-apply
+            secretName: {{ template "openldap.fullname" . }}-config-apply
         - name: ldap-configuration-modify
           secret:
-            # could make the secret name variable
-            secretName: erwin-portal-ldap-config-modify
+            secretName: {{ template "openldap.fullname" . }}-config-modify
         - name: ldap-configuration-extra
           configMap:
-            # could make the secret name variable
             name: {{ template "openldap.fullname" $ }}-extraldif
         - name: cm-replication
           configMap:

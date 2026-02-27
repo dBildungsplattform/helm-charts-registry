@@ -4,16 +4,24 @@ global:
   ## ldapDomain , can be explicit (e.g dc=example,c=com) or domain based (e.g example.com)
   ldapDomain: "schule-sh.de"                  # translates to LDAP_ROOT
   # Specifies an existing secret to be used for admin and config user passwords. The expected key are LDAP_ADMIN_PASSWORD and LDAP_CONFIG_ADMIN_PASSWORD.
-  existingSecret: ""
+  #existingSecret: ""
+  # If you do not set the credentials via this secret but via the ENV the Helm Chart will fail (permission issue)
+  adminUser: "admin"                          # LDAP_ADMIN_USERNAME
+  adminPassword: ""                           # LDAP_CONFIG_ADMIN_PASSWORD
   configUserEnabled: true                     # LDAP_CONFIG_ADMIN_ENABLED (default: no)
   configUser: "config"                        # LDAP_CONFIG_ADMIN_USERNAME
-  # configPassword: ""                        # LDAP_CONFIG_ADMIN_USERNAME
+  configPassword: ""                        # LDAP_CONFIG_ADMIN_USERNAME
   ldapPort: 389                               # LDAP_PORT_NUMBER
   sslLdapPort: 636                            # LDAP_LDAPS_PORT_NUMBER
 
 nameOverride: ""
 fullnameOverride: ""
 
+
+
+existingSecret:
+  enabled: true
+  name: ""
 
 image:
   repository: bitnamilegacy/openldap
@@ -23,35 +31,24 @@ image:
 
 extraLabels: {}
 
+
 service:
-  annotations: {}
-  ## If service type NodePort, define the value here
-  # ldapPortNodePort:
-  # sslLdapPortNodePort:
-
-  enableLdapPort: true
-  enableSslLdapPort: true
-
-  sessionAffinity: None
-  type: ClusterIP 
-  # type: LoadBalancer
-  externalIp: false
-  # if enabled you need to have to set the LOADBALANCER_IP key with value in the existingSecret
-  # externalIp: true
-  SourceRangesRestriction: false
-  # if enabled you need to have to set the LOADBALANCER_SOURCERANGES key with value in the existingSecret
-  # servicecenter für den prometheus blackbox exporter freischalten
-  # SourceRangesRestriction: true
-  # enableLdapPort: false
-
-# enable this service block and disable the service one above, to make LDAP outside the cluster available 	
-# Note that only one namespace at a time can use this feature!!	
-# service:	
-#   enableLdapPort: true
-#   enableSslLdapPort: true	
-#   type: LoadBalancer	
-#   externalIp: true	
-#   SourceRangesRestriction: false
+  internal:
+    enabled: true
+    annotations: {}
+    sessionAffinity: None
+    enableLdapPort: true
+    enableSslLdapPort: true
+    type: ClusterIP
+    
+  external:
+    enabled: false         
+    annotations: {}
+    sessionAffinity: None
+    enableLdapPort: true
+    enableSslLdapPort: true
+    sourceRangesRestriction: true
+    type: LoadBalancer
 
 
 # Use the env variables from https://hub.docker.com/r/bitnami/openldap/
