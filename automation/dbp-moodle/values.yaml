@@ -132,6 +132,7 @@ dbpMoodle:
   redis:
     host: "moodle-redis-master"
     port: 6379
+    password: ""
 
   external_pvc:
     enabled: true
@@ -148,15 +149,10 @@ dbpMoodle:
   secrets:
     useChartSecret: true
     moodle_password: ""
-    moodle_user: ""
-    database_admin_password: ""
     database_password: ""
-    database_user: ""
-    database_name: ""
     database_root_password: ""
     etherpad_postgresql_password: ""
     etherpad_api_key: ""
-    redis_password: ""
 
   # -- A preperation job which disables the php-cronjob, scales down the deployment and creates a backup if dbpMoodle.backup.enabled=true
   moodleUpdatePreparationJob:
@@ -167,7 +163,7 @@ dbpMoodle:
     # -- Which kubectl image to use
     repository: "ghcr.io/dbildungsplattform"
     image: "moodle-tools"
-    tag: "1.1.14"
+    tag: "1.1.13"
 
   moodleUpdatePreparationHook:
     rules:
@@ -220,10 +216,9 @@ dbpMoodle:
   # -- This restores moodle to the latest snapshot. Requires an existing s3 backup. ONLY USE FOR ROLLBACK
   restore:
     enabled: false
-    restoreDate: ""
     repository: "ghcr.io/dbildungsplattform"
     image: "moodle-tools"
-    tag: "1.1.14"
+    tag: "1.1.13"
     resources:
       limits:
         cpu: 2000m
@@ -280,15 +275,13 @@ dbpMoodle:
     scaleup_cooldown: 15
 
 moodle:
-  redis:
-    enabled: '{{- include "moodle.redis.enabled" . -}}'
   updateStrategy:
     type: RollingUpdate
   image:
     registry: "ghcr.io"
     repository: "dbildungsplattform/moodle"
     # -- The dbp-moodle image which is build for this helm chart
-    tag: "4.5.8-fpm-bookworm-8.2.30-dbp2"
+    tag: "4.5.8-fpm-bookworm-8.2.30-dbp1"
     pullPolicy: Always
     # -- Debug mode for more detailed moodle installation and log output
     debug: false
@@ -501,7 +494,7 @@ etherpadlite:
   enabled: false
   image:
     repository: "ghcr.io/dbildungsplattform/etherpad"
-    tag: "2.6.1.0"
+    tag: "2.2.7.0"
   env:
     - name: DB_TYPE
       value: "postgres"
@@ -594,7 +587,7 @@ etherpad-postgresql:
 moodlecronjob:
   image:
     repository: "ghcr.io/dbildungsplattform/moodle-tools"
-    tag: "1.1.14"
+    tag: "1.1.13"
   clusterRole:
     create: false
   serviceAccount:
@@ -646,7 +639,7 @@ moodlecronjob:
 backup-cronjob:
   image:
     repository: "ghcr.io/dbildungsplattform/moodle-tools"
-    tag: "1.1.14"
+    tag: "1.1.13"
   clusterRole:
     create: false
   serviceAccount:
