@@ -6,7 +6,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-customldif
+  name: {{ template "openldap.fullname" . }}-customldif
   namespace: {{ .Release.Namespace }}
   labels:
     app: {{ template "openldap.name" . }}

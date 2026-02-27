@@ -1,90 +1,52 @@
-{{- /* Dual Service Template: Internal (ClusterIP) + External (LoadBalancer) */ -}}
-{{- $fullName := include "openldap.fullname" . -}}
-{{- $lbSecretName := .Values.global.existingSecret -}}
-
-{{- /* INTERNAL Service (ClusterIP) */ -}}
-{{- if .Values.service.internal.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ $fullName }}
-  namespace: {{ .Release.Namespace }}
-  {{- with .Values.service.internal.annotations }}
+{{- if .Values.service.annotations }}
   annotations:
-{{ toYaml . | nindent 4 }}
-  {{- end }}
+{{ toYaml .Values.service.annotations | indent 4 }}
+{{- end }}
+  name: {{ template "openldap.fullname" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
-    app.kubernetes.io/component: {{ $fullName }}
-    chart: {{ include "openldap.chart" . }}
+    app.kubernetes.io/component: {{ template "openldap.fullname" . }}
+    chart: {{ template "openldap.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 {{- if .Values.extraLabels }}
-{{ toYaml .Values.extraLabels | nindent 4 }}
+{{ toYaml .Values.extraLabels | indent 4 }}
 {{- end }}
 spec:
-  type: {{ .Values.service.internal.type | default "ClusterIP" }}
-  sessionAffinity: {{ .Values.service.internal.sessionAffinity | default "None" }}
-  selector:
-    app.kubernetes.io/component: {{ $fullName }}
-    release: {{ .Release.Name }}
+  type: {{ .Values.service.type }}
+  {{- if .Values.service.externalIp }}
+  loadBalancerIP: {{ (lookup "v1" "Secret" .Release.Namespace .Values.global.existingSecret ).data.LOADBALANCER_IP | b64dec }}
+  {{- end }}
+  {{- if  .Values.service.SourceRangesRestriction }}
+  loadBalancerSourceRanges: {{ (lookup "v1" "Secret" .Release.Namespace .Values.global.existingSecret ).data.LOADBALANCER_SOURCERANGES | b64dec }}
+  {{- end }}
   ports:
-    {{- if .Values.service.internal.enableLdapPort }}
+    {{- if .Values.service.enableLdapPort }}
     - name: ldap-port
       protocol: TCP
       port: {{ .Values.global.ldapPort }}
       targetPort: ldap-port
+      {{- if and (or (eq .Values.service.type "NodePort") (eq .Values.service.type "LoadBalancer")) (not (empty .Values.service.ldapPortNodePort)) }}
+      nodePort: {{ .Values.service.ldapPortNodePort }}
+      {{- else if eq .Values.service.type "ClusterIP" }}
+      nodePort: null
+      {{- end }}
     {{- end }}
-    {{- if .Values.service.internal.enableSslLdapPort }}
+    {{- if .Values.service.enableSslLdapPort }}
     - name: ssl-ldap-port
       protocol: TCP
       port: {{ .Values.global.sslLdapPort }}
       targetPort: ssl-ldap-port
+      {{- if and (or (eq .Values.service.type "NodePort") (eq .Values.service.type "LoadBalancer")) (not (empty .Values.service.sslLdapPortNodePort)) }}
+      nodePort: {{ .Values.service.sslLdapPortNodePort }}
+      {{- else if eq .Values.service.type "ClusterIP" }}
+      nodePort: null
+      {{- end }}
     {{- end }}
----
-{{- end }}
-
-{{- /* EXTERNAL Service (LoadBalancer) */ -}}
-{{- if .Values.service.external.enabled }}
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ $fullName }}
-  namespace: {{ .Release.Namespace }}
-  {{- with .Values.service.external.annotations }}
-  annotations:
-{{ toYaml . | nindent 4 }}
-  {{- end }}
-  labels:
-    app.kubernetes.io/component: {{ $fullName }}
-    chart: {{ include "openldap.chart" . }}
-    release: {{ .Release.Name }}
-    heritage: {{ .Release.Service }}
-{{- if .Values.extraLabels }}
-{{ toYaml .Values.extraLabels | nindent 4 }}
-{{- end }}
-spec:
-  type: {{ .Values.service.external.type | default "LoadBalancer" }}
-  {{- if $lbSecretName }}
-  loadBalancerIP: {{ (lookup "v1" "Secret" .Release.Namespace $lbSecretName).data.LOADBALANCER_IP | b64dec | quote }}
-  {{- if .Values.service.external.sourceRangesRestriction }}
-  loadBalancerSourceRanges: {{ (lookup "v1" "Secret" .Release.Namespace $lbSecretName).data.LOADBALANCER_SOURCERANGES | b64dec }}
-  {{- end }}
-  {{- end }}
-  sessionAffinity: {{ .Values.service.external.sessionAffinity | default "None" }}
+  sessionAffinity: {{ .Values.service.sessionAffinity }}
   selector:
-    app.kubernetes.io/component: {{ $fullName }}
+    app.kubernetes.io/component: {{ template "openldap.fullname" . }}
     release: {{ .Release.Name }}
-  ports:
-    {{- if .Values.service.external.enableLdapPort }}
-    - name: ldap-port
-      protocol: TCP
-      port: {{ .Values.global.ldapPort }}
-      targetPort: ldap-port
-    {{- end }}
-    {{- if .Values.service.external.enableSslLdapPort }}
-    - name: ssl-ldap-port
-      protocol: TCP
-      port: {{ .Values.global.sslLdapPort }}
-      targetPort: ssl-ldap-port
-    {{- end }}
-{{- end }}
