@@ -67,10 +67,15 @@ spec:
               cp /tmp-init-scripts/02.sh /script/02.sh &&
               chmod +x /script/01.sh
               chmod +x /script/02.sh
-            {{- if and .Values.existingSecret .Values.existingSecret.name }}
-              sed -i -e "s/%%CONFIG_PASSWORD%%/${LDAP_CONFIG_ADMIN_PASSWORD}/g" /custom_config/*
-              sed -i -e "s/%%ADMIN_PASSWORD%%/${LDAP_ADMIN_PASSWORD}/g" /custom_config/*
+            {{- if and .Values.existingSecret (hasKey .Values.existingSecret "name") }}
+                sed -i -e "s/%%CONFIG_PASSWORD%%/${LDAP_CONFIG_ADMIN_PASSWORD}/g" /custom_config/*
+                sed -i -e "s/%%ADMIN_PASSWORD%%/${LDAP_ADMIN_PASSWORD}/g" /custom_config/*
             {{- end }}
+            #{{- if and .Values.existingSecret .Values.existingSecret.name }}
+            #  sed -i -e "s/%%CONFIG_PASSWORD%%/${LDAP_CONFIG_ADMIN_PASSWORD}/g" /custom_config/*
+            #  sed -i -e "s/%%ADMIN_PASSWORD%%/${LDAP_ADMIN_PASSWORD}/g" /custom_config/*
+            #{{- end }}
+          
           {{- if .Values.containerSecurityContext.enabled }}
           securityContext: {{- omit .Values.containerSecurityContext "enabled" | toYaml | nindent 12 }}
           {{- end }}
