@@ -30,7 +30,7 @@ service:
     enableSslLdapPort: false
 
 existingSecret:
-  name: "erwin-portal-internal-ldap"
+  name: ""
 
 
 initTLSSecret:
