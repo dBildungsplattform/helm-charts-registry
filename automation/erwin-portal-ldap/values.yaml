@@ -1,14 +1,14 @@
 global:
   imageRegistry: ""
   #imagePullSecrets: [""]
-  ## ldapDomain , can be explicit (e.g dc=example,c=com) or domain based (e.g example.com)
+  #ldapDomain , can be explicit (e.g dc=example,c=com) or domain based (e.g example.com)
   ldapDomain: "schule-sh.de"                  # translates to LDAP_ROOT
   # If you do not set the credentials via this secret but via the ENV the Helm Chart will fail (permission issue)
   adminUser: "admin"                          # LDAP_ADMIN_USERNAME
   adminPassword: ""                           # LDAP_CONFIG_ADMIN_PASSWORD
   configUserEnabled: true                     # LDAP_CONFIG_ADMIN_ENABLED (default: no)
   configUser: "config"                        # LDAP_CONFIG_ADMIN_USERNAME
-  # configPassword: ""                        # LDAP_CONFIG_ADMIN_USERNAME
+  configPassword: ""                          # LDAP_CONFIG_ADMIN_USERNAME
   ldapPort: 389                               # LDAP_PORT_NUMBER
   sslLdapPort: 636                            # LDAP_LDAPS_PORT_NUMBER                          # LDAP_LDAPS_PORT_NUMBER
 
@@ -30,7 +30,7 @@ service:
     enableSslLdapPort: false
 
 existingSecret:
-  name: ""
+  name: "erwin-portal-internal-ldap"
 
 
 initTLSSecret:

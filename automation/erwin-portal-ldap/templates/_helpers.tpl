@@ -42,10 +42,10 @@ Create the name of the service account to use
 {{- end -}}
 
 {{/*
-Generate chart secret name
+Generate chart secret name (ULTRA SAFE)
 */}}
 {{- define "openldap.secretName" -}}
-{{ default (include "openldap.fullname" .) .Values.existingSecret.name }}
+{{ .Values.existingSecret.name | default (include "openldap.fullname" .) | quote }}
 {{- end -}}
 
 
