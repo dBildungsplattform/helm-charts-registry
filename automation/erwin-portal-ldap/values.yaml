@@ -26,8 +26,8 @@ service:
     enableSslLdapPort: true
   external:
     enabled: false
-    enableLdapPort: true
-    enableSslLdapPort: false
+    enableLdapPort: false
+    enableSslLdapPort: true
 
 existingSecret:
   name: ""
