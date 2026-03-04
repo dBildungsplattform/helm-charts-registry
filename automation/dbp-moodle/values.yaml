@@ -132,7 +132,6 @@ dbpMoodle:
   redis:
     host: "moodle-redis-master"
     port: 6379
-    password: ""
 
   external_pvc:
     enabled: true
@@ -149,10 +148,15 @@ dbpMoodle:
   secrets:
     useChartSecret: true
     moodle_password: ""
+    moodle_user: ""
+    database_admin_password: ""
     database_password: ""
+    database_user: ""
+    database_name: ""
     database_root_password: ""
     etherpad_postgresql_password: ""
     etherpad_api_key: ""
+    redis_password: ""
 
   # -- A preperation job which disables the php-cronjob, scales down the deployment and creates a backup if dbpMoodle.backup.enabled=true
   moodleUpdatePreparationJob:
@@ -163,7 +167,7 @@ dbpMoodle:
     # -- Which kubectl image to use
     repository: "ghcr.io/dbildungsplattform"
     image: "moodle-tools"
-    tag: "1.1.13"
+    tag: "1.1.14"
 
   moodleUpdatePreparationHook:
     rules:
@@ -216,9 +220,10 @@ dbpMoodle:
   # -- This restores moodle to the latest snapshot. Requires an existing s3 backup. ONLY USE FOR ROLLBACK
   restore:
     enabled: false
+    restoreDate: ""
     repository: "ghcr.io/dbildungsplattform"
     image: "moodle-tools"
-    tag: "1.1.13"
+    tag: "1.1.14"
     resources:
       limits:
         cpu: 2000m
@@ -274,52 +279,16 @@ dbpMoodle:
     # -- How many seconds to wait between upscaling adjustments
     scaleup_cooldown: 15
 
-  goemaxima:
-    enabled: false
-    image:
-      repository: mathinstitut/goemaxima
-      tag: "2026010500-1.2.0"
-      digest: "sha256:897e3b77a02a1a491b5348be86e8aa063438f484c0697ec47498f40f2f99a680"
-      pullPolicy: IfNotPresent
-
-    replicaCount: 1
-
-    service:
-      type: ClusterIP
-      port: 8080
-      targetPort: 8080
-      annotations: {}
-      labels: {}
-
-    resources:
-      requests:
-        cpu: "200m"
-        memory: "256Mi"
-      limits:
-        cpu: "1"
-        memory: "512Mi"
-
-    env:
-      MAXIMA_TIMEOUT: "30"
-
-    podSecurityContext: {}
-      # fsGroup: 1000
-    securityContext:
-      runAsNonRoot: true
-      runAsUser: 1000
-      allowPrivilegeEscalation: false
-      readOnlyRootFilesystem: true
-      seccompProfile:
-        type: RuntimeDefault
-
 moodle:
+  redis:
+    enabled: '{{- include "moodle.redis.enabled" . -}}'
   updateStrategy:
     type: RollingUpdate
   image:
     registry: "ghcr.io"
     repository: "dbildungsplattform/moodle"
     # -- The dbp-moodle image which is build for this helm chart
-    tag: "4.5.8-fpm-bookworm-8.2.30-dbp1"
+    tag: "4.5.8-fpm-bookworm-8.2.30-dbp2"
     pullPolicy: Always
     # -- Debug mode for more detailed moodle installation and log output
     debug: false
@@ -532,7 +501,7 @@ etherpadlite:
   enabled: false
   image:
     repository: "ghcr.io/dbildungsplattform/etherpad"
-    tag: "2.2.7.0"
+    tag: "2.6.1.0"
   env:
     - name: DB_TYPE
       value: "postgres"
@@ -625,7 +594,7 @@ etherpad-postgresql:
 moodlecronjob:
   image:
     repository: "ghcr.io/dbildungsplattform/moodle-tools"
-    tag: "1.1.13"
+    tag: "1.1.14"
   clusterRole:
     create: false
   serviceAccount:
@@ -677,7 +646,7 @@ moodlecronjob:
 backup-cronjob:
   image:
     repository: "ghcr.io/dbildungsplattform/moodle-tools"
-    tag: "1.1.13"
+    tag: "1.1.14"
   clusterRole:
     create: false
   serviceAccount:
