@@ -11,13 +11,13 @@ metadata:
 spec:
   ports:
   {{- if .Values.service.internal.enableLdapPort }}
-  - port: {{ .Values.global.ldapPort | default 389 }}
+  - port: {{ .Values.global.ldapPort }}
     name: ldap-port
     protocol: TCP
     targetPort: ldap-port
   {{- end }}
   {{- if .Values.service.internal.enableSslLdapPort }}
-  - port: {{ .Values.global.sslLdapPort | default 636 }}
+  - port: {{ .Values.global.sslLdapPort }}
     name: ssl-ldap-port
     protocol: TCP
     targetPort: ssl-ldap-port
