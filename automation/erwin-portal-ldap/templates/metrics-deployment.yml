@@ -34,14 +34,6 @@ spec:
       - name: {{ template "openldap.fullname" . }}-metrics
         image: "{{ .Values.metrics.image.repository }}:{{ .Values.metrics.image.tag }}"
         imagePullPolicy: {{ .Values.metrics.image.pullPolicy | default "Always"}}
-        startupProbe:
-            tcpSocket:
-              port: 9330
-            initialDelaySeconds: 60
-            timeoutSeconds: 3
-            periodSeconds: 5
-            successThreshold: 1
-            failureThreshold: 12
         securityContext: 
           runAsUser: 1000
           runAsNonRoot: true
@@ -58,7 +50,7 @@ spec:
             containerPort: {{ (index .Values.metrics.ports 0).containerPort }}
         env: 
          - name: LDAP_ADDR
-           value: "{{ template "openldap.fullname" . }}-headless.{{ .Release.Namespace }}.svc.cluster.local:1389"
+           value: "{{ template "openldap.fullname" . }}-0.{{ template "openldap.fullname" . }}-headless.{{ .Release.Namespace }}.svc.cluster.local:1389"
          - name: LDAP_USER
            value: uid=monitoring_user,ou=users,dc=schule-sh,dc=de
          - name: INTERVAL

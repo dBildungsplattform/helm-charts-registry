@@ -4,28 +4,24 @@ metadata:
   name: {{ template "openldap.fullname" . }}-headless
   labels:
     app.kubernetes.io/component: {{ template "openldap.fullname" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
     chart: {{ template "openldap.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
   ports:
-  {{- if .Values.service.internal.enableLdapPort }}
+  {{- if .Values.service.enableLdapPort }}
   - port: {{ .Values.global.ldapPort }}
     name: ldap-port
-    protocol: TCP
     targetPort: ldap-port
   {{- end }}
-  {{- if .Values.service.internal.enableSslLdapPort }}
+  {{- if .Values.service.enableSslLdapPort }}
   - port: {{ .Values.global.sslLdapPort }}
     name: ssl-ldap-port
-    protocol: TCP
     targetPort: ssl-ldap-port
   {{- end }}
   clusterIP: None
   selector:
     app.kubernetes.io/component: {{ template "openldap.fullname" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    release: {{ .Release.Name }}  
   type: ClusterIP
   sessionAffinity: None
-

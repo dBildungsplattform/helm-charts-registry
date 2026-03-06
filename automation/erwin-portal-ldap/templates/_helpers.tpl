@@ -42,10 +42,10 @@ Create the name of the service account to use
 {{- end -}}
 
 {{/*
-Generate chart secret name (ULTRA SAFE)
+Generate chart secret name
 */}}
 {{- define "openldap.secretName" -}}
-{{ .Values.existingSecret.name | default (include "openldap.fullname" .) | quote }}
+{{ default (include "openldap.fullname" .) .Values.global.existingSecret }}
 {{- end -}}
 
 
@@ -215,7 +215,7 @@ Generate olcSyncRepl list
 {{- $namespace := .Release.Namespace }}
 {{- $bindDNUser := .Values.global.adminUser }}
 {{- $cluster := .Values.replication.clusterName }}
-{{- $configPassword :=  ternary .Values.global.configPassword "%%CONFIG_PASSWORD%%" (empty .Values.existingSecret.name) }}
+{{- $configPassword :=  ternary .Values.global.configPassword "%%CONFIG_PASSWORD%%" (empty .Values.global.existingSecret) }}
 {{- $retry := .Values.replication.retry }}
 {{- $timeout := .Values.replication.timeout }}
 {{- $starttls := .Values.replication.starttls }}
@@ -236,7 +236,7 @@ Generate olcSyncRepl list
 {{- $bindDNUser := .Values.global.adminUser }} 
 {{- $namespace := .Release.Namespace }}
 {{- $cluster := .Values.replication.clusterName }}
-{{- $adminPassword := ternary .Values.global.adminPassword "%%ADMIN_PASSWORD%%" (empty .Values.existingSecret.name) }}
+{{- $adminPassword := ternary .Values.global.adminPassword "%%ADMIN_PASSWORD%%" (empty .Values.global.existingSecret) }}
 {{- $retry := .Values.replication.retry }}
 {{- $timeout := .Values.replication.timeout }}
 {{- $starttls := .Values.replication.starttls }}

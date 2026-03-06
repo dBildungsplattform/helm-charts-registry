@@ -1,42 +1,28 @@
 global:
   imageRegistry: ""
   #imagePullSecrets: [""]
-  #ldapDomain , can be explicit (e.g dc=example,c=com) or domain based (e.g example.com)
+  ## ldapDomain , can be explicit (e.g dc=example,c=com) or domain based (e.g example.com)
   ldapDomain: "schule-sh.de"                  # translates to LDAP_ROOT
+  # Specifies an existing secret to be used for admin and config user passwords. The expected key are LDAP_ADMIN_PASSWORD and LDAP_CONFIG_ADMIN_PASSWORD.
+  existingSecret: ""
   # If you do not set the credentials via this secret but via the ENV the Helm Chart will fail (permission issue)
   adminUser: "admin"                          # LDAP_ADMIN_USERNAME
-  adminPassword: ""                           # LDAP_CONFIG_ADMIN_PASSWORD
+  # adminPassword: ""                         # LDAP_CONFIG_ADMIN_PASSWORD
   configUserEnabled: true                     # LDAP_CONFIG_ADMIN_ENABLED (default: no)
   configUser: "config"                        # LDAP_CONFIG_ADMIN_USERNAME
-  configPassword: ""                          # LDAP_CONFIG_ADMIN_USERNAME
+  # configPassword: ""                        # LDAP_CONFIG_ADMIN_USERNAME
   ldapPort: 389                               # LDAP_PORT_NUMBER
-  sslLdapPort: 636                            # LDAP_LDAPS_PORT_NUMBER   
+  sslLdapPort: 636                            # LDAP_LDAPS_PORT_NUMBER
 
 nameOverride: ""
 fullnameOverride: ""
 
 
-replicaCount: 1
-
-service:
-  internal:
-    enabled: true
-    type: ClusterIP
-    enableLdapPort: true
-    enableSslLdapPort: true
-  external:
-    enabled: false
-    enableLdapPort: false
-    enableSslLdapPort: true
-
+# this is not so clean -can this get deleted? 
+# used extra secret var since you can not reference the global one
 existingSecret:
-  name: ""
-
-
-initTLSSecret:
-  tls_enabled: false
-
-
+  enabled: true
+  name: erwin-portal-ldap
 
 image:
   repository: bitnamilegacy/openldap
@@ -46,26 +32,26 @@ image:
 
 extraLabels: {}
 
-# service:
-#   annotations: {}
-#   ## If service type NodePort, define the value here
-#   # ldapPortNodePort:
-#   # sslLdapPortNodePort:
+service:
+  annotations: {}
+  ## If service type NodePort, define the value here
+  # ldapPortNodePort:
+  # sslLdapPortNodePort:
 
-#   enableLdapPort: true
-#   enableSslLdapPort: true
+  enableLdapPort: true
+  enableSslLdapPort: true
 
-#   sessionAffinity: None
-#   type: ClusterIP 
-#   # type: LoadBalancer
-#   externalIp: false
-#   # if enabled you need to have to set the LOADBALANCER_IP key with value in the existingSecret
-#   # externalIp: true
-#   SourceRangesRestriction: false
-#   # if enabled you need to have to set the LOADBALANCER_SOURCERANGES key with value in the existingSecret
-#   # servicecenter für den prometheus blackbox exporter freischalten
-#   # SourceRangesRestriction: true
-#   # enableLdapPort: false
+  sessionAffinity: None
+  type: ClusterIP 
+  # type: LoadBalancer
+  externalIp: false
+  # if enabled you need to have to set the LOADBALANCER_IP key with value in the existingSecret
+  # externalIp: true
+  SourceRangesRestriction: false
+  # if enabled you need to have to set the LOADBALANCER_SOURCERANGES key with value in the existingSecret
+  # servicecenter für den prometheus blackbox exporter freischalten
+  # SourceRangesRestriction: true
+  # enableLdapPort: false
 
 # enable this service block and disable the service one above, to make LDAP outside the cluster available 	
 # Note that only one namespace at a time can use this feature!!	
@@ -131,7 +117,7 @@ customSchemaFiles:
 # Custom openldap configuration files used to override default settings
 # can not get loaded if TLS is required ldap_bind: Confidentiality required (13) additional info: TLS confidentiality required
 # DO NOT FORGET to put the Root Organisation object as it won't be created while using customLdifFiles
-# Files that change the general config or create ACL are not allowed here, insufficient permissions, they get hendled via the erwin-portal-{internal oder external}ldap-configuration secret
+# Files that change the general config or create ACL are not allowed here, insufficient permissions, they get hendled via the erwin-portal-ldap-configuration secret
 # Only considered once in the initial setup
 customLdifFiles:
   00-root.ldif: |-
@@ -277,10 +263,7 @@ updateStrategy:
 priorityClassName: ""
 schedulerName: ""
 
-
-extraEnvVars:
-  - name: LDAP_TLS_ENABLED  
-    value: "false"             
+extraEnvVars: []
 extraEnvVarsCM:
 extraEnvVarsSecret:
 extraVolumes: []
