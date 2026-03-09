@@ -27,9 +27,6 @@ A Helm chart for Kubernetes
 | extendedBootstrap.peers | string | `"port389ds-0.port389ds-headless"` |  |
 | extendedBootstrap.rmPassword.secretKey | string | `""` |  |
 | extendedBootstrap.rmPassword.secretName | string | `""` |  |
-| externalService.enabled | bool | `false` |  |
-| externalService.loadBalancerIP | string | `""` |  |
-| externalService.securePort | int | `3636` |  |
 | extraObjects | list | `[]` |  |
 | fullnameOverride | string | `"port389ds"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
