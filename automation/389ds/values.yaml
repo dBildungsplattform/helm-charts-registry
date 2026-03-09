@@ -24,11 +24,6 @@ service:
   securePort: 3636
   insecurePort: 3389
 
-externalService:
-  enabled: false
-  securePort: 3636
-  loadBalancerIP: ""
-
 tls:
   existingSecret: ""
   certKey: "tls.crt"
