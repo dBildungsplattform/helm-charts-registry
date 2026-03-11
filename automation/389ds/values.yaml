@@ -51,13 +51,11 @@ imagePullSecrets: []
 
 resources:
   limits:
-    # -- n.b. reducing this value (after first rollout) may fail startup due to nsslapd-dbcachesize being set too high
-    memory: "256Mi"
-    cpu: "500m"
-  requests:
-    # -- n.b. reducing this value (after first rollout) may fail startup due to nsslapd-dbcachesize being set too high
     memory: "256Mi"
     cpu: "250m"
+  requests:
+    memory: "256Mi"
+    cpu: "100m"
 livenessProbe:
   exec:
     command:
