@@ -10,14 +10,6 @@ A Helm chart for Kubernetes
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
 | customSchema | string | `""` | this only has an effect if configured before helm install, otherwise cp /etc/dirsrv/schema/99user.ldif /data/config/schema/99user.ldif is needed |
-| dirsrvContainer.livenessProbe.exec.command[0] | string | `"/usr/lib/dirsrv/dscontainer"` |  |
-| dirsrvContainer.livenessProbe.exec.command[1] | string | `"-H"` |  |
-| dirsrvContainer.readinessProbe.exec.command[0] | string | `"/usr/lib/dirsrv/dscontainer"` |  |
-| dirsrvContainer.readinessProbe.exec.command[1] | string | `"-H"` |  |
-| dirsrvContainer.resources.limits.cpu | string | `"500m"` |  |
-| dirsrvContainer.resources.limits.memory | string | `"512Mi"` |  |
-| dirsrvContainer.resources.requests.cpu | string | `"250m"` |  |
-| dirsrvContainer.resources.requests.memory | string | `"256Mi"` |  |
 | dsDmPassword.secretKey | string | `""` |  |
 | dsDmPassword.secretName | string | `""` |  |
 | dsSuffixName | string | `"dc=example,dc=com"` |  |
@@ -33,6 +25,8 @@ A Helm chart for Kubernetes
 | image.repository | string | `"registry.suse.com/suse/389-ds"` |  |
 | image.tag | string | `""` |  |
 | imagePullSecrets | list | `[]` |  |
+| livenessProbe.exec.command[0] | string | `"/usr/lib/dirsrv/dscontainer"` |  |
+| livenessProbe.exec.command[1] | string | `"-H"` |  |
 | metrics.bind.dn | string | `""` |  |
 | metrics.bind.secretKey | string | `""` |  |
 | metrics.bind.secretName | string | `""` |  |
@@ -50,7 +44,13 @@ A Helm chart for Kubernetes
 | podAnnotations | object | `{}` |  |
 | podLabels | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
+| readinessProbe.exec.command[0] | string | `"/usr/lib/dirsrv/dscontainer"` |  |
+| readinessProbe.exec.command[1] | string | `"-H"` |  |
 | replicaCount | int | `1` |  |
+| resources.limits.cpu | string | `"500m"` |  |
+| resources.limits.memory | string | `"1Gi"` |  |
+| resources.requests.cpu | string | `"250m"` |  |
+| resources.requests.memory | string | `"1Gi"` |  |
 | service.insecurePort | int | `3389` |  |
 | service.securePort | int | `3636` |  |
 | serviceAccount.annotations | object | `{}` |  |
