@@ -49,24 +49,23 @@ image:
 
 imagePullSecrets: []
 
-dirsrvContainer:
-  resources:
-    limits:
-      memory: "512Mi"
-      cpu: "500m"
-    requests:
-      memory: "256Mi"
-      cpu: "250m"
-  livenessProbe:
-    exec:
-      command:
-      - /usr/lib/dirsrv/dscontainer
-      - -H
-  readinessProbe:
-    exec:
-      command:
-      - /usr/lib/dirsrv/dscontainer
-      - -H
+resources:
+  limits:
+    memory: "1Gi"
+    cpu: "500m"
+  requests:
+    memory: "1Gi"
+    cpu: "250m"
+livenessProbe:
+  exec:
+    command:
+    - /usr/lib/dirsrv/dscontainer
+    - -H
+readinessProbe:
+  exec:
+    command:
+    - /usr/lib/dirsrv/dscontainer
+    - -H
 
 metrics:
   enabled: false

@@ -40,15 +40,15 @@ spec:
           allowPrivilegeEscalation: false
         {{- with .Values.resources }}
         resources:
-          {{- toYaml . | nindent 12 }}
+          {{- toYaml . | nindent 10 }}
         {{- end }}
         {{- with .Values.livenessProbe }}
         livenessProbe:
-          {{- toYaml . | nindent 12 }}
+          {{- toYaml . | nindent 10 }}
         {{- end }}
         {{- with .Values.readinessProbe }}
         readinessProbe:
-          {{- toYaml . | nindent 12 }}
+          {{- toYaml . | nindent 10 }}
         {{- end }}
         env:
         - name: DS_DM_PASSWORD
@@ -75,6 +75,7 @@ spec:
         - name: custom-schema
           mountPath: '/etc/dirsrv/schema/98custom.ldif'
           subPath: 98custom.ldif
+          readOnly: true
         {{- end }}
       {{- if .Values.metrics.enabled }}
       - name: telegraf
@@ -83,9 +84,9 @@ spec:
         securityContext:
           readOnlyRootFilesystem: true
           allowPrivilegeEscalation: false
-        {{- with .Values.resources }}
+        {{- with .Values.metrics.resources }}
         resources:
-          {{- toYaml . | nindent 12 }}
+          {{- toYaml . | nindent 10 }}
         {{- end }}
         env:
         - name: METRICS_BIND_DN
