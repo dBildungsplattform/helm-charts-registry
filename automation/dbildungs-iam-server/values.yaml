@@ -36,13 +36,6 @@ ldap:
   base_dn: dc=schule-sh,dc=de
   retryWrapperDefaultRetries: 3
 
-eflkLdap:
-  url: ldap://dbildungs-iam-ldap.spsh-xxx.svc.cluster.local
-  oeffentlicheSchulenDomain: schule-sh.de
-  ersatzschulenDomain: ersatzschule-sh.de
-  base_dn: dc=schule-sh,dc=de
-  retryWrapperDefaultRetries: 3
-
 itslearning:
   enabled: false
   endpoint: https://enterprise.itslintegrations.com/WCFServiceLibrary/ImsEnterpriseServicesPort.svc
@@ -83,15 +76,6 @@ auth:
   import_passphrase_salt: ""
   ox_password: ""
   basic_auth_password: ""
-
-emailMicroserviceAuth:
-  # existingSecret: Refers to a secret already present in the cluster, which is required.
-  existingSecret: ""
-  secretName: dbildungs-iam-server-email
-  ldap_bind_dn: ""
-  ldap_admin_password: ""
-  secrets_json: ""
-  ox_password: ""
 
 ox:
   enabled: false
@@ -144,7 +128,7 @@ backend:
     timeoutSeconds: 30
     periodSeconds: 10
     successThreshold: 1
-    failureThreshold: 3
+    failureThreshold: 3    
     httpGet:
       scheme: "HTTP"
       port: 8080
@@ -312,7 +296,7 @@ status:
 cronjobs:
   enabled: true
   image:
-    tag: "1.2.1"
+    tag: "1.1.0"
     repository: docker.io/schulcloud/cron-tools
     pullPolicy: IfNotPresent
   port: 5656
@@ -360,10 +344,6 @@ import:
 featureFlags:
   befristungBearbeiten: true
   rolleErweitern: true
-
-emailMicroservice:
-  useService: false
-  endpoint: http://dbildungs-iam-server-email-backend.spsh-xxx.svc.cluster.local:80
 
 cron:
   personWithoutOrgLimit: 30
