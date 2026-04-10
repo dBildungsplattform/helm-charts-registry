@@ -47,10 +47,10 @@ A Helm chart for Kubernetes
 | readinessProbe.exec.command[0] | string | `"/usr/lib/dirsrv/dscontainer"` |  |
 | readinessProbe.exec.command[1] | string | `"-H"` |  |
 | replicaCount | int | `1` |  |
-| resources.limits.cpu | string | `"500m"` |  |
-| resources.limits.memory | string | `"256Mi"` | n.b. reducing this value (after first rollout) may fail startup due to nsslapd-dbcachesize being set too high |
-| resources.requests.cpu | string | `"250m"` |  |
-| resources.requests.memory | string | `"256Mi"` | n.b. reducing this value (after first rollout) may fail startup due to nsslapd-dbcachesize being set too high |
+| resources.limits.cpu | string | `"250m"` |  |
+| resources.limits.memory | string | `"256Mi"` |  |
+| resources.requests.cpu | string | `"100m"` |  |
+| resources.requests.memory | string | `"256Mi"` |  |
 | service.insecurePort | int | `3389` |  |
 | service.securePort | int | `3636` |  |
 | serviceAccount.annotations | object | `{}` |  |

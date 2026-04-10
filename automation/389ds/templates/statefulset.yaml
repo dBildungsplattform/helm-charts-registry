@@ -50,6 +50,10 @@ spec:
         readinessProbe:
           {{- toYaml . | nindent 10 }}
         {{- end }}
+        {{- with .Values.startupProbe }}
+        startupProbe:
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
         env:
         - name: DS_DM_PASSWORD
           valueFrom:
@@ -75,6 +79,12 @@ spec:
         - name: custom-schema
           mountPath: '/etc/dirsrv/schema/98custom.ldif'
           subPath: 98custom.ldif
+          readOnly: true
+        {{- end }}
+        {{- if .Values.extendedBootstrap.importLdif }}
+        - name: import-ldif
+          mountPath: '/data/ldif/import.ldif'
+          subPath: import.ldif
           readOnly: true
         {{- end }}
       {{- if .Values.metrics.enabled }}
@@ -115,6 +125,11 @@ spec:
         configMap:
           name: {{ include "389ds.fullname" . }}-custom-schema
       {{- end }}
+      {{- if .Values.extendedBootstrap.importLdif }}
+      - name: import-ldif
+        configMap:
+          name: {{ include "389ds.fullname" . }}-import-ldif
+      {{- end }}
       {{- if .Values.tls.existingSecret }}
       - name: dirsrv-tls
         secret:
@@ -132,6 +147,10 @@ spec:
           items:
           - key: ca.crt
             path: ca.crt
+      {{- if not .Values.persistence.enabled }}
+      - name: data
+        emptyDir: {}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -144,6 +163,7 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+  {{- if .Values.persistence.enabled }}
   volumeClaimTemplates:
   - metadata:
       name: data
@@ -152,3 +172,4 @@ spec:
       resources:
         requests:
           storage: {{ .Values.persistence.size }}
+  {{- end }}

@@ -15,6 +15,7 @@ dsDmPassword:
   secretKey: ""
 
 persistence:
+  enabled: true
   size: 10Gi
 
 # -- this only has an effect if configured before helm install, otherwise cp /etc/dirsrv/schema/99user.ldif /data/config/schema/99user.ldif is needed
@@ -31,6 +32,7 @@ tls:
 
 # Runs once on helm install and does extended bootstrap (disable anonymous bind, create additional backends, set up replication)
 extendedBootstrap:
+  helmHook: "post-install"
   # If you want to use extended bootstrap, define the peers below according to the number of replicas and their service names
   # Note that downsizing the replica count or disabling HA after enabling HA replication is not supported! Always check if the cluster is healthy and the config fits when downsizing!
   enabled: false
@@ -40,7 +42,8 @@ extendedBootstrap:
   rmPassword:
     secretName: ""
     secretKey: ""
-  helmHook: "post-install"
+  # -- Ldif to import on bootstrap. Note that Directory Server first removes all existing data from the database and, subsequently, imports the data from the LDIF file
+  importLdif: ""
 
 image:
   repository: registry.suse.com/suse/389-ds
@@ -56,16 +59,28 @@ resources:
   requests:
     memory: "256Mi"
     cpu: "100m"
+
 livenessProbe:
   exec:
     command:
     - /usr/lib/dirsrv/dscontainer
     - -H
+  timeoutSeconds: 5
+
 readinessProbe:
   exec:
     command:
     - /usr/lib/dirsrv/dscontainer
     - -H
+  timeoutSeconds: 5
+
+startupProbe:
+  exec:
+    command:
+    - /usr/lib/dirsrv/dscontainer
+    - -H
+  initialDelaySeconds: 30
+  timeoutSeconds: 5
 
 metrics:
   enabled: false

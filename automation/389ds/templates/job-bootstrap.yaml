@@ -1,3 +1,8 @@
+{{- /*
+This job is executed by a Helm hook post install hook by default to ensure it is only run once. 
+However, there are also other possibilities (also to not depend on Helm as lifecycle management) that should
+  be evaluated at a later stage (TODO).
+*/}}
 {{- if .Values.extendedBootstrap.enabled -}}
 apiVersion: batch/v1
 kind: Job
@@ -32,6 +37,8 @@ spec:
           value: {{ .Values.extendedBootstrap.peers | quote}}
         - name: BOOTSTRAP_BACKEND_NAME
           value: {{ .Values.extendedBootstrap.backendName | quote }}
+        - name: BOOTSTRAP_IMPORT_LDIF
+          value: {{ .Values.extendedBootstrap.importLdif | empty | not | quote }}
         - name: BOOTSTRAP_RM_PASSWORD
           valueFrom:
             secretKeyRef:

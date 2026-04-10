@@ -1,0 +1,11 @@
+{{- if .Values.extendedBootstrap.importLdif -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "389ds.fullname" . }}-import-ldif
+  labels:
+    {{- include "389ds.labels" . | nindent 4 }}
+data:
+  import.ldif: |
+    {{- .Values.extendedBootstrap.importLdif | nindent 4 }}
+{{ end }}

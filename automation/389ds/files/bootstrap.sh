@@ -8,8 +8,9 @@ set -euof pipefail
 BOOTSTRAP_RM_NAME="rmanager"
 LDAP_PORT=3389
 BIND_DN="cn=Directory Manager"
+IMPORT_LDIF_NAME="import.ldif"
 
-replica_sum=$(echo "$BOOTSTRAP_HA_PEER_HOSTS" | wc -w)
+replica_sum=$(echo "${BOOTSTRAP_HA_PEER_HOSTS}" | wc -w)
 replica_id=0
 for ha_peer_host_outer in ${BOOTSTRAP_HA_PEER_HOSTS}; do
   replica_id=$((replica_id+1))
@@ -44,6 +45,11 @@ for ha_peer_host_outer in ${BOOTSTRAP_HA_PEER_HOSTS}; do
       --create-suffix
   else
     echo "Backend already exists."
+  fi
+
+  if [[ "${BOOTSTRAP_IMPORT_LDIF}" == "true" ]]; then
+    echo "Importing LDIF..."
+    dsconf "${DSCONF_PARAMS[@]}" backend import "${BOOTSTRAP_BACKEND_NAME}" "${IMPORT_LDIF_NAME}"
   fi
 
   echo "Ensuring replication is enabled..."
