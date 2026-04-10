@@ -9,6 +9,12 @@ BOOTSTRAP_RM_NAME="rmanager"
 LDAP_PORT=3389
 BIND_DN="cn=Directory Manager"
 IMPORT_LDIF_NAME="import.ldif"
+BOOTSTRAP_MARKER_FILE="/data/.bootstrap_complete"
+
+if [[ -f "${BOOTSTRAP_MARKER_FILE}" ]]; then
+  echo "Bootstrap already completed. Skipping."
+  exit 0
+fi
 
 replica_sum=$(echo "${BOOTSTRAP_HA_PEER_HOSTS}" | wc -w)
 replica_id=0
@@ -100,6 +106,8 @@ for ha_peer_host_outer in ${BOOTSTRAP_HA_PEER_HOSTS}; do
   done
 
 done
+
+touch "${BOOTSTRAP_MARKER_FILE}"
 
 echo
 echo "✅ Bootstrap completed successfully."
