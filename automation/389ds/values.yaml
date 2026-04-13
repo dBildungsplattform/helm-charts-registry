@@ -32,7 +32,8 @@ tls:
 
 # Runs once on helm install and does extended bootstrap (disable anonymous bind, create additional backends, set up replication)
 extendedBootstrap:
-  helmHook: "post-install"
+  annotations:
+    "helm.sh/hook": "post-install"
   # If you want to use extended bootstrap, define the peers below according to the number of replicas and their service names
   # Note that downsizing the replica count or disabling HA after enabling HA replication is not supported! Always check if the cluster is healthy and the config fits when downsizing!
   enabled: false

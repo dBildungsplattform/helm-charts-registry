@@ -10,8 +10,10 @@ metadata:
   name: {{ include "389ds.fullname" . }}-bootstrap
   labels:
     {{- include "389ds.labels" . | nindent 4 }}
+  {{- with .Values.extendedBootstrap.annotations }}
   annotations:
-    "helm.sh/hook": {{ .Values.extendedBootstrap.helmHook | quote }}
+    {{- toYaml . | nindent 8 }}
+  {{- end }}
 spec:
   template:
     spec:
