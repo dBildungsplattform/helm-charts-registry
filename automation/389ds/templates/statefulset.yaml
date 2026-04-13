@@ -35,7 +35,7 @@ spec:
       - name: dirsrv-container
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        {{- /* bootstrap script waits for ds 389 to become available and then progresses (non-persistent cases) */}}
+        {{- /* bootstrap script waits for ds 389 to become available and then progresses (cannot use helm postinstall hook in non-persistent case) */}}
         {{- if and .Values.extendedBootstrap.enabled (not .Values.persistence.enabled) }}
         command: ["/bin/sh", "-c", "/scripts/bootstrap.sh & exec /usr/lib/dirsrv/dscontainer -r"]
         {{- end }}
