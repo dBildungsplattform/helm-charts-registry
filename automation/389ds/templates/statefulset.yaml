@@ -37,7 +37,7 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         {{- /* bootstrap script waits for ds 389 to become available and then progresses (non-persistent cases) */}}
         {{- if and .Values.extendedBootstrap.enabled (not .Values.persistence.enabled) }}
-        command: ["/bin/sh", "-c", "/scripts/bootstrap.sh & /usr/lib/dirsrv/dscontainer -r"]
+        command: ["/bin/sh", "-c", "/scripts/bootstrap.sh & exec /usr/lib/dirsrv/dscontainer -r"]
         {{- end }}
         securityContext:
           readOnlyRootFilesystem: true
