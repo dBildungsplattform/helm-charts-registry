@@ -22,8 +22,7 @@ spec:
         securityContext:
           readOnlyRootFilesystem: true
         volumeMounts:
-        - name: bootstrap-scripts
-          mountPath: /scripts
+        {{- include "389ds.bootstrapVolumeMount" . | nindent 8 }}
         command: ["/scripts/bootstrap.sh"]
         env:
         - name: DS_DM_PASSWORD
@@ -33,22 +32,9 @@ spec:
               key: {{ .Values.dsDmPassword.secretKey | quote }}
         - name: DS_SUFFIX_NAME
           value: {{ .Values.dsSuffixName | quote }}
-        - name: BOOTSTRAP_HA_PEER_HOSTS
-          value: {{ .Values.extendedBootstrap.peers | quote}}
-        - name: BOOTSTRAP_BACKEND_NAME
-          value: {{ .Values.extendedBootstrap.backendName | quote }}
-        - name: BOOTSTRAP_IMPORT_LDIF
-          value: {{ .Values.extendedBootstrap.importLdif | empty | not | quote }}
-        - name: BOOTSTRAP_RM_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: {{ .Values.extendedBootstrap.rmPassword.secretName | quote }}
-              key: {{ .Values.extendedBootstrap.rmPassword.secretKey | quote }}
+        {{- include "389ds.bootstrapEnv" . | nindent 8 }}
       volumes:
-        - name: bootstrap-scripts
-          configMap:
-            name: {{ include "389ds.fullname" . }}-bootstrap
-            defaultMode: 0555
+        {{- include "389ds.bootstrapVolume" . | nindent 8 }}
       restartPolicy: OnFailure
   backoffLimit: 4
 {{ end }}

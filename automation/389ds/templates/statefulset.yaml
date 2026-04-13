@@ -35,6 +35,10 @@ spec:
       - name: dirsrv-container
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+        {{- /* bootstrap script waits for ds 389 to become available and then progresses (not-persistent cases) */}}
+        {{- if and .Values.extendedBootstrap.enabled (not .Values.persistence.enabled) }}
+        command: ["/bin/sh", "-c", "/scripts/bootstrap.sh & /usr/lib/dirsrv/dscontainer -r"]
+        {{- end }}
         securityContext:
           readOnlyRootFilesystem: true
           allowPrivilegeEscalation: false
@@ -62,9 +66,13 @@ spec:
               key: {{ .Values.dsDmPassword.secretKey | quote }}
         - name: DS_SUFFIX_NAME
           value: {{ .Values.dsSuffixName | quote }}
+        {{- if and .Values.extendedBootstrap.enabled (not .Values.persistence.enabled) }}
+        {{- include "389ds.bootstrapEnv" . | nindent 8 }}
+        {{- end }}
         - name: DS_ERRORLOG_LEVEL
           value: "8192"
         volumeMounts:
+        {{- include "389ds.bootstrapVolumeMount" . | nindent 8 }}
         - name: data
           mountPath: "/data"
         {{- if .Values.tls.existingSecret }}
@@ -124,6 +132,9 @@ spec:
       - name: custom-schema
         configMap:
           name: {{ include "389ds.fullname" . }}-custom-schema
+      {{- end }}
+      {{- if and .Values.extendedBootstrap.enabled (not .Values.persistence.enabled) }}
+      {{- include "389ds.bootstrapVolume" . | nindent 6 }}
       {{- end }}
       {{- if .Values.extendedBootstrap.importLdif }}
       - name: import-ldif
