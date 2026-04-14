@@ -3,7 +3,7 @@ This job is executed by a Helm hook post install hook by default to ensure it is
 However, there are also other possibilities (also to not depend on Helm as lifecycle management) that should
   be evaluated at a later stage (TODO).
 */}}
-{{- if .Values.extendedBootstrap.enabled -}}
+{{- if and .Values.extendedBootstrap.enabled .Values.persistence.enabled -}}
 apiVersion: batch/v1
 kind: Job
 metadata:
