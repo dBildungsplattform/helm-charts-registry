@@ -56,7 +56,7 @@ imagePullSecrets: []
 resources:
   limits:
     memory: "256Mi"
-    cpu: "250m"
+    cpu: "1"
   requests:
     memory: "256Mi"
     cpu: "100m"

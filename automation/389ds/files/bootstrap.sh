@@ -30,6 +30,7 @@ for ha_peer_host_outer in ${BOOTSTRAP_HA_PEER_HOSTS}; do
 
   echo "Waiting for Directory Server to be ready..."
   until dsconf "${DSCONF_PARAMS[@]}" monitor server >/dev/null 2>&1; do
+    echo "Directory Server is not available (yet)."
     sleep 5
   done
   echo "Directory Server is up."
