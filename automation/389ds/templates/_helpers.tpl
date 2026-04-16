@@ -60,3 +60,10 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
+
+{{/*
+Check if bootstrap should be enabled based on values
+*/}}
+{{- define "389ds.nonPersistentBootstrapEnabled" -}}
+{{- and .Values.extendedBootstrap.enabled (not .Values.persistence.enabled) }}
+{{- end }}

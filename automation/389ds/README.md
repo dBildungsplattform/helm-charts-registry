@@ -15,6 +15,7 @@ A Helm chart for Kubernetes
 | dsSuffixName | string | `"dc=example,dc=com"` |  |
 | extendedBootstrap.annotations."helm.sh/hook" | string | `"post-install"` |  |
 | extendedBootstrap.backendName | string | `"userroot"` |  |
+| extendedBootstrap.configOverrides | string | `"nsslapd-allow-anonymous-access=off"` | Space separated config to set via dsconf config replace on bootstrap |
 | extendedBootstrap.enabled | bool | `false` |  |
 | extendedBootstrap.importLdif | string | `""` | Ldif to import on bootstrap. Note that Directory Server first removes all existing data from the database and, subsequently, imports the data from the LDIF file |
 | extendedBootstrap.peers | string | `"port389ds-0.port389ds-headless"` |  |
