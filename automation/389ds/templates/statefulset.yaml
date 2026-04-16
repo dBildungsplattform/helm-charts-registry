@@ -40,7 +40,7 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         {{- /* bootstrap script waits for ds 389 to become available and then progresses (cannot use helm postinstall hook in non-persistent case) */}}
-        {{- if include "389ds.nonPersistentBootstrapEnabled" . }}
+        {{- if and .Values.extendedBootstrap.enabled (not .Values.persistence.enabled) }}
         command: ["/bin/sh", "-c", "/scripts/bootstrap.sh & exec /usr/lib/dirsrv/dscontainer -r"]
         {{- end }}
         securityContext:
@@ -70,13 +70,13 @@ spec:
               key: {{ .Values.dsDmPassword.secretKey | quote }}
         - name: DS_SUFFIX_NAME
           value: {{ .Values.dsSuffixName | quote }}
-        {{- if include "389ds.nonPersistentBootstrapEnabled" . }}
+        {{- if and .Values.extendedBootstrap.enabled (not .Values.persistence.enabled) }}
         {{- include "389ds.bootstrapEnv" . | nindent 8 }}
         {{- end }}
         - name: DS_ERRORLOG_LEVEL
           value: "8192"
         volumeMounts:
-        {{- if include "389ds.nonPersistentBootstrapEnabled" . }}
+        {{- if and .Values.extendedBootstrap.enabled (not .Values.persistence.enabled) }}
         {{- include "389ds.bootstrapVolumeMount" . | nindent 8 }}
         {{- end }}
         - name: data
@@ -139,7 +139,7 @@ spec:
         configMap:
           name: {{ include "389ds.fullname" . }}-custom-schema
       {{- end }}
-      {{- if include "389ds.nonPersistentBootstrapEnabled" . }}
+      {{- if and .Values.extendedBootstrap.enabled (not .Values.persistence.enabled) }}
       {{- include "389ds.bootstrapVolume" . | nindent 6 }}
       {{- end }}
       {{- if .Values.extendedBootstrap.importLdif }}
