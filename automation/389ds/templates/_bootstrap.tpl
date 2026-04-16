@@ -3,11 +3,13 @@ Bootstrap container template for bootstrap
 */}}
 {{- define "389ds.bootstrapEnv" }}
 - name: BOOTSTRAP_HA_PEER_HOSTS
-  value: {{ .Values.extendedBootstrap.peers | quote}}
+  value: {{ .Values.extendedBootstrap.peers | quote }}
 - name: BOOTSTRAP_BACKEND_NAME
   value: {{ .Values.extendedBootstrap.backendName | quote }}
 - name: BOOTSTRAP_IMPORT_LDIF
   value: {{ .Values.extendedBootstrap.importLdif | empty | not | quote }}
+- name: BOOTSTRAP_CONFIG_OVERRIDES
+  value: {{ .Values.extendedBootstrap.configOverrides | quote }}
 - name: BOOTSTRAP_RM_PASSWORD
   valueFrom:
     secretKeyRef:

@@ -45,6 +45,8 @@ extendedBootstrap:
     secretKey: ""
   # -- Ldif to import on bootstrap. Note that Directory Server first removes all existing data from the database and, subsequently, imports the data from the LDIF file
   importLdif: ""
+  # -- Space separated config to set via dsconf config replace on bootstrap
+  configOverrides: "nsslapd-allow-anonymous-access=off"
 
 image:
   repository: registry.suse.com/suse/389-ds

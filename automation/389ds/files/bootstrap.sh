@@ -30,13 +30,18 @@ for ha_peer_host_outer in ${BOOTSTRAP_HA_PEER_HOSTS}; do
 
   echo "Waiting for Directory Server to be ready..."
   until dsconf "${DSCONF_PARAMS[@]}" monitor server >/dev/null 2>&1; do
-    echo "Directory Server is not available (yet)."
+    echo "⌛ Directory Server is not available (yet)."
     sleep 5
   done
   echo "Directory Server is up."
 
-  echo "Disallowing anonymous access..."
-  dsconf "${DSCONF_PARAMS[@]}" config replace nsslapd-allow-anonymous-access=off
+  if [[ -n "${BOOTSTRAP_CONFIG_OVERRIDES}" ]]; then
+    echo "Applying configuration overrides..."
+    for kv in ${BOOTSTRAP_CONFIG_OVERRIDES}; do
+      echo "Setting ${kv}"
+      dsconf "${DSCONF_PARAMS[@]}" config replace "${kv}"
+    done
+  fi
 
   echo "Ensuring backend exists..."
   if ! dsconf "${DSCONF_PARAMS[@]}" backend suffix get "${DS_SUFFIX_NAME}" >/dev/null 2>&1; then
