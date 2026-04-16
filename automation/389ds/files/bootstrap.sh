@@ -93,8 +93,13 @@ for ha_peer_host_outer in ${BOOTSTRAP_HA_PEER_HOSTS}; do
       echo "Replication agreement already exists."
     fi
 
-    # Lastly, initialize replication agreements once
     if [[ "${replica_id}" == "${replica_sum}" ]]; then
+      if [[ "${BOOTSTRAP_IMPORT_LDIF}" == "true" ]]; then
+        echo "Importing LDIF..."
+        dsconf "${DSCONF_PARAMS[@]}" backend import "${BOOTSTRAP_BACKEND_NAME}" "${IMPORT_LDIF_NAME}"
+      fi
+
+      # Lastly, initialize replication agreements once
       echo "Initializing replication agreement to ${ha_peer_host_inner}..."
       dsconf "${DSCONF_PARAMS[@]}" repl-agmt init "${ha_peer_host_inner}" --suffix "${DS_SUFFIX_NAME}"
     fi

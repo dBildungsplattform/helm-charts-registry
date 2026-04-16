@@ -51,7 +51,7 @@ A Helm chart for Kubernetes
 | readinessProbe.exec.command[1] | string | `"-H"` |  |
 | readinessProbe.timeoutSeconds | int | `5` |  |
 | replicaCount | int | `1` |  |
-| resources.limits.cpu | string | `"250m"` |  |
+| resources.limits.cpu | string | `"1"` |  |
 | resources.limits.memory | string | `"256Mi"` |  |
 | resources.requests.cpu | string | `"100m"` |  |
 | resources.requests.memory | string | `"256Mi"` |  |
