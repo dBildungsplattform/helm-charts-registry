@@ -12,6 +12,7 @@ A Helm chart for Kubernetes
 | customSchema | string | `""` | this only has an effect if configured before helm install, otherwise cp /etc/dirsrv/schema/99user.ldif /data/config/schema/99user.ldif is needed |
 | dsDmPassword.secretKey | string | `""` |  |
 | dsDmPassword.secretName | string | `""` |  |
+| dsErrorlogLevel | int | `256` |  |
 | dsSuffixName | string | `"dc=example,dc=com"` |  |
 | extendedBootstrap.annotations."helm.sh/hook" | string | `"post-install"` |  |
 | extendedBootstrap.backendName | string | `"userroot"` |  |
