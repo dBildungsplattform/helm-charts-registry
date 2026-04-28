@@ -10,6 +10,8 @@ replicaCount: 1
 
 dsSuffixName: "dc=example,dc=com"
 
+dsErrorlogLevel: 256
+
 dsDmPassword:
   secretName: ""
   secretKey: ""

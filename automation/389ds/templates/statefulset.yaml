@@ -74,7 +74,7 @@ spec:
         {{- include "389ds.bootstrapEnv" . | nindent 8 }}
         {{- end }}
         - name: DS_ERRORLOG_LEVEL
-          value: "8192"
+          value: {{ .Values.dsErrorlogLevel | quote }}
         volumeMounts:
         {{- if and .Values.extendedBootstrap.enabled (not .Values.persistence.enabled) }}
         {{- include "389ds.bootstrapVolumeMount" . | nindent 8 }}
