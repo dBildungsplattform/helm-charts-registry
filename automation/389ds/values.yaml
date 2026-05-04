@@ -63,7 +63,7 @@ resources:
     cpu: "1"
   requests:
     memory: "256Mi"
-    cpu: "100m"
+    cpu: "150m"
 
 livenessProbe:
   exec:
