@@ -1,0 +1,105 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "infra-otc-cert-manager-webhook.fullname" . }}
+  labels:
+    app: {{ include "infra-otc-cert-manager-webhook.name" . }}
+    chart: {{ include "infra-otc-cert-manager-webhook.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  {{- if .Values.replicaCount }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      app: {{ include "infra-otc-cert-manager-webhook.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "infra-otc-cert-manager-webhook.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      serviceAccountName: {{ include "infra-otc-cert-manager-webhook.fullname" . }}
+      {{- if not .Values.properties.disableSecurityContext }}
+      securityContext:
+        runAsUser: {{ default 10000 .Values.properties.runAsUser }}
+        runAsGroup: {{ default 10001 .Values.properties.runAsGroup }}
+        fsGroup: {{ default 10001 .Values.properties.fsGroup }}
+        fsGroupChangePolicy: "OnRootMismatch"
+        seccompProfile:
+          type: RuntimeDefault
+      {{- end }}
+      {{- if hasKey .Values.image "imagePullSecrets" }}
+      imagePullSecrets:
+{{ toYaml .Values.image.imagePullSecrets | indent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            {{- if .Values.logLevel }}
+            - --v={{ .Values.logLevel }}
+            {{- end }}
+            - --secure-port=8443
+            - --tls-cert-file=/tls/tls.crt
+            - --tls-private-key-file=/tls/tls.key
+          env:
+            - name: GROUP_NAME
+              value: {{ .Values.groupName | quote }}
+          ports:
+            - name: https
+              containerPort: 8443
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              scheme: HTTPS
+              path: /healthz
+              port: https
+          readinessProbe:
+            httpGet:
+              scheme: HTTPS
+              path: /healthz
+              port: https
+          volumeMounts:
+            - name: certs
+              mountPath: /tls
+              readOnly: true
+          {{- if not .Values.properties.disableSecurityContext }}
+          securityContext:
+            runAsNonRoot: true
+            privileged: false
+            runAsUser: {{ default 10000 .Values.properties.runAsUser }}
+            runAsGroup: {{ default 10001 .Values.properties.runAsGroup }}
+            {{- if hasKey .Values.properties "readOnlyRootFilesystem" }}
+            readOnlyRootFilesystem: {{ .Values.properties.readOnlyRootFilesystem }}
+            {{- else }}
+            readOnlyRootFilesystem: true
+            {{- end }}
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            seccompProfile:
+              type: RuntimeDefault
+          {{- end }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+      volumes:
+        - name: certs
+          secret:
+            secretName: {{ include "infra-otc-cert-manager-webhook.servingCertificate" . }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
