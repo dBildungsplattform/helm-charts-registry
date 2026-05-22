@@ -32,6 +32,7 @@
     },
 
     "LDAP": {
+        "ENABLED": true,
         "URL": "ldap://spsh-xxx.svc.cluster.local",
         "BIND_DN": "cn=admin,dc=schule-sh,dc=de",
         "ADMIN_PASSWORD": "password",
@@ -80,9 +81,12 @@
         "STEP_UP_TIMEOUT_IN_SECONDS": 10
     },
     "VIDIS": {
-        "BASE_URL": "http://localhost:10000",
-        "CLIENT_ID": "clientid",
-        "CLIENT_SECRET": "clientsecret"
+        "BASE_URL": "https://service-stage.vidis.schule",
+        "USERNAME": "",
+        "PASSWORD": "",
+        "REGION_NAME": "test-region",
+        "KEYCLOAK_GROUP": "VIDIS-service",
+        "KEYCLOAK_ROLE": "VIDIS-user"
     },
     "HEADER_API_KEY": {
         "INTERNAL_COMMUNICATION_API_KEY": "api-key"

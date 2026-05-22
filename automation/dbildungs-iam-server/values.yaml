@@ -107,7 +107,10 @@ email:
   nonEnabledEmailAddressesDeadlineInDays: 180
 
 vidis:
-  url: "http://localhost:10000"
+  url: "https://service-stage.vidis.schule"
+  regionName: "test-region"
+  keycloakGroup: "VIDIS-service"
+  keycloakRole: "VIDIS-user"
 
 backend:
   replicaCount: 1
