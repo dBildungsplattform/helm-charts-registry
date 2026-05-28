@@ -79,8 +79,6 @@ auth:
   redis_password: ""
   vidis_username: ""
   vidis_password: ""
-  vidis_api_client_id: ""
-  vidis_api_client_secret: ""
   import_passphrase_secret: ""
   import_passphrase_salt: ""
   ox_password: ""
@@ -109,7 +107,10 @@ email:
   nonEnabledEmailAddressesDeadlineInDays: 180
 
 vidis:
-  url: "http://localhost:10000"
+  url: "https://service-stage.vidis.schule"
+  regionName: "test-region"
+  keycloakGroup: "VIDIS-service"
+  keycloakRole: "VIDIS-user"
 
 backend:
   replicaCount: 1
