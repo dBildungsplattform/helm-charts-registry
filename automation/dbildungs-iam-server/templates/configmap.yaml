@@ -28,6 +28,7 @@ data:
   PI_RENAME_WAITING_TIME:  "{{ .Values.privacyidea.renameWaitingTime }}"
   PI_REALM: "{{ .Values.privacyidea.realm }}"
   PI_USER_RESOLVER: "{{ .Values.privacyidea.userResolver }}"
+  OX_EFLK_OX_ENABLED: "{{ .Values.ox.eflkOxEnabled }}"
   OX_ENABLED: "{{ .Values.ox.enabled }}"
   OX_USERNAME: "{{ .Values.ox.username }}"
   OX_ENDPOINT: "{{ .Values.ox.endpoint }}"
@@ -46,8 +47,6 @@ data:
   ITSLEARNING_ROOT_OEFFENTLICH: '{{ .Values.itslearning.rootOeffentlich }}'
   ITSLEARNING_ROOT_ERSATZ: '{{ .Values.itslearning.rootErsatz }}'
   VIDIS_API_BASE_URL: '{{ .Values.vidis.url }}'
-  VIDIS_API_REGION: '{{ .Values.vidis.region }}'
-  VIDIS_SYNC_SCHOOLS_PAGE_SIZE: '{{ .Values.vidis.syncSchoolsPageSize }}'
   NODE_OPTIONS: "--max-old-space-size={{ .Values.backend.env.maxOldSpaceSize }}"
   IMPORT_CSV_FILE_MAX_SIZE_IN_MB: '{{ .Values.import.csvFileMaxSizeInMB }}'
   IMPORT_CSV_MAX_NUMBER_OF_USERS: '{{ .Values.import.csvMaxNumberOfUsers }}'
