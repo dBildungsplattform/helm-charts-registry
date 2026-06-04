@@ -11,11 +11,12 @@ data:
   NODE_ENV: 'prod'
   DEPLOY_STAGE: {{ .Values.environment | quote }}
   DB_NAME: {{ .Values.database.name | quote }}
+  LDAP_ENABLED: "{{ .Values.eflkLdap.enabled }}"
   LDAP_URL: '{{ .Values.eflkLdap.url | replace "spsh-xxx" .Release.Namespace }}'
   LDAP_BASE_DN: "{{ .Values.eflkLdap.base_dn }}"
   LDAP_OEFFENTLICHE_SCHULEN_DOMAIN: "{{ .Values.eflkLdap.oeffentlicheSchulenDomain }}"
   LDAP_ERSATZSCHULEN_DOMAIN: "{{ .Values.eflkLdap.ersatzschulenDomain }}"
-  OX_ENABLED: "{{ .Values.ox.enabled }}"
+  OX_ENABLED: "{{ .Values.eflkOx.enabled }}"
   OX_USERNAME: "{{ .Values.ox.username }}"
   OX_ENDPOINT: "{{ .Values.ox.endpoint }}"
   OX_CONTEXT_ID: "{{ .Values.ox.contextId }}"
