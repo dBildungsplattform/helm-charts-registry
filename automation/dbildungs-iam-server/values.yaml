@@ -37,7 +37,6 @@ ldap:
   retryWrapperDefaultRetries: 3
 
 eflkLdap:
-  enabled: true
   url: ldap://dbildungs-iam-ldap.spsh-xxx.svc.cluster.local
   oeffentlicheSchulenDomain: schule-sh.de
   ersatzschulenDomain: ersatzschule-sh.de
@@ -105,9 +104,6 @@ ox:
   numberOfRetries: 3
   userPasswordDefault: "placeholder"
   emailAddressDeletedEventDelay: 0
-
-eflkOx:
-  enabled: true
 
 email:
   nonEnabledEmailAddressesDeadlineInDays: 180
