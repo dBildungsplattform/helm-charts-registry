@@ -11,7 +11,6 @@ data:
   NODE_ENV: 'prod'
   DEPLOY_STAGE: {{ .Values.environment | quote }}
   DB_NAME: {{ .Values.database.name | quote }}
-  LDAP_ENABLED: "{{ .Values.eflkLdap.enabled }}"
   LDAP_URL: '{{ .Values.eflkLdap.url | replace "spsh-xxx" .Release.Namespace }}'
   LDAP_BASE_DN: "{{ .Values.eflkLdap.base_dn }}"
   LDAP_OEFFENTLICHE_SCHULEN_DOMAIN: "{{ .Values.eflkLdap.oeffentlicheSchulenDomain }}"
