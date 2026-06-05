@@ -31,9 +31,4 @@
     secretKeyRef:
         name: {{ default .Values.emailMicroserviceAuth.existingSecret .Values.emailMicroserviceAuth.secretName }}
         key: ox-password
-- name: INTERNAL_COMMUNICATION_API_KEY
-  valueFrom:
-    secretKeyRef:
-        name: {{ default .Values.emailMicroserviceAuth.existingSecret .Values.emailMicroserviceAuth.secretName }}
-        key: internal-communication-api-key
 {{- end}}
