@@ -75,7 +75,6 @@
 {{- end -}}
 
 {{- define "dbpMoodle.pluginConfigMap.content" -}}
-eledia_oidc:eledia_auth_oidc:auth/oidc:                         {{- .Values.global.moodlePlugins.eledia_oidc.enabled }}{{"\n"}}
 wunderbyte_table:local_wunderbyte_table:local/wunderbyte_table: {{- .Values.global.moodlePlugins.booking.enabled}}{{"\n"}}
 certificate:tool_certificate:admin/tool/certificate:            {{- or .Values.global.moodlePlugins.certificate.enabled .Values.global.moodlePlugins.coursecertificate.enabled }}{{"\n"}}
 etherpadlite:mod_etherpadlite:mod/etherpadlite:                 {{- .Values.global.moodlePlugins.etherpadlite.enabled }}{{"\n"}}
@@ -145,5 +144,12 @@ mahara:portfolio_mahara:portfolio/mahara:                           {{- "true" }
 smsgateway_aws:smsgateway_aws:smsgateway/aws:                       {{- "true" }}{{"\n"}}
 enrol_paypal:enrol_paypal:enrol/paypal:                             {{- "true" }}{{"\n"}}
 unoconv:fileconverter_unoconv:fileconverter/unoconv:                {{- "true" }}{{"\n"}}
+{{- end -}}
+{{- end -}}
+
+{{- define "dbpMoodle.backup.gpg_key_names.cmd" -}}
+{{- $keys := .Values.dbpMoodle.backup.gpg_key_names -}}
+{{- range $index, $key := $keys -}}
+$(gpg --show-keys --with-colons /etc/duply/default/gpgkey.{{ $key }}.pub.asc | awk -F: '/^pub/ { print $5 } }){{- if lt (add1 $index) (len $keys) -}},{{- end -}}
 {{- end -}}
 {{- end -}}
