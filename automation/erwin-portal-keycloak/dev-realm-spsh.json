@@ -1575,7 +1575,7 @@
             "rootUrl": "https://main.dbc.dbildungscloud.dev/",
             "baseUrl": "https://main.dbc.dbildungscloud.dev/",
             "adminUrl": "https://main.dbc.dbildungscloud.dev/",
-            "redirectUris": [],
+            "redirectUris": ["/*", "https://main.dbc.dbildungscloud.dev/*"],
             "webOrigins": ["https://main.dbc.dbildungscloud.dev"],
             "bearerOnly": false,
             "standardFlowEnabled": true,
