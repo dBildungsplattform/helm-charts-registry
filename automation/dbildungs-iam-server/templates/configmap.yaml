@@ -46,6 +46,8 @@ data:
   ITSLEARNING_ROOT_OEFFENTLICH: '{{ .Values.itslearning.rootOeffentlich }}'
   ITSLEARNING_ROOT_ERSATZ: '{{ .Values.itslearning.rootErsatz }}'
   VIDIS_API_BASE_URL: '{{ .Values.vidis.url }}'
+  VIDIS_API_REGION: '{{ .Values.vidis.region }}'
+  VIDIS_SYNC_SCHOOLS_PAGE_SIZE: '{{ .Values.vidis.syncSchoolsPageSize }}'
   NODE_OPTIONS: "--max-old-space-size={{ .Values.backend.env.maxOldSpaceSize }}"
   IMPORT_CSV_FILE_MAX_SIZE_IN_MB: '{{ .Values.import.csvFileMaxSizeInMB }}'
   IMPORT_CSV_MAX_NUMBER_OF_USERS: '{{ .Values.import.csvMaxNumberOfUsers }}'
@@ -59,7 +61,7 @@ data:
   KAFKA_GROUP_ID: '{{ .Release.Namespace }}-group'
   KAFKA_SESSION_TIMEOUT: '{{ .Values.kafka.sessionTimeout }}'
   KAFKA_HEARTBEAT_INTERVAL: '{{ .Values.kafka.heartbeatInterval }}'
-  REDIS_HOST: '{{ .Values.redis.host }}'
+  VALKEY_HOST: '{{ .Values.valkey.host }}'
   CRON_PERSON_WITHOUT_ORG_LIMIT: '{{ .Values.cron.personWithoutOrgLimit }}'
   CRON_EMAIL_ADDRESSES_DELETE_LIMIT: '{{ .Values.cron.emailAddressesDeleteLimit }}'
   FEATURE_FLAG_ROLLE_ERWEITERN: '{{ .Values.featureFlags.rolleErweitern }}'
