@@ -66,7 +66,7 @@
     secretKeyRef:
         name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
         key: pi-admin-password
-- name: VALKEY_PASSWORD
+- name: REDIS_PASSWORD
   valueFrom:
     secretKeyRef:
         name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
