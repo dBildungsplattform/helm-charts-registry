@@ -18,7 +18,9 @@ spec:
       mode: {{ .Values.grafana.logMode }}
     auth.generic_oauth:
       {{- if .Values.grafana.keycloakConfig.enabled }}
-      {{- toYaml .Values.grafana.keycloakConfig | nindent 6 }}
+      {{ range $k, $v := .Values.grafana.keycloakConfig }}
+        {{ $k }}: {{ $v | quote }}
+      {{- end }}
       {{- end }}
   ingress:
     metadata:
