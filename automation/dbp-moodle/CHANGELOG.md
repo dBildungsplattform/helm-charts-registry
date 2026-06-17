@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.5.0]
+### Feature
+- **DM-272**: Support for both oidc and eledia_oidc plugins
+    - Added the `.Values.global.noodlePlugins.eledia_oidc` field
+    - Set this to enabled if the eledia implementation of oidc should be used (relevant for the ZIT instances)
+    - If `.Values.global.noodlePlugins.oidc.enabled` was true prior to this change set it to false and set `eledia_oidc` to true instead.
+    - Use `oidc` from now on to use the regular auth_oidc plugin and `eledia_oidc` to use the custom extension by eledia.
+    - These plugins should be used mutually exclusive.
+
+### Fix
+- **DBP-2270**: ssl-proxy
+    - Added '$CFG->sslproxy = true;' to the php-config
+    - This way moodle expects the tls-termination prior to the apache webserver and can handle it properly
+    - Solves problems where json responses were wrapped in htlm code due to errors
+
 ## [1.4.1]
 ### Fix
 - **PB-70**: Mailserver Configuration
