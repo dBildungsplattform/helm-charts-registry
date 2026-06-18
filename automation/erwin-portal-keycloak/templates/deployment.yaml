@@ -104,6 +104,11 @@ spec:
                 secretKeyRef:
                   name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
                   key: keycloak-itslearning-clientSecret
+            - name: KC_SVS_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ default .Values.auth.existingSecret .Values.auth.secretName }}
+                  key: keycloak-svsClientSecret
             - name: PI_BASE_URL
               valueFrom:
                 secretKeyRef:

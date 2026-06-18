@@ -1571,11 +1571,11 @@
             "enabled": true,
             "protocol": "openid-connect",
             "publicClient": false,
-            "secret": "M24woetUBz8oFf7V0GgR1zGEpleiVACc",
+            "secret": "${KC_SVS_CLIENT_SECRET}",
             "rootUrl": "https://main.dbc.dbildungscloud.dev/",
             "baseUrl": "https://main.dbc.dbildungscloud.dev/",
             "adminUrl": "https://main.dbc.dbildungscloud.dev/",
-            "redirectUris": [],
+            "redirectUris": ["/*", "https://main.dbc.dbildungscloud.dev/*"],
             "webOrigins": ["https://main.dbc.dbildungscloud.dev"],
             "bearerOnly": false,
             "standardFlowEnabled": true,
@@ -1605,13 +1605,10 @@
                         "userinfo.token.claim": "false",
 
                         "multivalued": "false",
-
-                        "extractJsonPath": "$",
-                        "ignoreMissingPath": "true",
-
+                        
+                        "fetchUrl": "${ERWIN_TOKEN_FETCH_URL}",
                         "timeoutMs": "1500",
-                        "cacheTtlSeconds": "60",
-                        "failMode": "deny"
+                        "cacheTtlSeconds": "60"
                     }
                 }
             ]
