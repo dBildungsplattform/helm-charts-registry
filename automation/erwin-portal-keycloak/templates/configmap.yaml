@@ -16,4 +16,3 @@ data:
   KC_SCHOOLSH_CLIENT_ROOT_URL: "{{ .Values.schoolsh.rootUrl }}"
   KC_HTTP_MANAGEMENT_PORT: "8090"
   STATUS_URL: "{{ .Values.status.url }}"
-  ERWIN_TOKEN_FETCH_URL: "http://erwin-portal-server-backend.{{ .Release.Namespace }}.svc.cluster.local:80/keycloakinternal/externaldata"

@@ -1012,6 +1012,20 @@
               "claim.name": "clientHost",
               "jsonType.label": "String"
             }
+          },
+          {
+            "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+            "name": "spsh-audience",
+            "protocol": "openid-connect",
+            "protocolMapper": "oidc-audience-mapper",
+            "consentRequired": false,
+            "config": {
+              "id.token.claim": "false",
+              "access.token.claim": "true",
+              "included.client.audience": "spsh",
+              "lightweight.claim": "false",
+              "introspection.token.claim": "true"
+            }
           }
         ],
         "defaultClientScopes": [
@@ -1571,11 +1585,11 @@
             "enabled": true,
             "protocol": "openid-connect",
             "publicClient": false,
-            "secret": "${KC_SVS_CLIENT_SECRET}",
+            "secret": "M24woetUBz8oFf7V0GgR1zGEpleiVACc",
             "rootUrl": "https://main.dbc.dbildungscloud.dev/",
             "baseUrl": "https://main.dbc.dbildungscloud.dev/",
             "adminUrl": "https://main.dbc.dbildungscloud.dev/",
-            "redirectUris": ["/*", "https://main.dbc.dbildungscloud.dev/*"],
+            "redirectUris": [],
             "webOrigins": ["https://main.dbc.dbildungscloud.dev"],
             "bearerOnly": false,
             "standardFlowEnabled": true,
@@ -1605,10 +1619,13 @@
                         "userinfo.token.claim": "false",
 
                         "multivalued": "false",
-                        
-                        "fetchUrl": "${ERWIN_TOKEN_FETCH_URL}",
+
+                        "extractJsonPath": "$",
+                        "ignoreMissingPath": "true",
+
                         "timeoutMs": "1500",
-                        "cacheTtlSeconds": "60"
+                        "cacheTtlSeconds": "60",
+                        "failMode": "deny"
                     }
                 }
             ]
