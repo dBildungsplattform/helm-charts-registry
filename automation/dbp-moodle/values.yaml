@@ -96,8 +96,6 @@ global:
       enabled: false
     tool_mediatime:
       enabled: false
-    eledia_oidc:
-      enabled: false
 
 dbpMoodle:
   name: infra
@@ -336,7 +334,7 @@ moodle:
     registry: "ghcr.io"
     repository: "dbildungsplattform/moodle"
     # -- The dbp-moodle image which is build for this helm chart
-    tag: "4.5.10-fpm-bookworm-8.2.30-dbp10"
+    tag: "4.5.10-fpm-bookworm-8.2.30-dbp9"
     pullPolicy: Always
     # -- Debug mode for more detailed moodle installation and log output
     debug: false
@@ -465,9 +463,6 @@ moodle:
     https: 8443
   networkPolicy:
     enabled: false
-  startupProbe:
-    enabled: true
-    failureThreshold: 120
 
 postgresql:
   enabled: true
