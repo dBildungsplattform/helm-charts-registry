@@ -51,3 +51,5 @@ livenessProbe:
   periodSeconds: 10
   # The number of consecutive failures of the SSHD container liveness probe before the pod fails liveness checks.
   failureThreshold: 3
+
+extraObjects: []
