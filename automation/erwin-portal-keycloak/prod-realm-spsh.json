@@ -1348,7 +1348,56 @@
           "configure": true,
           "manage": true
         }
-      }
+      },
+      {
+            "id": "77eb64b5-ebb0-4c6b-869e-41843d99957d",
+            "clientId": "svs",
+            "name": "svs",
+            "enabled": true,
+            "protocol": "openid-connect",
+            "publicClient": false,
+            "secret": "${KC_SVS_CLIENT_SECRET}",
+            "rootUrl": "https://dbildungscloud.de/",
+            "baseUrl": "https://dbildungscloud.de/",
+            "adminUrl": "https://dbildungscloud.de/",
+            "redirectUris": ["/*", "https://dbildungscloud.de/*"],
+            "webOrigins": ["https://dbildungscloud.de/"],
+            "bearerOnly": false,
+            "standardFlowEnabled": true,
+            "implicitFlowEnabled": false,
+            "directAccessGrantsEnabled": false,
+            "serviceAccountsEnabled": true,
+            "authorizationServicesEnabled": false,
+            "clientAuthenticatorType": "client-secret",
+            "attributes": {
+                "post.logout.redirect.uri": "https://dbildungscloud.de/",
+                "oauth2.device.authorization.grant.enabled": "false"
+            },
+            "defaultClientScopes": ["web-origins", "acr", "roles", "profile", "basic", "email"],
+            "optionalClientScopes": ["address", "phone", "offline_access", "microprofile-jwt"],
+            "protocolMappers": [
+                {
+                    "name": "spsh-custom-oidc-api-mapper",
+                    "protocol": "openid-connect",
+                    "protocolMapper": "spsh-custom-oidc-api-mapper",
+                    "consentRequired": false,
+                    "config": {
+                        "claim.name": "erwin_profile",
+                        "jsonType.label": "JSON",
+
+                        "id.token.claim": "false",
+                        "access.token.claim": "true",
+                        "userinfo.token.claim": "false",
+
+                        "multivalued": "false",
+                        
+                        "fetchUrl": "${ERWIN_TOKEN_FETCH_URL}",
+                        "timeoutMs": "1500",
+                        "cacheTtlSeconds": "60"
+                    }
+                }
+            ]
+        }
     ],
     "clientScopes": [
       {
