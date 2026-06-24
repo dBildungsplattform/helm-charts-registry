@@ -1,5 +1,46 @@
 # Changelog
 
+## [1.6.0]
+
+### Changed
+- Image Update
+  - Updated Moodle Image to '4.5.10-fpm-trixie-8.2.31-dbp1'
+  - Updated Moodle-Tools Image to '1.1.15'
+
+### Fix
+- **DBP-2357**: Add startup probe
+    - Larger Instances need more time during the startup, exceeding the delay of the liveness probe
+    - This leads to pod terminations and restarts during version updates, which might lead to a corrupted state
+    - To prevent this the usage of a startup probe is introduced by default which only terminates the pod after ~20 Minutes
+    - If more time is needed this can be adjusted via `.Values.moodle.startupProbe.failureThreshold` and `.Values.moodle.startupProbe.failureThreshold.periodSeconds`
+
+## [1.5.0]
+### Feature
+- **DM-272**: Support for both oidc and eledia_oidc plugins
+    - Added the `.Values.global.noodlePlugins.eledia_oidc` field
+    - Set this to enabled if the eledia implementation of oidc should be used (relevant for the ZIT instances)
+    - If `.Values.global.noodlePlugins.oidc.enabled` was true prior to this change set it to false and set `eledia_oidc` to true instead.
+    - Use `oidc` from now on to use the regular auth_oidc plugin and `eledia_oidc` to use the custom extension by eledia.
+    - These plugins should be used mutually exclusive.
+    - Updated Moodle Image to '4.5.10-fpm-bookworm-8.2.30-dbp10' containing the plugin
+
+### Fix
+- **DBP-2270**: ssl-proxy
+    - Added '$CFG->sslproxy = true;' to the php-config
+    - This way moodle expects the tls-termination prior to the apache webserver and can handle it properly
+    - Solves problems where json responses were wrapped in htlm code due to errors
+
+## [1.4.1]
+### Fix
+- **PB-70**: Mailserver Configuration
+    - Added "smtpExistingSecret" to moodle chart, which allows to set the mail servers secret via an existing secret
+    - With `.Values.moodle.smtpExistingSecret` the secret can now be adjusted and if used the `smtp-password` key is expected to hold the password.
+    - Use this to setup the smtp server config via IaC in combination with 
+      - smtpHost: ""
+      - smtpPort: ""
+      - smtpUser: ""
+      - smtpProtocol: ""
+
 ## [1.4.0]
 
 ### Feature
