@@ -9,7 +9,7 @@ $ helm upgrade infra-sshd ./infra-sshd --install --create-namespace -n sshd-serv
 ## Introduction
 This chart creates an SSH daemon deployment on Kubernetes. The daemon pulls in authorized keys which allows respective user to create an SSH tunnel. No further actions are permitted, no shell is accessible.
 
-The image being pulled can be found at https://hub.docker.com/repository/docker/schulcloud/infra-sshd and https://github.com/hpi-schul-cloud/infra-sshd .
+The image being pulled can be found at https://hub.docker.com/repository/docker/schulcloud/infra-sshd and https://github.com/dBildungsplattform/infra-sshd-image .
 
 This chart can be installed in two flavors:
 - Standalone: If standalone is set to true the service will be available within the cluster and can be exposed by a complementary ingress resource.
