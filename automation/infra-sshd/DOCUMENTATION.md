@@ -28,16 +28,6 @@ $ helm upgrade infra-sshd ./infra-sshd --install --create-namespace -n sshd-serv
 $ helm -n sshd-service delete infra-sshd
 ```
 
-## Parameters
-These parameters can be set:
-
-| Parameter          | Description                                                     | Default         |
-| ------------------ | --------------------------------------------------------------- | --------------- |
-| replicaCount       | Count of pods that will be created as part of the deployment    | 1               |
-| image.repository   | Repository the image will be pulled from                        | schulcloud/infra-sshd |
-| image.tag          | Image tag which will be used                                    | stable          |
-| ingress.standalone | Specifies whether INFRA-SSHD is deployed behind HAProxy or standalone | false           |
-
 ## Authorized keys
 Currently supported users and key files:
 
