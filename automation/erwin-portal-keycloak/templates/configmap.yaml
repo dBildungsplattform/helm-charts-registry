@@ -17,3 +17,4 @@ data:
   KC_HTTP_MANAGEMENT_PORT: "8090"
   STATUS_URL: "{{ .Values.status.url }}"
   ERWIN_TOKEN_FETCH_URL: "http://erwin-portal-server-backend.{{ .Release.Namespace }}.svc.cluster.local:80/keycloakinternal/externaldata"
+  ERWIN_ROLE_FETCH_URL: "http://erwin-portal-server-backend.{{ .Release.Namespace }}.svc.cluster.local:80/api/rollenMapping/extract-mapping/keycloak"

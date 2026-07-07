@@ -1012,20 +1012,6 @@
               "claim.name": "clientHost",
               "jsonType.label": "String"
             }
-          },
-          {
-            "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-            "name": "spsh-audience",
-            "protocol": "openid-connect",
-            "protocolMapper": "oidc-audience-mapper",
-            "consentRequired": false,
-            "config": {
-              "id.token.claim": "false",
-              "access.token.claim": "true",
-              "included.client.audience": "spsh",
-              "lightweight.claim": "false",
-              "introspection.token.claim": "true"
-            }
           }
         ],
         "defaultClientScopes": [
@@ -1620,7 +1606,8 @@
 
                         "multivalued": "false",
                         
-                        "fetchUrl": "${ERWIN_TOKEN_FETCH_URL}",
+                        "fetchUrlToken": "${ERWIN_TOKEN_FETCH_URL}",
+                        "fetchUrlRole": "${ERWIN_ROLE_FETCH_URL}",
                         "timeoutMs": "1500",
                         "cacheTtlSeconds": "60"
                     }
