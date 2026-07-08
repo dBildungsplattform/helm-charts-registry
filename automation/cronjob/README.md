@@ -14,7 +14,7 @@ A generic Helm chart for Kubernetes cronjobs
 | clusterRole.rules | list | `[]` |  |
 | env | list | `[]` | Environment variables to be passed to all job pods (see https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/ and https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets-as-environment-variables) |
 | envFrom | list | `[]` | ConfigMaps and secrets to be passed as environment variables to all job pods (see https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/ and https://kubernetes.io/docs/concepts/configuration/secret/#use-case-as-container-environment-variables) |
-| extraLabels | list | `[]` |  |
+| extraLabels | object | `{}` |  |
 | extraVolumeMounts | list | `[]` | VolumeMounts to be passed to all job pods (see https://kubernetes.io/docs/concepts/storage/volumes/) |
 | extraVolumes | list | `[]` | Volumes to be passed to all job pods (see https://kubernetes.io/docs/concepts/storage/volumes/) |
 | fullnameOverride | string | `""` |  |
