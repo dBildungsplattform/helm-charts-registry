@@ -95,7 +95,7 @@ spec:
           labels:
             {{- $chart_selector_labels | nindent 12 }}
             {{- if $.Values.extraLabels }}
-            {{- toYaml $.Values.extraLabels | nindent 12 }} }}
+            {{- toYaml $.Values.extraLabels | nindent 12 }}
             {{- end }}
         spec:
           restartPolicy: {{ default "Never" .restartPolicy }}
