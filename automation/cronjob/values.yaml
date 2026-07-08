@@ -92,7 +92,7 @@ extraVolumes: []
   #       - key: log_level
   #         path: log_level
 
-extraLabels: []
+extraLabels: {}
   # -- Additional labels to be added to all jobs and pods
 
 jobs: []
