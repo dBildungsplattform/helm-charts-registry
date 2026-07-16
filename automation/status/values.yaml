@@ -110,9 +110,9 @@ env:
     APP_LOG: errorlog
     DB_DRIVER: pgsql
     DOCKER: true
-    CACHE_DRIVER: valkey
-    SESSION_DRIVER: valkey
-    QUEUE_DRIVER: valkey
+    CACHE_DRIVER: redis
+    SESSION_DRIVER: redis
+    QUEUE_DRIVER: redis
     CACHET_EMOJI: false
     CACHET_BEACON: false
     # Email configuration: https://docs.cachethq.io/docs/configuring-mail
