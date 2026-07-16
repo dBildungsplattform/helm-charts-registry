@@ -11,7 +11,7 @@ data:
   DB_USERNAME: {{ .Values.postgresql.auth.username }}
   DB_PORT: {{ .Values.postgresql.service.ports.postgresql | quote }}
   APP_ENV: {{ default "production" .Values.env.public.APP_ENV | quote }}
-  REDIS_HOST: {{ include "status.fullname" . }}-redis-master
+  REDIS_HOST: {{ include "status.fullname" . }}-valkey-master
 {{- with (first .Values.ingress.hosts) }}
   APP_URL: {{ .host }}
 {{- end }}
