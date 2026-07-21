@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: dbp-2372
+appVersion: sha-53c3242
 dependencies:
 - condition: phpldapadmin.enabled
   name: phpldapadmin
@@ -16,4 +16,4 @@ keywords:
 - ldap
 - openldap
 name: erwin-portal-ldap
-version: 0.0.0-dbp-2372-20260720-1426
+version: 0.0.1-20260721-1130
