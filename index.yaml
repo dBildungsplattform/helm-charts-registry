@@ -56936,6 +56936,16 @@ entries:
     version: 0.0.0-spsh-4002-20260727-0902
   - apiVersion: v2
     appVersion: spsh-3997
+    created: "2026-07-28T10:45:07.540321534Z"
+    description: dBildungs-IAM-server
+    digest: 2ed6d8b114af593f4cce8d6de495062ae42c34f27cda8bfe8e5f7dd2d1b682a8
+    name: dbildungs-iam-server
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-server-0.0.0-spsh-3997-20260728-1039/dbildungs-iam-server-0.0.0-spsh-3997-20260728-1039.tgz
+    version: 0.0.0-spsh-3997-20260728-1039
+  - apiVersion: v2
+    appVersion: spsh-3997
     created: "2026-07-27T11:32:01.203089185Z"
     description: dBildungs-IAM-server
     digest: 00e900bbdf9f4d852d191cbb66f86b0cf0f09ecfd77e10fa84207dffab401bfb
@@ -213205,6 +213215,16 @@ entries:
     version: 0.0.0-spsh-411-20240312-1433
   - apiVersion: v2
     appVersion: spsh-3997
+    created: "2026-07-28T10:45:07.686413946Z"
+    description: Helm-Chart for schulportal-client
+    digest: e33b69295600b34aa1c81f8cc441183de25479fde9fa8740da0f790027a5ae45
+    name: schulportal-client
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/schulportal-client-0.0.0-spsh-3997-20260728-1040/schulportal-client-0.0.0-spsh-3997-20260728-1040.tgz
+    version: 0.0.0-spsh-3997-20260728-1040
+  - apiVersion: v2
+    appVersion: spsh-3997
     created: "2026-07-24T09:51:56.742955942Z"
     description: Helm-Chart for schulportal-client
     digest: de6afc7bc7680f29e75da2deffca92a7d49a5cfbded01078a7e03c853b7f65ba
@@ -255996,4 +256016,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/wazuh-0.0.0-dbp-1363-20250325-1058/wazuh-0.0.0-dbp-1363-20250325-1058.tgz
     version: 0.0.0-dbp-1363-20250325-1058
-generated: "2026-07-28T10:42:12.011367823Z"
+generated: "2026-07-28T10:45:07.759712594Z"
