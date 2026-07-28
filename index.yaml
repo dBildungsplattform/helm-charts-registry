@@ -19119,6 +19119,16 @@ entries:
     version: 0.0.0-dbp-453-20240412-1441
   - apiVersion: v2
     appVersion: dbp-2418
+    created: "2026-07-28T13:37:15.191417712Z"
+    description: A Helm Chart for the dbildungs-iam-keycloak
+    digest: d968b1db3b0db8c271ca3cd57959e8e9f1f05a660964d4fa06d1374f13ae1613
+    name: dbildungs-iam-keycloak
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-keycloak-0.0.0-dbp-2418-20260728-1333/dbildungs-iam-keycloak-0.0.0-dbp-2418-20260728-1333.tgz
+    version: 0.0.0-dbp-2418-20260728-1333
+  - apiVersion: v2
+    appVersion: dbp-2418
     created: "2026-07-28T13:30:18.851733042Z"
     description: A Helm Chart for the dbildungs-iam-keycloak
     digest: 743dadf72b1811047deb31a6337c3d6ac70d28b978a6acc5f60899946704dc5a
@@ -256336,4 +256346,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/wazuh-0.0.0-dbp-1363-20250325-1058/wazuh-0.0.0-dbp-1363-20250325-1058.tgz
     version: 0.0.0-dbp-1363-20250325-1058
-generated: "2026-07-28T13:30:18.903532307Z"
+generated: "2026-07-28T13:37:15.243690759Z"
