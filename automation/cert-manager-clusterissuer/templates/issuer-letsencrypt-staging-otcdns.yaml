@@ -27,6 +27,8 @@ spec:
             config:
               authURL: {{ .Values.authURL }}
               region: {{ .Values.region }}
+              tenant:  {{ .Values.tenant }}
+              domainName: {{ .Values.domainName }}
               accessKeySecretRef:
                 name: otcdns-credentials
                 key: accessKey
