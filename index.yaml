@@ -191395,6 +191395,18 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/infra-otc-cert-manager-webhook-2026.11.4/infra-otc-cert-manager-webhook-2026.11.4.tgz
     version: 2026.11.4
   - apiVersion: v1
+    appVersion: 1.1.0
+    created: "2026-07-30T10:56:36.77444637Z"
+    description: A Helm chart for the infra-otc-cert-manager-webhook
+    digest: 3ab3c3bfd1ed2ff8e90e0780a436de5615b9aa4f5f625a5fd9255215d57b2b1b
+    maintainers:
+    - name: devops@dbildungsplattform.de
+      url: https://github.com/dBildungsplattform/infra-otc-cert-manager-webhook
+    name: infra-otc-cert-manager-webhook
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/infra-otc-cert-manager-webhook-1.1.0/infra-otc-cert-manager-webhook-1.1.0.tgz
+    version: 1.1.0
+  - apiVersion: v1
     appVersion: 1.0.3
     created: "2026-06-09T15:05:20.804121219Z"
     description: A Helm chart for the infra-otc-cert-manager-webhook
@@ -256999,4 +257011,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/wazuh-0.0.0-dbp-1363-20250325-1058/wazuh-0.0.0-dbp-1363-20250325-1058.tgz
     version: 0.0.0-dbp-1363-20250325-1058
-generated: "2026-07-30T10:29:51.463655469Z"
+generated: "2026-07-30T10:56:36.814108463Z"
