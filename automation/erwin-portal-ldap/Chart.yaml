@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: sha-53c3242
+appVersion: 2026.31.8
 dependencies:
 - condition: phpldapadmin.enabled
   name: phpldapadmin
@@ -16,4 +16,4 @@ keywords:
 - ldap
 - openldap
 name: erwin-portal-ldap
-version: 0.0.1-20260721-1130
+version: 2026.31.8
