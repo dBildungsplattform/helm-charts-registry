@@ -13176,6 +13176,16 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-keycloak-0.0.1/dbildungs-iam-keycloak-0.0.1.tgz
     version: 0.0.1
   - apiVersion: v2
+    appVersion: sha-dd51e43
+    created: "2026-07-31T10:02:46.006929734Z"
+    description: A Helm Chart for the dbildungs-iam-keycloak
+    digest: c9a04720d9c88fbcc57b4f594f9336f3055b26dae90777aa81460366de32b753
+    name: dbildungs-iam-keycloak
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-keycloak-0.0.1-20260731-0957/dbildungs-iam-keycloak-0.0.1-20260731-0957.tgz
+    version: 0.0.1-20260731-0957
+  - apiVersion: v2
     appVersion: sha-5c7db34
     created: "2026-07-29T12:57:23.305617157Z"
     description: A Helm Chart for the dbildungs-iam-keycloak
@@ -57272,6 +57282,16 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-server-0.0.0-spsh-4059-20260730-1139/dbildungs-iam-server-0.0.0-spsh-4059-20260730-1139.tgz
     version: 0.0.0-spsh-4059-20260730-1139
+  - apiVersion: v2
+    appVersion: spsh-4054
+    created: "2026-07-31T10:02:46.15231694Z"
+    description: dBildungs-IAM-server
+    digest: ee543ef849291a53f2883966a6aec5a40192b6fd1f57d8704743f9320418ecde
+    name: dbildungs-iam-server
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-server-0.0.0-spsh-4054-20260731-0957/dbildungs-iam-server-0.0.0-spsh-4054-20260731-0957.tgz
+    version: 0.0.0-spsh-4054-20260731-0957
   - apiVersion: v2
     appVersion: spsh-4054
     created: "2026-07-31T07:16:15.154897962Z"
@@ -257199,4 +257219,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/wazuh-0.0.0-dbp-1363-20250325-1058/wazuh-0.0.0-dbp-1363-20250325-1058.tgz
     version: 0.0.0-dbp-1363-20250325-1058
-generated: "2026-07-31T09:59:56.265359419Z"
+generated: "2026-07-31T10:02:46.214141097Z"
