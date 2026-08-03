@@ -60524,6 +60524,16 @@ entries:
     version: 0.0.0-spsh-3678-20260609-0843
   - apiVersion: v2
     appVersion: spsh-3676
+    created: "2026-08-03T13:58:15.037759366Z"
+    description: dBildungs-IAM-server
+    digest: 3cccb626481ea46ca046a7cb33baff7c59ee362b3045c0f34082770a7dfb898a
+    name: dbildungs-iam-server
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-server-0.0.0-spsh-3676-20260803-1352/dbildungs-iam-server-0.0.0-spsh-3676-20260803-1352.tgz
+    version: 0.0.0-spsh-3676-20260803-1352
+  - apiVersion: v2
+    appVersion: spsh-3676
     created: "2026-08-03T06:23:50.324016529Z"
     description: dBildungs-IAM-server
     digest: f55a72aa1ee23f782296f97bac40427acd9f304347c496f240c3ec8d497eaf9c
@@ -173467,6 +173477,16 @@ entries:
     version: 0.0.0-ew-1471-20260625-1238
   - apiVersion: v2
     appVersion: ew-1470
+    created: "2026-08-03T13:58:15.181094409Z"
+    description: Helm-Chart for erwin-portal-client
+    digest: 24e1c70d3372d572e6fdb50dc28e40dc4820a16a5f3c777683217d5a0d0fa444
+    name: erwin-portal-client
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-client-0.0.0-ew-1470-20260803-1343/erwin-portal-client-0.0.0-ew-1470-20260803-1343.tgz
+    version: 0.0.0-ew-1470-20260803-1343
+  - apiVersion: v2
+    appVersion: ew-1470
     created: "2026-08-03T11:48:42.550738152Z"
     description: Helm-Chart for erwin-portal-client
     digest: e632139fd8a821a57c06c80daa57bc49b3444f2ae65ebd18bb97eb1ac969b120
@@ -214823,6 +214843,16 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/schulportal-client-0.0.0-spsh-3891-20260629-1206/schulportal-client-0.0.0-spsh-3891-20260629-1206.tgz
     version: 0.0.0-spsh-3891-20260629-1206
+  - apiVersion: v2
+    appVersion: spsh-3887
+    created: "2026-08-03T13:58:15.335988777Z"
+    description: Helm-Chart for schulportal-client
+    digest: 74a8c5032eb4fb0f04c5d595dae16bb4f6886122e28e931f3f49ee0eb774bc3d
+    name: schulportal-client
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/schulportal-client-0.0.0-spsh-3887-20260803-1309/schulportal-client-0.0.0-spsh-3887-20260803-1309.tgz
+    version: 0.0.0-spsh-3887-20260803-1309
   - apiVersion: v2
     appVersion: spsh-3886
     created: "2026-07-09T08:41:30.410758898Z"
@@ -256874,6 +256904,25 @@ entries:
     version: 0.0.1
   - apiVersion: v2
     appVersion: v2.5.3
+    created: "2026-08-03T13:58:15.487631059Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.6.20
+    - condition: valkey.enabled
+      name: valkey
+      repository: https://dbildungsplattform.github.io/helm-charts-registry
+      version: 3.0.1
+    description: A Helm chart for Kubernetes
+    digest: 0e241140fa5cd804f59e71e6330a52a46ee6683191ca09d55b1985e896fc7298
+    name: status
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/status-0.0.0-ops-11468-20260803-1354/status-0.0.0-ops-11468-20260803-1354.tgz
+    version: 0.0.0-ops-11468-20260803-1354
+  - apiVersion: v2
+    appVersion: v2.5.3
     created: "2026-08-03T10:57:22.515970703Z"
     dependencies:
     - condition: postgresql.enabled
@@ -257685,4 +257734,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/wazuh-0.0.0-dbp-1363-20250325-1058/wazuh-0.0.0-dbp-1363-20250325-1058.tgz
     version: 0.0.0-dbp-1363-20250325-1058
-generated: "2026-08-03T12:35:52.787553907Z"
+generated: "2026-08-03T13:58:15.557872492Z"
