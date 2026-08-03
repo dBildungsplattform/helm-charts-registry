@@ -256984,6 +256984,25 @@ entries:
     version: 0.0.1
   - apiVersion: v2
     appVersion: v2.5.3
+    created: "2026-08-03T15:42:25.195174781Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.6.20
+    - condition: valkey.enabled
+      name: valkey
+      repository: https://dbildungsplattform.github.io/helm-charts-registry
+      version: 3.0.1
+    description: A Helm chart for Kubernetes
+    digest: b2cfc370e1a8c04b064bd4283a7ba1d74ac99ddb870767a145b21ba0e0415644
+    name: status
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/status-0.0.0-ops-11468-20260803-1538/status-0.0.0-ops-11468-20260803-1538.tgz
+    version: 0.0.0-ops-11468-20260803-1538
+  - apiVersion: v2
+    appVersion: v2.5.3
     created: "2026-08-03T13:58:15.487631059Z"
     dependencies:
     - condition: postgresql.enabled
@@ -257814,4 +257833,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/wazuh-0.0.0-dbp-1363-20250325-1058/wazuh-0.0.0-dbp-1363-20250325-1058.tgz
     version: 0.0.0-dbp-1363-20250325-1058
-generated: "2026-08-03T14:45:20.782618822Z"
+generated: "2026-08-03T15:42:25.247765783Z"
