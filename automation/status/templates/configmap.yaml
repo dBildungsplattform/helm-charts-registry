@@ -7,18 +7,23 @@ metadata:
 data:
   # database
   DB_HOST: {{ include "status.fullname" . }}-postgresql
-  DB_DATABASE: {{ .Values.postgresql.auth.database  }}
+  DB_DATABASE: {{ .Values.postgresql.auth.database }}
   DB_USERNAME: {{ .Values.postgresql.auth.username }}
   DB_PORT: {{ .Values.postgresql.service.ports.postgresql | quote }}
   APP_ENV: {{ default "production" .Values.env.public.APP_ENV | quote }}
+
   {{- if .Values.valkey.enabled }}
   REDIS_HOST: {{ printf "%s-valkey" (include "status.fullname" .) | quote }}
   {{- else }}
   REDIS_HOST: {{ required "env.public.REDIS_HOST must be set when valkey.enabled=false" .Values.env.public.REDIS_HOST | quote }}
   {{- end }}
+
 {{- with (first .Values.ingress.hosts) }}
   APP_URL: {{ .host }}
 {{- end }}
-  {{- range $key, $value := .Values.env.public }}
+
+{{- range $key, $value := .Values.env.public }}
+{{- if ne $key "REDIS_HOST" }}
   {{ $key }}: {{ $value | quote }}
-  {{- end }}
+{{- end }}
+{{- end }}
