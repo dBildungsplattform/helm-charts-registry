@@ -98,6 +98,8 @@ valkey:
   haMode:
     enabled: false
 
+
+
 env:
   # -- Default settings for cachet / status-service. See https://docs.cachethq.io/docs/installing-cachet for more information
   public:
@@ -122,6 +124,7 @@ env:
     MAIL_PORT: 25
     MAIL_NAME: ""
     MAIL_ENCRYPTION: tls
+    REDIS_HOST: ""
 
   # -- Private environment variables which are stores in a kubernetes secret
   private:
