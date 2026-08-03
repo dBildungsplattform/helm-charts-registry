@@ -171671,6 +171671,16 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-client-2026.31.8/erwin-portal-client-2026.31.8.tgz
     version: 2026.31.8
   - apiVersion: v2
+    appVersion: 2026.3.9
+    created: "2026-08-03T09:32:47.892197271Z"
+    description: Helm-Chart for erwin-portal-client
+    digest: ba115d4c1abfa846e0e7e6d6434a6d89d7e8ab53cb7756419baec80b1117945c
+    name: erwin-portal-client
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-client-2026.3.9/erwin-portal-client-2026.3.9.tgz
+    version: 2026.3.9
+  - apiVersion: v2
     appVersion: 2026.03.08
     created: "2026-08-03T09:13:13.607178738Z"
     description: Helm-Chart for erwin-portal-client
@@ -257478,4 +257488,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/wazuh-0.0.0-dbp-1363-20250325-1058/wazuh-0.0.0-dbp-1363-20250325-1058.tgz
     version: 0.0.0-dbp-1363-20250325-1058
-generated: "2026-08-03T09:20:19.955740135Z"
+generated: "2026-08-03T09:32:47.94572127Z"
