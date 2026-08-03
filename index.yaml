@@ -176652,6 +176652,16 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-keycloak-2026.2026.1/erwin-portal-keycloak-2026.2026.1.tgz
     version: 2026.2026.1
   - apiVersion: v2
+    appVersion: 2026.3.9
+    created: "2026-08-03T09:36:01.560336019Z"
+    description: A Helm Chart for the erwin-portal-keycloak
+    digest: 4408dc52bc0586abfdcdef45b62fb683b45827932a806b77dfbebe3210a74f0f
+    name: erwin-portal-keycloak
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-keycloak-2026.3.9/erwin-portal-keycloak-2026.3.9.tgz
+    version: 2026.3.9
+  - apiVersion: v2
     appVersion: 2026.03.08
     created: "2026-08-03T09:08:13.716347416Z"
     description: A Helm Chart for the erwin-portal-keycloak
@@ -179589,6 +179599,29 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-ldap-2026.31.8/erwin-portal-ldap-2026.31.8.tgz
     version: 2026.31.8
+  - apiVersion: v2
+    appVersion: 2026.3.9
+    created: "2026-08-03T09:36:01.800356127Z"
+    dependencies:
+    - condition: phpldapadmin.enabled
+      name: phpldapadmin
+      repository: ""
+      version: 0.1.x
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: ~2
+    description: Helm Chart for using community developed OpenLDAP software
+    digest: 89b1753a8589c38728bb724d229be590d408157d88dd048fd3f016d9dbc9fbcc
+    home: https://www.openldap.org
+    keywords:
+    - ldap
+    - openldap
+    name: erwin-portal-ldap
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-ldap-2026.3.9/erwin-portal-ldap-2026.3.9.tgz
+    version: 2026.3.9
   - apiVersion: v2
     appVersion: 2026.03.08
     created: "2026-08-03T09:13:13.782878296Z"
@@ -184786,6 +184819,16 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-server-2026.31.8/erwin-portal-server-2026.31.8.tgz
     version: 2026.31.8
+  - apiVersion: v2
+    appVersion: 2026.3.9
+    created: "2026-08-03T09:36:02.000552121Z"
+    description: A Helm Chart for the erwin-portal-server
+    digest: c7ff083941b8d1ecb200f48da406beb3786f050ee34e4f6174f695444ff825ca
+    name: erwin-portal-server
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-server-2026.3.9/erwin-portal-server-2026.3.9.tgz
+    version: 2026.3.9
   - apiVersion: v2
     appVersion: 2026.03.08
     created: "2026-08-03T09:13:13.993775057Z"
@@ -257488,4 +257531,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/wazuh-0.0.0-dbp-1363-20250325-1058/wazuh-0.0.0-dbp-1363-20250325-1058.tgz
     version: 0.0.0-dbp-1363-20250325-1058
-generated: "2026-08-03T09:32:47.94572127Z"
+generated: "2026-08-03T09:36:02.055689952Z"
