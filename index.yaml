@@ -186826,6 +186826,16 @@ entries:
     version: 0.0.0-ew-1471-20260624-1325
   - apiVersion: v2
     appVersion: ew-1470
+    created: "2026-08-05T06:24:20.10151923Z"
+    description: A Helm Chart for the erwin-portal-server
+    digest: 1a34fec5eef34513d8c228f374afd49364e4acb4ad166c2a27c3728660848549
+    name: erwin-portal-server
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-server-0.0.0-ew-1470-20260805-0620/erwin-portal-server-0.0.0-ew-1470-20260805-0620.tgz
+    version: 0.0.0-ew-1470-20260805-0620
+  - apiVersion: v2
+    appVersion: ew-1470
     created: "2026-08-05T05:26:42.854381723Z"
     description: A Helm Chart for the erwin-portal-server
     digest: 8561105e0ea74fb9e92b94dbbb2e3857fa9c3a055929ddb55987c093a1d6d6da
@@ -258043,4 +258053,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/wazuh-0.0.0-dbp-1363-20250325-1058/wazuh-0.0.0-dbp-1363-20250325-1058.tgz
     version: 0.0.0-dbp-1363-20250325-1058
-generated: "2026-08-05T05:26:42.906968066Z"
+generated: "2026-08-05T06:24:20.154903849Z"
