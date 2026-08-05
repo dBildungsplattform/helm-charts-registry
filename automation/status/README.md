@@ -21,7 +21,7 @@ A Helm chart for Kubernetes
 | autoscaling.minReplicas | int | `1` | Minimal number of replicas for status service |
 | autoscaling.targetCPUUtilizationPercentage | int | `80` | Target CPU utilization for horizontal pod autoscaler |
 | env.private | string | `nil` | Private environment variables which are stores in a kubernetes secret |
-| env.public | object | `{"APP_DEBUG":false,"APP_ENV":"production","APP_LOG":"errorlog","APP_NAME":"statuspage","APP_TIMEZONE":"UTC","CACHET_BEACON":false,"CACHET_EMOJI":false,"CACHET_INTERNET_LOOKUPS":"false","CACHE_DRIVER":"redis","DB_DRIVER":"pgsql","DOCKER":true,"MAIL_ADDRESS":"","MAIL_DRIVER":"log","MAIL_ENCRYPTION":"tls","MAIL_HOST":"","MAIL_NAME":"","MAIL_PORT":25,"QUEUE_DRIVER":"redis","SESSION_DRIVER":"redis"}` | Default settings for cachet / status-service. See https://docs.cachethq.io/docs/installing-cachet for more information |
+| env.public | object | `{"APP_DEBUG":false,"APP_ENV":"production","APP_LOG":"errorlog","APP_NAME":"statuspage","APP_TIMEZONE":"UTC","CACHET_BEACON":false,"CACHET_EMOJI":false,"CACHET_INTERNET_LOOKUPS":"false","CACHE_DRIVER":"redis","DB_DRIVER":"pgsql","DOCKER":true,"MAIL_ADDRESS":"","MAIL_DRIVER":"log","MAIL_ENCRYPTION":"tls","MAIL_HOST":"","MAIL_NAME":"","MAIL_PORT":25,"QUEUE_DRIVER":"redis","REDIS_HOST":"","SESSION_DRIVER":"redis"}` | Default settings for cachet / status-service. See https://docs.cachethq.io/docs/installing-cachet for more information |
 | existingSecret | string | `""` | Use existing secret for Cachet settings |
 | extraLabels | object | `{}` |  |
 | fullnameOverride | string | `""` |  |
