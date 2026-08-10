@@ -179527,6 +179527,16 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-keycloak-0.0.0-ew-1475-20260810-1325/erwin-portal-keycloak-0.0.0-ew-1475-20260810-1325.tgz
     version: 0.0.0-ew-1475-20260810-1325
   - apiVersion: v2
+    appVersion: ew-1475
+    created: "2026-08-10T13:31:21.582484751Z"
+    description: A Helm Chart for the erwin-portal-keycloak
+    digest: a32fa6d356d10159e77f62ff053f77883f5461dc59bbc5c87d16000e14908750
+    name: erwin-portal-keycloak
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-keycloak-0.0.0-ew-1475-20260810-1325/erwin-portal-keycloak-0.0.0-ew-1475-20260810-1325.tgz
+    version: 0.0.0-ew-1475-20260810-1325
+  - apiVersion: v2
     appVersion: ew-1470
     created: "2026-08-07T06:43:14.168040085Z"
     description: A Helm Chart for the erwin-portal-keycloak
@@ -188049,6 +188059,16 @@ entries:
     created: "2026-08-10T13:28:23.33730489Z"
     description: A Helm Chart for the erwin-portal-server
     digest: d0edf43db8cd838d3d70905c4c209ecb106be2bd29d0ae40dac2cbbbb60d038a
+    name: erwin-portal-server
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-server-0.0.0-ew-1475-20260810-1324/erwin-portal-server-0.0.0-ew-1475-20260810-1324.tgz
+    version: 0.0.0-ew-1475-20260810-1324
+  - apiVersion: v2
+    appVersion: ew-1475
+    created: "2026-08-10T13:31:21.840269804Z"
+    description: A Helm Chart for the erwin-portal-server
+    digest: 8da738704d16c4f9c736b10d7de788664c291c25e60f862cf643cad1d622a729
     name: erwin-portal-server
     type: application
     urls:
@@ -259660,4 +259680,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/wazuh-0.0.0-dbp-1363-20250325-1058/wazuh-0.0.0-dbp-1363-20250325-1058.tgz
     version: 0.0.0-dbp-1363-20250325-1058
-generated: "2026-08-10T13:28:23.395821967Z"
+generated: "2026-08-10T13:31:21.892725967Z"
