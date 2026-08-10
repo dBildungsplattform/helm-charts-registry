@@ -17,3 +17,5 @@ data:
   KC_HTTP_MANAGEMENT_PORT: "8090"
   STATUS_URL: "{{ .Values.status.url }}"
   ERWIN_TOKEN_FETCH_URL: "http://erwin-portal-server-backend.{{ .Release.Namespace }}.svc.cluster.local:80/keycloakinternal/externaldata"
+  # Temporary solution after upgrading, this should be fixed and removed later
+  KC_SPI_LOGIN_PROTOCOL__OPENID_CONNECT__ALLOW_TOKEN_INTROSPECTION_WITHOUT_AUDIENCE_CHECK: "true"
