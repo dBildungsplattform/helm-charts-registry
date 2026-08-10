@@ -179517,6 +179517,16 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-keycloak-0.0.0-ops-10097-20251204-0916/erwin-portal-keycloak-0.0.0-ops-10097-20251204-0916.tgz
     version: 0.0.0-ops-10097-20251204-0916
   - apiVersion: v2
+    appVersion: ew-1475
+    created: "2026-08-10T13:28:23.142435537Z"
+    description: A Helm Chart for the erwin-portal-keycloak
+    digest: cee1698ecd0ed8e6974bb8e504b94ee6ba5c0df0709529b7ed7909a8431935de
+    name: erwin-portal-keycloak
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-keycloak-0.0.0-ew-1475-20260810-1325/erwin-portal-keycloak-0.0.0-ew-1475-20260810-1325.tgz
+    version: 0.0.0-ew-1475-20260810-1325
+  - apiVersion: v2
     appVersion: ew-1470
     created: "2026-08-07T06:43:14.168040085Z"
     description: A Helm Chart for the erwin-portal-keycloak
@@ -188034,6 +188044,16 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-server-0.0.0-ops-10097-20251204-1104/erwin-portal-server-0.0.0-ops-10097-20251204-1104.tgz
     version: 0.0.0-ops-10097-20251204-1104
+  - apiVersion: v2
+    appVersion: ew-1475
+    created: "2026-08-10T13:28:23.33730489Z"
+    description: A Helm Chart for the erwin-portal-server
+    digest: d0edf43db8cd838d3d70905c4c209ecb106be2bd29d0ae40dac2cbbbb60d038a
+    name: erwin-portal-server
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-server-0.0.0-ew-1475-20260810-1324/erwin-portal-server-0.0.0-ew-1475-20260810-1324.tgz
+    version: 0.0.0-ew-1475-20260810-1324
   - apiVersion: v2
     appVersion: ew-1471
     created: "2026-06-24T14:17:03.580281974Z"
@@ -259640,4 +259660,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/wazuh-0.0.0-dbp-1363-20250325-1058/wazuh-0.0.0-dbp-1363-20250325-1058.tgz
     version: 0.0.0-dbp-1363-20250325-1058
-generated: "2026-08-10T11:50:03.341601846Z"
+generated: "2026-08-10T13:28:23.395821967Z"
