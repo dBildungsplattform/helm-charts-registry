@@ -22,3 +22,6 @@ tenant: ""
 
 # The domain name for the otc iam endpoint
 domainName: ""
+
+# ingress class name for acme solver
+ingressClassName: "nginx"
