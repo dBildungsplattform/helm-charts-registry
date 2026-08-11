@@ -1,0 +1,101 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "dbcmetrics.fullname" . }}
+  labels:
+    {{- include "dbcmetrics.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "dbcmetrics.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "dbcmetrics.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "dbcmetrics.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: metrics
+              containerPort: {{ .Values.containerPort }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /metrics
+              port: {{ .Values.containerPort }}
+          readinessProbe:
+            httpGet:
+              path: /metrics
+              port: {{ .Values.containerPort }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          envFrom:
+          - configMapRef:
+              name: {{ include "dbcmetrics.fullname" . }}-configmap
+          env:
+            {{- if .Values.storage_metrics_enabled }}
+            - name: STORAGE_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.storage_access_secret_name }}
+                  key: {{ .Values.storage_access_key_key }}
+            - name: STORAGE_ACCESS_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.storage_access_secret_name }}
+                  key: {{ .Values.storage_access_secret_key }}
+            {{- end }}
+            {{- if .Values.ionos_maintenance_metrics_enabled }}
+            - name: TERRAFORM_STATE_S3_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.tfstate_s3_secret_name }}
+                  key: {{ .Values.tfstate_s3_access_key_key }}
+            - name: TERRAFORM_STATE_S3_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.tfstate_s3_secret_name }}
+                  key: {{ .Values.tfstate_s3_access_secret_key }}
+            {{- end }}
+          volumeMounts:
+          - name: {{ include "dbcmetrics.fullname" . }}-configyml
+            mountPath: /etc/dbcmetrics/dbcm_config.yaml
+            subPath: dbcm_config.yaml
+            readOnly: true
+      volumes:
+      - name: {{ include "dbcmetrics.fullname" . }}-configyml
+        configMap:
+          name: {{ include "dbcmetrics.fullname" . }}-configmap
+          items:
+          - key: dbcm_config.yaml
+            path: dbcm_config.yaml
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
