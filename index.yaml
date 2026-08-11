@@ -665,6 +665,17 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/cronjob-0.0.0-dbp-1744-20251110-0808/cronjob-0.0.0-dbp-1744-20251110-0808.tgz
     version: 0.0.0-dbp-1744-20251110-0808
+  dbcmetrics:
+  - apiVersion: v2
+    appVersion: 1.8.0
+    created: "2026-08-11T08:32:57.769501534Z"
+    description: A Helm chart for Kubernetes
+    digest: e03d2ae256cfb16e94a7c80a117118a76be9e70a39be422ae98199b6c59d6f29
+    name: dbcmetrics
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbcmetrics-0.0.0-ops-11731-20260811-0829/dbcmetrics-0.0.0-ops-11731-20260811-0829.tgz
+    version: 0.0.0-ops-11731-20260811-0829
   dbildungs-iam:
   - apiVersion: v2
     appVersion: 8.8.8
@@ -259900,4 +259911,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/wazuh-0.0.0-dbp-1363-20250325-1058/wazuh-0.0.0-dbp-1363-20250325-1058.tgz
     version: 0.0.0-dbp-1363-20250325-1058
-generated: "2026-08-11T08:20:24.850980445Z"
+generated: "2026-08-11T08:32:57.821896909Z"
