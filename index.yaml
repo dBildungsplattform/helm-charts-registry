@@ -668,6 +668,16 @@ entries:
   dbcmetrics:
   - apiVersion: v2
     appVersion: 1.8.0
+    created: "2026-08-11T08:52:25.715837312Z"
+    description: A Helm chart for Kubernetes
+    digest: fae0e7caa71a40ea3dca85750f20b69536eeead969b3a54eb2e5a728fd62eff2
+    name: dbcmetrics
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbcmetrics-0.0.0-ops-11731-20260811-0849/dbcmetrics-0.0.0-ops-11731-20260811-0849.tgz
+    version: 0.0.0-ops-11731-20260811-0849
+  - apiVersion: v2
+    appVersion: 1.8.0
     created: "2026-08-11T08:32:57.769501534Z"
     description: A Helm chart for Kubernetes
     digest: e03d2ae256cfb16e94a7c80a117118a76be9e70a39be422ae98199b6c59d6f29
@@ -259966,4 +259976,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/wazuh-0.0.0-dbp-1363-20250325-1058/wazuh-0.0.0-dbp-1363-20250325-1058.tgz
     version: 0.0.0-dbp-1363-20250325-1058
-generated: "2026-08-11T08:36:26.389278417Z"
+generated: "2026-08-11T08:52:25.768436694Z"
