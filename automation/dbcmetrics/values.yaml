@@ -184,12 +184,12 @@ networkPolicy:
   # -- Enable network policy (at least one of ingress or egress must be enabled)
   enabled: false
   ingress:
-    # -- Enable ingress rules (default: allow inbound on metrics port)
+    # -- Enable ingress rules
     enabled: false
-    # -- Custom ingress rules (e.g. from, ports) — merged with the default metrics-port ingress
-    customRules: {}
+    # -- Ingress rules
+    rules: []
   egress:
-    # -- Enable egress rules (default: allow DNS resolution)
+    # -- Enable egress rules
     enabled: false
-    # -- Custom egress rules — merged with the default DNS egress
-    customRules: []
+    # -- Egress rules
+    rules: []

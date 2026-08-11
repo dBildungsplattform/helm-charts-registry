@@ -19,25 +19,11 @@ spec:
     {{- end }}
   {{- if .Values.networkPolicy.ingress.enabled }}
   ingress:
-    - ports:
-        - port: {{ .Values.containerPort }}
-          protocol: TCP
-        - port: {{ .Values.service.port }}
-          protocol: TCP
-      {{- with .Values.networkPolicy.ingress.customRules }}
-      {{- toYaml . | nindent 4 }}
-      {{- end }}
+    {{- toYaml .Values.networkPolicy.ingress.rules | nindent 4 }}
   {{- end }}
   {{- if .Values.networkPolicy.egress.enabled }}
   egress:
-    - ports:
-        - port: 53
-          protocol: TCP
-        - port: 53
-          protocol: UDP
-    {{- range .Values.networkPolicy.egress.customRules }}
-    {{- toYaml . | nindent 4 }}
-    {{- end }}
+    {{- toYaml .Values.networkPolicy.egress.rules | nindent 4 }}
   {{- end }}
 {{- end }}
 {{- end }}
