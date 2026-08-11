@@ -178,3 +178,18 @@ tfstate_s3_access_key_key: s3_access_key
 tfstate_s3_access_secret_key: s3_access_secret
 # -- Name of the kubernetes secret for the terraform state bucket
 tfstate_s3_secret_name: ionos-maintenance-metrics
+
+# -- Network policy configuration
+networkPolicy:
+  # -- Enable network policy (at least one of ingress or egress must be enabled)
+  enabled: false
+  ingress:
+    # -- Enable ingress rules
+    enabled: false
+    # -- Ingress rules
+    rules: []
+  egress:
+    # -- Enable egress rules
+    enabled: false
+    # -- Egress rules
+    rules: []
