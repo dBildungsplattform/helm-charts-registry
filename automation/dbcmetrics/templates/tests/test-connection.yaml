@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "dbcmetrics.fullname" . }}:{{ .Values.service.port }}']
+      args: ['-qO-', 'http://{{ include "dbcmetrics.fullname" . }}:{{ .Values.service.port }}/metrics']
   restartPolicy: Never

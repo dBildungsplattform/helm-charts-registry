@@ -18,7 +18,7 @@ A Helm chart for Kubernetes
 | dbcmconfig.instances[0] | object | `{"name":"myinstancename","shortname":"min","url":"https://myinstance.dbildungscloud.dev"}` | This part contains a list of instances which versions should be observed and provided as Prometheus metrics - the name will be part of the Prometheus value, for the sample the Prometheus value will be 'myinstance_info' - url is the base url of an existing dBildungscloud instance to be monitored - shortname is for further filtering in future scenarios |
 | dbcmconfig.maintenance_metrics | object | `{"cluster_maintenance_duration_min":15,"metric_refresh_interval_sec":15,"nodepool_maintenance_duration_min":240,"s3_bucket":"sc-tf-remote-state-01","s3_endpoint":"https://s3-eu-central-1.ionoscloud.com","s3_stage_directory":"env:/dev/","window_refresh_interval_min":30}` | This part holds the ionosmaintenance module specific configuration |
 | dbcmconfig.maintenance_metrics.cluster_maintenance_duration_min | int | `15` | Duration of a cluster maintenance in minutes |
-| dbcmconfig.maintenance_metrics.metric_refresh_interval_sec | int | `15` | Interval for checking wether a cluster is currently in its maintenance window in seconds |
+| dbcmconfig.maintenance_metrics.metric_refresh_interval_sec | int | `15` | Interval for checking whether a cluster is currently in its maintenance window in seconds |
 | dbcmconfig.maintenance_metrics.nodepool_maintenance_duration_min | int | `240` | Duration of a noodpool maintenance in minutes |
 | dbcmconfig.maintenance_metrics.s3_bucket | string | `"sc-tf-remote-state-01"` | Name of the terraform state bucket |
 | dbcmconfig.maintenance_metrics.s3_endpoint | string | `"https://s3-eu-central-1.ionoscloud.com"` | S3 endpoint for the terraform state bucket |
