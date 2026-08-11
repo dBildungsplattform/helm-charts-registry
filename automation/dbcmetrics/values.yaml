@@ -103,7 +103,7 @@ dbcmconfig:
   maintenance_metrics:
     # -- Interval for polling the maintenance windows from the terraform state in minutes
     window_refresh_interval_min: 30
-    # -- Interval for checking wether a cluster is currently in its maintenance window in seconds
+    # -- Interval for checking whether a cluster is currently in its maintenance window in seconds
     metric_refresh_interval_sec: 15
     # -- Duration of a noodpool maintenance in minutes
     nodepool_maintenance_duration_min: 240
