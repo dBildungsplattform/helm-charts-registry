@@ -43,9 +43,10 @@ spec:
         {{- if and .Values.extendedBootstrap.enabled (not .Values.persistence.enabled) }}
         command: ["/bin/sh", "-c", "/scripts/bootstrap.sh & exec /usr/lib/dirsrv/dscontainer -r"]
         {{- end }}
+        {{- with .Values.containerSecurityContext }}
         securityContext:
-          readOnlyRootFilesystem: true
-          allowPrivilegeEscalation: false
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
         {{- with .Values.resources }}
         resources:
           {{- toYaml . | nindent 10 }}
@@ -105,9 +106,10 @@ spec:
       - name: telegraf
         image: "{{ .Values.metrics.image.repository }}:{{ .Values.metrics.image.tag }}"
         imagePullPolicy: {{ .Values.metrics.image.pullPolicy }}
+        {{- with .Values.metrics.securityContext }}
         securityContext:
-          readOnlyRootFilesystem: true
-          allowPrivilegeEscalation: false
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
         {{- with .Values.metrics.resources }}
         resources:
           {{- toYaml . | nindent 10 }}

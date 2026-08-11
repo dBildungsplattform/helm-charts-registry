@@ -21,8 +21,10 @@ spec:
       - name: dirsrv-bootstrap
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+        {{- with .Values.extendedBootstrap.securityContext }}
         securityContext:
-          readOnlyRootFilesystem: true
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
         volumeMounts:
         {{- include "389ds.bootstrapVolumeMount" . | nindent 8 }}
         command: ["/scripts/bootstrap.sh"]

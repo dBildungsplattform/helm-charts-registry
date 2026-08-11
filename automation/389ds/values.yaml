@@ -47,6 +47,9 @@ extendedBootstrap:
     secretKey: ""
   # -- Ldif to import on bootstrap. Note that Directory Server first removes all existing data from the database and, subsequently, imports the data from the LDIF file
   importLdif: ""
+  securityContext:
+    readOnlyRootFilesystem: true
+    allowPrivilegeEscalation: false
   # -- Space separated config to set via dsconf config replace on bootstrap
   configOverrides: "nsslapd-allow-anonymous-access=off"
 
@@ -60,10 +63,10 @@ imagePullSecrets: []
 resources:
   limits:
     memory: "256Mi"
-    cpu: "1"
+    cpu: "2"
   requests:
     memory: "256Mi"
-    cpu: "150m"
+    cpu: "200m"
 
 livenessProbe:
   exec:
@@ -93,6 +96,9 @@ metrics:
     repository: telegraf
     tag: "1.37.1"
     pullPolicy: IfNotPresent
+  securityContext:
+    readOnlyRootFilesystem: true
+    allowPrivilegeEscalation: false
   bind:
     secretName: ""
     secretKey: ""
@@ -115,7 +121,13 @@ podAnnotations: {}
 
 podLabels: {}
 
-podSecurityContext: {}
+podSecurityContext:
+  seccompProfile:
+    type: RuntimeDefault
+
+containerSecurityContext:
+  readOnlyRootFilesystem: true
+  allowPrivilegeEscalation: false
 
 nodeSelector: {}
 

@@ -36,9 +36,6 @@ Common labels
 {{- define "389ds.labels" -}}
 helm.sh/chart: {{ include "389ds.chart" . }}
 {{ include "389ds.selectorLabels" . }}
-{{- if .Chart.AppVersion }}
-app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
-{{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
