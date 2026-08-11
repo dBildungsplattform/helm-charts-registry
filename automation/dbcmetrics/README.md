@@ -58,6 +58,12 @@ A Helm chart for Kubernetes
 | ingress.tls | list | `[]` |  |
 | ionos_maintenance_metrics_enabled | bool | `false` | Enables/disables ionosmaintenance module |
 | nameOverride | string | `""` |  |
+| networkPolicy | object | `{"egress":{"enabled":false,"rules":[]},"enabled":false,"ingress":{"enabled":false,"rules":[]}}` | Network policy configuration |
+| networkPolicy.egress.enabled | bool | `false` | Enable egress rules |
+| networkPolicy.egress.rules | list | `[]` | Egress rules |
+| networkPolicy.enabled | bool | `false` | Enable network policy (at least one of ingress or egress must be enabled) |
+| networkPolicy.ingress.enabled | bool | `false` | Enable ingress rules |
+| networkPolicy.ingress.rules | list | `[]` | Ingress rules |
 | nodeSelector | object | `{}` |  |
 | planned_maintenance_metrics_enabled | bool | `false` | Enables/disables plannedmaintenance module |
 | podAnnotations | object | `{}` |  |

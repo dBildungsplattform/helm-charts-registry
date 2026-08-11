@@ -25,5 +25,7 @@ spec:
   egress:
     {{- toYaml .Values.networkPolicy.egress.rules | nindent 4 }}
   {{- end }}
+{{- else -}}
+{{- fail "networkPolicy.enabled=true requires networkPolicy.ingress.enabled and/or networkPolicy.egress.enabled to be true" -}}
 {{- end }}
 {{- end }}
