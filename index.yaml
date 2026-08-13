@@ -503,6 +503,15 @@ entries:
     version: 0.0.0-dbp-1931-20260123-1232
   cert-manager-clusterissuer:
   - apiVersion: v2
+    created: "2026-08-13T11:33:08.783463088Z"
+    description: Create Clusterissuers for normal and OTC usage
+    digest: ecaf70b8a687e473b090e65fa682afb872cd745033eaf1fb309370488e014009
+    name: cert-manager-clusterissuer
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/cert-manager-clusterissuer-1.2.0/cert-manager-clusterissuer-1.2.0.tgz
+    version: 1.2.0
+  - apiVersion: v2
     created: "2026-07-30T14:01:53.009562327Z"
     description: Create Clusterissuers for normal and OTC usage
     digest: 80c1b4e9907923d099b95a09ce57db85dc834eef3222a0390955247489e02e51
@@ -261253,4 +261262,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/wazuh-0.0.0-dbp-1363-20250325-1058/wazuh-0.0.0-dbp-1363-20250325-1058.tgz
     version: 0.0.0-dbp-1363-20250325-1058
-generated: "2026-08-13T09:41:14.831318101Z"
+generated: "2026-08-13T11:33:08.83724976Z"
