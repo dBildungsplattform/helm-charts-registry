@@ -11,6 +11,7 @@ Create Clusterissuers for normal and OTC usage
 | authURL | string | `""` |  |
 | domainName | string | `""` |  |
 | email | string | `""` |  |
+| ingressClassName | string | `"nginx"` |  |
 | otcdnsGroupName | string | `""` |  |
 | region | string | `""` |  |
 | tenant | string | `""` |  |
