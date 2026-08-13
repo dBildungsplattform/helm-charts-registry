@@ -1405,7 +1405,8 @@
 
                         "multivalued": "false",
                         
-                        "fetchUrl": "${ERWIN_TOKEN_FETCH_URL}",
+                        "fetchUrlToken": "${ERWIN_TOKEN_FETCH_URL}",
+                        "fetchUrlRole": "${ERWIN_ROLE_FETCH_URL}",
                         "timeoutMs": "1500",
                         "cacheTtlSeconds": "60"
                     }
