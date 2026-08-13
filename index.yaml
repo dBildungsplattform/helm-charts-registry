@@ -293,6 +293,16 @@ entries:
     version: 0.0.0-pb-95-20260410-1540
   - apiVersion: v2
     appVersion: 3.0.6
+    created: "2026-08-13T12:18:46.330374144Z"
+    description: A Helm chart for Kubernetes
+    digest: eed86f259f9ff0148b543daad880998370291cc6d0faaf742d0565e8345c2d80
+    name: 389ds
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/389ds-0.0.0-dbp-2463-20260813-1214/389ds-0.0.0-dbp-2463-20260813-1214.tgz
+    version: 0.0.0-dbp-2463-20260813-1214
+  - apiVersion: v2
+    appVersion: 3.0.6
     created: "2026-08-11T21:16:14.677420773Z"
     description: A Helm chart for Kubernetes
     digest: 3da5ee3a0ceb819b7cd8e78228892462b02693c1eb98f900531eb4ae7d5f5452
@@ -58651,6 +58661,16 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-server-0.0.0-spsh-3888-20260804-0816/dbildungs-iam-server-0.0.0-spsh-3888-20260804-0816.tgz
     version: 0.0.0-spsh-3888-20260804-0816
+  - apiVersion: v2
+    appVersion: spsh-3887
+    created: "2026-08-13T12:18:46.470910603Z"
+    description: dBildungs-IAM-server
+    digest: b5dd10c02d8ce6fe036fccf01052b50c94374ab85cd8ffe94ca8592988bdc752
+    name: dbildungs-iam-server
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-server-0.0.0-spsh-3887-20260813-1214/dbildungs-iam-server-0.0.0-spsh-3887-20260813-1214.tgz
+    version: 0.0.0-spsh-3887-20260813-1214
   - apiVersion: v2
     appVersion: spsh-3887
     created: "2026-08-13T12:15:43.76796982Z"
@@ -261332,4 +261352,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/wazuh-0.0.0-dbp-1363-20250325-1058/wazuh-0.0.0-dbp-1363-20250325-1058.tgz
     version: 0.0.0-dbp-1363-20250325-1058
-generated: "2026-08-13T12:15:43.835642587Z"
+generated: "2026-08-13T12:18:46.539327155Z"
