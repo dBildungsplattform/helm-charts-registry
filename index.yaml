@@ -180897,6 +180897,16 @@ entries:
     version: 0.0.0-ops-10097-20251204-0916
   - apiVersion: v2
     appVersion: ew-1475
+    created: "2026-08-13T12:12:47.969649909Z"
+    description: A Helm Chart for the erwin-portal-keycloak
+    digest: fb6aece246eb62ccf9df4b798677779b82def951d2d427dbd6ac2baf03ee61db
+    name: erwin-portal-keycloak
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-keycloak-0.0.0-ew-1475-20260813-1206/erwin-portal-keycloak-0.0.0-ew-1475-20260813-1206.tgz
+    version: 0.0.0-ew-1475-20260813-1206
+  - apiVersion: v2
+    appVersion: ew-1475
     created: "2026-08-10T14:12:04.659672323Z"
     description: A Helm Chart for the erwin-portal-keycloak
     digest: 30c9ba0a9f3fe88f750a2b18599dc8c7a716641b8c0abdb79fd90f71168f831f
@@ -189526,6 +189536,16 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-server-0.0.0-ew-1494-20260811-1347/erwin-portal-server-0.0.0-ew-1494-20260811-1347.tgz
     version: 0.0.0-ew-1494-20260811-1347
+  - apiVersion: v2
+    appVersion: ew-1475
+    created: "2026-08-13T12:12:48.181102786Z"
+    description: A Helm Chart for the erwin-portal-server
+    digest: 423f94b93ee6d9364e61371c4adb08dc0acfa0e73537ff6ddc0d9712b50da542
+    name: erwin-portal-server
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-server-0.0.0-ew-1475-20260813-1207/erwin-portal-server-0.0.0-ew-1475-20260813-1207.tgz
+    version: 0.0.0-ew-1475-20260813-1207
   - apiVersion: v2
     appVersion: ew-1475
     created: "2026-08-10T13:28:23.33730489Z"
@@ -261302,4 +261322,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/wazuh-0.0.0-dbp-1363-20250325-1058/wazuh-0.0.0-dbp-1363-20250325-1058.tgz
     version: 0.0.0-dbp-1363-20250325-1058
-generated: "2026-08-13T12:09:42.813519044Z"
+generated: "2026-08-13T12:12:48.235243066Z"
