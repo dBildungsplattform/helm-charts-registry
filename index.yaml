@@ -180546,6 +180546,16 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-keycloak-0.0.1-20260813-1232/erwin-portal-keycloak-0.0.1-20260813-1232.tgz
     version: 0.0.1-20260813-1232
   - apiVersion: v2
+    appVersion: sha-9e5a1a5
+    created: "2026-08-13T12:38:29.268827921Z"
+    description: A Helm Chart for the erwin-portal-keycloak
+    digest: 4efbafd1b795ead19237c0dabe83c9883567d8385379280d1018ee0c2115c57c
+    name: erwin-portal-keycloak
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-keycloak-0.0.1-20260813-1232/erwin-portal-keycloak-0.0.1-20260813-1232.tgz
+    version: 0.0.1-20260813-1232
+  - apiVersion: v2
     appVersion: sha-b0e67f1
     created: "2026-08-13T12:09:42.422525428Z"
     description: A Helm Chart for the erwin-portal-keycloak
@@ -188841,6 +188851,16 @@ entries:
     created: "2026-08-13T12:35:32.850912949Z"
     description: A Helm Chart for the erwin-portal-server
     digest: 42ee8a7ba0c1bbe69e26d97ffccf30531847be924ad17d48a47f34d83e0c8ff3
+    name: erwin-portal-server
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-server-0.0.1-20260813-1232/erwin-portal-server-0.0.1-20260813-1232.tgz
+    version: 0.0.1-20260813-1232
+  - apiVersion: v2
+    appVersion: sha-2bb42ff
+    created: "2026-08-13T12:38:29.482620337Z"
+    description: A Helm Chart for the erwin-portal-server
+    digest: 332d59458a3c09ccbb6986e6fbd14ba7f240d535ce6297999c22e16a96440c9a
     name: erwin-portal-server
     type: application
     urls:
@@ -261372,4 +261392,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/wazuh-0.0.0-dbp-1363-20250325-1058/wazuh-0.0.0-dbp-1363-20250325-1058.tgz
     version: 0.0.0-dbp-1363-20250325-1058
-generated: "2026-08-13T12:35:32.904570366Z"
+generated: "2026-08-13T12:38:29.535414924Z"
