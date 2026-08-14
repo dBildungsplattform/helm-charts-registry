@@ -1,6 +1,6 @@
 # 389ds
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.5.3](https://img.shields.io/badge/AppVersion-2.5.3-informational?style=flat-square)
+![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 3.0.6](https://img.shields.io/badge/AppVersion-3.0.6-informational?style=flat-square)
 
 A Helm chart for Kubernetes
 
@@ -9,6 +9,8 @@ A Helm chart for Kubernetes
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` |  |
+| containerSecurityContext.allowPrivilegeEscalation | bool | `false` |  |
+| containerSecurityContext.readOnlyRootFilesystem | bool | `true` |  |
 | customSchema | string | `""` | this only has an effect if configured before helm install, otherwise cp /etc/dirsrv/schema/99user.ldif /data/config/schema/99user.ldif is needed |
 | dsDmPassword.secretKey | string | `""` |  |
 | dsDmPassword.secretName | string | `""` |  |
@@ -22,6 +24,8 @@ A Helm chart for Kubernetes
 | extendedBootstrap.peers | string | `"port389ds-0.port389ds-headless"` |  |
 | extendedBootstrap.rmPassword.secretKey | string | `""` |  |
 | extendedBootstrap.rmPassword.secretName | string | `""` |  |
+| extendedBootstrap.securityContext.allowPrivilegeEscalation | bool | `false` |  |
+| extendedBootstrap.securityContext.readOnlyRootFilesystem | bool | `true` |  |
 | extraObjects | list | `[]` |  |
 | fullnameOverride | string | `"port389ds"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
@@ -42,20 +46,22 @@ A Helm chart for Kubernetes
 | metrics.resources.limits.memory | string | `"128Mi"` |  |
 | metrics.resources.requests.cpu | string | `"50m"` |  |
 | metrics.resources.requests.memory | string | `"64Mi"` |  |
+| metrics.securityContext.allowPrivilegeEscalation | bool | `false` |  |
+| metrics.securityContext.readOnlyRootFilesystem | bool | `true` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector | object | `{}` |  |
 | persistence.enabled | bool | `true` |  |
 | persistence.size | string | `"10Gi"` |  |
 | podAnnotations | object | `{}` |  |
 | podLabels | object | `{}` |  |
-| podSecurityContext | object | `{}` |  |
+| podSecurityContext.seccompProfile.type | string | `"RuntimeDefault"` |  |
 | readinessProbe.exec.command[0] | string | `"/usr/lib/dirsrv/dscontainer"` |  |
 | readinessProbe.exec.command[1] | string | `"-H"` |  |
 | readinessProbe.timeoutSeconds | int | `5` |  |
 | replicaCount | int | `1` |  |
-| resources.limits.cpu | string | `"1"` |  |
+| resources.limits.cpu | string | `"2"` |  |
 | resources.limits.memory | string | `"256Mi"` |  |
-| resources.requests.cpu | string | `"100m"` |  |
+| resources.requests.cpu | string | `"200m"` |  |
 | resources.requests.memory | string | `"256Mi"` |  |
 | service.insecurePort | int | `3389` |  |
 | service.securePort | int | `3636` |  |
