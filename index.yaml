@@ -293,6 +293,16 @@ entries:
     version: 0.0.0-pb-95-20260410-1540
   - apiVersion: v2
     appVersion: 3.0.6
+    created: "2026-08-14T08:05:48.287754571Z"
+    description: A Helm chart for Kubernetes
+    digest: b7ccac650716881ba6b6f79464d298521583bf38bd1d266e2d20c1ad34e6f40c
+    name: 389ds
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/389ds-0.0.0-dbp-2463-20260814-0801/389ds-0.0.0-dbp-2463-20260814-0801.tgz
+    version: 0.0.0-dbp-2463-20260814-0801
+  - apiVersion: v2
+    appVersion: 3.0.6
     created: "2026-08-14T08:02:38.791487177Z"
     description: A Helm chart for Kubernetes
     digest: bf3a9b16d200f1e6766831c92cca57bfd272076626955fffb3de26194e493358
@@ -189899,6 +189909,16 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-server-0.0.0-ew-1494-20260811-1347/erwin-portal-server-0.0.0-ew-1494-20260811-1347.tgz
     version: 0.0.0-ew-1494-20260811-1347
   - apiVersion: v2
+    appVersion: ew-1492
+    created: "2026-08-14T08:05:48.619196693Z"
+    description: A Helm Chart for the erwin-portal-server
+    digest: b051792f81ba700102c93953e8f7a396d0c7331bffa65348e3b77031e3f92b1f
+    name: erwin-portal-server
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-server-0.0.0-ew-1492-20260814-0801/erwin-portal-server-0.0.0-ew-1492-20260814-0801.tgz
+    version: 0.0.0-ew-1492-20260814-0801
+  - apiVersion: v2
     appVersion: ew-1475
     created: "2026-08-13T12:12:48.181102786Z"
     description: A Helm Chart for the erwin-portal-server
@@ -261694,4 +261714,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/wazuh-0.0.0-dbp-1363-20250325-1058/wazuh-0.0.0-dbp-1363-20250325-1058.tgz
     version: 0.0.0-dbp-1363-20250325-1058
-generated: "2026-08-14T08:02:38.846270454Z"
+generated: "2026-08-14T08:05:48.678470736Z"
