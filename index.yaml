@@ -58442,6 +58442,16 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-server-0.0.0-spsh-3961-20260805-1155/dbildungs-iam-server-0.0.0-spsh-3961-20260805-1155.tgz
     version: 0.0.0-spsh-3961-20260805-1155
   - apiVersion: v2
+    appVersion: spsh-3959
+    created: "2026-08-19T09:36:57.646534646Z"
+    description: dBildungs-IAM-server
+    digest: 6aef08bdf3a61cd24c566570ef8c118a1c9641361e8415135d9bbb7d155ab8fd
+    name: dbildungs-iam-server
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-server-0.0.0-spsh-3959-20260819-0932/dbildungs-iam-server-0.0.0-spsh-3959-20260819-0932.tgz
+    version: 0.0.0-spsh-3959-20260819-0932
+  - apiVersion: v2
     appVersion: spsh-3903
     created: "2026-07-02T12:00:32.927010432Z"
     description: dBildungs-IAM-server
@@ -190508,6 +190518,16 @@ entries:
     version: 0.0.0-ew-1492-20260814-0801
   - apiVersion: v2
     appVersion: ew-1479
+    created: "2026-08-19T09:36:57.863686815Z"
+    description: A Helm Chart for the erwin-portal-server
+    digest: c85af52c0c081442766f3d53f8f61e42dff98ba4d0af0a4a83ddaf3b00d605a4
+    name: erwin-portal-server
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-server-0.0.0-ew-1479-20260819-0933/erwin-portal-server-0.0.0-ew-1479-20260819-0933.tgz
+    version: 0.0.0-ew-1479-20260819-0933
+  - apiVersion: v2
+    appVersion: ew-1479
     created: "2026-08-18T12:19:23.621539609Z"
     description: A Helm Chart for the erwin-portal-server
     digest: 1d80793b21f78c4ba6598a0dfef5352a056cfb3667b3a0e24657b09ce356e712
@@ -262482,4 +262502,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/wazuh-0.0.0-dbp-1363-20250325-1058/wazuh-0.0.0-dbp-1363-20250325-1058.tgz
     version: 0.0.0-dbp-1363-20250325-1058
-generated: "2026-08-19T09:33:54.125072531Z"
+generated: "2026-08-19T09:36:57.927918333Z"
