@@ -190940,6 +190940,16 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-server-0.0.0/erwin-portal-server-0.0.0.tgz
     version: 0.0.0
   - apiVersion: v2
+    appVersion: ops-11900
+    created: "2026-08-21T12:02:11.813102105Z"
+    description: A Helm Chart for the erwin-portal-server
+    digest: fb4aa32419162591da7218cae351daf9e52906773dae7ade3c8db666e07c4285
+    name: erwin-portal-server
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-server-0.0.0-ops-11900-20260821-1154/erwin-portal-server-0.0.0-ops-11900-20260821-1154.tgz
+    version: 0.0.0-ops-11900-20260821-1154
+  - apiVersion: v2
     appVersion: ops-10821
     created: "2026-05-12T10:25:40.747996772Z"
     description: A Helm Chart for the erwin-portal-server
@@ -219698,6 +219708,16 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/schulportal-client-0.0.0-spsh-3966-20260806-0551/schulportal-client-0.0.0-spsh-3966-20260806-0551.tgz
     version: 0.0.0-spsh-3966-20260806-0551
+  - apiVersion: v2
+    appVersion: spsh-3962
+    created: "2026-08-21T12:02:11.959429097Z"
+    description: Helm-Chart for schulportal-client
+    digest: e3a42c2f9ae1d40031dbd5d0b7129ef1585d5d798d4a364638ab0b03f916e5c6
+    name: schulportal-client
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/schulportal-client-0.0.0-spsh-3962-20260821-1157/schulportal-client-0.0.0-spsh-3962-20260821-1157.tgz
+    version: 0.0.0-spsh-3962-20260821-1157
   - apiVersion: v2
     appVersion: spsh-3962
     created: "2026-08-21T06:59:02.366331796Z"
@@ -263345,4 +263365,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/wazuh-0.0.0-dbp-1363-20250325-1058/wazuh-0.0.0-dbp-1363-20250325-1058.tgz
     version: 0.0.0-dbp-1363-20250325-1058
-generated: "2026-08-21T11:59:09.945539979Z"
+generated: "2026-08-21T12:02:12.023031792Z"
