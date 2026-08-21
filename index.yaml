@@ -176613,6 +176613,16 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-client-0.0.1/erwin-portal-client-0.0.1.tgz
     version: 0.0.1
   - apiVersion: v2
+    appVersion: sha-0cd9192
+    created: "2026-08-21T12:26:09.69345352Z"
+    description: Helm-Chart for erwin-portal-client
+    digest: 2c9d4afd9d509b7b9d5ddf4fa089f1c3dab6cf7c88c3f90c2e9e25adcae46048
+    name: erwin-portal-client
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-client-0.0.1-20260821-1223/erwin-portal-client-0.0.1-20260821-1223.tgz
+    version: 0.0.1-20260821-1223
+  - apiVersion: v2
     appVersion: sha-4424c69
     created: "2026-08-13T12:06:25.485054934Z"
     description: Helm-Chart for erwin-portal-client
@@ -190239,6 +190249,16 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-server-0.0.1/erwin-portal-server-0.0.1.tgz
     version: 0.0.1
+  - apiVersion: v2
+    appVersion: sha-3230633
+    created: "2026-08-21T12:26:09.83414286Z"
+    description: A Helm Chart for the erwin-portal-server
+    digest: b572eb0b5642f7d9ee335277c901c0bb592605a3ce7a872b0d5a81b2c75d270f
+    name: erwin-portal-server
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-server-0.0.1-20260821-1223/erwin-portal-server-0.0.1-20260821-1223.tgz
+    version: 0.0.1-20260821-1223
   - apiVersion: v2
     appVersion: sha-5dabf6a
     created: "2026-08-17T09:11:56.948543174Z"
@@ -263375,4 +263395,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/wazuh-0.0.0-dbp-1363-20250325-1058/wazuh-0.0.0-dbp-1363-20250325-1058.tgz
     version: 0.0.0-dbp-1363-20250325-1058
-generated: "2026-08-21T12:21:15.100839457Z"
+generated: "2026-08-21T12:26:09.867075091Z"
