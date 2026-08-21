@@ -182194,6 +182194,16 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-keycloak-0.0.0-ops-10097-20251204-0916/erwin-portal-keycloak-0.0.0-ops-10097-20251204-0916.tgz
     version: 0.0.0-ops-10097-20251204-0916
   - apiVersion: v2
+    appVersion: ew-1500
+    created: "2026-08-21T13:02:06.753685854Z"
+    description: A Helm Chart for the erwin-portal-keycloak
+    digest: 3e3c9c61ecb92604d07bb0bfbb6e0f21575631d81277787fc6db7fc5ad7eb36b
+    name: erwin-portal-keycloak
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-keycloak-0.0.0-ew-1500-20260821-1259/erwin-portal-keycloak-0.0.0-ew-1500-20260821-1259.tgz
+    version: 0.0.0-ew-1500-20260821-1259
+  - apiVersion: v2
     appVersion: ew-1475
     created: "2026-08-13T12:12:47.969649909Z"
     description: A Helm Chart for the erwin-portal-keycloak
@@ -263418,4 +263428,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/wazuh-0.0.0-dbp-1363-20250325-1058/wazuh-0.0.0-dbp-1363-20250325-1058.tgz
     version: 0.0.0-dbp-1363-20250325-1058
-generated: "2026-08-21T12:28:25.062613019Z"
+generated: "2026-08-21T13:02:06.823557875Z"
