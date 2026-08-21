@@ -186183,6 +186183,29 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-ldap-0.0.1/erwin-portal-ldap-0.0.1.tgz
     version: 0.0.1
   - apiVersion: v2
+    appVersion: sha-df48303
+    created: "2026-08-21T12:28:25.027257953Z"
+    dependencies:
+    - condition: phpldapadmin.enabled
+      name: phpldapadmin
+      repository: ""
+      version: 0.1.x
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: ~2
+    description: Helm Chart for using community developed OpenLDAP software
+    digest: f01cf38d5f5e6d46951b4389474f1a3cc9064679efa51cf25aa4561c86bea241
+    home: https://www.openldap.org
+    keywords:
+    - ldap
+    - openldap
+    name: erwin-portal-ldap
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-ldap-0.0.1-20260821-1223/erwin-portal-ldap-0.0.1-20260821-1223.tgz
+    version: 0.0.1-20260821-1223
+  - apiVersion: v2
     appVersion: sha-53c3242
     created: "2026-07-21T11:33:41.811441828Z"
     dependencies:
@@ -263395,4 +263418,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/wazuh-0.0.0-dbp-1363-20250325-1058/wazuh-0.0.0-dbp-1363-20250325-1058.tgz
     version: 0.0.0-dbp-1363-20250325-1058
-generated: "2026-08-21T12:26:09.867075091Z"
+generated: "2026-08-21T12:28:25.062613019Z"
