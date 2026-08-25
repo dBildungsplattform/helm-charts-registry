@@ -1,11 +1,12 @@
 # Changelog
 
-## [1.7.0] - 2026-08-18
-### Feature
-- **DBP-2419** Replace Redis with valkey
-  - Based on license changes and usage of bitnami-redis we adjust the bundled key-value store to valkey
-  - To switch from redis to valkey set 'dbpMoodle.valkey.enabled: true' and 'dbpMoodle.redis.enabled: false'
-  - The official valkey image is used https://hub.docker.com/r/valkey/valkey/
+## [unreleased] - 2026-08-24
+## Fix
+- gpg key handling after debian13 upgrade
+  - With the helm chart created secret for the gpg keys, there was still the old naming "gpgkey.dbpinfra.pub.asc"
+    which needed adjustment after the debian13 update to match the new configuration and was renamed to "gpgkey.devops.pub.asc".
+    In case the chart created secret is used, one needs to adjust the helm chart values to hand over the gpg keys to the chart.
+  - The expected type of gpg_key_names is a List and was now changed from the default empty string, to a default empty List.
 
 ## [1.6.6] - 2026-08-12
 ### Fix
@@ -59,7 +60,7 @@
   - Helm Chart GPG Key way of working adjusted
     - Affected Helm value: Values.dbpMoodle.backup.gpg_key_names
       - This value will now be handled in the helpers.tpl to create dbpMoodle.backup.gpg_key_names.cmd which is used during runtime to create the Keys to the key names.
-    - Because of the adjustements, the way the GPG Keys are handled were adjusted. If multiple Keys are used, the input in the values.yaml should be a List of Strings like this: ["Key1Name", "Key2Name"]
+    - Because of the adjustements, the way the GPG Keys are handled were adjusted. If multiple Keys are used, the input in the values.yaml should be a List of Strings like this: "Key1Name, Key2Name"
   - Image Update to increase the debian Version from 12(Bookworm) to 13(Trixie) to ensure continuous security update support.
     - Updated Moodle Image to '4.5.10-fpm-trixie-8.2.31-dbp1'
     - Updated Moodle-Tools Image to '1.1.15'

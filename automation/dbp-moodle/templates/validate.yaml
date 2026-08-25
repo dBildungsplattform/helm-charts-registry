@@ -1,3 +1,0 @@
-{{- if and .Values.redis.enabled .Values.valkey.enabled -}}
-{{- fail "Enable either redis or valkey, not both" -}}
-{{- end -}}
