@@ -98,8 +98,6 @@ global:
       enabled: false
     eledia_oidc:
       enabled: false
-    local_course_reminder:
-      enabled: false
 
 dbpMoodle:
   name: infra
@@ -335,8 +333,6 @@ dbpMoodle:
         type: RuntimeDefault
 
 moodle:
-  redis:
-    enabled: '{{- include "moodle.redis.enabled" . -}}'
   updateStrategy:
     type: RollingUpdate
   image:
@@ -513,6 +509,23 @@ postgresql:
       limits:
         cpu: 9
         memory: "3Gi"
+
+valkey:
+  enabled: false
+  fullnameOverride: moodle-redis-master
+  auth:
+    existingSecret:
+      name: "moodle"
+      key: "redis-password"
+  useDeploymentWhenNonHA: true
+  storage:
+    requestedSize: 8Gi
+    keepPvc: false
+  valkeyConfig: |
+    maxmemory 3gb
+    maxmemory-policy noeviction
+  metrics:
+    enabled: false
 
 # redis helm chart values
 redis:

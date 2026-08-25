@@ -5,6 +5,9 @@ dependencies:
 - name: redis
   repository: https://charts.bitnami.com/bitnami
   version: 19.5.3
+- name: valkey
+  repository: https://dbildungsplattform.github.io/helm-charts-registry/
+  version: 3.0.1
 - name: postgresql
   repository: https://charts.bitnami.com/bitnami
   version: 15.5.38
@@ -26,5 +29,5 @@ dependencies:
 - name: sql-exporter
   repository: https://burningalchemist.github.io/sql_exporter/
   version: 0.6.1
-digest: sha256:6e1f4a0a99e875b58ace74f6b1147004f32649ca26c84e4f02e7db17916c4c96
-generated: "2026-08-25T11:20:41.208779251Z"
+digest: sha256:33cdb729297e37cae3df62200d74c3927b82a34db0c97ff38241144b8e1016c5
+generated: "2026-07-29T09:08:43.070996083Z"

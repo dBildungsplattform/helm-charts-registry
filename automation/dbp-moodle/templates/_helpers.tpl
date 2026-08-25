@@ -70,8 +70,8 @@
 {{- default "1W" .Values.dbpMoodle.backup.max_full_backup_age }}
 {{- end -}}
 
-{{- define "moodle.redis.enabled" -}}
-{{- .Values.redis.enabled }}
+{{- define "dbpMoodle.sessionStore.enabled" -}}
+{{- if or .Values.redis.enabled (.Values.valkey).enabled -}}true{{- end -}}
 {{- end -}}
 
 {{- define "dbpMoodle.pluginConfigMap.content" -}}
@@ -126,7 +126,6 @@ coursearchiver:tool_coursearchiver:admin/tool/coursearchiver:   {{- .Values.glob
 subcourse:mod_subcourse:mod/subcourse:                          {{- .Values.global.moodlePlugins.mod_subcourse.enabled }}{{"\n"}}
 videotime:mod_videotime:mod/videotime:                          {{- .Values.global.moodlePlugins.mod_videotime.enabled }}{{"\n"}}
 mediatime:tool_mediatime:admin/tool/mediatime:                  {{- .Values.global.moodlePlugins.tool_mediatime.enabled }}{{"\n"}}
-course_reminder:local_course_reminder:local/course_reminder     {{- .Values.global.moodlePlugins.local_course_reminder.enabled }}{{"\n"}}
 {{- end -}}
 
 {{- define "dbpMoodle.pluginConfigMap.sys.uninstall.content" -}}
