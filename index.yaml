@@ -57783,6 +57783,16 @@ entries:
     version: 0.0.0-spsh-4132-20260819-1322
   - apiVersion: v2
     appVersion: spsh-4129
+    created: "2026-08-27T10:47:13.380359591Z"
+    description: dBildungs-IAM-server
+    digest: b8b01559b296971c9793a6d046653eae453a43831ef6cfcc371faf4873db6609
+    name: dbildungs-iam-server
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-server-0.0.0-spsh-4129-20260827-1044/dbildungs-iam-server-0.0.0-spsh-4129-20260827-1044.tgz
+    version: 0.0.0-spsh-4129-20260827-1044
+  - apiVersion: v2
+    appVersion: spsh-4129
     created: "2026-08-26T09:07:40.084428329Z"
     description: dBildungs-IAM-server
     digest: b535ad837a29b18bd570714998e455049f41ce1820998ad8f09b671750e192aa
@@ -177458,6 +177468,16 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-client-0.0.1/erwin-portal-client-0.0.1.tgz
     version: 0.0.1
   - apiVersion: v2
+    appVersion: sha-c86ca94
+    created: "2026-08-27T10:47:13.584569046Z"
+    description: Helm-Chart for erwin-portal-client
+    digest: e413fa00d2242667db78f03cf2d7d4c5ced7a00d1675d6fc53b558debd99c59b
+    name: erwin-portal-client
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-client-0.0.1-20260827-1044/erwin-portal-client-0.0.1-20260827-1044.tgz
+    version: 0.0.1-20260827-1044
+  - apiVersion: v2
     appVersion: sha-f86fc40
     created: "2026-08-27T10:04:00.771448615Z"
     description: Helm-Chart for erwin-portal-client
@@ -264798,4 +264818,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/wazuh-0.0.0-dbp-1363-20250325-1058/wazuh-0.0.0-dbp-1363-20250325-1058.tgz
     version: 0.0.0-dbp-1363-20250325-1058
-generated: "2026-08-27T10:13:49.256245939Z"
+generated: "2026-08-27T10:47:13.647709879Z"
