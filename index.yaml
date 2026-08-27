@@ -60563,6 +60563,16 @@ entries:
     version: 0.0.0-spsh-3829-20260706-0657
   - apiVersion: v2
     appVersion: spsh-3823
+    created: "2026-08-27T09:01:37.192888471Z"
+    description: dBildungs-IAM-server
+    digest: c4f23e82c46d6ef967679b78fcc4be226da3124fa261e56c3a92cf70febdbb6c
+    name: dbildungs-iam-server
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/dbildungs-iam-server-0.0.0-spsh-3823-20260827-0857/dbildungs-iam-server-0.0.0-spsh-3823-20260827-0857.tgz
+    version: 0.0.0-spsh-3823-20260827-0857
+  - apiVersion: v2
+    appVersion: spsh-3823
     created: "2026-08-26T05:15:19.865643959Z"
     description: dBildungs-IAM-server
     digest: 9ea035fd35e002dc5fd3fce192dac08afc44cb5630a693bd9c17257e9e82959e
@@ -192097,6 +192107,16 @@ entries:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-server-0.0.0-ew-1499-20260820-1219/erwin-portal-server-0.0.0-ew-1499-20260820-1219.tgz
     version: 0.0.0-ew-1499-20260820-1219
   - apiVersion: v2
+    appVersion: ew-1495
+    created: "2026-08-27T09:01:37.413674816Z"
+    description: A Helm Chart for the erwin-portal-server
+    digest: 8e47cc21010b86d127981717695dc848ae77fe4de9e00d18d56017e8568deaec
+    name: erwin-portal-server
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-server-0.0.0-ew-1495-20260827-0857/erwin-portal-server-0.0.0-ew-1495-20260827-0857.tgz
+    version: 0.0.0-ew-1495-20260827-0857
+  - apiVersion: v2
     appVersion: ew-1494
     created: "2026-08-24T06:12:15.6179016Z"
     description: A Helm Chart for the erwin-portal-server
@@ -264652,4 +264672,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/wazuh-0.0.0-dbp-1363-20250325-1058/wazuh-0.0.0-dbp-1363-20250325-1058.tgz
     version: 0.0.0-dbp-1363-20250325-1058
-generated: "2026-08-27T08:58:35.308822717Z"
+generated: "2026-08-27T09:01:37.47940224Z"
