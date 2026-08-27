@@ -177909,6 +177909,16 @@ entries:
     version: 0.0.0
   - apiVersion: v2
     appVersion: ops-11932
+    created: "2026-08-27T09:52:06.414487811Z"
+    description: Helm-Chart for erwin-portal-client
+    digest: 0c7a16d861aed8e2662a27b13c503bc864668eaf24dcf38e747664616353a19e
+    name: erwin-portal-client
+    type: application
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-client-0.0.0-ops-11932-20260827-0948/erwin-portal-client-0.0.0-ops-11932-20260827-0948.tgz
+    version: 0.0.0-ops-11932-20260827-0948
+  - apiVersion: v2
+    appVersion: ops-11932
     created: "2026-08-27T09:31:53.000250858Z"
     description: Helm-Chart for erwin-portal-client
     digest: 4f846a70ca631c0fc69463c8f05d88acdd55a9bdaf67d207c561ce5eec22ec1c
@@ -187226,6 +187236,29 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-ldap-0.0.1/erwin-portal-ldap-0.0.1.tgz
     version: 0.0.1
+  - apiVersion: v2
+    appVersion: sha-ebf99c3
+    created: "2026-08-27T09:52:06.671348817Z"
+    dependencies:
+    - condition: phpldapadmin.enabled
+      name: phpldapadmin
+      repository: ""
+      version: 0.1.x
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: ~2
+    description: Helm Chart for using community developed OpenLDAP software
+    digest: d123cb32c94f7788c5a18b4c7b83d3e2b558130bcdc4a99c6e29d5694a80aa7c
+    home: https://www.openldap.org
+    keywords:
+    - ldap
+    - openldap
+    name: erwin-portal-ldap
+    urls:
+    - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/erwin-portal-ldap-0.0.1-20260827-0947/erwin-portal-ldap-0.0.1-20260827-0947.tgz
+    version: 0.0.1-20260827-0947
   - apiVersion: v2
     appVersion: sha-df48303
     created: "2026-08-21T12:28:25.027257953Z"
@@ -264745,4 +264778,4 @@ entries:
     urls:
     - https://github.com/dBildungsplattform/helm-charts-registry/releases/download/wazuh-0.0.0-dbp-1363-20250325-1058/wazuh-0.0.0-dbp-1363-20250325-1058.tgz
     version: 0.0.0-dbp-1363-20250325-1058
-generated: "2026-08-27T09:48:58.600131155Z"
+generated: "2026-08-27T09:52:06.723599776Z"
